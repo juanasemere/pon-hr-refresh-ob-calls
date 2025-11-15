@@ -3,107 +3,134 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PON HR Refresh – Germany Consumer HR</title>
+<title>PON HR Refresh – Germany & Austria • Consumer HR OB Calls</title>
 
-<!-- Chart.js CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <style>
 	:root{
-		/* Brand colors (podés ajustarlos a tu paleta) */
-		--primary:#0ea5e9;      /* Sky-500 */
-		--primary-2:#6366f1;    /* Indigo-500 */
-		--accent:#10b981;       /* Emerald-500 */
-		--ink:#0f172a;          /* Slate-900 */
-		--muted:#475569;        /* Slate-600 */
-		--bg:#f8fafc;           /* Slate-50 */
-		--card:#ffffff;
-		--stroke:#e5e7eb;
+		--primary:#0ea5e9;      /* sky */
+		--primary-2:#6366f1;    /* indigo */
+		--accent:#10b981;       /* emerald */
+		--danger:#ef4444;       /* red */
+		--ink:#0f172a;          /* slate-900 */
+		--muted:#475569;        /* slate-600 */
+		--bg:#0b1220;           /* dark hero bg */
+		--page:#0f172a;         /* body bg */
+		--card:#0b1320;         /* card dark */
+		--stroke:#172036;
+		--soft:#0a1630;
 	}
 	*{box-sizing:border-box}
-	body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; color:var(--ink); background:var(--bg);}
+	body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; color:#e5e7eb; background:linear-gradient(180deg,var(--bg), #0b1220 30%, #0e1526)}
 	header{
-		background: linear-gradient(135deg,var(--primary),var(--primary-2));
-		color:#fff; padding: 18px 20px 24px; position:relative;
+		background:
+			radial-gradient(1200px 400px at 20% -10%, rgba(14,165,233,.25), transparent 60%),
+			radial-gradient(900px 350px at 80% -20%, rgba(99,102,241,.25), transparent 60%),
+			linear-gradient(180deg, rgba(14,17,40,.75), rgba(8,12,25,.9));
+		padding: 26px 20px 30px;
+		position:relative;
+		overflow:hidden;
 	}
-	.brand{
-		display:flex; align-items:center; gap:12px; margin-bottom:8px;
-	}
-	.brand img{width:36px; height:36px; border-radius:8px; background:#fff; object-fit:cover}
-	header h1{margin:0 0 4px; font-size:28px}
-	header p{margin:0; opacity:.95}
-	.actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+	.brand{display:flex; align-items:center; gap:14px; margin-bottom:10px}
+	.brand img{width:40px; height:40px; border-radius:10px; background:#fff; object-fit:cover}
+	h1{margin:0; font-size:30px; letter-spacing:.2px}
+	header p{margin:6px 0 0; color:#cbd5e1}
+	.tagbar{display:flex; gap:8px; margin-top:12px}
+	.tag{font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid #1e293b; background:#0a162c; color:#cbd5e1}
+	.actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
 	.linklike, button{
-		cursor:pointer; border:1px solid #e0f2fe; color:#0b4a6e; background:#ffffff; padding:10px 14px; border-radius:10px; font-weight:700;
+		cursor:pointer; border:1px solid #1e293b; color:#e2e8f0; background:#0b172e; padding:10px 14px; border-radius:10px; font-weight:700;
+		backdrop-filter: blur(4px);
 	}
-	button:hover,.linklike:hover{background:#e0f2fe}
-	main{padding:20px; max-width:1100px; margin:0 auto}
-	.card{background:var(--card); border:1px solid var(--stroke); border-radius:12px; padding:16px 18px; box-shadow:0 1px 2px rgba(15,23,42,.06); margin:12px 0}
-	h2{font-size:20px; margin:8px 0 12px}
-	h3{font-size:16px; margin:12px 0 8px}
-	.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px}
-	.kpi{background:#f1f5f9; border:1px solid #e2e8f0; border-radius:10px; padding:12px}
-	.kpi .label{font-size:12px; color:#334155}
-	.kpi .value{font-size:22px; font-weight:700}
-	.badge{display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; background:#e0f2fe; color:#075985; border:1px solid #bae6fd}
-	table{width:100%; border-collapse:collapse}
-	th,td{padding:8px; border-bottom:1px solid var(--stroke); text-align:left}
-	.note{font-size:12px; color:var(--muted)}
-	.grid-2{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-	.ok{color:#16a34a} .warn{color:#b45309}
-	.footer{font-size:12px; color:#64748b; padding:24px 20px 40px; text-align:center}
-	/* Simple brand bar under header */
-	.brandbar{height:4px; background:linear-gradient(90deg,var(--primary),var(--accent));}
+	button:hover,.linklike:hover{background:#10203d}
+	main{padding:22px; max-width:1180px; margin:0 auto}
+	.section-title{font-size:20px; margin:0 0 10px; color:#e5e7eb}
+	.card{
+		background: linear-gradient(180deg,#0a1426,#0a1120);
+		border:1px solid var(--stroke); border-radius:14px; padding:16px 18px; box-shadow: 0 10px 30px rgba(2,6,23,.25);
+		margin:14px 0;
+	}
+	.card .sub{color:#94a3b8; font-size:13px}
+	.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
+	.kpi{
+		background: linear-gradient(180deg,#0c1730,#0b152c);
+		border:1px solid #16233d; border-radius:12px; padding:12px;
+	}
+	.kpi .label{font-size:12px; color:#9fb2ca}
+	.kpi .value{font-size:24px; font-weight:800}
+	.kpi .note{font-size:12px; color:#93a2b8}
+	.grid-2{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+	.grid-3{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+	.ul-clean{margin:10px 0 0; padding-left:18px}
+	.ul-clean li{margin:6px 0}
+	.badge{display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; border:1px solid #1e293b; color:#cbd5e1}
+	.hr{height:1px; background:linear-gradient(90deg,transparent,#1f2c46,transparent); margin:10px 0}
+	.pin{font-size:12px; color:#9fb2ca}
+	.ok{color:#34d399} .warn{color:#f59e0b} .muted{color:#94a3b8}
+	.footer{font-size:12px; color:#93a2b8; padding: 26px 20px 40px; text-align:center}
+	/* cute icons in list */
+	.li-emoji li::marker{content:"• "}
+	.callout{background:linear-gradient(180deg,#0e1a35,#0d182f); border:1px solid #1c2a49; border-radius:12px; padding:12px}
 </style>
 </head>
 <body>
 
 <header>
 	<div class="brand">
-		<!-- Reemplazá el src con tu logo real -->
-		<img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Abstract_avtar.png" alt="Logo" />
+		<img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg" alt="Logo" />
 		<div>
-			<h1>PON HR Refresh – Germany Consumer HR</h1>
-			<p>Outbound Calls program to drive KYC refresh and reduce suspension or cancellation risk.</p>
+			<h1>PON HR Refresh – Germany & Austria • Consumer HR Outbound Calls</h1>
+			<p>Outbound calls program to drive KYC refresh, minimize suspensions and avoid cancellations.</p>
 		</div>
 	</div>
-
+	<div class="tagbar">
+		<span class="tag">Market: DE & AT</span>
+		<span class="tag">Segment: Consumer HR</span>
+		<span class="tag">OB Calls cadence: every 21 days</span>
+	</div>
 	<div class="actions">
 		<label class="linklike" for="excelInput">Upload latest Excel</label>
 		<input id="excelInput" type="file" accept=".xlsx,.xls,.csv" style="display:none" />
 		<button id="openSpendBtn" title="Open Spend tool">Open Spend tool</button>
-		<button id="toggleViewBtn">Toggle: May ↔ August</button>
+		<button id="toggleViewBtn" title="Toggle KPIs">Toggle: May ↔ August</button>
 	</div>
 </header>
-<div class="brandbar"></div>
 
 <main>
+	<!-- OVERVIEW (actualizado) -->
 	<section class="card">
-		<h2>Overview</h2>
-		<p>
-			We focus on Germany’s Consumer HR segment. Premium customers are prioritized. OB Calls are executed prior to suspension and a robust partial-refresh path maintains basic status when documentation is provided.
-		</p>
-		<ul>
-			<li>Refined recipient lists and enriched data for effectiveness.</li>
-			<li>Portfolio Manager POC used for the premium base.</li>
-			<li>HR to HR Jurisdiction: +30 days, GSG OB calls, and additional SOW requirements.</li>
-			<li>Process is running smoothly and reused by other markets.</li>
-		</ul>
-		<span class="badge">Market: Germany Consumer HR</span>
-	</section>
-
-	<section id="kpis-aug" class="card">
-		<h2>Key Results – August 2025</h2>
-		<div class="kpis">
-			<div class="kpi"><div class="label">AIF YTD</div><div class="value">4,000</div><div class="note">DE: 3.5k • AT: 0.5k</div></div>
-			<div class="kpi"><div class="label">% refreshed</div><div class="value ok">85%</div><div class="note">10% in progress • 5% pre-screening</div></div>
-			<div class="kpi"><div class="label">Cancellations due to KYC info</div><div class="value ok">≈ 0</div><div class="note">Only 1 HR consumer CM exception</div></div>
-			<div class="kpi"><div class="label">Sentiment</div><div class="value ok">Positive</div><div class="note">HR CMs willing to complete KYC</div></div>
+		<h2 class="section-title">Overview – Germany & Austria • Consumer HR Outbound Calling</h2>
+		<div class="grid-2">
+			<div>
+				<ul class="ul-clean li-emoji">
+					<li><b>Weekly calling cycle</b> with capacity of <b>up to 60 outbound calls</b> per week.</li>
+					<li>When weekly volumes exceed capacity, <b>prioritization is based on customer spend</b>.</li>
+					<li><b>Centurion accounts excluded</b> – managed by TLS via shared tracking file.</li>
+					<li><b>HRJ cases not included</b> – handled directly by CEN.</li>
+					<li><b>Platinum Plus Cards removed</b> from scope to keep focus on core Consumer HR accounts.</li>
+					<li><b>Clear segmentation & refined recipient lists</b> for targeted actions.</li>
+					<li><b>Stable and scalable operating model</b> supporting DE and AT HR processes.</li>
+					<li>Designed to strengthen <b>risk management</b> and improve <b>documentation compliance</b>.</li>
+					<li>Process running smoothly and reused by other markets (France, UK).</li>
+				</ul>
+			</div>
+			<div class="callout">
+				<p class="sub"><b>Operational cadence</b></p>
+				<ul class="ul-clean li-emoji">
+					<li>We call selected customers in the <b>suspension warning</b> and again at <b>suspension confirmation</b>.</li>
+					<li><b>3 calls per client every 21 days</b> until resolution.</li>
+				</ul>
+				<div class="hr"></div>
+				<p class="pin">Use Spend prioritization whenever the weekly volume exceeds capacity.</p>
+			</div>
 		</div>
 	</section>
 
-	<section id="kpis-may" class="card" style="display:none">
-		<h2>Key Results – May 2025</h2>
+	<!-- KEY RESULTS (May primero, luego August) -->
+	<section id="kpis-may" class="card">
+		<h2 class="section-title">Key Results – May 2025</h2>
 		<div class="kpis">
 			<div class="kpi"><div class="label">AIF YTD</div><div class="value">3,700</div><div class="note">DE: 3.2k • AT: 0.5k</div></div>
 			<div class="kpi"><div class="label">% refreshed</div><div class="value">74%</div><div class="note">18% in progress • 8% to be contacted</div></div>
@@ -112,80 +139,84 @@
 		</div>
 	</section>
 
-	<!-- Charts -->
+	<section id="kpis-aug" class="card">
+		<h2 class="section-title">Key Results – August 2025</h2>
+		<div class="kpis">
+			<div class="kpi"><div class="label">AIF YTD</div><div class="value">4,000</div><div class="note">DE: 3.5k • AT: 0.5k</div></div>
+			<div class="kpi"><div class="label">% refreshed</div><div class="value ok">85%</div><div class="note">10% in progress • 5% pre-screen</div></div>
+			<div class="kpi"><div class="label">Cancellations due to KYC info</div><div class="value ok">≈ 0</div><div class="note">Only 1 exception in HR consumer CM</div></div>
+			<div class="kpi"><div class="label">Feedback from HR CMs</div><div class="value ok">Positive</div><div class="note">Willing to complete KYC</div></div>
+		</div>
+	</section>
+
+	<!-- CHARTS -->
 	<section class="card">
-		<h2>Performance charts</h2>
-		<div class="grid-2">
+		<h2 class="section-title">Performance charts</h2>
+		<div class="grid-3">
 			<div>
-				<h3>Refresh rate by month</h3>
-				<canvas id="refreshChart" height="220"></canvas>
-				<p class="note">Tracks progression from May to August. You can extend with more months.</p>
+				<p class="sub">Refresh rate by month</p>
+				<canvas id="refreshChart" height="210"></canvas>
+				<p class="muted pin">Suspension rate is <b>much lower</b> thanks to a <b>much smaller inventory</b> and earlier outreach.</p>
 			</div>
 			<div>
-				<h3>AIF YTD by market</h3>
-				<canvas id="aifChart" height="220"></canvas>
-				<p class="note">Germany and Austria contribution to overall AIF YTD.</p>
+				<p class="sub">AIF YTD by market</p>
+				<canvas id="aifChart" height="210"></canvas>
+				<p class="muted pin">Germany drives most of AIF YTD. Austria steady across the period.</p>
+			</div>
+			<div>
+				<p class="sub">Suspension vs Inventory</p>
+				<canvas id="suspChart" height="210"></canvas>
+				<p class="muted pin">Smaller open-inventory correlates with lower suspension exposure.</p>
 			</div>
 		</div>
 	</section>
 
-	<section class="card grid-2">
-		<div>
-			<h3>Enhancements since Jan 2025</h3>
-			<ul>
-				<li>OB Calls to selected customers before suspension.</li>
-				<li>Partial-refresh path with documentation since 03/25.</li>
-				<li>HR→HRJ adjustment with +30 days and GSG OB calls.</li>
-				<li>Updated comms to avoid address-related delays.</li>
-			</ul>
-		</div>
-		<div>
-			<h3>Next challenges</h3>
-			<ul>
-				<li>Retrieve suspension from AT process and map for 2026.</li>
-				<li>Incorporate learnings into iRefresh.</li>
-				<li>Prepare for 2027 SOW/SOF requirements.</li>
-			</ul>
-		</div>
+	<!-- ENHANCEMENTS (texto actualizado) -->
+	<section class="card">
+		<h2 class="section-title">Enhancements since Jan 2025</h2>
+		<ul class="ul-clean li-emoji">
+			<li><b>OB Calls in suspension windows</b>: we call customers at <b>warning</b> and at <b>confirmation</b>, executing a cadence of <b>3 calls per client every 21 days</b>.</li>
+			<li><b>Partial-refresh path (since 03/25)</b>: Implemented after detecting many cases with Basic completed but missing Supplementary. A <b>targeted partial-cancellation</b> flow cancels only the supplementary component, supported by updated comms and business rules.</li>
+			<li><b>HR → HRJ adjustment</b>: +30 days extension and <b>GSG OB calls</b>.</li>
+			<li><b>Reinstatement workflow</b>: for documentation arriving by post after the effective cancellation, ensuring fair recovery of accounts affected by postal delays or internal processing errors.</li>
+		</ul>
 	</section>
 
+	<!-- NEXT CHALLENGES (texto actualizado) -->
 	<section class="card">
-		<h2>Status Snapshot</h2>
-		<table>
-			<thead>
-				<tr><th>Month</th><th>Market</th><th>Refreshed</th><th>In progress</th><th>To contact / Pre-screen</th></tr>
-			</thead>
-			<tbody>
-				<tr><td>May 2025</td><td>Germany</td><td>74%</td><td>18%</td><td>8%</td></tr>
-				<tr><td>August 2025</td><td>Germany</td><td>85%</td><td>10%</td><td>5%</td></tr>
-			</tbody>
-		</table>
-		<p class="note">90% of refreshed were completed before suspension in August. OB Calls approach was copied by other markets.</p>
+		<h2 class="section-title">Next challenges</h2>
+		<ul class="ul-clean li-emoji">
+			<li><b>AT Suspension Retrieval & 2026 Documentation Framework</b>: mapped end-to-end AT suspension to identify operational and compliance dependencies. Designed a <b>non‑suspension‑based set‑list</b> to keep outreach and collection regardless of status, with targeted comms and follow‑ups to maintain return rates <b>without suspension triggers</b>.</li>
+			<li><b>Incorporate Learnings into iRefresh – DE/AT Expansion</b>: request to implement iRefresh for <b>Germany and Austria</b> across Low and Medium risk, covering a <b>larger base</b> with a <b>team of 8 Concentrix agents</b> making weekly OB calls. <b>Spend prioritization</b> essential to manage volume. Execution relies on <b>raw business data</b> and continuous refinement for a <b>scalable, data‑driven framework</b>.</li>
+			<li><b>Prepare for 2027 SOW/SOF requirements</b>.</li>
+		</ul>
 	</section>
 
+	<!-- OPERATIONS -->
 	<section class="card">
-		<h2>Operations</h2>
-		<p>Use these actions every cycle to upload the latest Excel and open the Spend tool.</p>
+		<h2 class="section-title">Operations</h2>
+		<p class="sub">Use these actions each cycle.</p>
 		<div class="actions">
 			<label class="linklike" for="excelInput">Upload latest Excel</label>
 			<button id="openSpendBtn2">Open Spend tool</button>
 		</div>
-		<div id="fileInfo" class="note" style="margin-top:8px">No file uploaded yet.</div>
+		<p id="fileInfo" class="muted" style="margin-top:8px">No file uploaded yet.</p>
 	</section>
 </main>
 
 <div class="footer">
-	Maintained by Germany Consumer HR team • Outbound Calls program
+	Maintained by Germany & Austria Consumer HR • Outbound Calls program
 </div>
 
 <script>
-	// Toggle KPI views
+	// Toggle KPI views (May first, then Aug)
 	const kpisAug = document.getElementById('kpis-aug');
 	const kpisMay = document.getElementById('kpis-may');
 	document.getElementById('toggleViewBtn').addEventListener('click', () => {
 		const augVisible = kpisAug.style.display !== 'none';
 		kpisAug.style.display = augVisible ? 'none' : '';
 		kpisMay.style.display = augVisible ? '' : 'none';
+		window.scrollTo({top:kpisMay.offsetTop-20, behavior:'smooth'});
 	});
 
 	// Upload Excel
@@ -202,56 +233,69 @@
 	document.getElementById('openSpendBtn').addEventListener('click', openSpend);
 	document.getElementById('openSpendBtn2').addEventListener('click', openSpend);
 
-	// Charts
-	const refreshCtx = document.getElementById('refreshChart');
-	new Chart(refreshCtx, {
+	// Charts data
+	const css = getComputedStyle(document.documentElement);
+	const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
+	const cSky = css.getPropertyValue('--primary').trim() || '#0ea5e9';
+	const cEmerald = css.getPropertyValue('--accent').trim() || '#10b981';
+	const cMuted = '#94a3b8';
+
+	// Refresh rate
+	new Chart(document.getElementById('refreshChart'), {
 		type:'line',
 		data:{
 			labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
-			datasets:[{
-				label:'% Refreshed',
-				data:[74, 79, 82, 85],   // asumí una mejora gradual; podés editarlo
-				borderColor:getComputedStyle(document.documentElement).getPropertyValue('--primary-2'),
-				backgroundColor:'rgba(99,102,241,.15)',
-				fill:true, tension:.35, borderWidth:3, pointRadius:3
-			},{
-				label:'% In progress',
-				data:[18, 15, 13, 10],
-				borderColor:getComputedStyle(document.documentElement).getPropertyValue('--primary'),
-				backgroundColor:'rgba(14,165,233,.15)',
-				fill:true, tension:.35, borderWidth:2, pointRadius:2
-			},{
-				label:'% To contact / Pre-screen',
-				data:[8, 6, 5, 5],
-				borderColor:'#94a3b8',
-				backgroundColor:'rgba(148,163,184,.15)',
-				fill:true, tension:.35, borderWidth:2, pointRadius:2
-			}]
+			datasets:[
+				{ label:'% Refreshed', data:[74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+				{ label:'% In progress', data:[18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
+				{ label:'% To contact / Pre-screen', data:[8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2, pointRadius:2 }
+			]
 		},
 		options:{
-			plugins:{legend:{position:'bottom'}},
-			scales:{y:{ticks:{callback:(v)=>v+'%'}}}
+			plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+			scales:{
+				x:{ ticks:{ color:'#a8b1c7' }, grid:{ color:'rgba(148,163,184,.15)' } },
+				y:{ ticks:{ color:'#a8b1c7', callback:v=>v+'%' }, grid:{ color:'rgba(148,163,184,.12)' } }
+			}
 		}
 	});
 
-	const aifCtx = document.getElementById('aifChart');
-	new Chart(aifCtx, {
+	// AIF bars
+	new Chart(document.getElementById('aifChart'), {
 		type:'bar',
 		data:{
 			labels:['Germany','Austria'],
-			datasets:[{
-				label:'AIF YTD (May)',
-				data:[3200,500],
-				backgroundColor:'rgba(14,165,233,.6)'
-			},{
-				label:'AIF YTD (Aug)',
-				data:[3500,500],
-				backgroundColor:'rgba(16,185,129,.6)'
-			}]
+			datasets:[
+				{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+				{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 }
+			]
 		},
 		options:{
-			plugins:{legend:{position:'bottom'}},
-			scales:{y:{beginAtZero:true, ticks:{callback:(v)=>v.toLocaleString()}}}
+			plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+			scales:{
+				x:{ ticks:{ color:'#a8b1c7' }, grid:{ color:'rgba(148,163,184,.15)' } },
+				y:{ beginAtZero:true, ticks:{ color:'#a8b1c7', callback:v=>v.toLocaleString() }, grid:{ color:'rgba(148,163,184,.12)' } }
+			}
+		}
+	});
+
+	// Suspension vs Inventory (demostrativo)
+	new Chart(document.getElementById('suspChart'), {
+		type:'line',
+		data:{
+			labels:['May','Jun','Jul','Aug'],
+			datasets:[
+				{ label:'Open inventory (index)', data:[100,75,60,45], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
+				{ label:'Suspension rate %', data:[1.4,1.1,0.9,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
+			]
+		},
+		options:{
+			plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+			scales:{
+				x:{ ticks:{ color:'#a8b1c7' }, grid:{ color:'rgba(148,163,184,.15)' } },
+				y1:{ position:'left', ticks:{ color:'#a8b1c7', callback:v=>v+'%' }, grid:{ color:'rgba(148,163,184,.12)' } },
+				y2:{ position:'right', ticks:{ color:'#a8b1c7' }, grid:{ drawOnChartArea:false } }
+			}
 		}
 	});
 </script>
