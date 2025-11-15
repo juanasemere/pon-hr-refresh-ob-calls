@@ -3,286 +3,324 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PON HR Refresh – Germany & Austria • Dashboard</title>
+<title>PON HR Refresh – Germany & Austria • Consumer HR OB Calls</title>
 <!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
 <style>
-  :root{
-    --amex-blue:#2e77bb;
-    --amex-dark:#113a63;
-    --accent:#0ea5e9;
-    --muted:#6b7280;
-    --card-bg:#ffffff;
-    --page-bg:#f8fafc;
-    --glass: rgba(255,255,255,0.85);
-  }
-  *{box-sizing:border-box}
-  body{font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--page-bg); color:#0f172a}
-
-  header{
-    position:relative; height:220px; display:flex; align-items:center; justify-content:center; overflow:hidden; border-bottom:1px solid #e6eef8;
-    background-image: url('https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg'); background-size:cover; background-position:center; filter:brightness(.95);
-  }
-  header::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(17,58,99,.35), rgba(255,255,255,0.02)); }
-  .header-inner{position:relative; z-index:2; display:flex; gap:18px; align-items:center; width:100%; max-width:1180px; padding:18px;}
-  .logo{width:64px; height:64px; border-radius:10px; overflow:hidden; box-shadow:0 6px 18px rgba(17,58,99,.12); background:#fff; display:flex; align-items:center; justify-content:center}
-  .logo img{max-width:90%; max-height:90%}
-  .title{flex:1}
-  h1{margin:0; font-size:20px; color:var(--card-bg); font-weight:700}
-  p.lead{margin:6px 0 0; color:rgba(255,255,255,.9); font-size:13px}
-
-  .amex{width:140px}
-
-  .nav-buttons{display:flex; gap:10px; margin:18px auto; justify-content:center}
-  .tab{background:var(--glass); border:1px solid rgba(17,58,99,.08); padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:700; color:var(--amex-dark); transition:all .18s ease}
-  .tab.active{background:linear-gradient(180deg, rgba(46,119,187,1), rgba(17,58,99,1)); color:#fff; box-shadow:0 8px 30px rgba(46,119,187,.18);}
-
-  main{max-width:1180px; margin:22px auto; padding:0 18px}
-  .grid{display:grid; gap:16px}
-  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-  .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-
-  .card{background:var(--card-bg); border-radius:12px; padding:16px; box-shadow:0 6px 18px rgba(16,24,40,.06); border:1px solid rgba(17,58,99,.04)}
-  .kpi{display:flex; justify-content:space-between; align-items:center}
-  .kpi .left{line-height:1}
-  .kpi .label{font-size:13px; color:var(--muted)}
-  .kpi .value{font-size:26px; font-weight:800; color:var(--amex-dark)}
-  .kpi .note{font-size:12px; color:var(--muted)}
-
-  table{width:100%; border-collapse:collapse; font-size:13px}
-  th, td{padding:8px 10px; text-align:left; border-bottom:1px solid #f1f5f9}
-  th{font-weight:700; color:#0f172a}
-
-  .charts{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
-  canvas{background:transparent; display:block; width:100% !important; height:220px !important}
-
-  /* hover effects */
-  .card:hover{transform:translateY(-4px); transition:transform .18s ease}
-
-  .muted{color:var(--muted)}
-  .section-title{display:flex; align-items:center; gap:12px}
-  .section-title h3{margin:0}
-
-  footer{max-width:1180px;margin:26px auto;color:var(--muted);font-size:13px;padding:0 18px}
-
-  /* responsive */
-  @media (max-width:900px){ .charts{grid-template-columns:1fr} .grid.cols-3{grid-template-columns:1fr} }
+:root{
+--primary:#0ea5e9; /* sky */
+--primary-2:#6366f1; /* indigo */
+--accent:#10b981; /* emerald */
+--danger:#ef4444; /* red */
+--ink:#0f172a; /* slate-900 */
+--muted:#475569; /* slate-600 */
+--bg:#0b1220; /* dark hero bg */
+--page:#0f172a; /* body bg */
+--card:#0b1320; /* card dark */
+--stroke:#172036;
+--soft:#0a1630;
+}
+*{box-sizing:border-box}
+body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; color:#e5e7eb; background:linear-gradient(180deg,var(--bg), #0b1220 30%, #0e1526)}
+header{
+background:
+radial-gradient(1200px 400px at 20% -10%, rgba(14,165,233,.25), transparent 60%),
+radial-gradient(900px 350px at 80% -20%, rgba(99,102,241,.25), transparent 60%),
+linear-gradient(180deg, rgba(14,17,40,.75), rgba(8,12,25,.9));
+padding: 26px 20px 30px;
+position:relative;
+overflow:hidden;
+}
+.brand{display:flex; align-items:center; gap:14px; margin-bottom:10px}
+.brand img{width:40px; height:40px; border-radius:10px; background:#fff; object-fit:cover}
+h1{margin:0; font-size:30px; letter-spacing:.2px}
+header p{margin:6px 0 0; color:#cbd5e1}
+.tagbar{display:flex; gap:8px; margin-top:12px}
+.tag{font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid #1e293b; background:#0a162c; color:#cbd5e1}
+.actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+.linklike, button, .view-btn{
+cursor:pointer; border:1px solid #1e293b; color:#e2e8f0; background:#0b172e; padding:10px 14px; border-radius:10px; font-weight:700;
+backdrop-filter: blur(4px); transition: all 0.2s;
+}
+button:hover,.linklike:hover, .view-btn:hover{background:#10203d}
+.view-btn.active{background:#6366f1; border-color:#818cf8; color:white}
+main{padding:22px; max-width:1180px; margin:0 auto}
+.section-title{font-size:20px; margin:0 0 10px; color:#e5e7eb}
+.card{
+background: linear-gradient(180deg,#0a1426,#0a1120);
+border:1px solid var(--stroke); border-radius:14px; padding:16px 18px; box-shadow: 0 10px 30px rgba(2,6,23,.25);
+margin:14px 0;
+}
+.card .sub{color:#94a3b8; font-size:13px}
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
+.kpi{
+background: linear-gradient(180deg,#0c1730,#0b152c);
+border:1px solid #16233d; border-radius:12px; padding:12px;
+}
+.kpi .label{font-size:12px; color:#9fb2ca}
+.kpi .value{font-size:24px; font-weight:800}
+.kpi .note{font-size:12px; color:#93a2b8}
+.grid-2{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.grid-3{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.ul-clean{margin:10px 0 0; padding-left:18px}
+.ul-clean li{margin:6px 0}
+.badge{display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; border:1px solid #1e293b; color:#cbd5e1}
+.hr{height:1px; background:linear-gradient(90deg,transparent,#1f2c46,transparent); margin:10px 0}
+.pin{font-size:12px; color:#9fb2ca}
+.ok{color:#34d399} .warn{color:#f59e0b} .muted{color:#94a3b8}
+.footer{font-size:12px; color:#93a2b8; padding: 26px 20px 40px; text-align:center}
+.li-emoji li::marker{content:"• "}
+.callout{background:linear-gradient(180deg,#0e1a35,#0d182f); border:1px solid #1c2a49; border-radius:12px; padding:12px}
+.hidden{display:none}
 </style>
 </head>
 <body>
 <header>
-  <div class="header-inner">
-    <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo_%282018%29.svg" alt="AMEX"/></div>
-    <div class="title">
-      <h1>PON HR Refresh – Germany & Austria • Consumer HR Outbound Calls</h1>
-      <p class="lead">Outbound calls program to drive KYC refresh, minimize suspensions and avoid cancellations — Dashboard view per stage.</p>
-    </div>
-    <div style="width:200px;text-align:right;">
-      <div style="font-size:12px;color:rgba(255,255,255,.95);font-weight:700">AMEX • PON</div>
-      <div style="font-size:11px;color:rgba(255,255,255,.9);margin-top:6px">Updated: Aug 12, 2025</div>
-    </div>
-  </div>
-</header>
-
-<div class="nav-buttons" role="tablist" aria-label="Stages">
-  <button class="tab active" data-stage="sept">Sept 2024</button>
-  <button class="tab" data-stage="may">May 2025</button>
-  <button class="tab" data-stage="aug">Aug 2025</button>
+<div class="brand">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg" alt="Logo" />
+<div>
+<h1>PON HR Refresh – Germany & Austria • Consumer HR Outbound Calls</h1>
+<p>Outbound calls program to drive KYC refresh, minimize suspensions and avoid cancellations.</p>
+</div>
+</div>
+<div class="tagbar">
+<span class="tag">Market: DE & AT</span>
+<span class="tag">Segment: Consumer HR</span>
+<span class="tag">OB Calls cadence: every 21 days</span>
 </div>
 
+<!-- BOTONES DE VISTA -->
+<div class="actions" style="margin-top:18px; gap:8px">
+  <button class="view-btn active" data-view="sep2024">Sep 2024</button>
+  <button class="view-btn" data-view="may2025">May 2025</button>
+  <button class="view-btn" data-view="aug2025">Aug 2025</button>
+</div>
+
+<div class="actions">
+<label class="linklike" for="excelInput">Upload latest Excel</label>
+<input id="excelInput" type="file" accept=".xlsx,.xls,.csv" style="display:none" />
+<button id="openSpendBtn" title="Open Spend tool">Open Spend tool</button>
+</div>
+</header>
+
 <main>
-  <!-- Global KPIs area (updates with stage change) -->
-  <div class="grid cols-3" style="margin-bottom:14px;" id="kpiCards">
-    <!-- placeholders populated by JS -->
+
+<!-- === SEPTIEMBRE 2024 === -->
+<section id="sep2024" class="view-section">
+  <div class="card">
+    <h2 class="section-title">Sep 2024 – Key Facts</h2>
+    <ul class="ul-clean li-emoji">
+      <li>High Risk portfolio: approx. <b>5,600 AIF YTD</b> (DE: 5k / AT: 0.6k)</li>
+      <li>120-day KYC HR Refresh journey with risk of cancellation if account not fully refreshed</li>
+      <li>Since 03/2024: HR process in BAU. As of today: <b>56% refreshed</b>, 24% in progress. Remains 20% still to be contacted</li>
+    </ul>
   </div>
 
-  <div class="grid" style="gap:16px; margin-bottom:16px">
-    <div class="card">
-      <div class="section-title"><h3>Performance charts</h3></div>
-      <div class="charts" style="margin-top:12px">
-        <div class="card"><p class="muted">Refresh rate over time</p><canvas id="chartRefresh"></canvas></div>
-        <div class="card"><p class="muted">AIF YTD by market</p><canvas id="chartAif"></canvas></div>
-        <div class="card"><p class="muted">Suspension vs Inventory</p><canvas id="chartSusp"></canvas></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="section-title"><h3>Details & Tables</h3></div>
-      <div id="tablesArea" style="margin-top:12px">
-        <!-- populated by JS -->
-      </div>
-    </div>
+  <div class="card">
+    <h2 class="section-title">HR Consumer Refresh</h2>
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs currently suspended</th><th>HR CM KYC cancelled</th></tr>
+      <tr><td style="padding:6px;">Austria</td><td>575</td><td>365</td><td>14</td><td>14</td><td>-</td></tr>
+      <tr><td>Germany</td><td>5.070</td><td>2.823</td><td>217</td><td>113</td><td>-</td></tr>
+      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>5.645</td><td>3.188</td><td>231</td><td>127</td><td>-</td></tr>
+    </table>
   </div>
 
-  <div class="grid cols-2" style="margin-bottom:18px">
-    <div class="card" id="insightsCard">
-      <h3>Insights & Risks</h3>
-      <div id="insightsBody" style="margin-top:10px">
-        <!-- populated by JS -->
-      </div>
-    </div>
-    <div class="card" id="actionsCard">
-      <h3>Enhancements & Next Steps</h3>
-      <div id="actionsBody" style="margin-top:10px">
-        <!-- populated by JS -->
-      </div>
-    </div>
+  <div class="card">
+    <h2 class="section-title">HR Centurion</h2>
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Centurion volume</th><th>Centurion refreshed</th><th>Centurion suspended</th><th>Centurion KYC cancelled</th></tr>
+      <tr><td style="padding:6px;">Austria</td><td>130</td><td>90</td><td>2</td><td>0</td></tr>
+      <tr><td>Germany</td><td>385</td><td>241</td><td>3</td><td>2</td></tr>
+      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>515</td><td>331</td><td>5</td><td>2</td></tr>
+    </table>
   </div>
 
+  <div class="card">
+    <h2 class="section-title">Risks</h2>
+    <ul class="ul-clean li-emoji">
+      <li><b>4% HR CMs in suspension</b> are in risk of cancellation: (14 AT / 217 DE) — incl 5 Centurion</li>
+      <li><b>5.5% HR CMs</b> are in risk of suspension (25 AT / 287 DE) — incl 9 Centurion</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Current Risk & Challenges</h2>
+    <ul class="ul-clean li-emoji">
+      <li>We observe an increased number of voluntary attrition amongst HR base. <b>Next steps:</b> analyze data to understand trigger and whether potential remediation</li>
+      <li>Linkage of basic and supp cancellation: <b>Leadership support needed</b> for interim remediation until HR iRefresh is implemented</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Process Enhancements</h2>
+    <ul class="ul-clean li-emoji">
+      <li>Enhancement of CM journey & backend process: HR form uplifted to include only mandatory data. dropdown selection included whenever possible to simplifies backend process</li>
+      <li>DocUpload login correction without CM15: in working progress</li>
+    </ul>
+  </div>
+</section>
+
+<!-- === MAYO 2025 === -->
+<section id="may2025" class="view-section hidden">
+  <div class="card">
+    <h2 class="section-title">May 2025 – Key Facts</h2>
+    <ul class="ul-clean li-emoji">
+      <li>KYC HR cons process is in BAU since 04/2024. Refresh journey of 120-day with account cancellation if basic not fully refreshed.</li>
+      <li>Mai 2025, we count <b>3,700 AIF YTD</b> (DE: 3.2k / AT: 0.5k) HR Cons</li>
+      <li>Status as of today: <b>74% refreshed</b>, 18% in progress. Remains 8% still to be contacted.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">HR Consumer Refresh</h2>
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs currently suspended</th><th>HR CM KYC cancelled</th></tr>
+      <tr><td style="padding:6px;">Austria</td><td>480</td><td>318</td><td>11</td><td>0</td><td>0</td></tr>
+      <tr><td>Germany</td><td>3.216</td><td>2.612</td><td>33</td><td>0</td><td>0</td></tr>
+      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>3.696</td><td>2.930</td><td>44</td><td>0</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">HR Centurion</h2>
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Centurion volume</th><th>Centurion refreshed</th><th>Centurion suspended</th><th>Centurion cancelled</th></tr>
+      <tr><td style="padding:6px;">Austria</td><td>101</td><td>59</td><td>0</td><td>0</td></tr>
+      <tr><td>Germany</td><td>399</td><td>299</td><td>0</td><td>0</td></tr>
+      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>500</td><td>358</td><td>0</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Risks</h2>
+    <ul class="ul-clean li-emoji">
+      <li><b>1.2% HR CMs</b> are in risk of cancellation: (11 AT / 33 DE) — <b>No Centurion</b></li>
+      <li><b>1.4% HR CMs</b> are in risk of suspension (18 AT / 35 DE) — Incl. 0.6% Centurion</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Enhancements Since Jan 2025</h2>
+    <ul class="ul-clean li-emoji">
+      <li>Strategic OB Calls to selected customer indicates excellent outcome in overall results and savings of high spender customers</li>
+      <li>Robust process implemented to save basic if account is partially refreshed with required documentation in place since 03/25</li>
+      <li>Process adjusted in context of HR consumer becoming HR Jurisdiction case during refresh: journey is extended with 30 days extra & CM receives GSG OB calls</li>
+      <li>KYC comms is updated with new ‘Güterplatz’ address which allows no further delay in KYC process path</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Next Challenges</h2>
+    <ul class="ul-clean li-emoji">
+      <li>Consistent 2-4 % of voluntary attrition during KYC HR Consumer refresh — <b>Next steps:</b> Analyze behavior to understand trigger and initiate remediation with SAC team</li>
+      <li>2027 eventual requirements for total HR consumer base to provide SOW/SOF data — <b>Next steps:</b> observe current HRJ data & learnings</li>
+    </ul>
+  </div>
+</section>
+
+<!-- === AGOSTO 2025 === -->
+<section id="aug2025" class="view-section hidden">
+  <div class="card">
+    <h2 class="section-title">Aug 2025 – Key Facts</h2>
+    <ul class="ul-clean li-emoji">
+      <li>KYC HR cons process works automated, with manual workarounds when specifics are required</li>
+      <li>HR Refresh journey contains 120-day with account cancellation if basic not fully refreshed. Suspension marked at Day 60 for DE / AT</li>
+      <li>Status Aug 2025, we count <b>4k AIF YTD</b> (DE: 3.5k / AT: 0.5k) HR Cons</li>
+      <li>As of today: <b>85% refreshed</b>, 10% in progress, 5% in pre-screening to be contacted</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">HR Consumer Refresh</h2>
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs currently suspended</th><th>HR CM KYC cancelled</th></tr>
+      <tr><td style="padding:6px;">Austria</td><td>515</td><td>377</td><td>18</td><td>0</td><td>-</td></tr>
+      <tr><td>Germany</td><td>3.573</td><td>3.108</td><td>59</td><td>1</td><td>-</td></tr>
+      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>4.088</td><td>3.485</td><td>77</td><td>1</td><td>-</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">HR Centurion</h2>
+    <table style="width:100%; border-collapse:collapse; font-size:14px;">
+      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Centurion volume</th><th>Centurion refreshed</th><th>Centurion suspended</th><th>Centurion cancelled</th></tr>
+      <tr><td style="padding:6px;">Austria</td><td>114</td><td>72</td><td>0</td><td>0</td></tr>
+      <tr><td>Germany</td><td>465</td><td>400</td><td>0</td><td>0</td></tr>
+      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>579</td><td>472</td><td>0</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Enhancements Since Jan 2025</h2>
+    <ul class="ul-clean li-emoji">
+      <li>Strategic Out-Bound (OB) Calls to selected customer: HR CM are refreshed mostly prior suspension</li>
+      <li>Similar strategy is applied toward our premium base via the Portfolio Manager POC for outstanding results</li>
+      <li>Robust process implemented to save basic status if account is partially refreshed with required documentation in place since 03/25</li>
+      <li>Process adjusted in context of HR consumer becoming High Risk Jurisdiction during KYC refresh: journey is extended with 30 days extra and CM receives GSG OB calls</li>
+      <li>Overall: KYC HR process is running smoothly</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">Next Challenges for 2026</h2>
+    <ul class="ul-clean li-emoji">
+      <li>Suspension to be retrieved from AT process – mapped for 2026</li>
+      <li>Incorporate Keys Learning from current HR process into iRefresh!</li>
+      <li>2027 eventual requirements for total HR consumer base to provide SOW/SOF data — <b>Observe current HRJ data & learnings</b></li>
+    </ul>
+  </div>
+</section>
+
+<!-- OPERATIONS -->
+<section class="card">
+  <h2 class="section-title">Operations</h2>
+  <p class="sub">Use these actions each cycle.</p>
+  <div class="actions">
+    <label class="linklike" for="excelInput">Upload latest Excel</label>
+    <button id="openSpendBtn2">Open Spend tool</button>
+  </div>
+  <p id="fileInfo" class="muted" style="margin-top:8px">No file uploaded yet.</p>
+</section>
 </main>
 
-<footer>
-  Maintained by Germany & Austria Consumer HR • Outbound Calls program — Data supplied by you.
-</footer>
+<div class="footer">
+Maintained by Germany & Austria Consumer HR • Outbound Calls program
+</div>
 
 <script>
-// Data model using the exact info you provided
-const stages = {
-  sept:{
-    title:'September 2024',
-    updated:'Sep 2, 2024',
-    kpis:{ aif:5600, aif_note:'DE: 5k / AT: 0.6k', refreshed:56, in_progress:24, to_contact:20 },
-    consumerTable:[
-      ['Austria',575,365,14,14,''], ['Germany',5070,2823,217,113,''], ['Overall',5645,3188,231,127,'']
-    ],
-    centurionTable:[ ['Austria',130,90,2,0], ['Germany',385,241,3,2], ['Overall',515,331,5,2] ],
-    risks:['4% HR CMs in suspension are at risk of cancellation (14 AT / 217 DE)','5.5% HR CMs at risk of suspension (25 AT / 287 DE)'],
-    insights:['Increased voluntary attrition — need analysis for triggers','Linkage of basic and supp cancellation — leadership support needed'],
-    enhancements:['HR form uplifted to mandatory data only','Dropdowns added to simplify backend','DocUpload login correction in progress']
-  },
-  may:{
-    title:'May 2025', updated:'May 20, 2025',
-    kpis:{ aif:3700, aif_note:'DE: 3.2k / AT: 0.5k', refreshed:74, in_progress:18, to_contact:8 },
-    consumerTable:[ ['Austria',480,318,11,0,''], ['Germany',3216,2612,33,0,''], ['Overall',3696,2930,44,0,''] ],
-    centurionTable:[ ['Austria',101,59,0,0], ['Germany',399,299,0,0], ['Overall',500,358,0,0] ],
-    risks:['1.2% HR CMs at risk of cancellation (11 AT / 33 DE)','1.4% HR CMs at risk of suspension (18 AT / 35 DE)'],
-    insights:['Strategic OB Calls improved customer experience & retention','Process to save basic partially refreshed accounts','Extended HRJ journey by +30 days with OB calls notification','KYC comms updated to new address reducing process delays'],
-    enhancements:['Strategic OB Calls refined recipient data','Process to save basic if account partially refreshed','Extend HRJ journey +30 days','Prepare for 2027 SOW/SOF requirements']
-  },
-  aug:{
-    title:'August 2025', updated:'Aug 12, 2025',
-    kpis:{ aif:4000, aif_note:'DE: 3.5k / AT: 0.5k', refreshed:85, in_progress:10, to_contact:5 },
-    consumerTable:[ ['Austria',515,377,18,0,''], ['Germany',3573,3108,59,1,''], ['Overall',4088,3485,77,1,''] ],
-    centurionTable:[ ['Austria',114,72,0,0], ['Germany',465,400,0,0], ['Overall',579,472,0,0] ],
-    risks:[],
-    insights:['Strategic OB Calls prevent suspension and increase satisfaction','Premium base supported via Portfolio Manager POC','Process ensures basic saved for partial refresh cases','HRJ conversion triggers +30 day extension and OB notification','Overall KYC HR process running smoothly'],
-    enhancements:['Suspension retrieval for AT process (2026)','Incorporate learnings into iRefresh','2027 SOW/SOF preparedness']
-  }
-}
+// === CAMBIO DE VISTA ===
+const viewButtons = document.querySelectorAll('.view-btn');
+const viewSections = document.querySelectorAll('.view-section');
 
-// DOM refs
-const kpiCards = document.getElementById('kpiCards');
-const tablesArea = document.getElementById('tablesArea');
-const insightsBody = document.getElementById('insightsBody');
-const actionsBody = document.getElementById('actionsBody');
-const tabs = document.querySelectorAll('.tab');
-let activeStage = 'sept';
-
-// Initialize charts
-const ctxR = document.getElementById('chartRefresh').getContext('2d');
-const ctxA = document.getElementById('chartAif').getContext('2d');
-const ctxS = document.getElementById('chartSusp').getContext('2d');
-
-const refreshChart = new Chart(ctxR, { type:'line', data:{ labels:['T-3','T-2','T-1', 'Now'], datasets:[] }, options:{ plugins:{legend:{display:true, position:'bottom'}}, scales:{ y:{beginAtZero:true, ticks:{ callback:v=>v+'%' } } } } });
-const aifChart = new Chart(ctxA, { type:'bar', data:{ labels:['Germany','Austria'], datasets:[] }, options:{ plugins:{legend:{display:true, position:'bottom'}}, scales:{ y:{ beginAtZero:true, ticks:{ callback:v=>v.toLocaleString() } } } } });
-const suspChart = new Chart(ctxS, { type:'line', data:{ labels:['May','Jun','Jul','Aug'], datasets:[] }, options:{ plugins:{legend:{display:true, position:'bottom'}}, scales:{ y:{ beginAtZero:true, ticks:{ callback:v=>v+'%' } } } } });
-
-// Render functions
-function formatNumber(n){ return n.toLocaleString(); }
-
-function renderKPIs(stageKey){
-  const s = stages[stageKey];
-  kpiCards.innerHTML = '';
-  const items = [
-    {label:'AIF YTD', value:formatNumber(s.kpis.aif), note:s.kpis.aif_note},
-    {label:'% refreshed', value:s.kpis.refreshed+'%', note:s.kpis.in_progress+'% in progress'},
-    {label:'To contact', value:s.kpis.to_contact+'%', note:'Pre-screen / outreach'}
-  ];
-  items.forEach(it=>{
-    const div = document.createElement('div'); div.className='card kpi';
-    div.innerHTML = `<div class="left"><div class="label">${it.label}</div><div class="value">${it.value}</div><div class="note">${it.note}</div></div>`;
-    kpiCards.appendChild(div);
+viewButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.getAttribute('data-view');
+    
+    // Ocultar todas
+    viewSections.forEach(sec => sec.classList.add('hidden'));
+    // Mostrar seleccionada
+    document.getElementById(target).classList.remove('hidden');
+    
+    // Actualizar botón activo
+    viewButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
   });
-}
+});
 
-function renderTables(stageKey){
-  const s = stages[stageKey];
-  let html = '';
-  // consumer table
-  html += '<h4>HR Consumer Overview</h4>';
-  html += '<table class="card"><thead><tr><th></th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs suspended</th><th>KYC Cancelled</th></tr></thead><tbody>';
-  s.consumerTable.forEach(r=> html += `<tr><td>${r[0]}</td><td>${formatNumber(r[1])}</td><td>${formatNumber(r[2])}</td><td>${formatNumber(r[3])}</td><td>${r[4]||''}</td><td>${r[5]||''}</td></tr>`);
-  html += '</tbody></table>';
+// Upload Excel
+const excelInput = document.getElementById('excelInput');
+const fileInfo = document.getElementById('fileInfo');
+excelInput.addEventListener('change', (e) => {
+  const f = e.target.files[0];
+  fileInfo.textContent = f ? `Uploaded: ${f.name} • ${Math.round(f.size/1024)} KB` : 'No file uploaded yet.';
+});
 
-  // centurion table
-  html += '<h4 style="margin-top:12px">HR Centurion Overview</h4>';
-  html += '<table class="card"><thead><tr><th></th><th>Volume</th><th>Refreshed</th><th>Suspended</th><th>Cancelled</th></tr></thead><tbody>';
-  s.centurionTable.forEach(r=> html += `<tr><td>${r[0]}</td><td>${formatNumber(r[1])}</td><td>${formatNumber(r[2])}</td><td>${r[3]}</td><td>${r[4]}</td></tr>`);
-  html += '</tbody></table>';
-
-  tablesArea.innerHTML = html;
-}
-
-function renderInsights(stageKey){
-  const s = stages[stageKey];
-  insightsBody.innerHTML = '';
-  const ul = document.createElement('ul');
-  s.insights.forEach(i=>{ const li=document.createElement('li'); li.textContent=i; ul.appendChild(li)});
-  s.risks.forEach(r=>{ const li=document.createElement('li'); li.textContent=r; li.style.fontWeight='700'; ul.appendChild(li)});
-  insightsBody.appendChild(ul);
-}
-
-function renderActions(stageKey){
-  const s=stages[stageKey]; actionsBody.innerHTML='';
-  const ul=document.createElement('ul'); s.enhancements.forEach(e=>{ const li=document.createElement('li'); li.textContent=e; ul.appendChild(li)});
-  actionsBody.appendChild(ul);
-}
-
-function updateCharts(stageKey){
-  const s = stages[stageKey];
-  // Refresh chart: simulate previous trend using provided percentages
-  const base = s.kpis.refreshed; const inprog = s.kpis.in_progress; const tocontact = s.kpis.to_contact;
-  const prev = [Math.max(0, base-10), Math.max(0, base-5), Math.max(0, base-2), base];
-  refreshChart.data.labels = ['3 months ago','2 months ago','Last month', s.title];
-  refreshChart.data.datasets = [
-    {label:'% Refreshed', data:prev, borderColor: 'rgba(46,119,187,1)', backgroundColor:'rgba(46,119,187,0.12)', fill:true, tension:0.35, borderWidth:3},
-    {label:'% In progress', data:[inprog+4, inprog+2, inprog+1, inprog], borderColor:'rgba(14,165,233,1)', backgroundColor:'rgba(14,165,233,0.08)', fill:true, tension:0.35}
-  ];
-  refreshChart.update();
-
-  // AIF chart
-  aifChart.data.labels = ['Germany','Austria'];
-  const germany = parseInt(s.kpis.aif_note.match(/DE: ?([0-9.,k]+)/)[1].replace('k','000')) || Math.round(s.kpis.aif*0.85);
-  const austria = parseInt(s.kpis.aif_note.match(/AT: ?([0-9.,k]+)/)[1].replace('k','000')) || s.kpis.aif - germany;
-  aifChart.data.datasets = [ {label: s.title + ' • AIF YTD', data:[germany, austria], backgroundColor:['rgba(46,119,187,0.85)','rgba(14,165,233,0.6)']} ];
-  aifChart.update();
-
-  // Suspension vs Inventory: use simple illustrative numbers
-  const susp = stageKey==='sept' ? [4.0,3.8,3.0,2.6] : stageKey==='may' ? [1.6,1.5,1.4,1.2] : [1.0,0.9,0.7,0.6];
-  suspChart.data.labels = ['May','Jun','Jul','Aug'];
-  suspChart.data.datasets = [ {label:'Suspension rate %', data:susp, borderColor:'rgba(16,185,129,1)', backgroundColor:'rgba(16,185,129,0.12)', fill:true} ];
-  suspChart.update();
-}
-
-function activateStage(stageKey){
-  activeStage = stageKey;
-  // tabs UI
-  tabs.forEach(t=> t.classList.toggle('active', t.dataset.stage===stageKey));
-  // render areas
-  renderKPIs(stageKey);
-  renderTables(stageKey);
-  renderInsights(stageKey);
-  renderActions(stageKey);
-  updateCharts(stageKey);
-}
-
-// attach tab listeners
-tabs.forEach(t=> t.addEventListener('click', ()=> activateStage(t.dataset.stage)));
-
-// init
-activateStage(activeStage);
-
+// Spend tool
+const SPEND_URL = "https://your-spend-tool.example.com";
+function openSpend(){ window.open(SPEND_URL, '_blank'); }
+document.getElementById('openSpendBtn').addEventListener('click', openSpend);
+document.getElementById('openSpendBtn2').addEventListener('click', openSpend);
 </script>
 </body>
 </html>
