@@ -30,7 +30,7 @@ body{
 	margin:0; color:var(--text); background:var(--bg);
 }
 
-/* tipografía consistente: encabezados en MAYÚSCULAS, peso regular/semibold donde corresponde */
+/* tipografía consistente: encabezados en MAYÚSCULAS, peso semibold */
 h1,h2,h3,.btn-label,.tag{letter-spacing:.3px; text-transform:uppercase}
 h1{margin:0; font-size:26px; color:var(--heading); font-weight:700}
 h2{margin:0 0 10px; font-size:18px; color:var(--heading); font-weight:700}
@@ -93,12 +93,12 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 /* Charts grid */
 .grid-3{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 
-/* Table (para modales de Stages) */
+/* Table (stages) */
 .table{width:100%; border-collapse:collapse; font-size:14px}
-.table th,.table td{border-bottom:1px solid var(--line); padding:8px 6px; text-align:left}
+.table th,.table td{border-bottom:1px solid var(--line); padding:8px 6px; text-align:left; vertical-align:top}
 .table th{color:var(--muted); font-weight:700}
 
-/* Modal de Stage */
+/* Modal Stages */
 .modal{position:fixed; inset:0; display:none; align-items:flex-start; justify-content:center; background:rgba(2,6,23,.35); z-index:50; padding:32px 12px; overflow:auto}
 .modal.open{display:flex}
 .modal-card{background:#fff; border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); width:min(1024px,100%); padding:18px}
@@ -121,13 +121,11 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 		</div>
 	</div>
 
-	<!-- subtítulo breve (opcional) -->
 	<p class="sub">Outbound calls program to drive KYC refresh, minimize suspensions and avoid cancellations.</p>
 
 	<div class="tagbar">
 		<span class="tag">Market: DE & AT</span>
 		<span class="tag">Segment: Consumer HR</span>
-		<!-- removido: OB Calls cadence -->
 	</div>
 
 	<div class="actions">
@@ -198,7 +196,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 		</ul>
 	</section>
 
-	<!-- Charts (solo en la principal) -->
+	<!-- Charts en la principal -->
 	<section class="card">
 		<h2>Performance charts</h2>
 		<div class="grid-3">
@@ -221,7 +219,8 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 	</section>
 </main>
 
-<!-- MODALES: cada Stage con SU información y SUS gráficos -->
+<!-- MODALES: cada Stage por mes con el texto TAL CUAL -->
+<!-- 1) Stage Sept 2024 -->
 <div class="modal" id="modal-sep2024" aria-hidden="true">
 	<div class="modal-card">
 		<div class="modal-head">
@@ -230,11 +229,10 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 		</div>
 		<section>
 			<p class="bold">KEY FACTS</p>
-			<ul>
-				<li>High Risk portfolio: approx. 5.600 AIF YTD (DE: 5k / AT: 0,6k)</li>
-				<li>120-day KYC HR Refresh journey with risk of cancellation if account not fully refreshed</li>
-				<li>Since 03/2024: HR process in BAU. As of today: 56% HR consumer portfolio refreshed, 24% in progress. Remains 20% still to be contacted</li>
-			</ul>
+			<p>• High Risk portfolio: approx. 5.600 AIF YTD (DE: 5k / AT: 0,6k)<br>
+			• 120-day KYC HR Refresh journey with risk of cancellation if account not fully refreshed<br>
+			• Since 03/2024: HR process in BAU. As of today: 56% HR consumer portfolio refreshed, 24% in progress. Remains 20% still to be contacted</p>
+
 			<table class="table" aria-label="HR Consumer Sep 2024">
 				<thead><tr>
 					<th></th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs currently suspended</th><th>HR CM KYC cancelled</th>
@@ -245,8 +243,8 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 					<tr><td>Sep. 2nd 2024 Overall</td><td>5.645</td><td>3.188</td><td>231</td><td>127</td><td></td></tr>
 				</tbody>
 			</table>
-			<div class="hr"></div>
-			<table class="table" aria-label="HR Centurion Sep 2024">
+
+			<table class="table" aria-label="HR Centurion Sep 2024" style="margin-top:10px">
 				<thead><tr>
 					<th></th><th>HR Centurion volume</th><th>Centurion refreshed</th><th>Centurion suspended</th><th>Centurion KYC cancelled</th>
 				</tr></thead>
@@ -256,21 +254,25 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 					<tr><td>Overall</td><td>515</td><td>331</td><td>5</td><td>2</td></tr>
 				</tbody>
 			</table>
-			<p class="muted">✓ 4% HR CMs in suspension are in risk of cancellation: (14 AT / 217 DE)<br>
+
+			<p class="muted" style="margin-top:8px">✓ 4% HR CMs in suspension are in risk of cancellation: (14 AT / 217 DE)<br>
 			* incl 5 Centurion CMs (2 AT / 3 DE)<br>
 			✓ 5.5% HR CMs are in risk of suspension (25 AT / 287 DE)<br>
 			* incl. 9 Centurion (3 AT / 6 DE)</p>
-			<div class="hr"></div>
-			<p class="bold">CURRENT RISK & CHALLENGES</p>
+
+			<p class="bold" style="margin-top:12px">CURRENT RISK & CHALLENGES</p>
 			<p>› We observe an increased number of voluntary attrition amongst HR base. Next steps: analyze of data to understand trigger and whether potential remediation<br>
 			› Linkage of basic and supp cancellation:<br>
 			* Leadership support needed for interim remediation until HR iRefresh is implemented</p>
+
 			<p class="bold">SUPPORT NEEDED</p>
 			<p>✓ OB Calls | Next attachment mid-June, outbound calls to HR CM at risk of cancellation and at risk of suspension are ongoing. First results, positive. 1/3 CM contacted with promise to action.</p>
+
 			<p class="bold">PROCESS ENHANCEMENTS</p>
 			<p>✓ Enhancement of CM journey & backend process: HR form uplifted to include only mandatory data. dropdown selection included whenever possible to simplifies backend process<br>
 			› DocUpload login correction without CM15: in working progress</p>
 		</section>
+
 		<section class="charts">
 			<canvas id="chart-sep-refresh" height="180"></canvas>
 			<canvas id="chart-sep-aif" height="180"></canvas>
@@ -279,6 +281,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 	</div>
 </div>
 
+<!-- 2) Stage May 2025 -->
 <div class="modal" id="modal-may2025" aria-hidden="true">
 	<div class="modal-card">
 		<div class="modal-head">
@@ -287,11 +290,11 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 		</div>
 		<section>
 			<p class="bold">KEY FACTS</p>
-			<ul>
-				<li>KYC HR cons process is in BAU since 04/2024. Refresh journey of 120-day with account cancellation if basic not fully refreshed.</li>
-				<li>Mai 2025, we count 3,700 AIF YTD (DE: 3,2k / AT: 0,5k) HR Cons</li>
-				<li>Status as of today: 74% HR consumer is refreshed, 18% in progress. Remains 8% still to be contacted.</li>
-			</ul>
+			<p>• KYC HR cons process is in BAU since 04/2024. Refresh journey of 120-day with account cancellation if basic not fully refreshed.<br>
+			• Mai 2025, we count 3,700 AIF YTD (DE: 3,2k / AT: 0,5k) HR Cons<br>
+			• Status as of today: 74% HR consumer is refreshed, 18% in progress. Remains 8% still to be contacted.<br>
+			• Details below:</p>
+
 			<table class="table" aria-label="HR Consumer May 2025">
 				<thead><tr>
 					<th></th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs currently suspended</th><th>HR CM KYC cancelled</th>
@@ -302,8 +305,8 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 					<tr><td>Mai 20th 2025 Overall</td><td>3.696</td><td>2.930</td><td>44</td><td>0</td><td></td></tr>
 				</tbody>
 			</table>
-			<div class="hr"></div>
-			<table class="table" aria-label="HR Centurion May 2025">
+
+			<table class="table" aria-label="HR Centurion May 2025" style="margin-top:10px">
 				<thead><tr>
 					<th></th><th>HR Centurion volume</th><th>Centurion refreshed</th><th>Centurion suspended</th><th>Centurion cancelled</th>
 				</tr></thead>
@@ -313,24 +316,27 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 					<tr><td>Overall</td><td>500</td><td>358</td><td>0</td><td>0</td></tr>
 				</tbody>
 			</table>
-			<p>* 1.2% HR CMs are in risk of cancellation: (11 AT / 33 DE)<br>
+
+			<p style="margin-top:8px">* 1.2% HR CMs are in risk of cancellation: (11 AT / 33 DE)<br>
 			* No Centurion CMs are currently at risk of cancellation<br>
 			* 1.4% HR CMs are in risk of suspension (18 AT / 35 DE)<br>
 			* Incl. 0.6% Centurion (1 AT / 2 DE)</p>
-			<div class="hr"></div>
-			<p class="bold">ENHANCEMENTS PERFORMED SINCE JAN 2025</p>
+
+			<p class="bold" style="margin-top:12px">ENHANCEMENTS PERFORMED SINCE JAN 2025</p>
 			<p>✓ Strategic OB Calls to selected customer indicates excellent outcome in overall results and savings of high spender customers:<br>
 			› We’ve refined the OB Calls recipient data & enriched with relevant details for a better customer experience and effectiveness<br>
 			› Similar strategy has been engaged toward our premium base via the Portfolio Manager POC<br>
 			✓ Robust process implemented to save basic if account is partially refreshed with required documentation in place since 03/25<br>
 			✓ Process adjusted in context of HR consumer becoming HR Jurisdiction case during refresh: journey is extended with 30 days extra & CM receives GSG OB calls to be informed of additional SOW requirement<br>
 			✓ KYC comms is updated with new ‘Güterplatz’ address which allows no further delay in KYC process path</p>
+
 			<p class="bold">NEXT CHALLENGES & PROPOSAL</p>
 			<p>* Consistent 2-4 % of voluntary attrition during KYC HR Consumer refresh<br>
 			› Next steps: Analyze behavior to understand trigger and initiate remediation with SAC team<br>
 			* 2027 eventual requirements for total HR consumer base to provide SOW/SOF data<br>
 			› Next steps: observe current HRJ data & learnings</p>
 		</section>
+
 		<section class="charts">
 			<canvas id="chart-may-refresh" height="180"></canvas>
 			<canvas id="chart-may-aif" height="180"></canvas>
@@ -339,6 +345,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 	</div>
 </div>
 
+<!-- 3) Stage Aug 2025 -->
 <div class="modal" id="modal-aug2025" aria-hidden="true">
 	<div class="modal-card">
 		<div class="modal-head">
@@ -350,7 +357,9 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 			<p>• KYC HR cons process works automated, with manual workarounds when specifics are required (e.g. partial refresh, HR becoming HRJ)<br>
 			• HR Refresh journey contains 120-day with account cancellation if basic not fully refreshed. Suspension marked at Day 60 for DE / AT<br>
 			• Status Aug 2025, we count 4k AIF YTD (DE: 3,5k / AT: 0,5k) HR Cons<br>
-			• As of today: 85% HR consumer is refreshed, 10% is in progress, 5% in pre-screening to be contacted</p>
+			• As of today: 85% HR consumer is refreshed, 10% is in progress, 5% in pre-screening to be contacted<br>
+			Overview below:</p>
+
 			<table class="table" aria-label="HR Consumer Aug 2025">
 				<thead><tr>
 					<th></th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs currently suspended</th><th>HR CM KYC cancelled</th>
@@ -361,8 +370,8 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 					<tr><td>Aug 12th 2025 Overall</td><td>4.088</td><td>3.485</td><td>77</td><td>1</td><td></td></tr>
 				</tbody>
 			</table>
-			<div class="hr"></div>
-			<table class="table" aria-label="HR Centurion Aug 2025">
+
+			<table class="table" aria-label="HR Centurion Aug 2025" style="margin-top:10px">
 				<thead><tr>
 					<th></th><th>HR Centurion volume</th><th>Centurion refreshed</th><th>Centurion suspended</th><th>Centurion cancelled</th>
 				</tr></thead>
@@ -372,19 +381,21 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 					<tr><td>Overall</td><td>579</td><td>472</td><td>0</td><td>0</td></tr>
 				</tbody>
 			</table>
-			<div class="hr"></div>
-			<p class="bold">ENHANCEMENTS PERFORMED SINCE JAN 2025</p>
+
+			<p class="bold" style="margin-top:12px">ENHANCEMENTS PERFORMED SINCE JAN 2025</p>
 			<p>✓ Strategic Out-Bound (OB) Calls to selected customer: HR CM are refreshed mostly prior suspension, allowing CM to continue to spend and enjoy higher customer satisfaction<br>
 			✓ Similar strategy is applied toward our premium base via the Portfolio Manager POC for outstanding results<br>
 			✓ Robust process implemented to save basic status if account is partially refreshed with required documentation in place since 03/25<br>
 			✓ Process adjusted in context of HR consumer becoming High Risk Jurisdiction during KYC refresh: journey is extended with 30 days extra and CM receives GSG OB calls to be informed of additional SOW requirement<br>
 			✓ Overall: KYC HR process is running smoothly</p>
+
 			<p class="bold">NEXT CHALLENGES FOR 2026</p>
 			<p>* Suspension to be retrieved from AT process – mapped for 2026<br>
 			* Incorporate Keys Learning from current HR process into iRefresh!<br>
 			* 2027 eventual requirements for total HR consumer base to provide SOW/SOF data<br>
 			› Observe current HRJ data & learnings</p>
 		</section>
+
 		<section class="charts">
 			<canvas id="chart-aug-refresh" height="180"></canvas>
 			<canvas id="chart-aug-aif" height="180"></canvas>
@@ -394,7 +405,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 </div>
 
 <script>
-// colors (light)
+// Colors
 const css = getComputedStyle(document.documentElement);
 const cIndigo = css.getPropertyValue('--c-indigo').trim() || '#4f46e5';
 const cSky    = css.getPropertyValue('--c-sky').trim()    || '#0ea5e9';
@@ -402,42 +413,49 @@ const cEmerald= css.getPropertyValue('--c-emerald').trim()|| '#10b981';
 const cMuted  = css.getPropertyValue('--c-muted').trim()  || '#94a3b8';
 
 // Tools dropdown
-const toolsBtn=document.getElementById('toolsBtn');
-const toolsMenu=document.getElementById('toolsMenu');
-toolsBtn.addEventListener('click',()=>{toolsMenu.style.display = toolsMenu.style.display==='block'?'none':'block';});
-document.addEventListener('click',(e)=>{if(!toolsMenu.contains(e.target)&&e.target!==toolsBtn){toolsMenu.style.display='none';}});
+const toolsBtn = document.getElementById('toolsBtn');
+const toolsMenu = document.getElementById('toolsMenu');
+toolsBtn.addEventListener('click', () => {
+	toolsMenu.style.display = toolsMenu.style.display === 'block' ? 'none' : 'block';
+});
+document.addEventListener('click', (e) => {
+	if (!toolsMenu.contains(e.target) && e.target !== toolsBtn) toolsMenu.style.display = 'none';
+});
 
 // Upload Excel
 document.getElementById('excelInput').addEventListener('change',(e)=>{
 	const f=e.target.files[0]; if(f) alert(`Uploaded: ${f.name} • ${Math.round(f.size/1024)} KB`);
 });
 
-// Tools URLs (TODO: pegá tus links reales)
-const SPEND_URL     = "https://your-spend-tool.example.com/";
-const CENTURION_URL = "https://tu-dominio/centurion-shared-file";
-const CALLS_URL     = "https://tu-dominio/ob-calls-tool";
+// Tools URLs (TODO: coloca tus links reales)
+const SPEND_URL     = "https://your-spend-tool.example.com/"; // TODO
+const CENTURION_URL = "https://tu-dominio/centurion-shared-file";                  // TODO
+const CALLS_URL     = "https://tu-dominio/ob-calls-tool";                  // TODO
 function openInNew(url){ if(url && /^https?:\/\//i.test(url)) window.open(url,'_blank'); }
 document.getElementById('openSpendBtn').addEventListener('click',()=>openInNew(SPEND_URL));
 document.getElementById('openCenturionFile').addEventListener('click',()=>openInNew(CENTURION_URL));
 document.getElementById('openCallTool').addEventListener('click',()=>openInNew(CALLS_URL));
 
 // Stage modals
-const modals={
-	sep2024:document.getElementById('modal-sep2024'),
-	may2025:document.getElementById('modal-may2025'),
-	aug2025:document.getElementById('modal-aug2025')
+const modals = {
+	sep2024: document.getElementById('modal-sep2024'),
+	may2025: document.getElementById('modal-may2025'),
+	aug2025: document.getElementById('modal-aug2025')
 };
 Array.from(document.querySelectorAll('button[data-stage]')).forEach(btn=>{
 	btn.addEventListener('click',()=>{
-		const key=btn.dataset.stage;
-		const m=modals[key]; if(m){m.classList.add('open'); m.setAttribute('aria-hidden','false');}
+		const key=btn.dataset.stage; const m=modals[key];
+		if(m){ m.classList.add('open'); m.setAttribute('aria-hidden','false'); }
 	});
 });
 Array.from(document.querySelectorAll('.modal-close')).forEach(b=>{
-	b.addEventListener('click',()=>{const key=b.dataset.close; const m=modals[key]; if(m){m.classList.remove('open'); m.setAttribute('aria-hidden','true');}});
+	b.addEventListener('click',()=>{
+		const key=b.dataset.close; const m=modals[key];
+		if(m){ m.classList.remove('open'); m.setAttribute('aria-hidden','true'); }
+	});
 });
 Object.values(modals).forEach(m=>{
-	m.addEventListener('click',(e)=>{ if(e.target===m){m.classList.remove('open'); m.setAttribute('aria-hidden','true');} });
+	m.addEventListener('click',(e)=>{ if(e.target===m){ m.classList.remove('open'); m.setAttribute('aria-hidden','true'); }});
 });
 
 // Charts (main)
@@ -453,7 +471,7 @@ new Chart(document.getElementById('refreshChart'),{
 		scales:{x:{ticks:{color:'#475569'},grid:{color:'#e2e8f0'}},
 				y:{ticks:{color:'#475569',callback:v=>v+'%'},
 					grid:{color:'#e2e8f0'}}}
-}});
+});
 
 new Chart(document.getElementById('aifChart'),{
 	type:'bar',
@@ -466,7 +484,7 @@ new Chart(document.getElementById('aifChart'),{
 		scales:{x:{ticks:{color:'#475569'},grid:{color:'#e2e8f0'}},
 				y:{beginAtZero:true,ticks:{color:'#475569',callback:v=>v.toLocaleString()},
 					grid:{color:'#e2e8f0'}}}
-}});
+});
 
 new Chart(document.getElementById('suspChart'),{
 	type:'line',
@@ -479,9 +497,9 @@ new Chart(document.getElementById('suspChart'),{
 		scales:{x:{ticks:{color:'#475569'},grid:{color:'#e2e8f0'}},
 			y1:{position:'left',ticks:{color:'#475569',callback:v=>v+'%'},grid:{color:'#e2e8f0'}},
 			y2:{position:'right',ticks:{color:'#475569'},grid:{drawOnChartArea:false}}}
-}});
+});
 
-// Charts (modales) — reutilizo mismos datos para consistencia
+// Charts (stages) — build on first open
 function buildStageCharts(prefix){
 	new Chart(document.getElementById(`chart-${prefix}-refresh`),{
 		type:'line',
@@ -521,14 +539,9 @@ function buildStageCharts(prefix){
 					y2:{position:'right',ticks:{color:'#475569'},grid:{drawOnChartArea:false}}}
 	});
 }
-// Construyo charts cuando se abre cada modal por primera vez
-const built={};
+const built = {};
 Object.entries(modals).forEach(([key,modal])=>{
-	const prefix=key==='sep2024'?'sep':key==='may2025'?'may':'aug';
-	modal.addEventListener('transitionend',()=>{}, {passive:true});
-	modal.addEventListener('click',()=>{}, {passive:true});
-	modal.addEventListener('animationend',()=>{}, {passive:true});
-	// build on open
+	const prefix = key==='sep2024'?'sep':(key==='may2025'?'may':'aug');
 	const obs=new MutationObserver(()=>{
 		if(modal.classList.contains('open') && !built[key]){
 			built[key]=true; buildStageCharts(prefix);
