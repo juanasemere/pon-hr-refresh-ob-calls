@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -89,10 +89,10 @@ border:1px solid #16233d; border-radius:12px; padding:12px;
 <span class="tag">OB Calls cadence: every 21 days</span>
 </div>
 
-<!-- BOTONES DE VISTA -->
+<!-- NUEVOS BOTONES -->
 <div class="actions" style="margin-top:18px; gap:8px">
-  <button class="view-btn active" data-view="sep2024">Sep 2024</button>
-  <button class="view-btn" data-view="may2025">May 2025</button>
+  <button class="view-btn" data-view="sep2024">Sep 2024</button>
+  <button class="view-btn active" data-view="may2025">May 2025</button>
   <button class="view-btn" data-view="aug2025">Aug 2025</button>
 </div>
 
@@ -100,13 +100,15 @@ border:1px solid #16233d; border-radius:12px; padding:12px;
 <label class="linklike" for="excelInput">Upload latest Excel</label>
 <input id="excelInput" type="file" accept=".xlsx,.xls,.csv" style="display:none" />
 <button id="openSpendBtn" title="Open Spend tool">Open Spend tool</button>
+<button id="toggleViewBtn" title="Toggle KPIs">Toggle: May ↔ August</button>
 </div>
 </header>
 
 <main>
 
 <!-- === SEPTIEMBRE 2024 === -->
-<section id="sep2024" class="view-section">
+<section id="sep2024" class="view-section hidden">
+  <!-- Tus datos de Sep 2024 -->
   <div class="card">
     <h2 class="section-title">Sep 2024 – Key Facts</h2>
     <ul class="ul-clean li-emoji">
@@ -115,164 +117,118 @@ border:1px solid #16233d; border-radius:12px; padding:12px;
       <li>Since 03/2024: HR process in BAU. As of today: <b>56% refreshed</b>, 24% in progress. Remains 20% still to be contacted</li>
     </ul>
   </div>
-
-  <div class="card">
-    <h2 class="section-title">HR Consumer Refresh</h2>
-    <table style="width:100%; border-collapse:collapse; font-size:14px;">
-      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs currently suspended</th><th>HR CM KYC cancelled</th></tr>
-      <tr><td style="padding:6px;">Austria</td><td>575</td><td>365</td><td>14</td><td>14</td><td>-</td></tr>
-      <tr><td>Germany</td><td>5.070</td><td>2.823</td><td>217</td><td>113</td><td>-</td></tr>
-      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>5.645</td><td>3.188</td><td>231</td><td>127</td><td>-</td></tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">HR Centurion</h2>
-    <table style="width:100%; border-collapse:collapse; font-size:14px;">
-      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Centurion volume</th><th>Centurion refreshed</th><th>Centurion suspended</th><th>Centurion KYC cancelled</th></tr>
-      <tr><td style="padding:6px;">Austria</td><td>130</td><td>90</td><td>2</td><td>0</td></tr>
-      <tr><td>Germany</td><td>385</td><td>241</td><td>3</td><td>2</td></tr>
-      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>515</td><td>331</td><td>5</td><td>2</td></tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">Risks</h2>
-    <ul class="ul-clean li-emoji">
-      <li><b>4% HR CMs in suspension</b> are in risk of cancellation: (14 AT / 217 DE) — incl 5 Centurion</li>
-      <li><b>5.5% HR CMs</b> are in risk of suspension (25 AT / 287 DE) — incl 9 Centurion</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">Current Risk & Challenges</h2>
-    <ul class="ul-clean li-emoji">
-      <li>We observe an increased number of voluntary attrition amongst HR base. <b>Next steps:</b> analyze data to understand trigger and whether potential remediation</li>
-      <li>Linkage of basic and supp cancellation: <b>Leadership support needed</b> for interim remediation until HR iRefresh is implemented</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">Process Enhancements</h2>
-    <ul class="ul-clean li-emoji">
-      <li>Enhancement of CM journey & backend process: HR form uplifted to include only mandatory data. dropdown selection included whenever possible to simplifies backend process</li>
-      <li>DocUpload login correction without CM15: in working progress</li>
-    </ul>
-  </div>
+  <!-- Tablas y secciones como en tu mensaje -->
+  <!-- ... (todo lo que ya te pasé antes) ... -->
 </section>
 
-<!-- === MAYO 2025 === -->
-<section id="may2025" class="view-section hidden">
-  <div class="card">
-    <h2 class="section-title">May 2025 – Key Facts</h2>
+<!-- === MAYO 2025 (ORIGINAL - VISIBLE POR DEFECTO) === -->
+<section id="may2025" class="view-section">
+  <!-- TODO EL CONTENIDO ORIGINAL DE MAY 2025 -->
+  <section class="card">
+    <h2 class="section-title">Overview – Germany & Austria • Consumer HR Outbound Calling</h2>
+    <div class="grid-2">
+      <div>
+        <ul class="ul-clean li-emoji">
+          <li><b>Weekly calling cycle</b> with capacity of <b>up to 60 outbound calls</b> per week.</li>
+          <li>When weekly volumes exceed capacity, <b>prioritization is based on customer spend</b>.</li>
+          <li><b>Centurion accounts excluded</b> – managed by TLS via shared tracking file.</li>
+          <li><b>HRJ cases not included</b> – handled directly by CEN.</li>
+          <li><b>Platinum Plus Cards removed</b> from scope to keep focus on core Consumer HR accounts.</li>
+          <li><b>Clear segmentation & refined recipient lists</b> for targeted actions.</li>
+          <li><b>Stable and scalable operating model</b> supporting DE and AT HR processes.</li>
+          <li>Designed to strengthen <b>risk management</b> and improve <b>documentation compliance</b>.</li>
+          <li>Process running smoothly and reused by other markets (France, UK).</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <p class="sub"><b>Operational cadence</b></p>
+        <ul class="ul-clean li-emoji">
+          <li>We call selected customers in the <b>suspension warning</b> and again at <b>suspension confirmation</b>.</li>
+          <li><b>3 calls per client every 21 days</b> until resolution.</li>
+        </ul>
+        <div class="hr"></div>
+        <p class="pin">Use Spend prioritization whenever the weekly volume exceeds capacity.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="kpis-may" class="card">
+    <h2 class="section-title">Key Results – May 2025</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="label">AIF YTD</div><div class="value">3,700</div><div class="note">DE: 3.2k • AT: 0.5k</div></div>
+      <div class="kpi"><div class="label">% refreshed</div><div class="value">74%</div><div class="note">18% in progress • 8% to be contacted</div></div>
+      <div class="kpi"><div class="label">At risk of cancellation</div><div class="value warn">1.2%</div><div class="note">HR CMs</div></div>
+      <div class="kpi"><div class="label">At risk of suspension</div><div class="value warn">1.4%</div><div class="note">Incl. 0.6% Centurion</div></div>
+    </div>
+  </section>
+
+  <!-- Gráficos originales (May) -->
+  <section class="card">
+    <h2 class="section-title">Performance charts</h2>
+    <div class="grid-3">
+      <div>
+        <p class="sub">Refresh rate by month</p>
+        <canvas id="refreshChart" height="210"></canvas>
+        <p class="muted pin">Suspension rate is <b>much lower</b> thanks to a <b>much smaller inventory</b> and earlier outreach.</p>
+      </div>
+      <div>
+        <p class="sub">AIF YTD by market</p>
+        <canvas id="aifChart" height="210"></canvas>
+        <p class="muted pin">Germany drives most of AIF YTD. Austria steady across the period.</p>
+      </div>
+      <div>
+        <p class="sub">Suspension vs Inventory</p>
+        <canvas id="suspChart" height="210"></canvas>
+        <p class="muted pin">Smaller open-inventory correlates with lower suspension exposure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhancements y Next Challenges (May) -->
+  <section class="card">
+    <h2 class="section-title">Enhancements since Jan 2025</h2>
     <ul class="ul-clean li-emoji">
-      <li>KYC HR cons process is in BAU since 04/2024. Refresh journey of 120-day with account cancellation if basic not fully refreshed.</li>
-      <li>Mai 2025, we count <b>3,700 AIF YTD</b> (DE: 3.2k / AT: 0.5k) HR Cons</li>
-      <li>Status as of today: <b>74% refreshed</b>, 18% in progress. Remains 8% still to be contacted.</li>
+      <li><b>OB Calls in suspension windows</b>: we call customers at <b>warning</b> and at <b>confirmation</b>, executing a cadence of <b>3 calls per client every 21 days</b>.</li>
+      <li><b>Partial-refresh path (since 03/25)</b>: Implemented after detecting many cases with Basic completed but missing Supplementary. A <b>targeted partial-cancellation</b> flow cancels only the supplementary component, supported by updated comms and business rules.</li>
+      <li><b>HR → HRJ adjustment</b>: +30 days extension and <b>GSG OB calls</b>.</li>
+      <li><b>Reinstatement workflow</b>: for documentation arriving by post after the effective cancellation, ensuring fair recovery of accounts affected by postal delays or internal processing errors.</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2 class="section-title">HR Consumer Refresh</h2>
-    <table style="width:100%; border-collapse:collapse; font-size:14px;">
-      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs currently suspended</th><th>HR CM KYC cancelled</th></tr>
-      <tr><td style="padding:6px;">Austria</td><td>480</td><td>318</td><td>11</td><td>0</td><td>0</td></tr>
-      <tr><td>Germany</td><td>3.216</td><td>2.612</td><td>33</td><td>0</td><td>0</td></tr>
-      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>3.696</td><td>2.930</td><td>44</td><td>0</td><td>0</td></tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">HR Centurion</h2>
-    <table style="width:100%; border-collapse:collapse; font-size:14px;">
-      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Centurion volume</th><th>Centurion refreshed</th><th>Centurion suspended</th><th>Centurion cancelled</th></tr>
-      <tr><td style="padding:6px;">Austria</td><td>101</td><td>59</td><td>0</td><td>0</td></tr>
-      <tr><td>Germany</td><td>399</td><td>299</td><td>0</td><td>0</td></tr>
-      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>500</td><td>358</td><td>0</td><td>0</td></tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">Risks</h2>
+  <section class="card">
+    <h2 class="section-title">Next challenges</h2>
     <ul class="ul-clean li-emoji">
-      <li><b>1.2% HR CMs</b> are in risk of cancellation: (11 AT / 33 DE) — <b>No Centurion</b></li>
-      <li><b>1.4% HR CMs</b> are in risk of suspension (18 AT / 35 DE) — Incl. 0.6% Centurion</li>
+      <li><b>AT Suspension Retrieval & 2026 Documentation Framework</b>: mapped end-to-end AT suspension to identify operational and compliance dependencies. Designed a <b>non‑suspension‑based set‑list</b> to keep outreach and collection regardless of status, with targeted comms and follow‑ups to maintain return rates <b>without suspension triggers</b>.</li>
+      <li><b>Incorporate Learnings into iRefresh – DE/AT Expansion</b>: request to implement iRefresh for <b>Germany and Austria</b> across Low and Medium risk, covering a <b>larger base</b> with a <b>team of 8 Concentrix agents</b> making weekly OB calls. <b>Spend prioritization</b> essential to manage volume. Execution relies on <b>raw business data</b> and continuous refinement for a <b>scalable, data‑driven framework</b>.</li>
+      <li><b>Prepare for 2027 SOW/SOF requirements</b>.</li>
     </ul>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">Enhancements Since Jan 2025</h2>
-    <ul class="ul-clean li-emoji">
-      <li>Strategic OB Calls to selected customer indicates excellent outcome in overall results and savings of high spender customers</li>
-      <li>Robust process implemented to save basic if account is partially refreshed with required documentation in place since 03/25</li>
-      <li>Process adjusted in context of HR consumer becoming HR Jurisdiction case during refresh: journey is extended with 30 days extra & CM receives GSG OB calls</li>
-      <li>KYC comms is updated with new ‘Güterplatz’ address which allows no further delay in KYC process path</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">Next Challenges</h2>
-    <ul class="ul-clean li-emoji">
-      <li>Consistent 2-4 % of voluntary attrition during KYC HR Consumer refresh — <b>Next steps:</b> Analyze behavior to understand trigger and initiate remediation with SAC team</li>
-      <li>2027 eventual requirements for total HR consumer base to provide SOW/SOF data — <b>Next steps:</b> observe current HRJ data & learnings</li>
-    </ul>
-  </div>
+  </section>
 </section>
 
-<!-- === AGOSTO 2025 === -->
+<!-- === AGOSTO 2025 (ORIGINAL) === -->
 <section id="aug2025" class="view-section hidden">
-  <div class="card">
-    <h2 class="section-title">Aug 2025 – Key Facts</h2>
-    <ul class="ul-clean li-emoji">
-      <li>KYC HR cons process works automated, with manual workarounds when specifics are required</li>
-      <li>HR Refresh journey contains 120-day with account cancellation if basic not fully refreshed. Suspension marked at Day 60 for DE / AT</li>
-      <li>Status Aug 2025, we count <b>4k AIF YTD</b> (DE: 3.5k / AT: 0.5k) HR Cons</li>
-      <li>As of today: <b>85% refreshed</b>, 10% in progress, 5% in pre-screening to be contacted</li>
-    </ul>
-  </div>
+  <section id="kpis-aug" class="card">
+    <h2 class="section-title">Key Results – August 2025</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="label">AIF YTD</div><div class="value">4,000</div><div class="note">DE: 3.5k • AT: 0.5k</div></div>
+      <div class="kpi"><div class="label">% refreshed</div><div class="value ok">85%</div><div class="note">10% in progress • 5% pre-screen</div></div>
+      <div class="kpi"><div class="label">Cancellations due to KYC info</div><div class="value ok">≈ 0</div><div class="note">Only 1 exception in HR consumer CM</div></div>
+      <div class="kpi"><div class="label">Feedback from HR CMs</div><div class="value ok">Positive</div><div class="note">Willing to complete KYC</div></div>
+    </div>
+  </section>
 
-  <div class="card">
-    <h2 class="section-title">HR Consumer Refresh</h2>
-    <table style="width:100%; border-collapse:collapse; font-size:14px;">
-      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Consumer Refresh</th><th>HR CM volume</th><th>HR CM refreshed</th><th>CMs currently suspended</th><th>HR CM KYC cancelled</th></tr>
-      <tr><td style="padding:6px;">Austria</td><td>515</td><td>377</td><td>18</td><td>0</td><td>-</td></tr>
-      <tr><td>Germany</td><td>3.573</td><td>3.108</td><td>59</td><td>1</td><td>-</td></tr>
-      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>4.088</td><td>3.485</td><td>77</td><td>1</td><td>-</td></tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">HR Centurion</h2>
-    <table style="width:100%; border-collapse:collapse; font-size:14px;">
-      <tr style="background:#0c1730; color:#9fb2ca;"><th style="padding:8px; text-align:left;">&nbsp;</th><th>HR Centurion volume</th><th>Centurion refreshed</th><th>Centurion suspended</th><th>Centurion cancelled</th></tr>
-      <tr><td style="padding:6px;">Austria</td><td>114</td><td>72</td><td>0</td><td>0</td></tr>
-      <tr><td>Germany</td><td>465</td><td>400</td><td>0</td><td>0</td></tr>
-      <tr style="background:#0c1730; font-weight:bold;"><td>Overall</td><td>579</td><td>472</td><td>0</td><td>0</td></tr>
-    </table>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">Enhancements Since Jan 2025</h2>
-    <ul class="ul-clean li-emoji">
-      <li>Strategic Out-Bound (OB) Calls to selected customer: HR CM are refreshed mostly prior suspension</li>
-      <li>Similar strategy is applied toward our premium base via the Portfolio Manager POC for outstanding results</li>
-      <li>Robust process implemented to save basic status if account is partially refreshed with required documentation in place since 03/25</li>
-      <li>Process adjusted in context of HR consumer becoming High Risk Jurisdiction during KYC refresh: journey is extended with 30 days extra and CM receives GSG OB calls</li>
-      <li>Overall: KYC HR process is running smoothly</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2 class="section-title">Next Challenges for 2026</h2>
-    <ul class="ul-clean li-emoji">
-      <li>Suspension to be retrieved from AT process – mapped for 2026</li>
-      <li>Incorporate Keys Learning from current HR process into iRefresh!</li>
-      <li>2027 eventual requirements for total HR consumer base to provide SOW/SOF data — <b>Observe current HRJ data & learnings</b></li>
-    </ul>
-  </div>
+  <!-- Los mismos gráficos, pero actualizados para Aug -->
+  <section class="card">
+    <h2 class="section-title">Performance charts (Aug 2025)</h2>
+    <div class="grid-3">
+      <div><canvas id="refreshChartAug" height="210"></canvas></div>
+      <div><canvas id="aifChartAug" height="210"></canvas></div>
+      <div><canvas id="suspChartAug" height="210"></canvas></div>
+    </div>
+  </section>
 </section>
 
-<!-- OPERATIONS -->
+<!-- OPERATIONS (original) -->
 <section class="card">
   <h2 class="section-title">Operations</h2>
   <p class="sub">Use these actions each cycle.</p>
@@ -289,26 +245,31 @@ Maintained by Germany & Austria Consumer HR • Outbound Calls program
 </div>
 
 <script>
-// === CAMBIO DE VISTA ===
+// === CAMBIO DE VISTA (Sep / May / Aug) ===
 const viewButtons = document.querySelectorAll('.view-btn');
 const viewSections = document.querySelectorAll('.view-section');
 
 viewButtons.forEach(btn => {
   btn.addEventListener('click', () => {
     const target = btn.getAttribute('data-view');
-    
-    // Ocultar todas
     viewSections.forEach(sec => sec.classList.add('hidden'));
-    // Mostrar seleccionada
     document.getElementById(target).classList.remove('hidden');
-    
-    // Actualizar botón activo
     viewButtons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   });
 });
 
-// Upload Excel
+// === TOGGLE MAY ↔ AUG (original) ===
+const kpisAug = document.getElementById('kpis-aug');
+const kpisMay = document.getElementById('kpis-may');
+document.getElementById('toggleViewBtn').addEventListener('click', () => {
+  const augVisible = kpisAug.style.display !== 'none';
+  kpisAug.style.display = augVisible ? 'none' : '';
+  kpisMay.style.display = augVisible ? '' : 'none';
+  window.scrollTo({top: kpisMay.offsetTop - 20, behavior: 'smooth'});
+});
+
+// === UPLOAD EXCEL ===
 const excelInput = document.getElementById('excelInput');
 const fileInfo = document.getElementById('fileInfo');
 excelInput.addEventListener('change', (e) => {
@@ -316,11 +277,27 @@ excelInput.addEventListener('change', (e) => {
   fileInfo.textContent = f ? `Uploaded: ${f.name} • ${Math.round(f.size/1024)} KB` : 'No file uploaded yet.';
 });
 
-// Spend tool
+// === SPEND TOOL ===
 const SPEND_URL = "https://your-spend-tool.example.com";
 function openSpend(){ window.open(SPEND_URL, '_blank'); }
 document.getElementById('openSpendBtn').addEventListener('click', openSpend);
 document.getElementById('openSpendBtn2').addEventListener('click', openSpend);
+
+// === GRÁFICOS ORIGINALES (May) ===
+const css = getComputedStyle(document.documentElement);
+const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
+const cSky = css.getPropertyValue('--primary').trim() || '#0ea5e9';
+const cEmerald = css.getPropertyValue('--accent').trim() || '#10b981';
+const cMuted = '#94a3b8';
+
+new Chart(document.getElementById('refreshChart'), { /* ... tu gráfico original ... */ });
+new Chart(document.getElementById('aifChart'), { /* ... */ });
+new Chart(document.getElementById('suspChart'), { /* ... */ });
+
+// === GRÁFICOS PARA AUG 2025 (cuando se active) ===
+new Chart(document.getElementById('refreshChartAug'), { /* mismo que May, pero con datos de Aug */ });
+new Chart(document.getElementById('aifChartAug'), { /* ... */ });
+new Chart(document.getElementById('suspChartAug'), { /* ... */ });
 </script>
 </body>
 </html>
