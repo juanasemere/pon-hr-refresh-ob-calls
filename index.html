@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PON HR Refresh – Germany Consumer HR</title>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+<style>
+	:root{
+		/* Brand colors (podés ajustarlos a tu paleta) */
+		--primary:#0ea5e9;      /* Sky-500 */
+		--primary-2:#6366f1;    /* Indigo-500 */
+		--accent:#10b981;       /* Emerald-500 */
+		--ink:#0f172a;          /* Slate-900 */
+		--muted:#475569;        /* Slate-600 */
+		--bg:#f8fafc;           /* Slate-50 */
+		--card:#ffffff;
+		--stroke:#e5e7eb;
+	}
+	*{box-sizing:border-box}
+	body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; color:var(--ink); background:var(--bg);}
+	header{
+		background: linear-gradient(135deg,var(--primary),var(--primary-2));
+		color:#fff; padding: 18px 20px 24px; position:relative;
+	}
+	.brand{
+		display:flex; align-items:center; gap:12px; margin-bottom:8px;
+	}
+	.brand img{width:36px; height:36px; border-radius:8px; background:#fff; object-fit:cover}
+	header h1{margin:0 0 4px; font-size:28px}
+	header p{margin:0; opacity:.95}
+	.actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+	.linklike, button{
+		cursor:pointer; border:1px solid #e0f2fe; color:#0b4a6e; background:#ffffff; padding:10px 14px; border-radius:10px; font-weight:700;
+	}
+	button:hover,.linklike:hover{background:#e0f2fe}
+	main{padding:20px; max-width:1100px; margin:0 auto}
+	.card{background:var(--card); border:1px solid var(--stroke); border-radius:12px; padding:16px 18px; box-shadow:0 1px 2px rgba(15,23,42,.06); margin:12px 0}
+	h2{font-size:20px; margin:8px 0 12px}
+	h3{font-size:16px; margin:12px 0 8px}
+	.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px}
+	.kpi{background:#f1f5f9; border:1px solid #e2e8f0; border-radius:10px; padding:12px}
+	.kpi .label{font-size:12px; color:#334155}
+	.kpi .value{font-size:22px; font-weight:700}
+	.badge{display:inline-block; padding:2px 8px; border-radius:999px; font-size:12px; background:#e0f2fe; color:#075985; border:1px solid #bae6fd}
+	table{width:100%; border-collapse:collapse}
+	th,td{padding:8px; border-bottom:1px solid var(--stroke); text-align:left}
+	.note{font-size:12px; color:var(--muted)}
+	.grid-2{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+	.ok{color:#16a34a} .warn{color:#b45309}
+	.footer{font-size:12px; color:#64748b; padding:24px 20px 40px; text-align:center}
+	/* Simple brand bar under header */
+	.brandbar{height:4px; background:linear-gradient(90deg,var(--primary),var(--accent));}
+</style>
+</head>
+<body>
+
+<header>
+	<div class="brand">
+		<!-- Reemplazá el src con tu logo real -->
+		<img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Abstract_avtar.png" alt="Logo" />
+		<div>
+			<h1>PON HR Refresh – Germany Consumer HR</h1>
+			<p>Outbound Calls program to drive KYC refresh and reduce suspension or cancellation risk.</p>
+		</div>
+	</div>
+
+	<div class="actions">
+		<label class="linklike" for="excelInput">Upload latest Excel</label>
+		<input id="excelInput" type="file" accept=".xlsx,.xls,.csv" style="display:none" />
+		<button id="openSpendBtn" title="Open Spend tool">Open Spend tool</button>
+		<button id="toggleViewBtn">Toggle: May ↔ August</button>
+	</div>
+</header>
+<div class="brandbar"></div>
+
+<main>
+	<section class="card">
+		<h2>Overview</h2>
+		<p>
+			We focus on Germany’s Consumer HR segment. Premium customers are prioritized. OB Calls are executed prior to suspension and a robust partial-refresh path maintains basic status when documentation is provided.
+		</p>
+		<ul>
+			<li>Refined recipient lists and enriched data for effectiveness.</li>
+			<li>Portfolio Manager POC used for the premium base.</li>
+			<li>HR to HR Jurisdiction: +30 days, GSG OB calls, and additional SOW requirements.</li>
+			<li>Process is running smoothly and reused by other markets.</li>
+		</ul>
+		<span class="badge">Market: Germany Consumer HR</span>
+	</section>
+
+	<section id="kpis-aug" class="card">
+		<h2>Key Results – August 2025</h2>
+		<div class="kpis">
+			<div class="kpi"><div class="label">AIF YTD</div><div class="value">4,000</div><div class="note">DE: 3.5k • AT: 0.5k</div></div>
+			<div class="kpi"><div class="label">% refreshed</div><div class="value ok">85%</div><div class="note">10% in progress • 5% pre-screening</div></div>
+			<div class="kpi"><div class="label">Cancellations due to KYC info</div><div class="value ok">≈ 0</div><div class="note">Only 1 HR consumer CM exception</div></div>
+			<div class="kpi"><div class="label">Sentiment</div><div class="value ok">Positive</div><div class="note">HR CMs willing to complete KYC</div></div>
+		</div>
+	</section>
+
+	<section id="kpis-may" class="card" style="display:none">
+		<h2>Key Results – May 2025</h2>
+		<div class="kpis">
+			<div class="kpi"><div class="label">AIF YTD</div><div class="value">3,700</div><div class="note">DE: 3.2k • AT: 0.5k</div></div>
+			<div class="kpi"><div class="label">% refreshed</div><div class="value">74%</div><div class="note">18% in progress • 8% to be contacted</div></div>
+			<div class="kpi"><div class="label">At risk of cancellation</div><div class="value warn">1.2%</div><div class="note">HR CMs</div></div>
+			<div class="kpi"><div class="label">At risk of suspension</div><div class="value warn">1.4%</div><div class="note">Incl. 0.6% Centurion</div></div>
+		</div>
+	</section>
+
+	<!-- Charts -->
+	<section class="card">
+		<h2>Performance charts</h2>
+		<div class="grid-2">
+			<div>
+				<h3>Refresh rate by month</h3>
+				<canvas id="refreshChart" height="220"></canvas>
+				<p class="note">Tracks progression from May to August. You can extend with more months.</p>
+			</div>
+			<div>
+				<h3>AIF YTD by market</h3>
+				<canvas id="aifChart" height="220"></canvas>
+				<p class="note">Germany and Austria contribution to overall AIF YTD.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="card grid-2">
+		<div>
+			<h3>Enhancements since Jan 2025</h3>
+			<ul>
+				<li>OB Calls to selected customers before suspension.</li>
+				<li>Partial-refresh path with documentation since 03/25.</li>
+				<li>HR→HRJ adjustment with +30 days and GSG OB calls.</li>
+				<li>Updated comms to avoid address-related delays.</li>
+			</ul>
+		</div>
+		<div>
+			<h3>Next challenges</h3>
+			<ul>
+				<li>Retrieve suspension from AT process and map for 2026.</li>
+				<li>Incorporate learnings into iRefresh.</li>
+				<li>Prepare for 2027 SOW/SOF requirements.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="card">
+		<h2>Status Snapshot</h2>
+		<table>
+			<thead>
+				<tr><th>Month</th><th>Market</th><th>Refreshed</th><th>In progress</th><th>To contact / Pre-screen</th></tr>
+			</thead>
+			<tbody>
+				<tr><td>May 2025</td><td>Germany</td><td>74%</td><td>18%</td><td>8%</td></tr>
+				<tr><td>August 2025</td><td>Germany</td><td>85%</td><td>10%</td><td>5%</td></tr>
+			</tbody>
+		</table>
+		<p class="note">90% of refreshed were completed before suspension in August. OB Calls approach was copied by other markets.</p>
+	</section>
+
+	<section class="card">
+		<h2>Operations</h2>
+		<p>Use these actions every cycle to upload the latest Excel and open the Spend tool.</p>
+		<div class="actions">
+			<label class="linklike" for="excelInput">Upload latest Excel</label>
+			<button id="openSpendBtn2">Open Spend tool</button>
+		</div>
+		<div id="fileInfo" class="note" style="margin-top:8px">No file uploaded yet.</div>
+	</section>
+</main>
+
+<div class="footer">
+	Maintained by Germany Consumer HR team • Outbound Calls program
+</div>
+
+<script>
+	// Toggle KPI views
+	const kpisAug = document.getElementById('kpis-aug');
+	const kpisMay = document.getElementById('kpis-may');
+	document.getElementById('toggleViewBtn').addEventListener('click', () => {
+		const augVisible = kpisAug.style.display !== 'none';
+		kpisAug.style.display = augVisible ? 'none' : '';
+		kpisMay.style.display = augVisible ? '' : 'none';
+	});
+
+	// Upload Excel
+	const excelInput = document.getElementById('excelInput');
+	const fileInfo = document.getElementById('fileInfo');
+	excelInput.addEventListener('change', (e) => {
+		const f = e.target.files[0];
+		fileInfo.textContent = f ? `Uploaded: ${f.name} • ${Math.round(f.size/1024)} KB` : 'No file uploaded yet.';
+	});
+
+	// Spend tool link – replace with your real URL
+	const SPEND_URL = "https://your-spend-tool.example.com"; // TODO: set real link
+	function openSpend(){ window.open(SPEND_URL, '_blank'); }
+	document.getElementById('openSpendBtn').addEventListener('click', openSpend);
+	document.getElementById('openSpendBtn2').addEventListener('click', openSpend);
+
+	// Charts
+	const refreshCtx = document.getElementById('refreshChart');
+	new Chart(refreshCtx, {
+		type:'line',
+		data:{
+			labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
+			datasets:[{
+				label:'% Refreshed',
+				data:[74, 79, 82, 85],   // asumí una mejora gradual; podés editarlo
+				borderColor:getComputedStyle(document.documentElement).getPropertyValue('--primary-2'),
+				backgroundColor:'rgba(99,102,241,.15)',
+				fill:true, tension:.35, borderWidth:3, pointRadius:3
+			},{
+				label:'% In progress',
+				data:[18, 15, 13, 10],
+				borderColor:getComputedStyle(document.documentElement).getPropertyValue('--primary'),
+				backgroundColor:'rgba(14,165,233,.15)',
+				fill:true, tension:.35, borderWidth:2, pointRadius:2
+			},{
+				label:'% To contact / Pre-screen',
+				data:[8, 6, 5, 5],
+				borderColor:'#94a3b8',
+				backgroundColor:'rgba(148,163,184,.15)',
+				fill:true, tension:.35, borderWidth:2, pointRadius:2
+			}]
+		},
+		options:{
+			plugins:{legend:{position:'bottom'}},
+			scales:{y:{ticks:{callback:(v)=>v+'%'}}}
+		}
+	});
+
+	const aifCtx = document.getElementById('aifChart');
+	new Chart(aifCtx, {
+		type:'bar',
+		data:{
+			labels:['Germany','Austria'],
+			datasets:[{
+				label:'AIF YTD (May)',
+				data:[3200,500],
+				backgroundColor:'rgba(14,165,233,.6)'
+			},{
+				label:'AIF YTD (Aug)',
+				data:[3500,500],
+				backgroundColor:'rgba(16,185,129,.6)'
+			}]
+		},
+		options:{
+			plugins:{legend:{position:'bottom'}},
+			scales:{y:{beginAtZero:true, ticks:{callback:(v)=>v.toLocaleString()}}}
+		}
+	});
+</script>
+</body>
+</html>
