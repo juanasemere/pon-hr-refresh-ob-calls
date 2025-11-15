@@ -10,21 +10,20 @@
 
 <style>
 :root{
-	--brand:#0f172a;      /* ink */
-	--text:#0f172a;       /* primary text on white */
-	--muted:#475569;      /* slate-600 */
-	--subtle:#64748b;     /* slate-500 */
-	--soft:#94a3b8;       /* slate-400 */
-	--line:#e2e8f0;       /* border */
-	--bg:#ffffff;         /* page bg */
-	--card:#ffffff;       /* card bg */
-	--accent:#2563eb;     /* blue-600 */
-	--accent-2:#0ea5e9;   /* sky-500 */
-	--accent-3:#10b981;   /* emerald-500 */
-	--danger:#ef4444;     /* red-500 */
-	--shadow: 0 10px 30px rgba(2,6,23,.08);
+	/* Light, formal palette */
+	--text:#0b0f1a;
+	--muted:#475569;
+	--subtle:#64748b;
+	--line:#e5e7eb;
+	--bg:#ffffff;
+	--card:#ffffff;
+	--accent:#1f2937;   /* deep neutral for headings */
+	--accent-2:#2563eb; /* blue for highlights if needed */
+	--shadow:0 10px 26px rgba(2,6,23,.06);
+	--radius:14px;
+	/* Charts */
+	--c-indigo:#4f46e5; --c-sky:#0ea5e9; --c-emerald:#10b981; --c-muted:#94a3b8;
 }
-
 *{box-sizing:border-box}
 body{
 	font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -33,29 +32,29 @@ body{
 
 /* Header */
 header{
-	background: linear-gradient(180deg,#f8fafc,#ffffff);
-	padding: 24px 20px 26px; border-bottom:1px solid var(--line);
-	position:relative;
+	background: linear-gradient(180deg,#f9fafb 0%, #ffffff 60%);
+	padding: 24px 20px 20px;
+	border-bottom:1px solid var(--line);
 }
 .brand{display:flex; align-items:center; gap:14px; margin-bottom:8px}
 .logo{
 	width:40px; height:40px; border-radius:10px; object-fit:cover;
-	box-shadow: 0 2px 8px rgba(0,0,0,.08);
+	box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }
 .titleline{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-h1{margin:0; font-size:26px; letter-spacing:.2px; color:var(--brand)}
+h1{margin:0; font-size:26px; letter-spacing:.2px; color:var(--accent)}
 .flag{font-size:22px; line-height:1}
 header p{margin:6px 0 0; color:var(--subtle)}
 
 .tagbar{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
 .tag{
 	font-size:12px; padding:4px 10px; border-radius:999px;
-	border:1px solid var(--line); background:#f8fafc; color:#0f172a;
+	border:1px solid var(--line); background:#f8fafc; color:#0b0f1a;
 }
 
 .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
 button, .linklike{
-	cursor:pointer; border:1px solid var(--line); color:#0f172a; background:#ffffff;
+	cursor:pointer; border:1px solid var(--line); color:#0b0f1a; background:#ffffff;
 	padding:10px 14px; border-radius:10px; font-weight:700;
 	box-shadow: 0 1px 2px rgba(0,0,0,.04);
 	transition:.15s ease;
@@ -76,10 +75,10 @@ button.small{padding:8px 12px}
 
 /* Layout */
 main{padding:22px; max-width:1180px; margin:0 auto}
-.section-title{font-size:20px; margin:0 0 10px; color:var(--brand)}
+.section-title{font-size:20px; margin:0 0 10px; color:var(--accent)}
 .card{
 	background: var(--card);
-	border:1px solid var(--line); border-radius:14px; padding:16px 18px; box-shadow: var(--shadow);
+	border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; box-shadow: var(--shadow);
 	margin:14px 0;
 }
 .sub{color:var(--subtle); font-size:13px}
@@ -104,10 +103,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 }
 .table th{color:var(--muted); font-weight:700}
 
-/* Chart helpers */
-:root{
-	--c-indigo:#4f46e5; --c-sky:#0ea5e9; --c-emerald:#10b981; --c-muted:#94a3b8;
-}
+.bold{font-weight:700}
 </style>
 </head>
 <body>
@@ -124,7 +120,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 	<div class="tagbar">
 		<span class="tag">Market: DE & AT</span>
 		<span class="tag">Segment: Consumer HR</span>
-		<span class="tag">OB Calls cadence: every 21 days</span>
+		<!-- Removed OB Calls cadence tag per request -->
 	</div>
 
 	<div class="actions">
@@ -163,7 +159,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 			</div>
 		</div>
 
-		<!-- 2,3,4) Stage buttons with EXACT labels (English) -->
+		<!-- 2,3,4) Stage buttons with EXACT labels -->
 		<button class="small" data-stage="sep2024">Stage Sept 2024 PON HR Refresh - September 2024 status</button>
 		<button class="small" data-stage="may2025">Stage May 2025 PON HR Refresh - Mai 2025 status</button>
 		<button class="small" data-stage="aug2025">Stage Aug 2025 PON HR Refresh - August 2025 status</button>
@@ -174,7 +170,29 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 </header>
 
 <main>
-	<!-- Only charts on the main page -->
+	<!-- NEW Overview card with your exact content -->
+	<section class="card">
+		<h2 class="section-title">Overview – Germany & Austria • Consumer HR Outbound Calling</h2>
+		<p class="bold">KYC HR cons process is in BAU since 04/2024. Refresh journey of 120-day with account cancellation if basic not fully refreshed.</p>
+		<ul>
+			<li><span class="bold">Weekly calling cycle</span> with capacity of <span class="bold">up to 60 outbound calls</span> per week.</li>
+			<li><span class="bold">Clear segmentation & refined recipient lists</span> for targeted actions.</li>
+			<li>Designed to strengthen <span class="bold">risk management</span> and improve <span class="bold">documentation compliance</span>.</li>
+			<li>Process running smoothly and reused by other markets (France, UK, irefresh Get/Aut).</li>
+		</ul>
+
+		<div class="hr"></div>
+		<p class="bold" style="margin-bottom:6px">Operational structure:</p>
+		<ul>
+			<li><span class="bold">When weekly volumes exceed capacity, prioritization is based on customer spend</span>. <span class="muted">(go to tool - to see spend)</span></li>
+			<li><span class="bold">Centurion accounts excluded</span> – managed by TLS via shared tracking file. <span class="muted">(go to tool - to see shared file)</span></li>
+			<li><span class="bold">HRJ cases not included</span> – handled directly by CEN.</li>
+			<li>We call selected customers in the <span class="bold">suspension warning</span> and again at <span class="bold">suspension confirmation</span>.</li>
+			<li><span class="bold">3 calls per client every 21 days</span> until resolution.</li>
+		</ul>
+	</section>
+
+	<!-- Charts (page principal) -->
 	<section class="card">
 		<h2 class="section-title">Performance charts</h2>
 		<div class="grid-3">
@@ -196,12 +214,11 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 		</div>
 	</section>
 
-	<!-- Stage panels: all explanatory content lives here -->
+	<!-- Stages (contenido detallado en botones) -->
 	<section class="card">
 		<h2 class="section-title">Stages</h2>
 		<div class="stage-content" id="stageContent">
-
-			<!-- Stage Sept 2024 -->
+			<!-- Sep 2024 -->
 			<div class="stage-pane" id="stage-sep2024">
 				<p class="sub"><b>KEY FACTS</b></p>
 				<ul>
@@ -245,7 +262,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 				</ul>
 			</div>
 
-			<!-- Stage May 2025 -->
+			<!-- May 2025 -->
 			<div class="stage-pane" id="stage-may2025">
 				<p class="sub"><b>KEY FACTS</b></p>
 				<ul>
@@ -274,7 +291,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 						<tr><td>Overall</td><td>500</td><td>358</td><td>0</td><td>0</td></tr>
 					</tbody>
 				</table>
-				<p class="muted">1.2% HR CMs risk of cancellation: (11 AT / 33 DE). No Centurion at risk of cancellation. 1.4% HR CMs risk of suspension (18 AT / 35 DE) • Incl. 0.6% Centurion (1 AT / 2 DE)</p>
+				<p class="muted">1.2% HR CMs risk of cancellation: (11 AT / 33 DE). No Centurion at risk. 1.4% HR CMs risk of suspension (18 AT / 35 DE) • Incl. 0.6% Centurion (1 AT / 2 DE)</p>
 				<div class="hr"></div>
 				<p><b>ENHANCEMENTS PERFORMED SINCE JAN 2025</b></p>
 				<ul>
@@ -292,7 +309,7 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 				</ul>
 			</div>
 
-			<!-- Stage Aug 2025 -->
+			<!-- Aug 2025 -->
 			<div class="stage-pane" id="stage-aug2025">
 				<p class="sub"><b>KEY FACTS</b></p>
 				<ul>
@@ -338,18 +355,11 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 					<li>Possible 2027 SOW/SOF requirements: observe HRJ data & learnings</li>
 				</ul>
 			</div>
-
 		</div>
 	</section>
 </main>
 
 <script>
-// Colors for charts (light theme)
-const cIndigo = getComputedStyle(document.documentElement).getPropertyValue('--c-indigo').trim() || '#4f46e5';
-const cSky    = getComputedStyle(document.documentElement).getPropertyValue('--c-sky').trim()    || '#0ea5e9';
-const cEmerald= getComputedStyle(document.documentElement).getPropertyValue('--c-emerald').trim()|| '#10b981';
-const cMuted  = getComputedStyle(document.documentElement).getPropertyValue('--c-muted').trim()  || '#94a3b8';
-
 // Dropdown Tools
 const toolsBtn  = document.getElementById('toolsBtn');
 const toolsMenu = document.getElementById('toolsMenu');
@@ -363,20 +373,19 @@ document.addEventListener('click', (e)=>{
 	}
 });
 
-// Upload Excel
+// Upload Excel (alert simple)
 const excelInput = document.getElementById('excelInput');
 excelInput.addEventListener('change', (e) => {
 	const f = e.target.files[0];
 	if(f) alert(`Uploaded: ${f.name} • ${Math.round(f.size/1024)} KB`);
 });
 
-// Tools URLs (TODO: coloca tus links reales)
+// Tools URLs (TODO: reemplazar con tus links reales)
 const SPEND_URL     = "https://your-spend-tool.example.com/";
 const CENTURION_URL = "https://tu-dominio/centurion-shared-file";
 const CALLS_URL     = "https://tu-dominio/ob-calls-tool";
 function openInNew(url){ if(url && /^https?:\/\//i.test(url)) window.open(url, '_blank'); }
 
-// Menu actions
 document.getElementById('openSpendBtn').addEventListener('click', ()=>openInNew(SPEND_URL));
 document.getElementById('openCenturionFile').addEventListener('click', ()=>openInNew(CENTURION_URL));
 document.getElementById('openCallTool').addEventListener('click', ()=>openInNew(CALLS_URL));
@@ -397,19 +406,24 @@ function showStage(key){
 stageButtons.forEach(btn=>{
 	btn.addEventListener('click', ()=> showStage(btn.dataset.stage));
 });
-// Default: show May 2025
+// Default
 showStage('may2025');
 
-// Charts
+// Charts (light theme)
+const cIndigo = getComputedStyle(document.documentElement).getPropertyValue('--c-indigo').trim() || '#4f46e5';
+const cSky    = getComputedStyle(document.documentElement).getPropertyValue('--c-sky').trim()    || '#0ea5e9';
+const cEmerald= getComputedStyle(document.documentElement).getPropertyValue('--c-emerald').trim()|| '#10b981';
+const cMuted  = getComputedStyle(document.documentElement).getPropertyValue('--c-muted').trim()  || '#94a3b8';
+
 // Refresh rate
 new Chart(document.getElementById('refreshChart'), {
 	type:'line',
 	data:{
 		labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
 		datasets:[
-			{ label:'% Refreshed', data:[74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(79,70,229,.12)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
-			{ label:'% In progress', data:[18,15,13,10], borderColor:cSky,    backgroundColor:'rgba(14,165,233,.10)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
-			{ label:'% To contact / Pre-screen', data:[8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.10)', fill:true, tension:.35, borderWidth:2, pointRadius:2 }
+			{ label:'% Refreshed', data:[74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(79,70,229,.10)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+			{ label:'% In progress', data:[18,15,13,10], borderColor:cSky,    backgroundColor:'rgba(14,165,233,.08)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
+			{ label:'% To contact / Pre-screen', data:[8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.08)', fill:true, tension:.35, borderWidth:2, pointRadius:2 }
 		]
 	},
 	options:{
