@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>PON HR Refresh – Germany & Austria • Consumer HR OB Calls</title>
 
-	<!-- Chart.js -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+	<!-- Chart.js con defer para garantizar carga antes de inicializar -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
 	<style>
 	:root{
@@ -22,7 +22,7 @@
 		--stroke:#172036;
 		--soft:#0a1630;
 
-		/* Nuevo: sistema de botones consistente */
+		/* sistema de botones consistente */
 		--btn-bg:#0b172e;
 		--btn-border:#1e293b;
 		--btn-text:#e2e8f0;
@@ -39,7 +39,6 @@
 		background:linear-gradient(180deg,var(--bg), #0b1220 30%, #0e1526);
 	}
 
-	/* Header simplificado tipo “hero” */
 	header{
 		background:
 			radial-gradient(1200px 400px at 20% -10%, rgba(14,165,233,.25), transparent 60%),
@@ -59,9 +58,7 @@
 	.tagbar{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
 	.tag{font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid #1e293b; background:#0a162c; color:#cbd5e1}
 
-	/* Botonera consistente */
 	.actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
-
 	.button{
 		appearance:none;
 		cursor:pointer;
@@ -87,8 +84,6 @@
 		border-color:color-mix(in oklab, var(--primary), black 35%);
 		box-shadow: 0 0 0 4px rgba(14,165,233,.18);
 	}
-
-	/* Variantes */
 	.button--primary{
 		background: linear-gradient(180deg,#0c1b36,#0b172e);
 		border-color:#1f334f;
@@ -97,15 +92,8 @@
 		background: transparent;
 		border-color:#24334d;
 	}
-	.button__icon{
-		width:18px; height:18px; display:inline-block;
-	}
+	.button__icon{width:18px; height:18px; display:inline-block}
 
-	/* “Label” que actúa como botón */
-	.linklike{ /* deprecado a favor de .button, se mantiene compatibilidad */
-	}
-
-	/* Layout principal */
 	main{padding:22px; max-width:1180px; margin:0 auto}
 	.section-title{font-size:20px; margin:0 0 10px; color:#e5e7eb}
 	.card{
@@ -119,12 +107,7 @@
 	.card .sub{color:#94a3b8; font-size:13px}
 
 	.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
-	.kpi{
-		background: linear-gradient(180deg,#0c1730,#0b152c);
-		border:1px solid #16233d;
-		border-radius:12px;
-		padding:12px;
-	}
+	.kpi{background: linear-gradient(180deg,#0c1730,#0b152c); border:1px solid #16233d; border-radius:12px; padding:12px}
 	.kpi .label{font-size:12px; color:#9fb2ca}
 	.kpi .value{font-size:24px; font-weight:800}
 	.kpi .note{font-size:12px; color:#93a2b8}
@@ -144,17 +127,9 @@
 
 	.footer{font-size:12px; color:#93a2b8; padding: 26px 20px 40px; text-align:center}
 
-	/* iconitos bullet */
 	.li-emoji li::marker{content:"• "}
+	.callout{background:linear-gradient(180deg,#0e1a35,#0d182f); border:1px solid #1c2a49; border-radius:12px; padding:12px}
 
-	.callout{
-		background:linear-gradient(180deg,#0e1a35,#0d182f);
-		border:1px solid #1c2a49;
-		border-radius:12px;
-		padding:12px
-	}
-
-	/* Responsivo: apila botones y ajusta densidad */
 	@media (max-width: 640px){
 		.actions{gap:8px}
 		.button{width:100%; justify-content:center}
@@ -163,7 +138,6 @@
 	</style>
 </head>
 <body>
-
 <header>
 	<div class="brand">
 		<img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg" alt="Logo" />
@@ -296,107 +270,116 @@
 </div>
 
 <script>
-/* Toggle KPI views: May visible al inicio, Aug oculto */
-const kpisAug = document.getElementById('kpis-aug');
-const kpisMay = document.getElementById('kpis-may');
-const toggleBtn = document.getElementById('toggleViewBtn');
-
-function toggleKpis(){
-	const augVisible = kpisAug.style.display !== 'none';
-	kpisAug.style.display = augVisible ? 'none' : '';
-	kpisMay.style.display = augVisible ? '' : 'none';
-	toggleBtn.setAttribute('aria-pressed', String(!augVisible));
-	const target = augVisible ? kpisMay : kpisAug;
-	window.scrollTo({ top: target.offsetTop - 20, behavior:'smooth' });
-}
-toggleBtn.addEventListener('click', toggleKpis);
-
-/* Upload Excel: mensaje legible y seguro */
-const excelInput = document.getElementById('excelInput');
-const fileInfo = document.getElementById('fileInfo');
-excelInput.addEventListener('change', (e) => {
-	const f = e.target.files && e.target.files[0];
-	if(!f){
-		fileInfo.textContent = 'No file uploaded yet.';
-		return;
+/* Esperar a que el DOM esté listo y Chart.js cargado */
+window.addEventListener('DOMContentLoaded', () => {
+	/* Toggle KPI views */
+	const kpisAug = document.getElementById('kpis-aug');
+	const kpisMay = document.getElementById('kpis-may');
+	const toggleBtn = document.getElementById('toggleViewBtn');
+	function toggleKpis(){
+		const augVisible = kpisAug.style.display !== 'none';
+		kpisAug.style.display = augVisible ? 'none' : '';
+		kpisMay.style.display = augVisible ? '' : 'none';
+		toggleBtn.setAttribute('aria-pressed', String(!augVisible));
+		const target = augVisible ? kpisMay : kpisAug;
+		window.scrollTo({ top: target.offsetTop - 20, behavior:'smooth' });
 	}
-	const sizeKb = Math.max(1, Math.round(f.size/1024));
-	fileInfo.textContent = `Uploaded: ${f.name} • ${sizeKb.toLocaleString()} KB`;
-});
+	toggleBtn?.addEventListener('click', toggleKpis);
 
-/* Spend tool link – TODO: poné tu URL real aquí */
-const SPEND_URL = "https://your-spend-tool.example.com";
-function openSpend(){ window.open(SPEND_URL, '_blank', 'noopener'); }
-document.getElementById('openSpendBtn').addEventListener('click', openSpend);
-document.getElementById('openSpendBtn2').addEventListener('click', openSpend);
-
-/* Charts palette */
-const css = getComputedStyle(document.documentElement);
-const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
-const cSky = css.getPropertyValue('--primary').trim() || '#0ea5e9';
-const cEmerald = css.getPropertyValue('--accent').trim() || '#10b981';
-const cMuted = '#94a3b8';
-
-/* Chart helpers */
-function axisColor(){ return '#a8b1c7'; }
-function gridColor(light=0.12){ return `rgba(148,163,184,${light})`; }
-
-/* Refresh rate */
-new Chart(document.getElementById('refreshChart'), {
-	type:'line',
-	data:{
-		labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
-		datasets:[
-			{ label:'% Refreshed', data:[74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
-			{ label:'% In progress', data:[18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
-			{ label:'% To contact / Pre-screen', data:[8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2, pointRadius:2 }
-		]
-	},
-	options:{
-		plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-		scales:{
-			x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-			y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } }
+	/* Upload Excel feedback */
+	const excelInput = document.getElementById('excelInput');
+	const fileInfo = document.getElementById('fileInfo');
+	excelInput?.addEventListener('change', (e) => {
+		const f = e.target.files && e.target.files[0];
+		if(!f){
+			fileInfo.textContent = 'No file uploaded yet.';
+			return;
 		}
+		const sizeKb = Math.max(1, Math.round(f.size/1024));
+		fileInfo.textContent = `Uploaded: ${f.name} • ${sizeKb.toLocaleString()} KB`;
+	});
+
+	/* Spend tool link – TODO: reemplazar por URL real */
+	const SPEND_URL = "https://your-spend-tool.example.com";
+	function openSpend(){ window.open(SPEND_URL, '_blank', 'noopener'); }
+	document.getElementById('openSpendBtn')?.addEventListener('click', openSpend);
+	document.getElementById('openSpendBtn2')?.addEventListener('click', openSpend);
+
+	/* Charts: colores y helpers */
+	const css = getComputedStyle(document.documentElement);
+	const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
+	const cSky = css.getPropertyValue('--primary').trim() || '#0ea5e9';
+	const cEmerald = css.getPropertyValue('--accent').trim() || '#10b981';
+	const cMuted = '#94a3b8';
+	const axisColor = () => '#a8b1c7';
+	const gridColor = (light=0.12) => `rgba(148,163,184,${light})`;
+
+	/* Canvases */
+	const refreshEl = document.getElementById('refreshChart');
+	const aifEl = document.getElementById('aifChart');
+	const suspEl = document.getElementById('suspChart');
+
+	/* Inicializar solo si Chart.js está disponible */
+	if (refreshEl && window.Chart) {
+		new Chart(refreshEl, {
+			type:'line',
+			data:{
+				labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
+				datasets:[
+					{ label:'% Refreshed', data:[74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+					{ label:'% In progress', data:[18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
+					{ label:'% To contact / Pre-screen', data:[8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
+				]
+			},
+			options:{
+				plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+				scales:{
+					x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+					y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } }
+				}
+			}
+		});
 	}
-});
 
-/* AIF bars */
-new Chart(document.getElementById('aifChart'), {
-	type:'bar',
-	data:{
-		labels:['Germany','Austria'],
-		datasets:[
-			{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-			{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 }
-		]
-	},
-	options:{
-		plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-		scales:{
-			x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-			y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleString() }, grid:{ color:gridColor(.12) } }
-		}
+	if (aifEl && window.Chart) {
+		new Chart(aifEl, {
+			type:'bar',
+			data:{
+				labels:['Germany','Austria'],
+				datasets:[
+					{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+					{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 }
+				]
+			},
+			options:{
+				plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+				scales:{
+					x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+					y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleString() }, grid:{ color:gridColor(.12) } }
+				}
+			}
+		});
 	}
-});
 
-/* Suspension vs Inventory */
-new Chart(document.getElementById('suspChart'), {
-	type:'line',
-	data:{
-		labels:['May','Jun','Jul','Aug'],
-		datasets:[
-			{ label:'Open inventory (index)', data:[100,75,60,45], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
-			{ label:'Suspension rate %', data:[1.4,1.1,0.9,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
-		]
-	},
-	options:{
-		plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-		scales:{
-			x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-			y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } },
-			y2:{ position:'right', ticks:{ color:axisColor() }, grid:{ drawOnChartArea:false } }
-		}
+	if (suspEl && window.Chart) {
+		new Chart(suspEl, {
+			type:'line',
+			data:{
+				labels:['May','Jun','Jul','Aug'],
+				datasets:[
+					{ label:'Open inventory (index)', data:[100,75,60,45], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
+					{ label:'Suspension rate %', data:[1.4,1.1,0.9,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
+				]
+			},
+			options:{
+				plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+				scales:{
+					x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+					y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } },
+					y2:{ position:'right', ticks:{ color:axisColor() }, grid:{ drawOnChartArea:false } }
+				}
+			}
+		});
 	}
 });
 </script>
