@@ -168,14 +168,14 @@
 	</div>
 
 	<div class="actions" aria-label="Acciones rápidas">
-		<!-- 1) TOOLS (dropdown) -->
+		<!-- Tools (dropdown) -->
 		<div class="dropdown" id="toolsDropdown" aria-haspopup="true" aria-expanded="false">
 			<button type="button" class="button button--primary" id="toolsBtn" aria-controls="toolsMenu">
 				<svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 					<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
 				</svg>
 				Tools
-			button>
+			</button>
 			<div class="dropdown__menu" id="toolsMenu" role="menu" aria-label="Tools menu">
 				<a class="menu-item" href="https://example.com/spend" target="_blank" rel="noopener" role="menuitem">
 					<span>Tool Spend</span>
@@ -192,9 +192,16 @@
 			</div>
 		</div>
 
-		<a href="#stage-sept-2024" class="button">Stage Sept 2024</a>
-		<a href="#stage-may-2025" class="button">Stage May 2025</a>
-		<a href="#stage-aug-2025" class="button">Stage Aug 2025</a>
+		<!-- Botones para desplegar Stages -->
+		<button type="button" class="button" id="btnStageSept" aria-controls="stage-sept-2024" aria-expanded="false">
+			Stage Sept 2024
+		</button>
+		<button type="button" class="button" id="btnStageMay" aria-controls="stage-may-2025" aria-expanded="false">
+			Stage May 2025
+		</button>
+		<button type="button" class="button" id="btnStageAug" aria-controls="stage-aug-2025" aria-expanded="false">
+			Stage Aug 2025
+		</button>
 	</div>
 </header>
 
@@ -274,7 +281,7 @@
 	</section>
 
 	<!-- STAGE SEPT 2024 -->
-	<section id="stage-sept-2024" class="card">
+	<section id="stage-sept-2024" class="card" style="display:none">
 		<h2 class="section-title">PON HR Refresh – September 2024 status</h2>
 		<p class="sub">Key Facts</p>
 		<ul class="ul-clean li-emoji">
@@ -335,7 +342,7 @@
 	</section>
 
 	<!-- STAGE MAY 2025 -->
-	<section id="stage-may-2025" class="card">
+	<section id="stage-may-2025" class="card" style="display:none">
 		<h2 class="section-title">PON HR Refresh – May 2025 status</h2>
 		<p class="sub">Key Facts</p>
 		<ul class="ul-clean li-emoji">
@@ -396,7 +403,7 @@
 	</section>
 
 	<!-- STAGE AUG 2025 -->
-	<section id="stage-aug-2025" class="card">
+	<section id="stage-aug-2025" class="card" style="display:none">
 		<h2 class="section-title">PON HR Refresh – August 2025 status</h2>
 		<p class="sub">Key Facts</p>
 		<ul class="ul-clean li-emoji">
@@ -470,9 +477,40 @@ window.addEventListener('DOMContentLoaded', () => {
 		const open = force !== undefined ? force : dd.getAttribute('aria-expanded') !== 'true';
 		dd.setAttribute('aria-expanded', String(open));
 	}
-	btn.addEventListener('click', () => toggleDropdown());
-	document.addEventListener('click', (e) => { if (!dd.contains(e.target)) toggleDropdown(false); });
-	document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleDropdown(false); });
+	btn.addEventListener('click', (e) => {
+		e.stopPropagation();
+		toggleDropdown();
+	});
+	document.addEventListener('click', (e) => {
+		if (!dd.contains(e.target)) toggleDropdown(false);
+	});
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') toggleDropdown(false);
+	});
+
+	/* Mostrar/Ocultar Stages al tocar cada botón (uno abierto a la vez) */
+	const sSept = document.getElementById('stage-sept-2024');
+	const sMay = document.getElementById('stage-may-2025');
+	const sAug = document.getElementById('stage-aug-2025');
+	const bSept = document.getElementById('btnStageSept');
+	const bMay = document.getElementById('btnStageMay');
+	const bAug = document.getElementById('btnStageAug');
+
+	function hideAllStages(){
+		[sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
+		[bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
+	}
+	function toggleStage(sectionEl, buttonEl){
+		const willOpen = sectionEl.style.display === 'none';
+		hideAllStages();
+		sectionEl.style.display = willOpen ? '' : 'none';
+		buttonEl.setAttribute('aria-expanded', String(willOpen));
+		if (willOpen) window.scrollTo({ top: sectionEl.offsetTop - 16, behavior: 'smooth' });
+	}
+	hideAllStages();
+	bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
+	bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
+	bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
 
 	/* Charts palette */
 	const css = getComputedStyle(document.documentElement);
@@ -692,56 +730,32 @@ window.addEventListener('DOMContentLoaded', () => {
 		]
 	) : null;
 
-	/* Listeners CSV que respetan visibilidad del chart con fallback a la tabla */
+	/* Listeners CSV con fallback a tabla */
 	document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
-		if (chartSeptConsumer) {
-			exportChartToCSV(chartSeptConsumer, 'sept-2024-consumer-visible.csv');
-		} else {
-			const table = document.querySelector('#stage-sept-2024 table:nth-of-type(1)');
-			exportTableToCSV(table, 'sept-2024-consumer.csv');
-		}
+		if (chartSeptConsumer) exportChartToCSV(chartSeptConsumer, 'sept-2024-consumer-visible.csv');
+		else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(1)'), 'sept-2024-consumer.csv');
 	});
 	document.getElementById('csvSeptCenturionBtn')?.addEventListener('click', () => {
-		if (chartSeptCenturion) {
-			exportChartToCSV(chartSeptCenturion, 'sept-2024-centurion-visible.csv');
-		} else {
-			const table = document.querySelector('#stage-sept-2024 table:nth-of-type(2)');
-			exportTableToCSV(table, 'sept-2024-centurion.csv');
-		}
+		if (chartSeptCenturion) exportChartToCSV(chartSeptCenturion, 'sept-2024-centurion-visible.csv');
+		else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(2)'), 'sept-2024-centurion.csv');
 	});
 
 	document.getElementById('csvMayConsumerBtn')?.addEventListener('click', () => {
-		if (chartMayConsumer) {
-			exportChartToCSV(chartMayConsumer, 'may-2025-consumer-visible.csv');
-		} else {
-			const table = document.querySelector('#stage-may-2025 table:nth-of-type(1)');
-			exportTableToCSV(table, 'may-2025-consumer.csv');
-		}
+		if (chartMayConsumer) exportChartToCSV(chartMayConsumer, 'may-2025-consumer-visible.csv');
+		else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(1)'), 'may-2025-consumer.csv');
 	});
 	document.getElementById('csvMayCenturionBtn')?.addEventListener('click', () => {
-		if (chartMayCenturion) {
-			exportChartToCSV(chartMayCenturion, 'may-2025-centurion-visible.csv');
-		} else {
-			const table = document.querySelector('#stage-may-2025 table:nth-of-type(2)');
-			exportTableToCSV(table, 'may-2025-centurion.csv');
-		}
+		if (chartMayCenturion) exportChartToCSV(chartMayCenturion, 'may-2025-centurion-visible.csv');
+		else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(2)'), 'may-2025-centurion.csv');
 	});
 
 	document.getElementById('csvAugConsumerBtn')?.addEventListener('click', () => {
-		if (chartAugConsumer) {
-			exportChartToCSV(chartAugConsumer, 'aug-2025-consumer-visible.csv');
-		} else {
-			const table = document.querySelector('#stage-aug-2025 table:nth-of-type(1)');
-			exportTableToCSV(table, 'aug-2025-consumer.csv');
-		}
+		if (chartAugConsumer) exportChartToCSV(chartAugConsumer, 'aug-2025-consumer-visible.csv');
+		else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(1)'), 'aug-2025-consumer.csv');
 	});
 	document.getElementById('csvAugCenturionBtn')?.addEventListener('click', () => {
-		if (chartAugCenturion) {
-			exportChartToCSV(chartAugCenturion, 'aug-2025-centurion-visible.csv');
-		} else {
-			const table = document.querySelector('#stage-aug-2025 table:nth-of-type(2)');
-			exportTableToCSV(table, 'aug-2025-centurion.csv');
-		}
+		if (chartAugCenturion) exportChartToCSV(chartAugCenturion, 'aug-2025-centurion-visible.csv');
+		else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(2)'), 'aug-2025-centurion.csv');
 	});
 });
 </script>
