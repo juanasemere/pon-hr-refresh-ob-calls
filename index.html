@@ -461,29 +461,42 @@ Object.values(modals).forEach(m=>{
 // Charts (main)
 new Chart(document.getElementById('refreshChart'),{
 	type:'line',
-	data:{labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
+	data:{
+		labels:['Sep 2024','May 2025','Jun 2025','Jul 2025','Aug 2025'],
 		datasets:[
-			{label:'% Refreshed',data:[74,79,82,85],borderColor:cIndigo,backgroundColor:'rgba(79,70,229,.10)',fill:true,tension:.35,borderWidth:3,pointRadius:2},
-			{label:'% In progress',data:[18,15,13,10],borderColor:cSky,backgroundColor:'rgba(14,165,233,.08)',fill:true,tension:.35,borderWidth:2,pointRadius:2},
-			{label:'% To contact / Pre-screen',data:[8,6,5,5],borderColor:cMuted,backgroundColor:'rgba(148,163,184,.08)',fill:true,tension:.35,borderWidth:2,pointRadius:2}
-		]},
-	options:{plugins:{legend:{position:'bottom',labels:{color:'#334155'}}},
-		scales:{x:{ticks:{color:'#475569'},grid:{color:'#e2e8f0'}},
-				y:{ticks:{color:'#475569',callback:v=>v+'%'},
-					grid:{color:'#e2e8f0'}}}
+			{label:'% Refreshed', data:[56,74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(79,70,229,.10)', fill:true, tension:.35, borderWidth:3, pointRadius:2},
+			{label:'% In progress', data:[24,18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.08)', fill:true, tension:.35, borderWidth:2, pointRadius:2},
+			{label:'% To contact / Pre-screen', data:[20,8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.08)', fill:true, tension:.35, borderWidth:2, pointRadius:2}
+		]
+	},
+	options:{
+		plugins:{ legend:{ position:'bottom', labels:{ color:'#334155' } } },
+		scales:{
+			x:{ ticks:{ color:'#475569' }, grid:{ color:'#e2e8f0' } },
+			y:{ ticks:{ color:'#475569', callback:v=>v+'%' }, grid:{ color:'#e2e8f0' } }
+		}
+	}
 });
 
-new Chart(document.getElementById('aifChart'),{
-	type:'bar',
-	data:{labels:['Germany','Austria'],
+new Chart(document.getElementById('refreshChart'),{
+	type:'line',
+	data:{
+		labels:['Sep 2024','May 2025','Jun 2025','Jul 2025','Aug 2025'],
 		datasets:[
-			{label:'AIF YTD (May)',data:[3200,500],backgroundColor:'rgba(14,165,233,.65)',borderColor:cSky,borderWidth:1},
-			{label:'AIF YTD (Aug)',data:[3500,500],backgroundColor:'rgba(16,185,129,.65)',borderColor:cEmerald,borderWidth:1}
-		]},
-	options:{plugins:{legend:{position:'bottom',labels:{color:'#334155'}}},
-		scales:{x:{ticks:{color:'#475569'},grid:{color:'#e2e8f0'}},
-				y:{beginAtZero:true,ticks:{color:'#475569',callback:v=>v.toLocaleString()},
-					grid:{color:'#e2e8f0'}}}
+			{label:'% Refreshed', data:[56,74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(79,70,229,.10)', fill:true, tension:.35, borderWidth:3, pointRadius:3, pointHoverRadius:5},
+			{label:'% In progress', data:[24,18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.08)', fill:true, tension:.35, borderWidth:2, pointRadius:3, pointHoverRadius:5},
+			{label:'% To contact / Pre-screen', data:[20,8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.08)', fill:true, tension:.35, borderWidth:2, pointRadius:3, pointHoverRadius:5}
+		]
+	},
+	options:{
+		interaction:{mode:'nearest', intersect:false},
+		plugins:{ legend:{ position:'bottom', labels:{ color:'#334155' } }, tooltip:{ enabled:true } },
+		animation:{ duration:700, easing:'easeOutQuart' },
+		scales:{
+			x:{ ticks:{ color:'#475569' }, grid:{ color:'#e2e8f0' } },
+			y:{ ticks:{ color:'#475569', callback:v=>v+'%' }, grid:{ color:'#e2e8f0' } }
+		}
+	}
 });
 
 new Chart(document.getElementById('suspChart'),{
@@ -501,42 +514,64 @@ new Chart(document.getElementById('suspChart'),{
 
 // Charts (stages) — build on first open
 function buildStageCharts(prefix){
+	// Evolución mensual (incluye Sep 2024)
 	new Chart(document.getElementById(`chart-${prefix}-refresh`),{
 		type:'line',
-		data:{labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
+		data:{
+			labels:['Sep 2024','May 2025','Jun 2025','Jul 2025','Aug 2025'],
 			datasets:[
-				{label:'% Refreshed',data:[74,79,82,85],borderColor:cIndigo,backgroundColor:'rgba(79,70,229,.10)',fill:true,tension:.35,borderWidth:3,pointRadius:2},
-				{label:'% In progress',data:[18,15,13,10],borderColor:cSky,backgroundColor:'rgba(14,165,233,.08)',fill:true,tension:.35,borderWidth:2,pointRadius:2},
-				{label:'% To contact / Pre-screen',data:[8,6,5,5],borderColor:cMuted,backgroundColor:'rgba(148,163,184,.08)',fill:true,tension:.35,borderWidth:2,pointRadius:2}
-			]},
-		options:{plugins:{legend:{position:'bottom',labels:{color:'#334155'}}},
-			scales:{x:{ticks:{color:'#475569'},grid:{color:'#e2e8f0'}},
-					y:{ticks:{color:'#475569',callback:v=>v+'%'},
-						grid:{color:'#e2e8f0'}}}
+				{label:'% Refreshed', data:[56,74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(79,70,229,.10)', fill:true, tension:.35, borderWidth:3, pointRadius:3, pointHoverRadius:5},
+				{label:'% In progress', data:[24,18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.08)', fill:true, tension:.35, borderWidth:2, pointRadius:3, pointHoverRadius:5},
+				{label:'% To contact / Pre-screen', data:[20,8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.08)', fill:true, tension:.35, borderWidth:2, pointRadius:3, pointHoverRadius:5}
+			]
+		},
+		options:{
+			interaction:{mode:'nearest', intersect:false},
+			plugins:{ legend:{ position:'bottom', labels:{ color:'#334155' } }, tooltip:{ enabled:true } },
+			animation:{ duration:700, easing:'easeOutQuart' },
+			scales:{
+				x:{ ticks:{ color:'#475569' }, grid:{ color:'#e2e8f0' } },
+				y:{ ticks:{ color:'#475569', callback:v=>v+'%' }, grid:{ color:'#e2e8f0' } }
+			}
+		}
 	});
 	new Chart(document.getElementById(`chart-${prefix}-aif`),{
 		type:'bar',
-		data:{labels:['Germany','Austria'],
+		data:{
+			labels:['Germany','Austria'],
 			datasets:[
-				{label:'AIF YTD (May)',data:[3200,500],backgroundColor:'rgba(14,165,233,.65)',borderColor:cSky,borderWidth:1},
-				{label:'AIF YTD (Aug)',data:[3500,500],backgroundColor:'rgba(16,185,129,.65)',borderColor:cEmerald,borderWidth:1}
-			]},
-		options:{plugins:{legend:{position:'bottom',labels:{color:'#334155'}}},
-			scales:{x:{ticks:{color:'#475569'},grid:{color:'#e2e8f0'}},
-					y:{beginAtZero:true,ticks:{color:'#475569',callback:v=>v.toLocaleString()},
-						grid:{color:'#e2e8f0'}}}
+				{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+				{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 }
+			]
+		},
+		options:{
+			plugins:{ legend:{ position:'bottom', labels:{ color:'#334155' } }, tooltip:{ enabled:true } },
+			animation:{ duration:700, easing:'easeOutQuart' },
+			scales:{
+				x:{ ticks:{ color:'#475569' }, grid:{ color:'#e2e8f0' } },
+				y:{ beginAtZero:true, ticks:{ color:'#475569', callback:v=>v.toLocaleString() }, grid:{ color:'#e2e8f0' } }
+			}
+		}
 	});
 	new Chart(document.getElementById(`chart-${prefix}-susp`),{
 		type:'line',
-		data:{labels:['May','Jun','Jul','Aug'],
+		data:{
+			labels:['May','Jun','Jul','Aug'],
 			datasets:[
-				{label:'Open inventory (index)',data:[100,75,60,45],yAxisID:'y2',borderDash:[6,4],borderColor:cMuted,backgroundColor:'transparent',tension:.35,borderWidth:2},
-				{label:'Suspension rate %',data:[1.4,1.1,0.9,0.6],yAxisID:'y1',borderColor:cEmerald,backgroundColor:'rgba(16,185,129,.12)',fill:true,tension:.35,borderWidth:3,pointRadius:2}
-			]},
-		options:{plugins:{legend:{position:'bottom',labels:{color:'#334155'}}},
-			scales:{x:{ticks:{color:'#475569'},grid:{color:'#e2e8f0'}},
-					y1:{position:'left',ticks:{color:'#475569',callback:v=>v+'%'},grid:{color:'#e2e8f0'}},
-					y2:{position:'right',ticks:{color:'#475569'},grid:{drawOnChartArea:false}}}
+				{ label:'Open inventory (index)', data:[100,75,60,45], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2, pointRadius:0, pointHoverRadius:3 },
+				{ label:'Suspension rate %', data:[1.4,1.1,0.9,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.12)', fill:true, tension:.35, borderWidth:3, pointRadius:3, pointHoverRadius:5 }
+			]
+		},
+		options:{
+			interaction:{mode:'nearest', intersect:false},
+			plugins:{ legend:{ position:'bottom', labels:{ color:'#334155' } }, tooltip:{ enabled:true } },
+			animation:{ duration:700, easing:'easeOutQuart' },
+			scales:{
+				x:{ ticks:{ color:'#475569' }, grid:{ color:'#e2e8f0' } },
+				y1:{ position:'left', ticks:{ color:'#475569', callback:v=>v+'%' }, grid:{ color:'#e2e8f0' } },
+				y2:{ position:'right', ticks:{ color:'#475569' }, grid:{ drawOnChartArea:false } }
+			}
+		}
 	});
 }
 const built = {};
