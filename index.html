@@ -225,6 +225,9 @@ Tools
 		<button type="button" class="menu-item" id="btnStageAug" aria-controls="stage-aug-2025" aria-expanded="false">
 			<span>Stage Aug 2025</span>
 		</button>
+		<button type="button" class="menu-item" id="btnResults2025" aria-controls="results-2025" aria-expanded="false">
+	<span>Results 2025</span>
+</button>
 	</div>
 </div>
 </header>
@@ -720,6 +723,14 @@ Tools
 </div>
  </div>
 </section>
+	<section id="results-2025" class="card" style="display:none">
+	<h2 class="section-title">Results 2025</h2>
+	<p class="sub">Resumen</p>
+	<ul class="ul-clean">
+		<li>Acá vamos a cargar tus métricas, tablas y gráficos.</li>
+	</ul>
+	<canvas id="results2025Chart" height="220"></canvas>
+</section>
 </main>
 
 <div class="footer">
@@ -754,8 +765,8 @@ const bMay = document.getElementById('btnStageMay');
 const bAug = document.getElementById('btnStageAug');
 
 function hideAllStages(){
-[sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
-[bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
+  [sSept, sMay, sAug, sResults].forEach(sec => { if (sec) sec.style.display = 'none'; });
+  [bSept, bMay, bAug, bResults].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
 }
 function toggleStage(sectionEl, buttonEl){
 const willOpen = sectionEl.style.display === 'none';
@@ -768,7 +779,8 @@ hideAllStages();
 bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
 bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
 bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
-
+bResults?.addEventListener('click', () => toggleStage(sResults, bResults));
+	
 /* Charts palette */
 const css = getComputedStyle(document.documentElement);
 const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
