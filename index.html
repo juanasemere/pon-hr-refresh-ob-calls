@@ -463,6 +463,76 @@ Tools
 <canvas id="septCenturionChart" height="220"></canvas>
 </div>
 </div>
+	<!-- Pegá acá el script de los gráficos -->
+<script>
+// Formateo de tooltip
+const pctFmt = v => Number(v).toFixed(1);
+
+// HR Consumer — Sept 2024
+const septConsumerCtx = document.getElementById('septConsumerChart').getContext('2d');
+new Chart(septConsumerCtx, {
+	type: 'bar',
+	data: {
+		labels: ['Austria','Germany','Overall'],
+		datasets: [
+			{ label: 'Refreshed', data: [63.5, 55.7, 56.5], backgroundColor: '#2e7d32' },
+			{ label: 'Suspended', data: [2.43, 4.28, 4.09], backgroundColor: '#ffb300' },
+			{ label: 'Cancelled', data: [2.43, 2.23, 2.25], backgroundColor: '#c62828' }
+		]
+	},
+	options: {
+		responsive: true,
+		maintainAspectRatio: false,
+		scales: {
+			y: {
+				beginAtZero: true,
+				ticks: { callback: v => v + '%' }
+			}
+		},
+		plugins: {
+			tooltip: {
+				callbacks: {
+					label: ctx => `${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}%`
+				}
+			},
+			legend: { position: 'top' }
+		}
+	}
+});
+
+// HR Centurion — Sept 2024
+const septCenturionCtx = document.getElementById('septCenturionChart').getContext('2d');
+new Chart(septCenturionCtx, {
+	type: 'bar',
+	data: {
+		labels: ['Austria','Germany','Overall'],
+		datasets: [
+			{ label: 'Refreshed', data: [69.2, 62.6, 64.3], backgroundColor: '#2e7d32' },
+			{ label: 'Suspended', data: [1.54, 0.78, 0.97], backgroundColor: '#ffb300' },
+			{ label: 'Cancelled', data: [0.00, 0.52, 0.39], backgroundColor: '#c62828' }
+		]
+	},
+	options: {
+		responsive: true,
+		maintainAspectRatio: false,
+		scales: {
+			y: {
+				beginAtZero: true,
+				ticks: { callback: v => v + '%' }
+			}
+		},
+		plugins: {
+			tooltip: {
+				callbacks: {
+					label: ctx => `${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}%`
+				}
+			},
+			legend: { position: 'top' }
+		}
+	}
+});
+</script>
+	
  <div class="notes" style="margin-top:12px">
       <p>✓ 4% HR CMs in suspension are in risk of cancellation: (14 AT / 217 DE)<br>
       * incl 5 Centurion CMs (2 AT / 3 DE)</p>
