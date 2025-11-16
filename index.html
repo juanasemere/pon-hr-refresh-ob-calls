@@ -129,10 +129,7 @@ margin:14px 0;
 .kpi .note{font-size:12px; color:#93a2b8}
 /* Offset for anchor under header */
 [data-key-results-anchor]{scroll-margin-top:80px}
-/* Que el ancla no quede pegada al header */
-#overview-2025,
-[id^="month-"] { scroll-margin-top: 80px; }
-	
+
 .grid-2{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .grid-3{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .ul-clean{margin:10px 0 0; padding-left:18px}
@@ -238,55 +235,55 @@ Tools
 		Performance Snapshot by Set
 	</button>
 	<div class="dropdown__menu" id="psMenu" role="menu" aria-label="Performance Snapshot by Sety">
-		<!-- psMenu (reemplaza este bloque) -->
-<a class="menu-item" href="#overview-2025" role="menuitem" id="psOverview2025">
-	<span><b>Overview 2025</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-feb" role="menuitem" id="psFeb">
-	<span><b>February</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-mar" role="menuitem" id="psMar">
-	<span><b>March</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-apr" role="menuitem" id="psApr">
-	<span><b>April</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-may" role="menuitem" id="psMay">
-	<span><b>May</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-jun" role="menuitem" id="psJun">
-	<span><b>June</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-jul" role="menuitem" id="psJul">
-	<span><b>July</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-aug" role="menuitem" id="psAug">
-	<span><b>August</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-sep" role="menuitem" id="psSep">
-	<span><b>September</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-oct" role="menuitem" id="psOct">
-	<span><b>October</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-nov" role="menuitem" id="psNov">
-	<span><b>November</b></span>
-	<small>Ir a la sección</small>
-</a>
-<a class="menu-item" href="#month-dec" role="menuitem" id="psDec">
-	<span><b>December</b></span>
-	<small>Ir a la sección</small>
-</a>
+		<!-- Poné tus links en href="#" -->
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psOverview2025">
+			<span>Overview 2025</span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psFeb">
+			<span><b>February</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psMar">
+			<span><b>March</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psApr">
+			<span><b>April</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psMay">
+			<span><b>May</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psJun">
+			<span><b>June</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psJul">
+			<span><b>July</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psAug">
+			<span><b>August</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psSep">
+			<span><b>September</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psOct">
+			<span><b>October</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psNov">
+			<span><b>November</b></span>
+			<small>Open in new tab</small>
+		</a>
+		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psDec">
+			<span><b>December</b></span>
+			<small>Open in new tab</small>
+			</a>
 			</div>
 		</div>
 	</div>
@@ -427,88 +424,75 @@ Tools
 
 <!-- ==== OVERVIEW 2025 (Tabla + Gráfico) ==== -->
 <section class="card" id="overview-2025">
-  <h2 class="section-title">Overview 2025 – Performance by Month</h2>
+	<h2 class="section-title">Overview 2025 – Performance by Month</h2>
 
-  <!-- Tabla fuente de datos (ARRIBA) -->
-  <table id="overview2025Table">
-    <caption>Outbound Calls – 2025 monthly detail</caption>
-    <thead>
-      <tr>
-        <th>MONTH</th>
-        <th>Dates</th>
-        <th>Total Contact</th>
-        <th>Germany</th>
-        <th>Austria</th>
-        <th>Credit active, card cancelled</th>
-        <th>Successful</th>
-        <th>Not successful</th>
-        <th>Other - not successful</th>
-        <th>Deduplicates</th>
-        <th>Success rate OB %</th>
-        <th>Success rate by month %</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>FEB</td><td>feb-18</td><td>15</td><td>14</td><td>1</td><td>4</td><td>4</td><td>7</td><td>0</td><td>0</td><td>36.36</td><td>36.36</td></tr>
+	<!-- Gráfico -->
+	<p class="sub">Monthly results overview</p>
+	<canvas id="overview2025Chart" height="260"></canvas>
+	<p class="muted pin">Barras apiladas: resultados de contacto. Línea: Success rate OB %.</p>
 
-      <tr><td>MARCH</td><td>5-mar</td><td>43</td><td>40</td><td>3</td><td>7</td><td>14</td><td>22</td><td>0</td><td>0</td><td>38.89</td><td></td></tr>
-      <tr><td>MARCH</td><td>21-mar</td><td>46</td><td>43</td><td>3</td><td>6</td><td>12</td><td>17</td><td>11</td><td>0</td><td>30.00</td><td>41.48</td></tr>
-      <tr><td>MARCH</td><td>28-mar</td><td>50</td><td>43</td><td>7</td><td>5</td><td>25</td><td>20</td><td>0</td><td>0</td><td>55.56</td><td></td></tr>
+	<!-- Tabla fuente de datos -->
+	<table id="overview2025Table">
+		<caption>Outbound Calls – 2025 monthly detail</caption>
+		<thead>
+			<tr>
+				<th>MONTH</th>
+				<th>Dates</th>
+				<th>Total Contact</th>
+				<th>Germany</th>
+				<th>Austria</th>
+				<th>Credit active, card cancelled</th>
+				<th>Successful</th>
+				<th>Not successful</th>
+				<th>Other - not successful</th>
+				<th>Deduplicates</th>
+				<th>Success rate OB %</th>
+				<th>Success rate by month %</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td>FEB</td><td>feb-18</td><td>15</td><td>14</td><td>1</td><td>4</td><td>4</td><td>7</td><td>0</td><td>0</td><td>36.36</td><td>36.36</td></tr>
 
-      <tr><td>APRIL</td><td>14-abr</td><td>25</td><td>23</td><td>2</td><td>7</td><td>9</td><td>6</td><td>3</td><td>0</td><td>50.00</td><td></td></tr>
-      <tr><td>APRIL</td><td>24-abr</td><td>40</td><td>34</td><td>6</td><td>0</td><td>22</td><td>18</td><td>0</td><td>0</td><td>55.00</td><td>52.50</td></tr>
+			<tr><td>MARCH</td><td>5-mar</td><td>43</td><td>40</td><td>3</td><td>7</td><td>14</td><td>22</td><td>0</td><td>0</td><td>38.89</td><td></td></tr>
+			<tr><td>MARCH</td><td>21-mar</td><td>46</td><td>43</td><td>3</td><td>6</td><td>12</td><td>17</td><td>11</td><td>0</td><td>30.00</td><td>41.48</td></tr>
+			<tr><td>MARCH</td><td>28-mar</td><td>50</td><td>43</td><td>7</td><td>5</td><td>25</td><td>20</td><td>0</td><td>0</td><td>55.56</td><td></td></tr>
 
-      <tr><td>MAI</td><td>08-Mai</td><td>54</td><td>41</td><td>13</td><td>1</td><td>29</td><td>21</td><td>3</td><td>0</td><td>54.72</td><td></td></tr>
-      <tr><td>MAI</td><td>15-Mai</td><td>22</td><td>19</td><td>3</td><td>4</td><td>8</td><td>10</td><td>0</td><td>0</td><td>44.44</td><td></td></tr>
-      <tr><td>MAI</td><td>23-Mai</td><td>69</td><td>63</td><td>6</td><td>4</td><td>47</td><td>17</td><td>1</td><td>0</td><td>72.31</td><td>57.16</td></tr>
+			<tr><td>APRIL</td><td>14-abr</td><td>25</td><td>23</td><td>2</td><td>7</td><td>9</td><td>6</td><td>3</td><td>0</td><td>50.00</td><td></td></tr>
+			<tr><td>APRIL</td><td>24-abr</td><td>40</td><td>34</td><td>6</td><td>0</td><td>22</td><td>18</td><td>0</td><td>0</td><td>55.00</td><td>52.50</td></tr>
 
-      <tr><td>JUNI</td><td>1-jun</td><td>63</td><td>55</td><td>8</td><td>0</td><td>44</td><td>18</td><td>1</td><td>0</td><td>69.84</td><td></td></tr>
-      <tr><td>JUNI</td><td>06-Juni</td><td>16</td><td>16</td><td>0</td><td>0</td><td>8</td><td>7</td><td>1</td><td>0</td><td>50.00</td><td></td></tr>
-      <tr><td>JUNI</td><td>15-Juni</td><td>82</td><td>74</td><td>8</td><td>0</td><td>61</td><td>20</td><td>1</td><td>0</td><td>74.39</td><td>66.74</td></tr>
-      <tr><td>JUNI</td><td>23-Juni</td><td>57</td><td>53</td><td>4</td><td>2</td><td>40</td><td>14</td><td>0</td><td>1</td><td>72.73</td><td></td></tr>
+			<tr><td>MAI</td><td>08-Mai</td><td>54</td><td>41</td><td>13</td><td>1</td><td>29</td><td>21</td><td>3</td><td>0</td><td>54.72</td><td></td></tr>
+			<tr><td>MAI</td><td>15-Mai</td><td>22</td><td>19</td><td>3</td><td>4</td><td>8</td><td>10</td><td>0</td><td>0</td><td>44.44</td><td></td></tr>
+			<tr><td>MAI</td><td>23-Mai</td><td>69</td><td>63</td><td>6</td><td>4</td><td>47</td><td>17</td><td>1</td><td>0</td><td>72.31</td><td>57.16</td></tr>
 
-      <tr><td>JULI</td><td>07-Juli</td><td>77</td><td>69</td><td>8</td><td>0</td><td>51</td><td>19</td><td>7</td><td>0</td><td>66.23</td><td></td></tr>
-      <tr><td>JULI</td><td>14-Juli</td><td>54</td><td>49</td><td>5</td><td>0</td><td>36</td><td>16</td><td>0</td><td>1</td><td>66.67</td><td></td></tr>
-      <tr><td>JULI</td><td>21-Juli</td><td>24</td><td>18</td><td>6</td><td>0</td><td>13</td><td>7</td><td>3</td><td>1</td><td>54.17</td><td>63.43</td></tr>
-      <tr><td>JULI</td><td>28-Juli</td><td>48</td><td>46</td><td>2</td><td>0</td><td>32</td><td>16</td><td>0</td><td>0</td><td>66.67</td><td></td></tr>
+			<tr><td>JUNI</td><td>1-jun</td><td>63</td><td>55</td><td>8</td><td>0</td><td>44</td><td>18</td><td>1</td><td>0</td><td>69.84</td><td></td></tr>
+			<tr><td>JUNI</td><td>06-Juni</td><td>16</td><td>16</td><td>0</td><td>0</td><td>8</td><td>7</td><td>1</td><td>0</td><td>50.00</td><td></td></tr>
+			<tr><td>JUNI</td><td>15-Juni</td><td>82</td><td>74</td><td>8</td><td>0</td><td>61</td><td>20</td><td>1</td><td>0</td><td>74.39</td><td>66.74</td></tr>
+			<tr><td>JUNI</td><td>23-Juni</td><td>57</td><td>53</td><td>4</td><td>2</td><td>40</td><td>14</td><td>0</td><td>1</td><td>72.73</td><td></td></tr>
 
-      <tr><td>AUGUST</td><td>4-ago</td><td>42</td><td>39</td><td>3</td><td>1</td><td>27</td><td>13</td><td>1</td><td>0</td><td>65.85</td><td></td></tr>
-      <tr><td>AUGUST</td><td>11-ago</td><td>16</td><td>14</td><td>2</td><td>1</td><td>9</td><td>6</td><td>0</td><td>0</td><td>60.00</td><td>61.06</td></tr>
-      <tr><td>AUGUST</td><td>18-ago</td><td>57</td><td>53</td><td>4</td><td>0</td><td>31</td><td>23</td><td>3</td><td>0</td><td>54.39</td><td></td></tr>
-      <tr><td>AUGUST</td><td>25-ago</td><td>26</td><td>26</td><td>0</td><td>1</td><td>16</td><td>8</td><td>1</td><td>0</td><td>64.00</td><td></td></tr>
+			<tr><td>JULI</td><td>07-Juli</td><td>77</td><td>69</td><td>8</td><td>0</td><td>51</td><td>19</td><td>7</td><td>0</td><td>66.23</td><td></td></tr>
+			<tr><td>JULI</td><td>14-Juli</td><td>54</td><td>49</td><td>5</td><td>0</td><td>36</td><td>16</td><td>0</td><td>1</td><td>66.67</td><td></td></tr>
+			<tr><td>JULI</td><td>21-Juli</td><td>24</td><td>18</td><td>6</td><td>0</td><td>13</td><td>7</td><td>3</td><td>1</td><td>54.17</td><td>63.43</td></tr>
+			<tr><td>JULI</td><td>28-Juli</td><td>48</td><td>46</td><td>2</td><td>0</td><td>32</td><td>16</td><td>0</td><td>0</td><td>66.67</td><td></td></tr>
 
-      <tr><td>SEP</td><td>8-sep</td><td>30</td><td>30</td><td>0</td><td>2</td><td>17</td><td>11</td><td>0</td><td>0</td><td>60.71</td><td></td></tr>
-      <tr><td>SEP</td><td>23-sep</td><td>35</td><td>32</td><td>3</td><td>2</td><td>23</td><td>11</td><td>1</td><td>0</td><td>69.70</td><td>64.05</td></tr>
+			<tr><td>AUGUST</td><td>4-ago</td><td>42</td><td>39</td><td>3</td><td>1</td><td>27</td><td>13</td><td>1</td><td>0</td><td>65.85</td><td></td></tr>
+			<tr><td>AUGUST</td><td>11-ago</td><td>16</td><td>14</td><td>2</td><td>1</td><td>9</td><td>6</td><td>0</td><td>0</td><td>60.00</td><td>61.06</td></tr>
+			<tr><td>AUGUST</td><td>18-ago</td><td>57</td><td>53</td><td>4</td><td>0</td><td>31</td><td>23</td><td>3</td><td>0</td><td>54.39</td><td></td></tr>
+			<tr><td>AUGUST</td><td>25-ago</td><td>26</td><td>26</td><td>0</td><td>1</td><td>16</td><td>8</td><td>1</td><td>0</td><td>64.00</td><td></td></tr>
 
-      <tr><td>OKT</td><td>29-sep</td><td>35</td><td>35</td><td>0</td><td>1</td><td>21</td><td>13</td><td>0</td><td>0</td><td>63.64</td><td></td></tr>
-      <tr><td>OKT</td><td>6-Okt</td><td>39</td><td>35</td><td>4</td><td>0</td><td>23</td><td>16</td><td>0</td><td>0</td><td>62.16</td><td></td></tr>
-      <tr><td>OKT</td><td>13-OKT</td><td>50</td><td>47</td><td>3</td><td>2</td><td>36</td><td>14</td><td>0</td><td>0</td><td>72.00</td><td></td></tr>
-      <tr><td>OKT</td><td>20-OKT</td><td>34</td><td>31</td><td>3</td><td>0</td><td>21</td><td>13</td><td>0</td><td>0</td><td>63.64</td><td>67.78</td></tr>
-      <tr><td>OKT</td><td>27-OKT</td><td>30</td><td>28</td><td>2</td><td>0</td><td>22</td><td>8</td><td>0</td><td>0</td><td>73.33</td><td></td></tr>
+			<tr><td>SEP</td><td>8-sep</td><td>30</td><td>30</td><td>0</td><td>2</td><td>17</td><td>11</td><td>0</td><td>0</td><td>60.71</td><td></td></tr>
+			<tr><td>SEP</td><td>23-sep</td><td>35</td><td>32</td><td>3</td><td>2</td><td>23</td><td>11</td><td>1</td><td>0</td><td>69.70</td><td>64.05</td></tr>
 
-      <tr><td>NOV</td><td>4-nov</td><td>24</td><td>23</td><td>1</td><td>0</td><td>14</td><td>10</td><td>0</td><td>0</td><td>63.64</td><td></td></tr>
-      <tr><td>NOV</td><td>10-nov</td><td>33</td><td>30</td><td>3</td><td>0</td><td>20</td><td>13</td><td>0</td><td>0</td><td>60.61</td><td></td></tr>
-    </tbody>
-  </table>
+			<tr><td>OKT</td><td>29-sep</td><td>35</td><td>35</td><td>0</td><td>1</td><td>21</td><td>13</td><td>0</td><td>0</td><td>63.64</td><td></td></tr>
+			<tr><td>OKT</td><td>6-Okt</td><td>39</td><td>35</td><td>4</td><td>0</td><td>23</td><td>16</td><td>0</td><td>0</td><td>62.16</td><td></td></tr>
+			<tr><td>OKT</td><td>13-OKT</td><td>50</td><td>47</td><td>3</td><td>2</td><td>36</td><td>14</td><td>0</td><td>0</td><td>72.00</td><td></td></tr>
+			<tr><td>OKT</td><td>20-OKT</td><td>34</td><td>31</td><td>3</td><td>0</td><td>21</td><td>13</td><td>0</td><td>0</td><td>63.64</td><td>67.78</td></tr>
+			<tr><td>OKT</td><td>27-OKT</td><td>30</td><td>28</td><td>2</td><td>0</td><td>22</td><td>8</td><td>0</td><td>0</td><td>73.33</td><td></td></tr>
 
-  <!-- Gráfico (ABAJO) -->
-  <p class="sub">Monthly results overview</p>
-  <canvas id="overview2025Chart" height="260"></canvas>
-  <p class="muted pin">Barras apiladas: resultados de contacto. Línea: Success rate OB %.</p>
+			<tr><td>NOV</td><td>4-nov</td><td>24</td><td>23</td><td>1</td><td>0</td><td>14</td><td>10</td><td>0</td><td>0</td><td>63.64</td><td></td></tr>
+			<tr><td>NOV</td><td>10-nov</td><td>33</td><td>30</td><td>3</td><td>0</td><td>20</td><td>13</td><td>0</td><td>0</td><td>60.61</td><td></td></tr>
+		</tbody>
+	</table>
 </section>
-
-<!-- Secciones-ancla por mes (podés llenarlas después con tablas/gráficos de cada mes) -->
-<section class="card" id="month-feb"><h2 class="section-title">February 2025</h2></section>
-<section class="card" id="month-mar"><h2 class="section-title">March 2025</h2></section>
-<section class="card" id="month-apr"><h2 class="section-title">April 2025</h2></section>
-<section class="card" id="month-may"><h2 class="section-title">May 2025</h2></section>
-<section class="card" id="month-jun"><h2 class="section-title">June 2025</h2></section>
-<section class="card" id="month-jul"><h2 class="section-title">July 2025</h2></section>
-<section class="card" id="month-aug"><h2 class="section-title">August 2025</h2></section>
-<section class="card" id="month-sep"><h2 class="section-title">September 2025</h2></section>
-<section class="card" id="month-oct"><h2 class="section-title">October 2025</h2></section>
-<section class="card" id="month-nov"><h2 class="section-title">November 2025</h2></section>
-<section class="card" id="month-dec"><h2 class="section-title">December 2025</h2></section>
 
 <script>
 (function(){
@@ -1058,36 +1042,6 @@ document.addEventListener('keydown', (e) => {
 	'psAug','psSep','psOct','psNov','psDec'
 ].forEach(id => {
 	document.getElementById(id)?.addEventListener('click', () => setPsExpanded(false));
-});
-
-	// Navegación interna: cerrar menú y hacer scroll a cada sección
-const psTargets = {
-	psOverview2025: 'overview-2025',
-	psFeb: 'month-feb',
-	psMar: 'month-mar',
-	psApr: 'month-apr',
-	psMay: 'month-may',
-	psJun: 'month-jun',
-	psJul: 'month-jul',
-	psAug: 'month-aug',
-	psSep: 'month-sep',
-	psOct: 'month-oct',
-	psNov: 'month-nov',
-	psDec: 'month-dec'
-};
-
-Object.entries(psTargets).forEach(([linkId, sectionId]) => {
-	const linkEl = document.getElementById(linkId);
-	if (!linkEl) return;
-	linkEl.addEventListener('click', (e) => {
-		// Evita navegación por defecto del href="#..."
-		e.preventDefault();
-		// Cierra el dropdown
-		setPsExpanded(false);
-		// Hace scroll suave al destino
-		const sec = document.getElementById(sectionId);
-		if (sec) window.scrollTo({ top: sec.offsetTop - 16, behavior: 'smooth' });
-	});
 });
 	
 /* Charts palette */
