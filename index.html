@@ -723,6 +723,25 @@ Tools
 </div>
  </div>
 </section>
+	<section id="results-2025" class="card" style="display:none">
+
+<h2 class="section-title">PON HR Refresh – Results 2025</h2>
+
+<p class="sub">Key Facts</p>
+
+<ul class="ul-clean li-emoji">
+
+<li>Acá cargamos tus métricas y comentarios 2025.</li>
+
+</ul>
+
+<!-- Si querés, después te armo tablas igual que los stages -->
+
+<!-- <table> … </table> -->
+
+<!-- <canvas id="results2025Chart" height="220"></canvas> -->
+
+</section>
 </main>
 
 <div class="footer">
@@ -757,8 +776,11 @@ const bMay = document.getElementById('btnStageMay');
 const bAug = document.getElementById('btnStageAug');
 
 function hideAllStages(){
-[sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
-[bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
+
+[sSept, sMay, sAug, sResults].forEach(sec => { if (sec) [sec.style](http://sec.style).display = 'none'; });
+
+[bSept, bMay, bAug, bResults].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
+
 }
 function toggleStage(sectionEl, buttonEl){
 const willOpen = sectionEl.style.display === 'none';
@@ -771,6 +793,7 @@ hideAllStages();
 bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
 bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
 bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
+bResults?.addEventListener('click', () => toggleStage(sResults, bResults));
 
 /* Charts palette */
 const css = getComputedStyle(document.documentElement);
