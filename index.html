@@ -208,18 +208,26 @@ Tools
 </div>
 </div>
 
-<!-- Buttons to toggle Stages -->
-<button type="button" class="button" id="btnStageSept" aria-controls="stage-sept-2024" aria-expanded="false">
-Stage Sept 2024
-</button>
-<button type="button" class="button" id="btnStageMay" aria-controls="stage-may-2025" aria-expanded="false">
-Stage May 2025
-</button>
-<button type="button" class="button" id="btnStageAug" aria-controls="stage-aug-2025" aria-expanded="false">
-Stage Aug 2025
-</button>
+<!-- Performance Highlights dropdown -->
+<div class="dropdown" id="phDropdown" aria-haspopup="true">
+  <button type="button" class="button" id="phBtn" aria-controls="phMenu" aria-expanded="false">
+    Performance Highlights
+  </button>
+  <div class="dropdown__menu" id="phMenu" role="menu" aria-label="Performance Highlights menu">
+    <button type="button" class="menu-item" id="btnStageSept" aria-controls="stage-sept-2024" aria-expanded="false">
+      <span>Stage Sept 2024</span>
+      <small>Key results Sept 2024</small>
+    </button>
+    <button type="button" class="menu-item" id="btnStageMay" aria-controls="stage-may-2025" aria-expanded="false">
+      <span>Stage May 2025</span>
+      <small>Key results May 2025</small>
+    </button>
+    <button type="button" class="menu-item" id="btnStageAug" aria-controls="stage-aug-2025" aria-expanded="false">
+      <span>Stage Aug 2025</span>
+      <small>Key results Aug 2025</small>
+    </button>
+  </div>
 </div>
-</header>
 
 <main>
 <!-- OVERVIEW -->
@@ -609,6 +617,29 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setExpande
 /* Close dropdown when using the Key Results link */
 document.getElementById('linkKeyResults')?.addEventListener('click', () => {
 setExpanded(false);
+});
+ /* Performance Highlights dropdown */
+const phDd = document.getElementById('phDropdown');
+const phBtn = document.getElementById('phBtn');
+function setPhExpanded(on) { phBtn.setAttribute('aria-expanded', String(on)); }
+
+phBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = phBtn.getAttribute('aria-expanded') !== 'true';
+  setPhExpanded(open);
+});
+
+document.addEventListener('click', (e) => {
+  if (!phDd.contains(e.target)) setPhExpanded(false);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') setPhExpanded(false);
+});
+
+/* Cerrar el menú de Performance Highlights al elegir un stage */
+[bSept, bMay, bAug].forEach(b => {
+  b?.addEventListener('click', () => setPhExpanded(false));
 });
 
 /* Show/Hide Stages */
