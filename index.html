@@ -374,82 +374,82 @@ Tools
 
 
 	<table>
-  <caption>HR Consumer Refresh – Sep. 2024</caption>
-  <thead>
-    <tr>
-      <th>Stage</th>
-      <th>HR Consumer Refresh</th>
-      <th>HR CM volume</th>
-      <th>HR CM refreshed</th>
-      <th>CMs currently suspended</th>
-      <th>HR CM KYC cancelled</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <!-- Stage: un solo rótulo que cubre todas las filas -->
-      <td rowspan="3">Sep. 2024</td>
-      <th scope="row">Austria</th>
-      <td>575</td>
-      <td>365</td>
-      <td>14</td>
-      <td>14</td>
-    </tr>
-    <tr>
-      <th scope="row">Germany</th>
-      <td>5.070</td>
-      <td>2.823</td>
-      <td>217</td>
-      <td>113</td>
-    </tr>
-    <tr>
-      <th scope="row">Overall</th>
-      <td>5.645</td>
-      <td>3.188</td>
-      <td>231</td>
-      <td>127</td>
-    </tr>
-  </tbody>
+<caption>HR Consumer Refresh – Sep. 2024</caption>
+<thead>
+<tr>
+<th>Stage</th>
+<th>HR Consumer Refresh</th>
+<th>HR CM volume</th>
+<th>HR CM refreshed</th>
+<th>CMs currently suspended</th>
+<th>HR CM KYC cancelled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<!-- Stage: un solo rótulo que cubre todas las filas -->
+<td rowspan="3">Sep. 2024</td>
+<th scope="row">Austria</th>
+<td>575</td>
+<td>365</td>
+<td>14</td>
+<td>14</td>
+</tr>
+<tr>
+<th scope="row">Germany</th>
+<td>5.070</td>
+<td>2.823</td>
+<td>217</td>
+<td>113</td>
+</tr>
+<tr>
+<th scope="row">Overall</th>
+<td>5.645</td>
+<td>3.188</td>
+<td>231</td>
+<td>127</td>
+</tr>
+</tbody>
 </table>
 <button class="button" id="csvSeptConsumerBtn">Download CSV</button>
 
 <table>
-  <caption>HR Centurion – Sep. 2024</caption>
-  <thead>
-    <tr>
-      <th>Stage</th>
-      <th>Centurion</th>
-      <th>HR Centurion volume</th>
-      <th>Centurion refreshed</th>
-      <th>Centurion suspended</th>
-      <th>Centurion KYC cancelled</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <!-- Stage: un solo rótulo que cubre todas las filas -->
-      <td rowspan="3">Sep. 2024</td>
-      <th scope="row">Austria</th>
-      <td>130</td>
-      <td>90</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th scope="row">Germany</th>
-      <td>385</td>
-      <td>241</td>
-      <td>3</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th scope="row">Overall</th>
-      <td>515</td>
-      <td>331</td>
-      <td>5</td>
-      <td>2</td>
-    </tr>
-  </tbody>
+<caption>HR Centurion – Sep. 2024</caption>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Centurion</th>
+<th>HR Centurion volume</th>
+<th>Centurion refreshed</th>
+<th>Centurion suspended</th>
+<th>Centurion KYC cancelled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<!-- Stage: un solo rótulo que cubre todas las filas -->
+<td rowspan="3">Sep. 2024</td>
+<th scope="row">Austria</th>
+<td>130</td>
+<td>90</td>
+<td>2</td>
+<td>0</td>
+</tr>
+<tr>
+<th scope="row">Germany</th>
+<td>385</td>
+<td>241</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<th scope="row">Overall</th>
+<td>515</td>
+<td>331</td>
+<td>5</td>
+<td>2</td>
+</tr>
+</tbody>
 </table>
 <button class="button" id="csvSeptCenturionBtn">Download CSV</button>
 
@@ -463,72 +463,70 @@ Tools
 <canvas id="septCenturionChart" height="220"></canvas>
 </div>
 </div>
-	
+
 <script>
 
 // Utilidad para tooltip
 
 const pctFmt = v => Number(v).toFixed(1);
 
-<script>
-// ---------- HR Consumer (porcentajes desde la tabla) ----------
-const pctFmt = v => Number(v).toFixed(1);
+// HR Consumer — Sep 2024
 
-// parser tolerante: punto = miles, coma = decimales
-const toNumber = s =>
-  Number(String(s).trim().replace(/\./g, '').replace(',', '.'));
-const pct = (num, den) => den ? +(100 * num / den).toFixed(2) : 0;
+// Datos base que pasaste:
 
-function readConsumerTable() {
-  // Tomamos la PRIMER tabla (HR Consumer). Si tuvieras un id, usá #septConsumerTable
-  const firstTable = document.querySelector('table');
-  const rows = [...firstTable.querySelectorAll('tbody tr')];
+// Austria: volumen 575, refreshed 365, suspended 14, cancelled 14
 
-  return rows.map((tr, i) => {
-    const market = tr.querySelector('th[scope="row"]').textContent.trim();
-    // Últimas 4 celdas numéricas de la fila: volume, refreshed, suspended, cancelled
-    const nums = [...tr.querySelectorAll('td,th')].slice(-4).map(td => td.textContent);
-    const [volume, refreshed, suspended, cancelled] = nums.map(toNumber);
-    return {
-      market,
-      pctRef: pct(refreshed, volume),
-      pctSus: pct(suspended, volume),
-      pctCan: pct(cancelled, volume),
-    };
-  });
-}
+// Germany: volumen 5070, refreshed 2823, suspended 217, cancelled 113
 
-const consumerData = readConsumerTable();
+// Overall: volumen 5645, refreshed 3188, suspended 231, cancelled 127
+
+// Porcentajes calculados:
 
 const septConsumerCtx = document.getElementById('septConsumerChart').getContext('2d');
+
 new Chart(septConsumerCtx, {
-  type: 'bar',
-  data: {
-    labels: consumerData.map(d => d.market),
-    datasets: [
-      { label: 'Refreshed', data: consumerData.map(d => d.pctRef), backgroundColor: '#2e7d32' },
-      { label: 'Suspended', data: consumerData.map(d => d.pctSus), backgroundColor: '#ffb300' },
-      { label: 'Cancelled', data: consumerData.map(d => d.pctCan), backgroundColor: '#c62828' },
-    ]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      y: { beginAtZero: true, ticks: { callback: v => v + '%' } }
-    },
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: ctx => `${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}%`
-        }
-      },
-      legend: { position: 'top' }
-    }
-  }
+
+type: 'bar',
+
+data: {
+
+labels: ['Austria','Germany','Overall'],
+
+datasets: [
+
+{ label: 'Refreshed', data: [63.5, 55.7, 56.5], backgroundColor: '#2e7d32' },
+
+{ label: 'Suspended', data: [2.43, 4.28, 4.09], backgroundColor: '#ffb300' },
+
+{ label: 'Cancelled', data: [2.43, 2.23, 2.25], backgroundColor: '#c62828' }
+
+]
+
+},
+
+options: {
+
+responsive: true,
+
+maintainAspectRatio: false,
+
+scales: {
+
+y: { beginAtZero: true, ticks: { callback: v => v + '%' } }
+
+},
+
+plugins: {
+
+tooltip: { callbacks: { label: ctx => ${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}% } },
+
+legend: { position: 'top' }
+
+}
+
+}
+
 });
-// ---------- fin HR Consumer ----------
-</script>
 
 // HR Centurion — Sep 2024
 
@@ -578,7 +576,7 @@ y: { beginAtZero: true, ticks: { callback: v => v + '%' } }
 
 plugins: {
 
-tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}%` } },
+tooltip: { callbacks: { label: ctx => ${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}% } },
 
 legend: { position: 'top' }
 
