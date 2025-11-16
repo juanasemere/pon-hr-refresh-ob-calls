@@ -226,8 +226,18 @@ table{display:block; overflow:auto; white-space:nowrap}
 	</div>
 </div>
 
-<!-- NUEVO botón al lado del dropdown anterior -->
-<button type="button" class="button" id="btnOverview2025">Overview - 2025</button>
+<!-- Results 2025 (dropdown) -->
+<div class="dropdown" id="ovDropdown" aria-haspopup="true">
+	<button type="button" class="button" id="ovBtn" aria-controls="ovMenu" aria-expanded="false">
+		Results 2025
+	</button>
+	<div class="dropdown__menu" id="ovMenu" role="menu" aria-label="Results 2025">
+		<!-- Un solo ítem que abre el panel como hacen los Stages -->
+		<button type="button" class="menu-item" id="btnOverview2025" aria-controls="overview-2025" aria-expanded="false">
+			<span>Ver Results 2025</span>
+		</button>
+	</div>
+</div>
 </header>
 
 <main>
@@ -339,6 +349,87 @@ table{display:block; overflow:auto; white-space:nowrap}
     </div>
   </section>
 
+	<!-- RESULTS 2025 (panel desplegable) -->
+<section id="overview-2025" class="card" style="display:none">
+	<h2 class="section-title">Results 2025 — OB Calls performance</h2>
+
+	<p class="sub"><b>Tabla de resultados (OB Calls)</b></p>
+	<div style="overflow:auto">
+	<table id="obTable2025">
+		<caption>Outbound Calls — Results 2025</caption>
+		<thead>
+			<tr>
+				<th>MONTH</th>
+				<th>Dates</th>
+				<th>Total Contact</th>
+				<th>Germany</th>
+				<th>Austria</th>
+				<th>Credit active, card cancelled</th>
+				<th>Successful</th>
+				<th>Not successful</th>
+				<th>Other - not successful</th>
+				<th>Deduplicates</th>
+				<th>Success rate OB %</th>
+				<th>Success rate by month %</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td>FEB</td><td>feb-18</td><td>15</td><td>14</td><td>1</td><td>4</td><td>7</td><td>0</td><td>3</td><td>6</td><td>36,36</td><td>36,36</td></tr>
+
+			<tr><td>MARCH</td><td>5-mar</td><td>43</td><td>40</td><td>3</td><td>7</td><td>14</td><td>22</td><td>0</td><td></td><td>38,89</td><td></td></tr>
+			<tr><td>MARCH</td><td>21-mar</td><td>46</td><td>43</td><td>3</td><td>6</td><td>12</td><td>17</td><td>11</td><td>30</td><td>00,00</td><td>41,48</td></tr>
+			<tr><td>MARCH</td><td>28-mar</td><td>50</td><td>43</td><td>7</td><td>5</td><td>25</td><td>20</td><td></td><td></td><td>55,56</td><td></td></tr>
+
+			<tr><td>APRIL</td><td>14-abr</td><td>25</td><td>23</td><td>2</td><td>7</td><td>9</td><td>6</td><td>3</td><td>0</td><td>50,00</td><td></td></tr>
+			<tr><td>APRIL</td><td>24-abr</td><td>40</td><td>34</td><td>6</td><td>0</td><td>22</td><td>18</td><td>0</td><td>55</td><td>00,00</td><td>52,50</td></tr>
+
+			<tr><td>MAI</td><td>08-Mai</td><td>54</td><td>41</td><td>13</td><td>12</td><td>9</td><td>21</td><td>30</td><td></td><td>54,72</td><td></td></tr>
+			<tr><td>MAI</td><td>15-Mai</td><td>22</td><td>19</td><td>3</td><td>4</td><td>8</td><td>10</td><td>0</td><td></td><td>44,44</td><td></td></tr>
+			<tr><td>MAI</td><td>23-Mai</td><td>69</td><td>63</td><td>6</td><td>4</td><td>7</td><td>17</td><td>10</td><td>72</td><td>31,00</td><td>57,16</td></tr>
+
+			<tr><td>JUNI</td><td>1-jun</td><td>63</td><td>55</td><td>8</td><td>0</td><td>44</td><td>18</td><td>10</td><td></td><td>69,84</td><td></td></tr>
+			<tr><td>JUNI</td><td>06-Juni</td><td>16</td><td>16</td><td>0</td><td>0</td><td>8</td><td>7</td><td>10</td><td></td><td>50,00</td><td></td></tr>
+			<tr><td>JUNI</td><td>15-Juni</td><td>82</td><td>74</td><td>8</td><td>0</td><td>6</td><td>12</td><td>0</td><td>10</td><td>74,39</td><td></td></tr>
+			<tr><td>JUNI</td><td>23-Juni</td><td>57</td><td>53</td><td>4</td><td>2</td><td>40</td><td>14</td><td>0</td><td>1</td><td>72,73</td><td>66,74</td></tr>
+
+			<tr><td>JULI</td><td>07-Juli</td><td>77</td><td>69</td><td>8</td><td>0</td><td>51</td><td>19</td><td>7</td><td>0</td><td>66,23</td><td></td></tr>
+			<tr><td>JULI</td><td>14-Juli</td><td>54</td><td>49</td><td>5</td><td>0</td><td>36</td><td>13</td><td>5</td><td>0</td><td>66,67</td><td></td></tr>
+			<tr><td>JULI</td><td>21-Juli</td><td>24</td><td>18</td><td>6</td><td>0</td><td>13</td><td>7</td><td>3</td><td>1</td><td>54,17</td><td>63,43</td></tr>
+			<tr><td>JULI</td><td>28-Juli</td><td>48</td><td>46</td><td>2</td><td>0</td><td>32</td><td>16</td><td>0</td><td>0</td><td>66,67</td><td></td></tr>
+
+			<tr><td>AUGUST</td><td>4-ago</td><td>42</td><td>39</td><td>3</td><td>1</td><td>27</td><td>13</td><td>10</td><td>65</td><td>85</td><td></td></tr>
+			<tr><td>AUGUST</td><td>11-ago</td><td>16</td><td>14</td><td>2</td><td>0</td><td>8</td><td>7</td><td>10</td><td>60</td><td>00</td><td>61,06</td></tr>
+			<tr><td>AUGUST</td><td>18-ago</td><td>57</td><td>53</td><td>4</td><td>0</td><td>31</td><td>23</td><td>30</td><td>54</td><td>39</td><td></td></tr>
+			<tr><td>AUGUST</td><td>25-ago</td><td>26</td><td>26</td><td>0</td><td>1</td><td>16</td><td>18</td><td>0</td><td>64</td><td>00</td><td></td></tr>
+
+			<tr><td>SEP</td><td>8-sep</td><td>30</td><td>30</td><td>0</td><td>2</td><td>17</td><td>11</td><td>0</td><td>00</td><td>60,71</td><td></td></tr>
+			<tr><td>SEP</td><td>23-sep</td><td>35</td><td>32</td><td>3</td><td>0</td><td>23</td><td>11</td><td>10</td><td>69</td><td>70</td><td>64,05</td></tr>
+
+			<tr><td>OKT</td><td>29-sep</td><td>35</td><td>35</td><td>0</td><td>1</td><td>21</td><td>13</td><td>0</td><td>00</td><td>63,64</td><td></td></tr>
+			<tr><td>OKT</td><td>6-Okt</td><td>39</td><td>35</td><td>4</td><td>0</td><td>23</td><td>16</td><td>0</td><td>00</td><td>62,16</td><td></td></tr>
+			<tr><td>OKT</td><td>13-OKT</td><td>50</td><td>47</td><td>3</td><td>2</td><td>36</td><td>14</td><td>0</td><td>00</td><td>72,00</td><td></td></tr>
+			<tr><td>OKT</td><td>20-OKT</td><td>34</td><td>31</td><td>3</td><td>0</td><td>21</td><td>13</td><td>0</td><td>00</td><td>63,64</td><td>67,78</td></tr>
+			<tr><td>OKT</td><td>27-OKT</td><td>30</td><td>28</td><td>2</td><td>0</td><td>22</td><td>9</td><td>0</td><td>00</td><td>73,33</td><td></td></tr>
+
+			<tr><td>NOV</td><td>4-nov</td><td>24</td><td>23</td><td>1</td><td>0</td><td>14</td><td>10</td><td>0</td><td>00</td><td>63,64</td><td></td></tr>
+			<tr><td>NOV</td><td>10-nov</td><td>33</td><td>30</td><td>3</td><td>0</td><td>20</td><td>13</td><td>0</td><td>00</td><td>60,61</td><td></td></tr>
+		</tbody>
+	</table>
+	</div>
+
+	<div class="grid-2" style="margin-top:12px">
+		<div>
+			<p class="sub"><b>Success rate por fecha</b></p>
+			<canvas id="ovChart" height="220"></canvas>
+			<p class="muted pin">Tasa de éxito por ejecución. Podés alternar series en la leyenda.</p>
+		</div>
+		<div>
+			<p class="sub"><b>Exportar</b></p>
+			<button class="button" id="csvOvBtn">Download CSV</button>
+		</div>
+	</div>
+</section>
+	
 <!-- PERFORMANCE CHARTS -->
 <section class="card">
 <h2 class="section-title">Performance charts</h2>
@@ -754,8 +845,8 @@ const bSept = document.getElementById('btnStageSept');
 const bMay = document.getElementById('btnStageMay');
 const bAug = document.getElementById('btnStageAug');
 
-  /* Overview 2025 button */
-const bOverview = document.getElementById('btnOverview2025');
+  /* Results 2025 button */
+const bOverview = document.getElementById('btnResults2025');
 // Es la primera card dentro de <main>, el bloque "Overview - Outbound Calls HR Strategy"
 const overviewSection = document.querySelector('main > section.card:first-of-type');
 
@@ -782,6 +873,124 @@ bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
 bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
 bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
 
+	/* RESULTS 2025: toggle + chart + CSV */
+const sOv  = document.getElementById('overview-2025');     // panel (puede mantener este id)
+const bOv  = document.getElementById('btnOverview2025');   // botón del menú Results 2025
+const ovEl = document.getElementById('ovChart');           // canvas del chart
+
+bOv?.addEventListener('click', () => {
+	const willOpen = sOv.style.display === 'none';
+	hideAllStages(); // cierra Sept/May/Aug si estuvieran abiertos
+	sOv.style.display = willOpen ? '' : 'none';
+	bOv.setAttribute('aria-expanded', String(willOpen));
+	if (willOpen) {
+		// scroll al panel
+		window.scrollTo({ top: sOv.offsetTop - 16, behavior: 'smooth' });
+		// construir el chart en apertura si no existe
+		if (!window.__ovChart && window.Chart) {
+			buildOverviewChart();
+		}
+	}
+});
+
+/* Construye datasets desde la tabla */
+function parseObTable() {
+	const table = document.getElementById('obTable2025');
+	if (!table) return { labels: [], success: [], totals: [], byMonth: [] };
+	const rows = table.querySelectorAll('tbody tr');
+	const labels = [];
+	const success = [];
+	const totals = [];
+	const byMonth = [];
+	rows.forEach(tr => {
+		const tds = [...tr.cells].map(td => td.innerText.trim());
+		// Columns: 0 MONTH, 1 Dates, 2 Total, 6 Successful, 11 Success rate by month %
+		const dateLabel = `${tds[0]} ${tds[1]}`;
+		const total = Number(String(tds[2]).replace(/\./g,'').replace(',', '.')) || 0;
+		const succ  = Number(String(tds[6]).replace(/\./g,'').replace(',', '.')) || 0;
+		const rateMonth = Number(String(tds[11]).replace('#DIV/0!','').replace(/\./g,'').replace(',', '.'));
+		labels.push(dateLabel);
+		totals.push(total);
+		success.push(succ);
+		byMonth.push(isNaN(rateMonth) ? null : rateMonth);
+	});
+	return { labels, success, totals, byMonth };
+}
+
+function buildOverviewChart() {
+	const css = getComputedStyle(document.documentElement);
+	const cIndigo  = css.getPropertyValue('--primary-2').trim() || '#6366f1';
+	const cSky     = css.getPropertyValue('--primary').trim()    || '#0ea5e9';
+	const cEmerald = css.getPropertyValue('--accent').trim()     || '#10b981';
+	const axisColor = () => '#a8b1c7';
+	const gridColor = (light=0.12) => `rgba(148,163,184,${light})`;
+
+	const { labels, success, totals, byMonth } = parseObTable();
+
+	window.__ovChart = ovEl && window.Chart ? new Chart(ovEl, {
+		type:'line',
+		data:{
+			labels,
+			datasets:[
+				{
+					type:'bar',
+					label:'Total Contact',
+					data: totals,
+					backgroundColor:'rgba(14,165,233,.35)',
+					borderColor:cSky,
+					borderWidth:1,
+					yAxisID:'y2'
+				},
+				{
+					type:'line',
+					label:'Successful',
+					data: success,
+					borderColor:cEmerald,
+					backgroundColor:'rgba(16,185,129,.18)',
+					fill:true,
+					tension:.35,
+					borderWidth:3,
+					pointRadius:2,
+					yAxisID:'y1'
+				},
+				{
+					type:'line',
+					label:'Success rate by month %',
+					data: byMonth,
+					borderColor:cIndigo,
+					backgroundColor:'rgba(99,102,241,.15)',
+					fill:false,
+					tension:.35,
+					borderWidth:2,
+					pointRadius:2,
+					yAxisID:'y1'
+				}
+			]
+		},
+		options:{
+			plugins:{
+				legend:{ position:'bottom', labels:{ color:'#cbd5e1' } },
+				tooltip:{ mode:'index', intersect:false }
+			},
+			scales:{
+				x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+				y1:{ position:'left', beginAtZero:true, ticks:{ color:axisColor(), callback:v=>v }, grid:{ color:gridColor(.12) } },
+				y2:{ position:'right', beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleString() }, grid:{ drawOnChartArea:false } }
+			}
+		}
+	}) : null;
+}
+
+/* CSV export */
+document.getElementById('csvOvBtn')?.addEventListener('click', () => {
+	// Si existe exportChartToCSV, lo usamos; si no, exportamos la tabla
+	if (window.__ovChart && typeof exportChartToCSV === 'function') {
+		exportChartToCSV(window.__ovChart, 'results-2025-visible.csv');
+	} else if (typeof exportTableToCSV === 'function') {
+		exportTableToCSV(document.getElementById('obTable2025'), 'results-2025.csv');
+	}
+});
+	
 /* Charts palette */
 const css = getComputedStyle(document.documentElement);
 const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
