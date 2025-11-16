@@ -453,16 +453,112 @@ Tools
 </table>
 <button class="button" id="csvSeptCenturionBtn">Download CSV</button>
 
-<div class="grid-2" style="margin-top:10px">
-<div>
-<p class="sub"><b>HR Consumer</b> VS status by Market</p>
-<canvas id="septConsumerChart" height="220"></canvas>
-</div>
-<div>
-<p class="sub"><b>HR Centurion</b> VS status by Market</p>
-<canvas id="septCenturionChart" height="220"></canvas>
-</div>
-</div>
+// ---------- Datos de la tabla (Sep 2024) ----------
+const consumer = {
+  AT: { volume: 575, refreshed: 365, suspended: 14, cancelled: 14 },
+  DE: { volume: 5070, refreshed: 2823, suspended: 217, cancelled: 113 },
+  OV: { volume: 5645, refreshed: 3188, suspended: 231, cancelled: 127 }
+};
+
+const centurion = {
+  AT: { volume: 130, refreshed: 90, suspended: 2, cancelled: 0 },
+  DE: { volume: 385, refreshed: 241, suspended: 3, cancelled: 2 },
+  OV: { volume: 515, refreshed: 331, suspended: 5, cancelled: 2 }
+};
+
+// Utilidad: arma porcentajes y “in progress” = resto
+function toPercRows(row) {
+  const { volume, refreshed, suspended, cancelled } = row;
+  const inProgress = Math.max(volume - refreshed - suspended - cancelled, 0);
+  const pct = x => volume > 0 ? +(100 * x / volume).toFixed(1) : 0;
+  return {
+    refreshed: pct(refreshed),
+    suspended: pct(suspended),
+    cancelled: pct(cancelled),
+    inProgress: pct(inProgress)
+  };
+}
+
+function buildSeries(dataByMarket) {
+  const AT = toPercRows(dataByMarket.AT);
+  const DE = toPercRows(dataByMarket.DE);
+  const OV = toPercRows(dataByMarket.OV);
+  return {
+    labels: ["Austria", "Germany", "Overall"],
+    refreshed: [AT.refreshed, DE.refreshed, OV.refreshed],
+    inProgress: [AT.inProgress, DE.inProgress, OV.inProgress],
+    suspended: [AT.suspended, DE.suspended, OV.suspended],
+    cancelled: [AT.cancelled, DE.cancelled, OV.cancelled]
+  };
+}
+
+// Colores sugeridos
+const C = {
+  refreshed: "#2e7d32",
+  inProgress: "#f9a825",
+  suspended: "#ef6c00",
+  cancelled: "#c62828"
+};
+
+// ---------- HR Consumer VS status by Market ----------
+const consSeries = buildSeries(consumer);
+const consCtx = document.getElementById("septConsumerChart");
+const septConsumerChart = new Chart(consCtx, {
+  type: "bar",
+  data: {
+    labels: consSeries.labels,
+    datasets: [
+      { label: "Refreshed %", data: consSeries.refreshed, backgroundColor: C.refreshed, stack: "pct" },
+      { label: "In progress %", data: consSeries.inProgress, backgroundColor: C.inProgress, stack: "pct" },
+      { label: "Suspended %", data: consSeries.suspended, backgroundColor: C.suspended, stack: "pct" },
+      { label: "Cancelled %", data: consSeries.cancelled, backgroundColor: C.cancelled, stack: "pct" }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: "bottom" } },
+    scales: {
+      x: { stacked: true },
+      y: {
+        stacked: true,
+        min: 0,
+        max: 100,
+        ticks: { callback: v => v + "%" },
+        title: { display: true, text: "Share sobre volumen Sep 2024" }
+      }
+    }
+  }
+});
+
+// ---------- HR Centurion VS status by Market ----------
+const centSeries = buildSeries(centurion);
+const centCtx = document.getElementById("septCenturionChart");
+const septCenturionChart = new Chart(centCtx, {
+  type: "bar",
+  data: {
+    labels: centSeries.labels,
+    datasets: [
+      { label: "Refreshed %", data: centSeries.refreshed, backgroundColor: C.refreshed, stack: "pct" },
+      { label: "In progress %", data: centSeries.inProgress, backgroundColor: C.inProgress, stack: "pct" },
+      { label: "Suspended %", data: centSeries.suspended, backgroundColor: C.suspended, stack: "pct" },
+      { label: "Cancelled %", data: centSeries.cancelled, backgroundColor: C.cancelled, stack: "pct" }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: "bottom" } },
+    scales: {
+      x: { stacked: true },
+      y: {
+        stacked: true,
+        min: 0,
+        max: 100,
+        ticks: { callback: v => v + "%" },
+        title: { display: true, text: "Share sobre volumen Sep 2024" }
+      }
+    }
+  }
+});
  <div class="notes" style="margin-top:12px">
       <p>✓ 4% HR CMs in suspension are in risk of cancellation: (14 AT / 217 DE)<br>
       * incl 5 Centurion CMs (2 AT / 3 DE)</p>
