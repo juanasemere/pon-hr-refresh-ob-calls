@@ -466,56 +466,156 @@ Tools
 </div>
 
 <script>
-// Helper para crear o recrear el gráfico con datos exactos
-function upsertBarChart(canvasId, labels, datasets, title){
-  const el = document.getElementById(canvasId);
-  if (!el) return;
-  const ctx = el.getContext("2d");
-
-  // Si ya existe una instancia previa, destruirla
-  if (window[canvasId] instanceof Chart) {
-    window[canvasId].destroy();
-  }
-
-  window[canvasId] = new Chart(ctx, {
-    type: "bar",
-    data: { labels, datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        title: { display: true, text: title },
-        legend: { position: "bottom" },
-        tooltip: { mode: "index", intersect: false }
-      },
-      // Barras NO apiladas (cada métrica independiente)
-      scales: {
-        x: { stacked: false },
-        y: { beginAtZero: true, stacked: false }
-      }
-    }
-  });
+// ========= Helpers de parseo =========
+function toInt(str) {
+	return Number.parseInt(String(str).replace(/\./g, ''), 10);
+}
+function toFloat(str) {
+	return Number.parseFloat(
+		String(str).replace(/\./g, '').replace(',', '.')
+	);
 }
 
-// Etiquetas (filas) de las tablas
-const labelsSep = ["Austria", "Germany", "Overall"];
+// ========= Helper para crear/recrear gráfico =========
+function upsertBarChart(canvasId, labels, datasets, title) {
+	const el = document.getElementById(canvasId);
+	if (!el) return;
 
-// IMPORTANTE: en JS los miles van SIN puntos/commas
-// HR Consumer – Sep. 2024 (coincide con la tabla)
-upsertBarChart("septConsumerChart", labelsSep, [
-  { label: "HR CM volume",            data: [575, 5070, 5645], backgroundColor: "#3B82F6" },
-  { label: "HR CM refreshed",         data: [365, 2823, 3188], backgroundColor: "#22C55E" },
-  { label: "CMs currently suspended", data: [14, 217, 231],    backgroundColor: "#F59E0B" },
-  { label: "HR CM KYC cancelled",     data: [14, 113, 127],    backgroundColor: "#EF4444" }
-], "HR Consumer – Sep. 2024");
+	const ctx = el.getContext("2d");
 
-// HR Centurion – Sep. 2024 (coincide con la tabla)
-upsertBarChart("septCenturionChart", labelsSep, [
-  { label: "HR Centurion volume",     data: [130, 385, 515], backgroundColor: "#3B82F6" },
-  { label: "Centurion refreshed",     data: [90, 241, 331],  backgroundColor: "#22C55E" },
-  { label: "Centurion suspended",     data: [2, 3, 5],       backgroundColor: "#F59E0B" },
-  { label: "Centurion KYC cancelled", data: [0, 2, 2],       backgroundColor: "#EF4444" }
-], "HR Centurion – Sep. 2024");
+	// Si ya existe una instancia previa, destruirla
+	if (window[canvasId] instanceof Chart) {
+		window[canvasId].destroy();
+	}
+
+	window[canvasId] = new Chart(ctx, {
+		type: "bar",
+		data: { labels, datasets },
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			plugins: {
+				title: { display: true, text: title },
+				legend: { position: "bottom" },
+				tooltip: { mode: "index", intersect: false }
+			},
+			// Barras NO apiladas (cada métrica independiente)
+			scales: {
+				x: { stacked: false },
+				y: { beginAtZero: true, stacked: false }
+			}
+		}
+	});
+}
+
+// ========= Lectura segura de tablas por caption =========
+function getTableByCaptionIncludes(text) {
+	const tables = Array.from(document.querySelectorAll('table'));
+	return tables.find(t => t.querySelector('caption')?.textContent?.includes(text));
+}
+
+// Lee filas del tbody y devuelve [{ market, values: [tds...] }]
+function readBodyRows(table) {
+	const rows = Array.from(table.querySelectorAll('tbody tr'));
+	return rows.map(r => {
+		const marketTh = r.querySelector('th[scope="row"]');
+		const tdTexts = Array.from(r.querySelectorAll('td')).map(td => td.textContent.trim());
+
+		// Si la primera celda TD es el "Stage" (por rowspan en la primera fila),
+		// habrá 5 TDs: [Stage, metric1, metric2, metric3, metric4]
+		// Para filas siguientes, habrá 4 TDs: [metric1, metric2, metric3, metric4]
+		const values = (tdTexts.length === 5) ? tdTexts.slice(1) : tdTexts;
+
+		return {
+			market: marketTh?.textContent?.trim(),
+			values
+		};
+	}).filter(r => r.market && r.market.toLowerCase() !== 'overall');
+}
+
+// ========= Armar objetos de datos a partir de las tablas =========
+function getSeptData() {
+	// Tabla 1: HR Consumer Refresh – Sep. 2024
+	const t1 = getTableByCaptionIncludes('HR Consumer Refresh');
+	// Tabla 2: HR Centurion – Sep. 2024
+	const t2 = getTableByCaptionIncludes('HR Centurion');
+
+	if (!t1 || !t2) return null;
+
+	const consumerRows = readBodyRows(t1);
+	const centurionRows = readBodyRows(t2);
+
+	const consumer = consumerRows.map(r => ({
+		market: r.market,
+		// Orden esperado: [HR CM volume, HR CM refreshed, CMs currently suspended, HR CM KYC cancelled]
+		volume: toInt(r.values[0]),
+		refreshed: toInt(r.values[1]),
+		suspended: toInt(r.values[2]),
+		cancelled: toInt(r.values[3])
+	}));
+
+	const centurion = centurionRows.map(r => ({
+		market: r.market,
+		// Orden esperado: [HR Centurion volume, Centurion refreshed, Centurion suspended, Centurion KYC cancelled]
+		volume: toInt(r.values[0]),
+		refreshed: toInt(r.values[1]),
+		suspended: toInt(r.values[2]),
+		cancelled: toInt(r.values[3])
+	}));
+
+	return { consumer, centurion };
+}
+
+// ========= Construcción de datasets =========
+function buildDatasets(items, palette) {
+	return [
+		{ label: 'Volume', data: items.map(i => i.volume), backgroundColor: palette[0] },
+		{ label: 'Refreshed', data: items.map(i => i.refreshed), backgroundColor: palette[1] },
+		{ label: 'Suspended', data: items.map(i => i.suspended), backgroundColor: palette[2] },
+		{ label: 'KYC cancelled', data: items.map(i => i.cancelled), backgroundColor: palette[3] },
+	];
+}
+
+// ========= Inicialización al cargar el DOM =========
+document.addEventListener('DOMContentLoaded', () => {
+	// Asegurar que Chart.js esté cargado
+	if (typeof Chart === 'undefined') {
+		console.error('Chart.js no está disponible. Verificá el <script src="...chart.umd.js"> antes de este bloque.');
+		return;
+	}
+
+	const data = getSeptData();
+	if (!data) {
+		console.error('No se pudieron encontrar las tablas por sus captions.');
+		return;
+	}
+
+	// Consumer
+	const consumerLabels = data.consumer.map(i => i.market);
+	const consumerDatasets = buildDatasets(
+		data.consumer,
+		['#4C78A8','#72B7B2','#F58518','#E45756']
+	);
+	upsertBarChart(
+		'septConsumerChart',
+		consumerLabels,
+		consumerDatasets,
+		'HR Consumer VS status by Market (Sep 2024)'
+	);
+
+	// Centurion
+	const centurionLabels = data.centurion.map(i => i.market);
+	const centurionDatasets = buildDatasets(
+		data.centurion,
+		['#59A14F','#B07AA1','#FF9DA7','#9C755F']
+	);
+	upsertBarChart(
+		'septCenturionChart',
+		centurionLabels,
+		centurionDatasets,
+		'HR Centurion VS status by Market (Sep 2024)'
+	);
+});
 </script>
  <div class="notes" style="margin-top:12px">
       <p>✓ 4% HR CMs in suspension are in risk of cancellation: (14 AT / 217 DE)<br>
