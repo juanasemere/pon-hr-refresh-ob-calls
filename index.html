@@ -129,7 +129,10 @@ margin:14px 0;
 .kpi .note{font-size:12px; color:#93a2b8}
 /* Offset for anchor under header */
 [data-key-results-anchor]{scroll-margin-top:80px}
-
+/* Que el ancla no quede pegada al header */
+#overview-2025,
+[id^="month-"] { scroll-margin-top: 80px; }
+	
 .grid-2{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .grid-3{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .ul-clean{margin:10px 0 0; padding-left:18px}
@@ -235,55 +238,55 @@ Tools
 		Performance Snapshot by Set
 	</button>
 	<div class="dropdown__menu" id="psMenu" role="menu" aria-label="Performance Snapshot by Sety">
-		<!-- Poné tus links en href="#" -->
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psOverview2025">
-			<span>Overview 2025</span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psFeb">
-			<span><b>February</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psMar">
-			<span><b>March</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psApr">
-			<span><b>April</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psMay">
-			<span><b>May</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psJun">
-			<span><b>June</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psJul">
-			<span><b>July</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psAug">
-			<span><b>August</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psSep">
-			<span><b>September</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psOct">
-			<span><b>October</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psNov">
-			<span><b>November</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psDec">
-			<span><b>December</b></span>
-			<small>Open in new tab</small>
-			</a>
+		<!-- psMenu (reemplaza este bloque) -->
+<a class="menu-item" href="#overview-2025" role="menuitem" id="psOverview2025">
+	<span><b>Overview 2025</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-feb" role="menuitem" id="psFeb">
+	<span><b>February</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-mar" role="menuitem" id="psMar">
+	<span><b>March</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-apr" role="menuitem" id="psApr">
+	<span><b>April</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-may" role="menuitem" id="psMay">
+	<span><b>May</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-jun" role="menuitem" id="psJun">
+	<span><b>June</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-jul" role="menuitem" id="psJul">
+	<span><b>July</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-aug" role="menuitem" id="psAug">
+	<span><b>August</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-sep" role="menuitem" id="psSep">
+	<span><b>September</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-oct" role="menuitem" id="psOct">
+	<span><b>October</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-nov" role="menuitem" id="psNov">
+	<span><b>November</b></span>
+	<small>Ir a la sección</small>
+</a>
+<a class="menu-item" href="#month-dec" role="menuitem" id="psDec">
+	<span><b>December</b></span>
+	<small>Ir a la sección</small>
+</a>
 			</div>
 		</div>
 	</div>
@@ -424,8 +427,33 @@ Tools
 
 <!-- ==== OVERVIEW 2025 (Tabla + Gráfico) ==== -->
 <section class="card" id="overview-2025">
-	<h2 class="section-title">Overview 2025 – Performance by Month</h2>
+  <h2 class="section-title">Overview 2025 – Performance by Month</h2>
 
+  <!-- Gráfico -->
+  <p class="sub">Monthly results overview</p>
+  <canvas id="overview2025Chart" height="260"></canvas>
+  <p class="muted pin">Barras apiladas: resultados de contacto. Línea: Success rate OB %.</p>
+
+  <!-- Tabla fuente de datos -->
+  <table id="overview2025Table">
+    <caption>Outbound Calls – 2025 monthly detail</caption>
+    <!-- TODO: acá va exactamente la misma tabla que ya tenés -->
+    <!-- pega tu <thead> y <tbody> completos acá, sin cambios -->
+  </table>
+</section>
+
+<!-- Secciones-ancla por mes (podés llenarlas después con tablas/gráficos de cada mes) -->
+<section class="card" id="month-feb"><h2 class="section-title">February 2025</h2></section>
+<section class="card" id="month-mar"><h2 class="section-title">March 2025</h2></section>
+<section class="card" id="month-apr"><h2 class="section-title">April 2025</h2></section>
+<section class="card" id="month-may"><h2 class="section-title">May 2025</h2></section>
+<section class="card" id="month-jun"><h2 class="section-title">June 2025</h2></section>
+<section class="card" id="month-jul"><h2 class="section-title">July 2025</h2></section>
+<section class="card" id="month-aug"><h2 class="section-title">August 2025</h2></section>
+<section class="card" id="month-sep"><h2 class="section-title">September 2025</h2></section>
+<section class="card" id="month-oct"><h2 class="section-title">October 2025</h2></section>
+<section class="card" id="month-nov"><h2 class="section-title">November 2025</h2></section>
+<section class="card" id="month-dec"><h2 class="section-title">December 2025</h2></section>
 	<!-- Gráfico -->
 	<p class="sub">Monthly results overview</p>
 	<canvas id="overview2025Chart" height="260"></canvas>
@@ -1042,6 +1070,36 @@ document.addEventListener('keydown', (e) => {
 	'psAug','psSep','psOct','psNov','psDec'
 ].forEach(id => {
 	document.getElementById(id)?.addEventListener('click', () => setPsExpanded(false));
+});
+
+	// Navegación interna: cerrar menú y hacer scroll a cada sección
+const psTargets = {
+	psOverview2025: 'overview-2025',
+	psFeb: 'month-feb',
+	psMar: 'month-mar',
+	psApr: 'month-apr',
+	psMay: 'month-may',
+	psJun: 'month-jun',
+	psJul: 'month-jul',
+	psAug: 'month-aug',
+	psSep: 'month-sep',
+	psOct: 'month-oct',
+	psNov: 'month-nov',
+	psDec: 'month-dec'
+};
+
+Object.entries(psTargets).forEach(([linkId, sectionId]) => {
+	const linkEl = document.getElementById(linkId);
+	if (!linkEl) return;
+	linkEl.addEventListener('click', (e) => {
+		// Evita navegación por defecto del href="#..."
+		e.preventDefault();
+		// Cierra el dropdown
+		setPsExpanded(false);
+		// Hace scroll suave al destino
+		const sec = document.getElementById(sectionId);
+		if (sec) window.scrollTo({ top: sec.offsetTop - 16, behavior: 'smooth' });
+	});
 });
 	
 /* Charts palette */
