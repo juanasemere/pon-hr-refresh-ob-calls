@@ -203,7 +203,6 @@ Tools
 </div>
 </div>
 
-	
 <!-- Performance Highlights (dropdown) -->
 <div class="dropdown" id="phDropdown" aria-haspopup="true">
 	<button type="button" class="button" id="phBtn" aria-controls="phMenu" aria-expanded="false">
@@ -228,65 +227,6 @@ Tools
 		</button>
 	</div>
 </div>
-
-	<!-- Performance Snapshot by Set (dropdown) -->
-<div class="dropdown" id="psDropdown" aria-haspopup="true">
-	<button type="button" class="button" id="psBtn" aria-controls="psMenu" aria-expanded="false">
-		Performance Snapshot by Set
-	</button>
-	<div class="dropdown__menu" id="psMenu" role="menu" aria-label="Performance Snapshot by Sety">
-		<!-- Poné tus links en href="#" -->
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psOverview2025">
-			<span>Overview 2025</span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psFeb">
-			<span><b>February</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psMar">
-			<span><b>March</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psApr">
-			<span><b>April</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psMay">
-			<span><b>May</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psJun">
-			<span><b>June</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psJul">
-			<span><b>July</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psAug">
-			<span><b>August</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psSep">
-			<span><b>September</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psOct">
-			<span><b>October</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psNov">
-			<span><b>November</b></span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="psDec">
-			<span><b>December</b></span>
-			<small>Open in new tab</small>
-			</a>
-			</div>
-		</div>
-	</div>
 </header>
 
 <main>
@@ -829,35 +769,6 @@ bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
 bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
 bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
 
-	/* Performance Snapshot dropdown — NUEVO, ABAJO */
-const psDD = document.getElementById('psDropdown');
-const psBtn = document.getElementById('psBtn');
-
-function setPsExpanded(on) { psBtn?.setAttribute('aria-expanded', String(on)); }
-
-psBtn?.addEventListener('click', (e) => {
-	e.stopPropagation();
-	const open = psBtn.getAttribute('aria-expanded') !== 'true';
-	setPsExpanded(open);
-});
-
-document.addEventListener('click', (e) => {
-	// Cierra si el click fue fuera del dropdown
-	if (psDD && !psDD.contains(e.target)) setPsExpanded(false);
-});
-
-document.addEventListener('keydown', (e) => {
-	if (e.key === 'Escape') setPsExpanded(false);
-});
-
-// Cerrar al clickear cualquiera de los links del menú
-[
-	'psOverview2025','psFeb','psMar','psApr','psMay','psJun','psJul',
-	'psAug','psSep','psOct','psNov','psDec'
-].forEach(id => {
-	document.getElementById(id)?.addEventListener('click', () => setPsExpanded(false));
-});
-	
 /* Charts palette */
 const css = getComputedStyle(document.documentElement);
 const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
