@@ -311,28 +311,42 @@ Stage Aug 2025
 
 <!-- PERFORMANCE CHARTS -->
 <section class="card">
-<h2 class="section-title">Performance charts</h2>
-<div class="grid-3">
-<div>
-<p class="sub">Refresh rate by month</p>
-<canvas id="refreshChart" height="210"></canvas>
-<p class="muted pin">Suspension rate is <b>much lower</b> thanks to a <b>smaller inventory</b> and earlier outreach.</p>
-</div>
+  <h2 class="section-title">Performance charts</h2>
+  <div class="grid-4">
+    <div>
+      <p class="sub">Refresh rate by month</p>
+      <canvas id="refreshChart" height="210"></canvas>
+      <p class="muted pin">Suspension rate is <b>much lower</b> thanks to a <b>smaller inventory</b> and earlier outreach.</p>
+    </div>
 
-<div>
-<p class="sub">AIF YTD by market</p>
-<canvas id="aifChart" height="210"></canvas>
-<p class="muted pin">Germany drives most of AIF YTD. Austria steady.</p>
-</div>
+    <div>
+      <p class="sub">AIF YTD by market</p>
+      <canvas id="aifChart" height="210"></canvas>
+      <p class="muted pin">Germany drives most of AIF YTD. Austria steady.</p>
+    </div>
 
-<div>
-<p class="sub">Suspension vs Inventory</p>
-<canvas id="suspChart" height="210"></canvas>
-<p class="muted pin">Smaller open-inventory correlates with lower suspension exposure.</p>
-</div>
-</div>
+    <div>
+      <p class="sub">Suspension vs Inventory</p>
+      <canvas id="suspChart" height="210"></canvas>
+      <p class="muted pin">Smaller open-inventory correlates with lower suspension exposure.</p>
+    </div>
+
+    <div>
+      <p class="sub">Cancellation rate by month</p>
+      <canvas id="cancelChart" height="210"></canvas>
+      <p class="muted pin">Cancellation rate trended down from Sep 2024.</p>
+      <button class="button" id="csvCancelBtn">Download CSV</button>
+    </div>
+
+    <div>
+      <p class="sub">Suspension risk % by month</p>
+      <canvas id="suspRiskChart" height="210"></canvas>
+      <p class="muted pin">Suspension risk decreased with earlier outreach and smaller inventory.</p>
+      <button class="button" id="csvSuspRiskBtn">Download CSV</button>
+    </div>
+  </div>
 </section>
-
+ 
 <!-- STAGE SEPT 2024 -->
 <section id="stage-sept-2024" class="card" style="display:none">
 <h2 class="section-title">PON HR Refresh – September 2024 status</h2>
@@ -523,200 +537,214 @@ Maintained by Germany & Austria Consumer HR • Outbound Calls program
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-/* Tools dropdown */
-const dd = document.getElementById('toolsDropdown');
-const btn = document.getElementById('toolsBtn');
-function setExpanded(on) { btn.setAttribute('aria-expanded', String(on)); }
-btn.addEventListener('click', (e) => {
-e.stopPropagation();
-const open = btn.getAttribute('aria-expanded') !== 'true';
-setExpanded(open);
-});
-document.addEventListener('click', (e) => { if (!dd.contains(e.target)) setExpanded(false); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setExpanded(false); });
+  /* Tools dropdown */
+  const dd = document.getElementById('toolsDropdown');
+  const btn = document.getElementById('toolsBtn');
+  function setExpanded(on) { btn.setAttribute('aria-expanded', String(on)); }
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    setExpanded(open);
+  });
+  document.addEventListener('click', (e) => { if (!dd.contains(e.target)) setExpanded(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setExpanded(false); });
 
-/* Close dropdown when using the Key Results link */
-document.getElementById('linkKeyResults')?.addEventListener('click', () => {
-setExpanded(false);
-});
+  /* Close dropdown when using the Key Results link */
+  document.getElementById('linkKeyResults')?.addEventListener('click', () => {
+    setExpanded(false);
+  });
 
-/* Show/Hide Stages */
-const sSept = document.getElementById('stage-sept-2024');
-const sMay = document.getElementById('stage-may-2025');
-const sAug = document.getElementById('stage-aug-2025');
-const bSept = document.getElementById('btnStageSept');
-const bMay = document.getElementById('btnStageMay');
-const bAug = document.getElementById('btnStageAug');
+  /* Show/Hide Stages */
+  const sSept = document.getElementById('stage-sept-2024');
+  const sMay = document.getElementById('stage-may-2025');
+  const sAug = document.getElementById('stage-aug-2025');
+  const bSept = document.getElementById('btnStageSept');
+  const bMay  = document.getElementById('btnStageMay');
+  const bAug  = document.getElementById('btnStageAug');
 
-function hideAllStages(){
-[sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
-[bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
-}
-function toggleStage(sectionEl, buttonEl){
-const willOpen = sectionEl.style.display === 'none';
-hideAllStages();
-sectionEl.style.display = willOpen ? '' : 'none';
-buttonEl.setAttribute('aria-expanded', String(willOpen));
-if (willOpen) window.scrollTo({ top: sectionEl.offsetTop - 16, behavior: 'smooth' });
-}
-hideAllStages();
-bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
-bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
-bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
+  function hideAllStages(){
+    [sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
+    [bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
+  }
+  function toggleStage(sectionEl, buttonEl){
+    const willOpen = sectionEl.style.display === 'none';
+    hideAllStages();
+    sectionEl.style.display = willOpen ? '' : 'none';
+    buttonEl.setAttribute('aria-expanded', String(willOpen));
+    if (willOpen) window.scrollTo({ top: sectionEl.offsetTop - 16, behavior: 'smooth' });
+  }
+  hideAllStages();
+  bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
+  bMay ?.addEventListener('click', () => toggleStage(sMay , bMay ));
+  bAug ?.addEventListener('click', () => toggleStage(sAug , bAug ));
 
-/* Charts palette */
-const css = getComputedStyle(document.documentElement);
-const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
-const cSky = css.getPropertyValue('--primary').trim() || '#0ea5e9';
-const cEmerald = css.getPropertyValue('--accent').trim() || '#10b981';
-const cMuted = '#94a3b8';
-const axisColor = () => '#a8b1c7';
-const gridColor = (light=0.12) => `rgba(148,163,184,${light})`;
+  /* Charts palette */
+  const css = getComputedStyle(document.documentElement);
+  const cIndigo  = css.getPropertyValue('--primary-2').trim() || '#6366f1';
+  const cSky     = css.getPropertyValue('--primary').trim()   || '#0ea5e9';
+  const cEmerald = css.getPropertyValue('--accent').trim()    || '#10b981';
+  const cMuted   = '#94a3b8';
+  const axisColor = () => '#a8b1c7';
+  const gridColor = (light=0.12) => `rgba(148,163,184,${light})`;
 
-/* CSV utility */
-function downloadCSV(filename, rows){
-const process = (v) => {
-if (v === null || v === undefined) return '';
-const s = String(v).replace(/"/g,'""');
-return `"${s}"`;
-};
-const csv = rows.map(r => r.map(process).join(',')).join('\n');
-const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-const url = URL.createObjectURL(blob);
-const a = document.createElement('a');
-a.href = url; a.download = filename;
-document.body.appendChild(a); a.click();
-document.body.removeChild(a);
-URL.revokeObjectURL(url);
-}
+  /* CSV utils */
+  function downloadCSV(filename, rows){
+    const process = (v) => {
+      if (v === null || v === undefined) return '';
+      const s = String(v).replace(/"/g,'""');
+      return `"${s}"`;
+    };
+    const csv = rows.map(r => r.map(process).join(',')).join('\n');
+    const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+  function exportChartToCSV(chart, filename){
+    if (!chart) return;
+    const labels = chart.data.labels || [];
+    const visible = chart.data.datasets
+      .map((ds, i) => ({ ds, i, meta: chart.getDatasetMeta(i) }))
+      .filter(({ meta }) => !meta.hidden);
+    const header = [''].concat(visible.map(({ ds }) => ds.label || 'Series'));
+    const rows = [header];
+    labels.forEach((label, rowIdx) => {
+      const row = [label];
+      visible.forEach(({ ds }) => {
+        const v = Array.isArray(ds.data) ? ds.data[rowIdx] : '';
+        row.push(v ?? '');
+      });
+      rows.push(row);
+    });
+    downloadCSV(filename, rows);
+  }
+  function exportTableToCSV(tableEl, filename){
+    if (!tableEl) return;
+    const rows = [];
+    const trsHead = tableEl.querySelectorAll('thead tr');
+    trsHead.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
+    const trsBody = tableEl.querySelectorAll('tbody tr');
+    trsBody.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
+    downloadCSV(filename, rows);
+  }
 
-/* Export visible datasets of a Chart.js chart */
-function exportChartToCSV(chart, filename){
-if (!chart) return;
-const labels = chart.data.labels || [];
-const visible = chart.data.datasets
-.map((ds, i) => ({ ds, i, meta: chart.getDatasetMeta(i) }))
-.filter(({ meta }) => !meta.hidden);
-const header = [''].concat(visible.map(({ ds }) => ds.label || 'Series'));
-const rows = [header];
-labels.forEach((label, rowIdx) => {
-const row = [label];
-visible.forEach(({ ds }) => {
-const v = Array.isArray(ds.data) ? ds.data[rowIdx] : '';
-row.push(v ?? '');
-});
-rows.push(row);
-});
-downloadCSV(filename, rows);
-}
+  /* Main charts */
+  const refreshEl = document.getElementById('refreshChart');
+  const aifEl     = document.getElementById('aifChart');
+  const suspEl    = document.getElementById('suspChart');
 
-/* Fallback: export HTML table to CSV */
-function exportTableToCSV(tableEl, filename){
-if (!tableEl) return;
-const rows = [];
-const trsHead = tableEl.querySelectorAll('thead tr');
-trsHead.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
-const trsBody = tableEl.querySelectorAll('tbody tr');
-trsBody.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
-downloadCSV(filename, rows);
-}
+  const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, {
+    type:'line',
+    data:{
+      labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
+      datasets:[
+        { label:'% Refreshed', data:[74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+        { label:'% In progress', data:[18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
+        { label:'% To contact / Pre-screen', data:[8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
+      ]
+    },
+    options:{
+      plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+      scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+               y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } } }
+    }
+  }) : null;
 
-/* Main charts */
-const refreshEl = document.getElementById('refreshChart');
-const aifEl = document.getElementById('aifChart');
-const suspEl = document.getElementById('suspChart');
+  const chartAIF = aifEl && window.Chart ? new Chart(aifEl, {
+    type:'bar',
+    data:{
+      labels:['Germany','Austria'],
+      datasets:[
+        { label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+        { label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 }
+      ]
+    },
+    options:{
+      plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+      scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+               y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleString() }, grid:{ color:gridColor(.12) } } }
+    }
+  }) : null;
 
-const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, {
-type:'line',
-data:{
-labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
-datasets:[
-{ label:'% Refreshed', data:[74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
-{ label:'% In progress', data:[18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
-{ label:'% To contact / Pre-screen', data:[8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
-]
-},
-options:{
-plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } } }
-}
-}) : null;
+  const chartSusp = suspEl && window.Chart ? new Chart(suspEl, {
+    type:'line',
+    data:{
+      labels:['May','Jun','Jul','Aug'],
+      datasets:[
+        { label:'Open inventory (index)', data:[100,75,60,45], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
+        { label:'Suspension rate %', data:[1.4,1.1,0.9,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
+      ]
+    },
+    options:{
+      plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+      scales:{
+        x :{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+        y1:{ position:'left',  ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } },
+        y2:{ position:'right', ticks:{ color:axisColor() }, grid:{ drawOnChartArea:false } }
+      }
+    }
+  }) : null;
 
-const chartAIF = aifEl && window.Chart ? new Chart(aifEl, {
-type:'bar',
-data:{
-labels:['Germany','Austria'],
-datasets:[
-{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 }
-]
-},
-options:{
-plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleString() }, grid:{ color:gridColor(.12) } } }
-}
-}) : null;
+  /* NUEVOS charts: Cancellation y Suspension risk */
+  const cancelEl   = document.getElementById('cancelChart');
+  const suspRiskEl = document.getElementById('suspRiskChart');
 
-const chartSusp = suspEl && window.Chart ? new Chart(suspEl, {
-type:'line',
-data:{
-labels:['May','Jun','Jul','Aug'],
-datasets:[
-{ label:'Open inventory (index)', data:[100,75,60,45], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
-{ label:'Suspension rate %', data:[1.4,1.1,0.9,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
-]
-},
-options:{
-plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-scales:{
-x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } },
-y2:{ position:'right', ticks:{ color:axisColor() }, grid:{ drawOnChartArea:false } }
-}
-}
-}) : null;
+  const chartCancel = cancelEl && window.Chart ? new Chart(cancelEl, {
+    type: 'line',
+    data: {
+      labels: ['Sep 2024', 'May 2025', 'Jun 2025', 'Jul 2025', 'Aug 2025'],
+      datasets: [
+        {
+          label: 'Cancellation rate %',
+          // Sep 2024 = 4.0, May 2025 = 1.2, tendencia a ~0 en Aug
+          data: [4.0, 1.2, 0.9, 0.4, 0.0],
+          borderColor: cIndigo,
+          backgroundColor: 'rgba(99,102,241,.18)',
+          fill: true,
+          tension: .35,
+          borderWidth: 3,
+          pointRadius: 2
+        }
+      ]
+    },
+    options: {
+      plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1' } }, tooltip: { mode: 'index', intersect: false } },
+      scales: {
+        x: { ticks: { color: axisColor() }, grid: { color: gridColor(.15) } },
+        y: { beginAtZero: true, ticks: { color: axisColor(), callback: v => v + '%' }, grid: { color: gridColor(.12) } }
+      }
+    }
+  }) : null;
 
-/* STAGE SEPT 2024 */
-const septConsumerEl = document.getElementById('septConsumerChart');
-const septCenturionEl = document.getElementById('septCenturionChart');
-
-const chartSeptConsumer = septConsumerEl && window.Chart ? new Chart(septConsumerEl, {
-type:'bar',
-data:{
-labels:['Austria','Germany','Sep. 2nd 2024 Overall'],
-datasets:[
-{ label:'HR CM volume', data:[365,2823,3188], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-{ label:'HR CM refreshed', data:[14,217,231], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-{ label:'CMs suspended', data:[14,113,127], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
-{ label:'HR CM KYC cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
-]
-},
-options:{
-plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
-}
-}) : null;
-
-const chartSeptCenturion = septCenturionEl && window.Chart ? new Chart(septCenturionEl, {
-type:'bar',
-data:{
-labels:['Austria','Germany','Overall'],
-datasets:[
-{ label:'HR Centurion volume', data:[130,385,515], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-{ label:'Centurion refreshed', data:[90,241,331], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-{ label:'Centurion suspended', data:[2,3,5], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
-{ label:'Centurion KYC cancelled', data:[0,2,2], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
-]
-},
-options:{
-plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
-}
-}) : null;
+  const chartSuspRisk = suspRiskEl && window.Chart ? new Chart(suspRiskEl, {
+    type: 'line',
+    data: {
+      labels: ['Sep 2024', 'May 2025', 'Jun 2025', 'Jul 2025', 'Aug 2025'],
+      datasets: [
+        {
+          label: 'Suspension risk %',
+          // Sep 2024 = 5.5, May 2025 = 1.4, bajando después
+          data: [5.5, 1.4, 1.1, 0.9, 0.7],
+          borderColor: cEmerald,
+          backgroundColor: 'rgba(16,185,129,.18)',
+          fill: true,
+          tension: .35,
+          borderWidth: 3,
+          pointRadius: 2
+        }
+      ]
+    },
+    options: {
+      plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1' } }, tooltip: { mode: 'index', intersect: false } },
+      scales: {
+        x: { ticks: { color: axisColor() }, grid: { color: gridColor(.15) } },
+        y: { beginAtZero: true, ticks: { color: axisColor(), callback: v => v + '%' }, grid: { color: gridColor(.12) } }
+      }
+    }
+  }) : null;
 
 /* STAGE MAY 2025 */
 const mayConsumerEl = document.getElementById('mayConsumerChart');
@@ -783,32 +811,38 @@ augCenturionEl,
 ) : null;
 
 /* CSV listeners */
-document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
-if (chartSeptConsumer) exportChartToCSV(chartSeptConsumer, 'sept-2024-consumer-visible.csv');
-else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(1)'), 'sept-2024-consumer.csv');
-});
-document.getElementById('csvSeptCenturionBtn')?.addEventListener('click', () => {
-if (chartSeptCenturion) exportChartToCSV(chartSeptCenturion, 'sept-2024-centurion-visible.csv');
-else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(2)'), 'sept-2024-centurion.csv');
-});
+ document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
+    if (window.chartSeptConsumer) exportChartToCSV(window.chartSeptConsumer, 'sept-2024-consumer-visible.csv');
+    else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(1)'), 'sept-2024-consumer.csv');
+  });
+  document.getElementById('csvSeptCenturionBtn')?.addEventListener('click', () => {
+    if (window.chartSeptCenturion) exportChartToCSV(window.chartSeptCenturion, 'sept-2024-centurion-visible.csv');
+    else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(2)'), 'sept-2024-centurion.csv');
+  });
+  document.getElementById('csvMayConsumerBtn')?.addEventListener('click', () => {
+    if (window.chartMayConsumer) exportChartToCSV(window.chartMayConsumer, 'may-2025-consumer-visible.csv');
+    else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(1)'), 'may-2025-consumer.csv');
+  });
+  document.getElementById('csvMayCenturionBtn')?.addEventListener('click', () => {
+    if (window.chartMayCenturion) exportChartToCSV(window.chartMayCenturion, 'may-2025-centurion-visible.csv');
+    else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(2)'), 'may-2025-centurion.csv');
+  });
+  document.getElementById('csvAugConsumerBtn')?.addEventListener('click', () => {
+    if (window.chartAugConsumer) exportChartToCSV(window.chartAugConsumer, 'aug-2025-consumer-visible.csv');
+    else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(1)'), 'aug-2025-consumer.csv');
+  });
+  document.getElementById('csvAugCenturionBtn')?.addEventListener('click', () => {
+    if (window.chartAugCenturion) exportChartToCSV(window.chartAugCenturion, 'aug-2025-centurion-visible.csv');
+    else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(2)'), 'aug-2025-centurion.csv');
+  });
 
-document.getElementById('csvMayConsumerBtn')?.addEventListener('click', () => {
-if (chartMayConsumer) exportChartToCSV(chartMayConsumer, 'may-2025-consumer-visible.csv');
-else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(1)'), 'may-2025-consumer.csv');
-});
-document.getElementById('csvMayCenturionBtn')?.addEventListener('click', () => {
-if (chartMayCenturion) exportChartToCSV(chartMayCenturion, 'may-2025-centurion-visible.csv');
-else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(2)'), 'may-2025-centurion.csv');
-});
-
-document.getElementById('csvAugConsumerBtn')?.addEventListener('click', () => {
-if (chartAugConsumer) exportChartToCSV(chartAugConsumer, 'aug-2025-consumer-visible.csv');
-else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(1)'), 'aug-2025-consumer.csv');
-});
-document.getElementById('csvAugCenturionBtn')?.addEventListener('click', () => {
-if (chartAugCenturion) exportChartToCSV(chartAugCenturion, 'aug-2025-centurion-visible.csv');
-else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(2)'), 'aug-2025-centurion.csv');
-});
+  /* Listeners CSV NUEVOS */
+  document.getElementById('csvCancelBtn')?.addEventListener('click', () => {
+    if (chartCancel) exportChartToCSV(chartCancel, 'cancellation-trend-visible.csv');
+  });
+  document.getElementById('csvSuspRiskBtn')?.addEventListener('click', () => {
+    if (chartSuspRisk) exportChartToCSV(chartSuspRisk, 'suspension-risk-trend-visible.csv');
+  });
 });
 </script>
 </body>
