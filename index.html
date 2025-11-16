@@ -463,74 +463,129 @@ Tools
 <canvas id="septCenturionChart" height="220"></canvas>
 </div>
 </div>
-	<!-- Pegá acá el script de los gráficos -->
+	
 <script>
-// Formateo de tooltip
+
+// Utilidad para tooltip
+
 const pctFmt = v => Number(v).toFixed(1);
 
-// HR Consumer — Sept 2024
+// HR Consumer — Sep 2024
+
+// Datos base que pasaste:
+
+// Austria: volumen 575, refreshed 365, suspended 14, cancelled 14
+
+// Germany: volumen 5070, refreshed 2823, suspended 217, cancelled 113
+
+// Overall: volumen 5645, refreshed 3188, suspended 231, cancelled 127
+
+// Porcentajes calculados:
+
 const septConsumerCtx = document.getElementById('septConsumerChart').getContext('2d');
+
 new Chart(septConsumerCtx, {
-	type: 'bar',
-	data: {
-		labels: ['Austria','Germany','Overall'],
-		datasets: [
-			{ label: 'Refreshed', data: [63.5, 55.7, 56.5], backgroundColor: '#2e7d32' },
-			{ label: 'Suspended', data: [2.43, 4.28, 4.09], backgroundColor: '#ffb300' },
-			{ label: 'Cancelled', data: [2.43, 2.23, 2.25], backgroundColor: '#c62828' }
-		]
-	},
-	options: {
-		responsive: true,
-		maintainAspectRatio: false,
-		scales: {
-			y: {
-				beginAtZero: true,
-				ticks: { callback: v => v + '%' }
-			}
-		},
-		plugins: {
-			tooltip: {
-				callbacks: {
-					label: ctx => `${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}%`
-				}
-			},
-			legend: { position: 'top' }
-		}
-	}
+
+type: 'bar',
+
+data: {
+
+labels: ['Austria','Germany','Overall'],
+
+datasets: [
+
+{ label: 'Refreshed', data: [63.5, 55.7, 56.5], backgroundColor: '#2e7d32' },
+
+{ label: 'Suspended', data: [2.43, 4.28, 4.09], backgroundColor: '#ffb300' },
+
+{ label: 'Cancelled', data: [2.43, 2.23, 2.25], backgroundColor: '#c62828' }
+
+]
+
+},
+
+options: {
+
+responsive: true,
+
+maintainAspectRatio: false,
+
+scales: {
+
+y: { beginAtZero: true, ticks: { callback: v => v + '%' } }
+
+},
+
+plugins: {
+
+tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}%` } },
+
+legend: { position: 'top' }
+
+}
+
+}
+
 });
 
-// HR Centurion — Sept 2024
+// HR Centurion — Sep 2024
+
+// Datos base que pasaste:
+
+// Austria: volumen 130, refreshed 90, suspended 2, cancelled 0
+
+// Germany: volumen 385, refreshed 241, suspended 3, cancelled 2
+
+// Overall: volumen 515, refreshed 331, suspended 5, cancelled 2
+
+// Porcentajes calculados:
+
 const septCenturionCtx = document.getElementById('septCenturionChart').getContext('2d');
+
 new Chart(septCenturionCtx, {
-	type: 'bar',
-	data: {
-		labels: ['Austria','Germany','Overall'],
-		datasets: [
-			{ label: 'Refreshed', data: [69.2, 62.6, 64.3], backgroundColor: '#2e7d32' },
-			{ label: 'Suspended', data: [1.54, 0.78, 0.97], backgroundColor: '#ffb300' },
-			{ label: 'Cancelled', data: [0.00, 0.52, 0.39], backgroundColor: '#c62828' }
-		]
-	},
-	options: {
-		responsive: true,
-		maintainAspectRatio: false,
-		scales: {
-			y: {
-				beginAtZero: true,
-				ticks: { callback: v => v + '%' }
-			}
-		},
-		plugins: {
-			tooltip: {
-				callbacks: {
-					label: ctx => `${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}%`
-				}
-			},
-			legend: { position: 'top' }
-		}
-	}
+
+type: 'bar',
+
+data: {
+
+labels: ['Austria','Germany','Overall'],
+
+datasets: [
+
+{ label: 'Refreshed', data: [69.2, 62.6, 64.3], backgroundColor: '#2e7d32' },
+
+{ label: 'Suspended', data: [1.54, 0.78, 0.97], backgroundColor: '#ffb300' },
+
+{ label: 'Cancelled', data: [0.00, 0.52, 0.39], backgroundColor: '#c62828' }
+
+]
+
+},
+
+options: {
+
+responsive: true,
+
+maintainAspectRatio: false,
+
+scales: {
+
+y: { beginAtZero: true, ticks: { callback: v => v + '%' } }
+
+},
+
+plugins: {
+
+tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${pctFmt(ctx.parsed.y)}%` } },
+
+legend: { position: 'top' }
+
+}
+
+}
+
 });
+
 </script>
 	
  <div class="notes" style="margin-top:12px">
