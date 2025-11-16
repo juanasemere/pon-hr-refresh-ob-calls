@@ -28,9 +28,9 @@
 	--btn-hover:#10203d;
 	--btn-shadow: 0 4px 18px rgba(2,6,23,.25);
 }
-
 *{box-sizing:border-box}
 html,body{height:100%}
+html{scroll-behavior:smooth}
 body{
 	font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 	margin:0;
@@ -121,11 +121,14 @@ main{padding:22px; max-width:1180px; margin:0 auto}
 }
 .card .sub{color:#94a3b8; font-size:13px}
 
+/* KPIs */
 .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px}
 .kpi{background: linear-gradient(180deg,#0c1730,#0b152c); border:1px solid #16233d; border-radius:12px; padding:12px}
 .kpi .label{font-size:12px; color:#9fb2ca}
 .kpi .value{font-size:24px; font-weight:800}
 .kpi .note{font-size:12px; color:#93a2b8}
+/* Offset para ancla bajo el header */
+[data-key-results-anchor]{scroll-margin-top:80px}
 
 .grid-2{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .grid-3{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -157,7 +160,8 @@ caption{caption-side:top; text-align:left; margin-bottom:6px; color:#a9b8d0; fon
 <body>
 <header>
 	<div class="brand">
-		<img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/Golden_Gate_Bridge_as_seen_from_Battery_East.jpg" alt="Logo" />
+		<!-- Imagen actualizada -->
+		<img src="https://es.wikipedia.org/wiki/American_Express#/media/Archivo:American_Express_logo_(2018).svg" alt="Logo" />
 		<div>
 			<h1>PON HR Refresh – Germany & Austria • Consumer HR Outbound Calls</h1>
 			<p>Outbound calls program to drive KYC refresh, minimize suspensions and avoid cancellations.</p>
@@ -167,7 +171,7 @@ caption{caption-side:top; text-align:left; margin-bottom:6px; color:#a9b8d0; fon
 	<div class="tagbar" role="list" aria-label="Tags">
 		<span class="tag">Market: DE & AT</span>
 		<span class="tag">Segment: Consumer HR</span>
-		<span class="tag">OB Calls cadence: every 21 days</span>
+		<!-- Eliminado: <span class="tag">OB Calls cadence: every 21 days</span> -->
 	</div>
 
 	<div class="actions" aria-label="Acciones rápidas">
@@ -180,6 +184,12 @@ caption{caption-side:top; text-align:left; margin-bottom:6px; color:#a9b8d0; fon
 				Tools
 			</button>
 			<div class="dropdown__menu" id="toolsMenu" role="menu" aria-label="Tools menu">
+				<!-- Nuevo: ancla a Key Results -->
+				<a class="menu-item" href="#kpis-sept" role="menuitem" id="linkKeyResults">
+					<span>Go to Key Results</span>
+					<small>Primer bloque</small>
+				</a>
+
 				<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkExcel">
 					<span>Excel sheet (setlists)</span>
 					<small>Abrir en nueva pestaña</small>
@@ -209,7 +219,7 @@ caption{caption-side:top; text-align:left; margin-bottom:6px; color:#a9b8d0; fon
 </header>
 
 <main>
-	<!-- OVERVIEW (reemplazado según pedido) -->
+	<!-- OVERVIEW -->
 	<section class="card">
 		<h2 class="section-title">Overview</h2>
 
@@ -239,7 +249,17 @@ caption{caption-side:top; text-align:left; margin-bottom:6px; color:#a9b8d0; fon
 		</div>
 	</section>
 
-	<!-- KPIs -->
+	<!-- KPIs en orden cronológico: Sept 2024, May 2025, Aug 2025 -->
+	<section id="kpis-sept" class="card" data-key-results-anchor>
+		<h2 class="section-title">Key Results – September 2024</h2>
+		<div class="kpis">
+			<div class="kpi"><div class="label">AIF YTD</div><div class="value">5,600</div><div class="note">DE: 5k • AT: 0.6k</div></div>
+			<div class="kpi"><div class="label">% refreshed</div><div class="value">56%</div><div class="note">Desde 03/2024: BAU</div></div>
+			<div class="kpi"><div class="label">% in progress</div><div class="value">24%</div><div class="note">Seguimiento activo</div></div>
+			<div class="kpi"><div class="label">% to be contacted</div><div class="value">20%</div><div class="note">DE + AT</div></div>
+		</div>
+	</section>
+
 	<section id="kpis-may" class="card">
 		<h2 class="section-title">Key Results – May 2025</h2>
 		<div class="kpis">
@@ -250,7 +270,7 @@ caption{caption-side:top; text-align:left; margin-bottom:6px; color:#a9b8d0; fon
 		</div>
 	</section>
 
-	<section id="kpis-aug" class="card" style="display:none">
+	<section id="kpis-aug" class="card">
 		<h2 class="section-title">Key Results – August 2025</h2>
 		<div class="kpis">
 			<div class="kpi"><div class="label">AIF YTD</div><div class="value">4,000</div><div class="note">DE: 3.5k • AT: 0.5k</div></div>
@@ -474,7 +494,7 @@ caption{caption-side:top; text-align:left; margin-bottom:6px; color:#a9b8d0; fon
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-	/* Tools dropdown - tu click-to-toggle original se mantiene; el hover lo maneja el CSS */
+	/* Tools dropdown */
 	const dd = document.getElementById('toolsDropdown');
 	const btn = document.getElementById('toolsBtn');
 	function setExpanded(on) { btn.setAttribute('aria-expanded', String(on)); }
@@ -486,7 +506,12 @@ window.addEventListener('DOMContentLoaded', () => {
 	document.addEventListener('click', (e) => { if (!dd.contains(e.target)) setExpanded(false); });
 	document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setExpanded(false); });
 
-	/* Mostrar/Ocultar Stages al tocar cada botón (uno abierto a la vez) */
+	/* Cerrar dropdown al usar el link de Key Results */
+	document.getElementById('linkKeyResults')?.addEventListener('click', () => {
+		setExpanded(false);
+	});
+
+	/* Mostrar/Ocultar Stages */
 	const sSept = document.getElementById('stage-sept-2024');
 	const sMay = document.getElementById('stage-may-2025');
 	const sAug = document.getElementById('stage-aug-2025');
@@ -728,7 +753,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		]
 	) : null;
 
-	/* Listeners CSV con fallback a tabla */
+	/* Listeners CSV */
 	document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
 		if (chartSeptConsumer) exportChartToCSV(chartSeptConsumer, 'sept-2024-consumer-visible.csv');
 		else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(1)'), 'sept-2024-consumer.csv');
