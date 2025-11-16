@@ -453,16 +453,70 @@ Tools
 </table>
 <button class="button" id="csvSeptCenturionBtn">Download CSV</button>
 
+<!-- GRAFICOS -->
 <div class="grid-2" style="margin-top:10px">
-<div>
-<p class="sub"><b>HR Consumer</b> VS status by Market</p>
-<canvas id="septConsumerChart" height="220"></canvas>
+  <div>
+    <p class="sub"><b>HR Consumer</b> VS status by Market</p>
+    <canvas id="septConsumerChart" height="220"></canvas>
+  </div>
+  <div>
+    <p class="sub"><b>HR Centurion</b> VS status by Market</p>
+    <canvas id="septCenturionChart" height="220"></canvas>
+  </div>
 </div>
-<div>
-<p class="sub"><b>HR Centurion</b> VS status by Market</p>
-<canvas id="septCenturionChart" height="220"></canvas>
-</div>
-</div>
+
+<script>
+// Helper para crear o recrear el gráfico con datos exactos
+function upsertBarChart(canvasId, labels, datasets, title){
+  const el = document.getElementById(canvasId);
+  if (!el) return;
+  const ctx = el.getContext("2d");
+
+  // Si ya existe una instancia previa, destruirla
+  if (window[canvasId] instanceof Chart) {
+    window[canvasId].destroy();
+  }
+
+  window[canvasId] = new Chart(ctx, {
+    type: "bar",
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: title },
+        legend: { position: "bottom" },
+        tooltip: { mode: "index", intersect: false }
+      },
+      // Barras NO apiladas (cada métrica independiente)
+      scales: {
+        x: { stacked: false },
+        y: { beginAtZero: true, stacked: false }
+      }
+    }
+  });
+}
+
+// Etiquetas (filas) de las tablas
+const labelsSep = ["Austria", "Germany", "Overall"];
+
+// IMPORTANTE: en JS los miles van SIN puntos/commas
+// HR Consumer – Sep. 2024 (coincide con la tabla)
+upsertBarChart("septConsumerChart", labelsSep, [
+  { label: "HR CM volume",            data: [575, 5070, 5645], backgroundColor: "#3B82F6" },
+  { label: "HR CM refreshed",         data: [365, 2823, 3188], backgroundColor: "#22C55E" },
+  { label: "CMs currently suspended", data: [14, 217, 231],    backgroundColor: "#F59E0B" },
+  { label: "HR CM KYC cancelled",     data: [14, 113, 127],    backgroundColor: "#EF4444" }
+], "HR Consumer – Sep. 2024");
+
+// HR Centurion – Sep. 2024 (coincide con la tabla)
+upsertBarChart("septCenturionChart", labelsSep, [
+  { label: "HR Centurion volume",     data: [130, 385, 515], backgroundColor: "#3B82F6" },
+  { label: "Centurion refreshed",     data: [90, 241, 331],  backgroundColor: "#22C55E" },
+  { label: "Centurion suspended",     data: [2, 3, 5],       backgroundColor: "#F59E0B" },
+  { label: "Centurion KYC cancelled", data: [0, 2, 2],       backgroundColor: "#EF4444" }
+], "HR Centurion – Sep. 2024");
+</script>
  <div class="notes" style="margin-top:12px">
       <p>✓ 4% HR CMs in suspension are in risk of cancellation: (14 AT / 217 DE)<br>
       * incl 5 Centurion CMs (2 AT / 3 DE)</p>
