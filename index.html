@@ -236,19 +236,21 @@ Tools
 
 <div class="grid-2">
 <div>
-<p class="sub"><b>Operational Rigor & Workflow Governance</b></p>
+<p class="sub"><b>Workflow Optimization & Oversight</b></p>
 <ul class="ul-clean">
-<li>Full integration of Spend, Tenure and Case Age data enabling structured prioritization across DE/AT portfolios.</li>
-<li>Automated daily eligibility checks and refined list generation to ensure accuracy, reduce manual intervention.</li>
+<li>Integration of multiple data sources - Spend, Tenure, Centurion inventory, HRJ CASES, Credit Active, Case Age - into a single workflow, enabling precise prioritization and minimizing manual effort.</li>
+<li>Automated validation rules and quality checks to prevent errors and ensure compliance before outreach.</li>
 <li>Harmonized process design across markets and ensuring a consistent customer experience.</li>
+<li>Dynamic sub-process for retrieving missing account information, reducing cancellations and maintaining BAU alignment.</li>
+<li>Real-time tracking of batch progress and updates from Concentrix, enabling timely follow-ups and accountability.</li>
 </ul>
 </div>
 
 <div>
 <p class="sub"><b>Performance Management</b></p>
 <ul class="ul-clean">
-<li>Weekly outbound cycles delivered with strong SLA adherence and fully information across all calling stages.</li>
-<li>Weekly feedback in-between Concentrix and KYC Team</li>
+<li>SLA-driven weekly outbound cycles with automated reporting on contact rate, completion rate, and time-to-resolution.</li>
+<li>Performance dashboards updated in real time, providing visibility for KYC and Concentrix teams.</li>
 <li>Established performance framework including contact rate, completion rate, and time-to-resolution, supported by transparent reporting.</li>
 <li>Defined escalation channels for exceptions such as Centurion file, CEN file and HR–HRJ transitions.</li>
 </ul>
@@ -259,16 +261,17 @@ Tools
 <div>
 <p class="sub"><b>Customer Engagement & Experience Quality</b></p>
 <ul class="ul-clean">
-<li>Standardized call flows tailored to Germany and Austria regulatory environments and ensuring clarity.</li>
-<li>Outreach strategy over a 21-day cycle improving engagement and driving higher refresh completion.</li>
+<li>Scripted call flows aligned with DE/AT regulations, ensuring clear communication and reducing escalations.</li>
+<li>21-day outreach cycle optimized for higher engagement and completion rates, monitored via workflow analytics.</li>
+<li>Feedback integration loop from Concentrix to refine scripts and approach based on observed outcomes.</li>
 </ul>
 </div>
 
 <div>
 <p class="sub"><b>Risk Mitigation & Compliance Strengthening</b></p>
 <ul class="ul-clean">
-<li>Proactive identification of Day-60 suspension cases to reinforce early-stage risk controls.</li>
-<li>Enhanced end-to-end tracking of outstanding documentation, strengthening KYC and audit action.</li>
+<li>Early identification of at-risk accounts (Day-60) with automated alerts and escalation triggers.</li>
+<li>End-to-end tracking of missing documentation, improving audit-readiness and compliance oversight.</li>
 <li>Close alignment with Compliance and KYC Team for manual overrides and sensitive cases requiring additional due diligence.</li>
 </ul>
 </div>
@@ -278,9 +281,9 @@ Tools
 <div>
 <p class="sub"><b>Cross-Functional Alignment</b></p>
 <ul class="ul-clean">
-<li>Coordinated operating rhythm with CEN, TLS, Bussiness and Concentrix teams to streamline processes.</li>
-<li>Shared dashboards and data visibility ensuring stakeholder alignment and fast decision-making.</li>
-<li>Continuous feedback loops with DE/AT partners to adjust prioritization during volume spikes or regulatory changes.</li>
+<li>Shared dashboards and standardized reporting enabling fast decision-making across CEN, TLS, Business, MCO and Concentrix teams.</li>
+<li>Collaborative escalation process for exceptions (Centurion, CEN files, HR–HRJ transitions), documented for transparency.</li>
+<li>Weekly syncs and continuous feedback loops with DE/AT partners to adjust priorities and maintain operational consistency.</li>
 </ul>
 </div>
 </div>
@@ -366,11 +369,11 @@ Tools
 <ul class="ul-clean li-emoji">
 <li>High Risk portfolio: approx. 5.600 AIF YTD (DE: 5k / AT: 0,6k)</li>
 <li>120-day KYC HR Refresh journey with risk of cancellation if account not fully refreshed</li>
-<li>Since 03/2024: BAU. 56% refreshed, 24% in progress, 20% to be contacted</li>
+<li>Since 04/2024: BAU. 56% refreshed, 24% in progress, 20% to be contacted</li>
 </ul>
 
 <table>
-<caption>HR Consumer Refresh – Sept 2nd 2024</caption>
+<caption>HR Consumer Refresh – Sept 2024</caption>
 <thead>
 <tr>
 <th></th>
@@ -384,7 +387,7 @@ Tools
 <tbody>
 <tr><th>Austria</th><td>575</td><td>365</td><td>14</td><td>14</td><td></td></tr>
 <tr><th>Germany</th><td>5,070</td><td>2,823</td><td>217</td><td>113</td><td></td></tr>
-<tr><th>Sep. 2nd 2024 Overall</th><td>5,645</td><td>3,188</td><td>231</td><td>127</td><td></td></tr>
+<tr><th>Sep 2024 Overall</th><td>5,645</td><td>3,188</td><td>231</td><td>127</td><td></td></tr>
 </tbody>
 </table>
 <button class="button" id="csvSeptConsumerBtn">Download CSV</button>
@@ -410,11 +413,11 @@ Tools
 
 <div class="grid-2" style="margin-top:10px">
 <div>
-<p class="sub">HR Consumer vs status by Market</p>
+<p class="sub">HR Consumer VS status by Market</p>
 <canvas id="septConsumerChart" height="220"></canvas>
 </div>
 <div>
-<p class="sub">HR Centurion by Market</p>
+<p class="sub">HR Centurion VS status by Market</p>
 <canvas id="septCenturionChart" height="220"></canvas>
 </div>
 </div>
