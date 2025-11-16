@@ -990,6 +990,244 @@ Maintained by Germany & Austria Consumer HR • Outbound Calls program
 
 <script>
 window.addEventListener('DOMContentLoaded', () => {
+	<script>
+/* =======================
+   Monthly tables & charts
+   ======================= */
+(function() {
+	// Paleta y helpers coherentes con tu página
+	const css = getComputedStyle(document.documentElement);
+	const cIndigo  = css.getPropertyValue('--primary-2').trim() || '#6366f1';
+	const cSky     = css.getPropertyValue('--primary').trim()   || '#0ea5e9';
+	const cEmerald = css.getPropertyValue('--accent').trim()    || '#10b981';
+	const cMuted   = '#94a3b8';
+	const axisColor = () => '#a8b1c7';
+	const gridColor = (light=0.12) => `rgba(148,163,184,${light})`;
+
+	// Normaliza nombres de mes de la tabla Overview -> anchors
+	const monthKeyMap = {
+		'FEB':   'feb',
+		'MARCH': 'mar',
+		'APRIL': 'apr',
+		'MAI':   'may',
+		'JUNI':  'jun',
+		'JULI':  'jul',
+		'AUGUST':'aug',
+		'SEP':   'sep',
+		'OKT':   'oct',
+		'NOV':   'nov',
+		'DEC':   'dec'
+	};
+
+	function parseOverviewTable() {
+		const tbl = document.getElementById('overview2025Table');
+		if (!tbl) return [];
+		const rows = [...tbl.querySelectorAll('tbody tr')].map(tr => {
+			const tds = [...tr.cells].map(td => td.innerText.trim().replace(',', '.'));
+			const monthRaw = (tds[0] || '').toUpperCase();
+			const monthKey = monthKeyMap[monthRaw] || null;
+			return {
+				monthLabel: monthRaw,
+				monthKey,
+				date: tds[1] || '',
+				total: +tds[2] || 0,
+				de: +tds[3] || 0,
+				at: +tds[4] || 0,
+				creditCancelled: +tds[5] || 0,
+				success: +tds[6] || 0,
+				notSuccess: +tds[7] || 0,
+				other: +tds[8] || 0,
+				dedup: +tds[9] || 0,
+				successRateOB: tds[10] ? parseFloat(tds[10]) : null,
+				successRateMonth: tds[11] ? parseFloat(tds[11]) : null
+			};
+		});
+		return rows.filter(r => !!r.monthKey);
+	}
+
+	function groupByMonth(rows) {
+		const groups = {};
+		rows.forEach(r => {
+			if (!groups[r.monthKey]) groups[r.monthKey] = [];
+			groups[r.monthKey].push(r);
+		});
+		return groups;
+	}
+
+	function ensureMonthContainer(sec) {
+		// Crea contenedor, tabla y canvas solo si no existen
+		let container = sec.querySelector('.month-content');
+		if (!container) {
+			container = document.createElement('div');
+			container.className = 'month-content';
+			sec.appendChild(container);
+		}
+		let table = container.querySelector('table');
+		if (!table) {
+			table = document.createElement('table');
+			table.innerHTML = `
+				<caption>Outbound Calls — detalle del mes</caption>
+				<thead>
+					<tr>
+						<th>Dates</th>
+						<th>Total Contact</th>
+						<th>Germany</th>
+						<th>Austria</th>
+						<th>Credit active, card cancelled</th>
+						<th>Successful</th>
+						<th>Not successful</th>
+						<th>Other - not successful</th>
+						<th>Deduplicates</th>
+						<th>Success rate OB %</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			`.trim();
+			container.appendChild(table);
+		}
+		let chartWrap = container.querySelector('.month-chart-wrap');
+		if (!chartWrap) {
+			chartWrap = document.createElement('div');
+			chartWrap.className = 'month-chart-wrap';
+			const p = document.createElement('p');
+			p.className = 'sub';
+			p.textContent = 'Resultados del mes';
+			const canvas = document.createElement('canvas');
+			canvas.height = 220;
+			canvas.className = 'month-chart';
+			chartWrap.appendChild(p);
+			chartWrap.appendChild(canvas);
+			container.appendChild(chartWrap);
+		}
+		return { container, table, canvas: chartWrap.querySelector('canvas') };
+	}
+
+	function fillMonthTable(table, rows) {
+		const tb = table.querySelector('tbody');
+		tb.innerHTML = '';
+		rows.forEach(r => {
+			const tr = document.createElement('tr');
+			tr.innerHTML = `
+				<td>${r.date}</td>
+				<td>${r.total}</td>
+				<td>${r.de}</td>
+				<td>${r.at}</td>
+				<td>${r.creditCancelled}</td>
+				<td>${r.success}</td>
+				<td>${r.notSuccess}</td>
+				<td>${r.other}</td>
+				<td>${r.dedup}</td>
+				<td>${r.successRateOB ?? ''}</td>
+			`.trim();
+			tb.appendChild(tr);
+		});
+	}
+
+	function buildMonthChart(canvas, rows) {
+		if (!window.Chart || !canvas) return null;
+
+		const labels = rows.map(r => r.date || r.monthLabel);
+		const dsSuccess = rows.map(r => r.success);
+		const dsNotSuccess = rows.map(r => r.notSuccess);
+		const dsOther = rows.map(r => r.other);
+		const dsRate = rows.map(r => r.successRateOB);
+
+		// Destruye chart anterior si lo hubiera
+		if (canvas._chartInstance && typeof canvas._chartInstance.destroy === 'function') {
+			canvas._chartInstance.destroy();
+		}
+
+		const chart = new Chart(canvas, {
+			type: 'bar',
+			data: {
+				labels,
+				datasets: [
+					{
+						type: 'bar',
+						label: 'Successful',
+						data: dsSuccess,
+						backgroundColor: 'rgba(16,185,129,.65)',
+						borderColor: cEmerald,
+						borderWidth: 1,
+						stack: 'result'
+					},
+					{
+						type: 'bar',
+						label: 'Not successful',
+						data: dsNotSuccess,
+						backgroundColor: 'rgba(14,165,233,.65)',
+						borderColor: cSky,
+						borderWidth: 1,
+						stack: 'result'
+					},
+					{
+						type: 'bar',
+						label: 'Other not successful',
+						data: dsOther,
+						backgroundColor: 'rgba(148,163,184,.45)',
+						borderColor: cMuted,
+						borderWidth: 1,
+						stack: 'result'
+					},
+					{
+						type: 'line',
+						label: 'Success rate OB %',
+						data: dsRate,
+						yAxisID: 'y2',
+						borderColor: cIndigo,
+						backgroundColor: 'rgba(99,102,241,.18)',
+						fill: false,
+						tension: .35,
+						borderWidth: 3,
+						pointRadius: 2
+					}
+				]
+			},
+			options: {
+				plugins: {
+					legend: { position: 'bottom', labels: { color: '#cbd5e1' } },
+					tooltip: { mode: 'index', intersect: false }
+				},
+				scales: {
+					x: { stacked: true, ticks: { color: axisColor() }, grid: { color: gridColor(.15) } },
+					y: { stacked: true, beginAtZero: true, ticks: { color: axisColor() }, grid: { color: gridColor(.12) } },
+					y2: { position: 'right', ticks: { color: axisColor(), callback: v => v + '%' }, grid: { drawOnChartArea: false } }
+				}
+			}
+		});
+		canvas._chartInstance = chart;
+		return chart;
+	}
+
+	function renderAllMonths() {
+		const rows = parseOverviewTable();
+		if (!rows.length) return;
+		const byMonth = groupByMonth(rows);
+
+		// Para cada anchor existente, si hay datos, renderizar
+		Object.keys(monthKeyMap).forEach(labelKey => {
+			const key = monthKeyMap[labelKey];
+			const sec = document.getElementById(`month-${key}`);
+			if (!sec) return;
+			const data = byMonth[key] || [];
+			if (!data.length) {
+				// Si no hay datos, no renderiza nada para ese mes
+				return;
+			}
+			const { table, canvas } = ensureMonthContainer(sec);
+			fillMonthTable(table, data);
+			buildMonthChart(canvas, data);
+		});
+	}
+
+	// Ejecuta al cargar el DOM. Si tu otro script también lo hace, no hay conflicto.
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', renderAllMonths);
+	} else {
+		renderAllMonths();
+	}
+})();
+</script>
 /* Tools dropdown */
 const dd = document.getElementById('toolsDropdown');
 const btn = document.getElementById('toolsBtn');
