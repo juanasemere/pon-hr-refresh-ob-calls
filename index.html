@@ -348,65 +348,162 @@ Stage Aug 2025
 </section>
  
 <!-- STAGE SEPT 2024 -->
-<section id="stage-sept-2024" class="card" style="display:none">
-<h2 class="section-title">PON HR Refresh – September 2024 status</h2>
-<p class="sub">Key Facts</p>
-<ul class="ul-clean li-emoji">
-<li>High Risk portfolio: approx. 5.600 AIF YTD (DE: 5k / AT: 0,6k)</li>
-<li>120-day KYC HR Refresh journey with risk of cancellation if account not fully refreshed</li>
-<li>Since 03/2024: BAU. 56% refreshed, 24% in progress, 20% to be contacted</li>
-</ul>
+<section id="stage-sept-2024" class="card" style="display:block">
+  <h2 class="section-title">PON HR Refresh – September 2024 status</h2>
+  <p class="sub">Key Facts</p>
+  <ul class="ul-clean li-emoji">
+    <li>High Risk portfolio: approx. 5.600 AIF YTD (DE: 5k / AT: 0,6k)</li>
+    <li>120-day KYC HR Refresh journey with risk of cancellation if account not fully refreshed</li>
+    <li>Since 03/2024: BAU. 56% refreshed, 24% in progress, 20% to be contacted</li>
+  </ul>
 
-<table>
-<caption>HR Consumer Refresh – Sept 2nd 2024</caption>
-<thead>
-<tr>
-<th></th>
-<th>HR Consumer Refresh</th>
-<th>HR CM volume</th>
-<th>HR CM refreshed</th>
-<th>CMs currently suspended</th>
-<th>HR CM KYC cancelled</th>
-</tr>
-</thead>
-<tbody>
-<tr><th>Austria</th><td>575</td><td>365</td><td>14</td><td>14</td><td></td></tr>
-<tr><th>Germany</th><td>5,070</td><td>2,823</td><td>217</td><td>113</td><td></td></tr>
-<tr><th>Sep. 2nd 2024 Overall</th><td>5,645</td><td>3,188</td><td>231</td><td>127</td><td></td></tr>
-</tbody>
-</table>
-<button class="button" id="csvSeptConsumerBtn">Download CSV</button>
+  <table>
+    <caption>HR Consumer Refresh – Sept 2nd 2024</caption>
+    <thead>
+      <tr>
+        <th></th>
+        <th>HR Consumer Refresh</th>
+        <th>HR CM volume</th>
+        <th>HR CM refreshed</th>
+        <th>CMs currently suspended</th>
+        <th>HR CM KYC cancelled</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th>Austria</th><td>575</td><td>365</td><td>14</td><td>14</td><td></td></tr>
+      <tr><th>Germany</th><td>5,070</td><td>2,823</td><td>217</td><td>113</td><td></td></tr>
+      <tr><th>Sep. 2nd 2024 Overall</th><td>5,645</td><td>3,188</td><td>231</td><td>127</td><td></td></tr>
+    </tbody>
+  </table>
+  <button class="button" id="csvSeptConsumerBtn">Download CSV</button>
 
-<table>
-<caption>HR Centurion – Sept 2024</caption>
-<thead>
-<tr>
-<th></th>
-<th>HR Centurion volume</th>
-<th>Centurion refreshed</th>
-<th>Centurion suspended</th>
-<th>Centurion KYC cancelled</th>
-</tr>
-</thead>
-<tbody>
-<tr><th>Austria</th><td>130</td><td>90</td><td>2</td><td>0</td></tr>
-<tr><th>Germany</th><td>385</td><td>241</td><td>3</td><td>2</td></tr>
-<tr><th>Overall</th><td>515</td><td>331</td><td>5</td><td>2</td></tr>
-</tbody>
-</table>
-<button class="button" id="csvSeptCenturionBtn">Download CSV</button>
+  <table>
+    <caption>HR Centurion – Sept 2024</caption>
+    <thead>
+      <tr>
+        <th></th>
+        <th>HR Centurion volume</th>
+        <th>Centurion refreshed</th>
+        <th>Centurion suspended</th>
+        <th>Centurion KYC cancelled</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th>Austria</th><td>130</td><td>90</td><td>2</td><td>0</td></tr>
+      <tr><th>Germany</th><td>385</td><td>241</td><td>3</td><td>2</td></tr>
+      <tr><th>Overall</th><td>515</td><td>331</td><td>5</td><td>2</td></tr>
+    </tbody>
+  </table>
+  <button class="button" id="csvSeptCenturionBtn">Download CSV</button>
 
-<div class="grid-2" style="margin-top:10px">
-<div>
-<p class="sub">HR Consumer vs status by Market</p>
-<canvas id="septConsumerChart" height="220"></canvas>
-</div>
-<div>
-<p class="sub">HR Centurion by Market</p>
-<canvas id="septCenturionChart" height="220"></canvas>
-</div>
-</div>
+  <div class="grid-2" style="margin-top:10px">
+    <div>
+      <p class="sub">HR Consumer vs status by Market</p>
+      <canvas id="septConsumerChart" height="220"></canvas>
+    </div>
+    <div>
+      <p class="sub">HR Centurion by Market</p>
+      <canvas id="septCenturionChart" height="220"></canvas>
+    </div>
+  </div>
 </section>
+
+<!-- Chart.js CDN (usar uno que ya tengas, o este) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" integrity="sha256-eYvZrSLd8+q4MN7p6bTt24Fcf1lO6q8o3iNf8W0S0GY=" crossorigin="anonymous"></script>
+
+<script>
+(function () {
+  // Utilidad: convierte "5,070" -> 5070
+  const toNumber = (v) => {
+    if (v == null || v === '') return 0;
+    if (typeof v === 'number') return v;
+    return Number(String(v).replace(/\./g, '').replace(/,/g, '')); // por si hay punto o coma como separador
+  };
+
+  // Datos limpios (desde las tablas de arriba)
+  const consumer = {
+    labels: ['Austria', 'Germany', 'Overall (Sep 2)'],
+    hrConsumerRefresh: [toNumber('575'), toNumber('5,070'), toNumber('5,645')],
+    hrCmVolume: [toNumber('365'), toNumber('2,823'), toNumber('3,188')],
+    hrCmRefreshed: [toNumber('14'), toNumber('217'), toNumber('231')],
+    cmSuspended: [toNumber('14'), toNumber('113'), toNumber('127')],
+    // KYC cancelled viene vacío en la tabla
+    hrCmKycCancelled: [0, 0, 0]
+  };
+
+  const centurion = {
+    labels: ['Austria', 'Germany', 'Overall'],
+    volume: [toNumber('130'), toNumber('385'), toNumber('515')],
+    refreshed: [toNumber('90'), toNumber('241'), toNumber('331')],
+    suspended: [toNumber('2'), toNumber('3'), toNumber('5')],
+    cancelled: [toNumber('0'), toNumber('2'), toNumber('2')]
+  };
+
+  // Aseguramos que la sección esté visible antes de crear charts
+  const section = document.getElementById('stage-sept-2024');
+  if (section && getComputedStyle(section).display === 'none') {
+    section.style.display = 'block';
+  }
+
+  // Chart 1: HR Consumer vs status by Market (apilado)
+  const ctx1 = document.getElementById('septConsumerChart');
+  if (ctx1 && window.Chart) {
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: consumer.labels,
+        datasets: [
+          { label: 'HR CM volume', data: consumer.hrCmVolume, backgroundColor: '#6baed6' },
+          { label: 'HR CM refreshed', data: consumer.hrCmRefreshed, backgroundColor: '#31a354' },
+          { label: 'CMs suspended', data: consumer.cmSuspended, backgroundColor: '#e6550d' }
+          // Si querés mostrar "HR Consumer Refresh" como serie aparte, descomentá:
+          // { label: 'HR Consumer Refresh', data: consumer.hrConsumerRefresh, backgroundColor: '#9e9ac8' }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          title: { display: true, text: 'HR Consumer vs Status by Market' },
+          tooltip: { mode: 'index', intersect: false }
+        },
+        scales: {
+          x: { stacked: true },
+          y: { stacked: true, beginAtZero: true }
+        }
+      }
+    });
+  }
+
+  // Chart 2: HR Centurion by Market
+  const ctx2 = document.getElementById('septCenturionChart');
+  if (ctx2 && window.Chart) {
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: centurion.labels,
+        datasets: [
+          { label: 'Volume', data: centurion.volume, backgroundColor: '#9ecae1' },
+          { label: 'Refreshed', data: centurion.refreshed, backgroundColor: '#74c476' },
+          { label: 'Suspended', data: centurion.suspended, backgroundColor: '#fd8d3c' },
+          { label: 'KYC cancelled', data: centurion.cancelled, backgroundColor: '#de2d26' }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' },
+          title: { display: true, text: 'HR Centurion by Market' },
+          tooltip: { mode: 'index', intersect: false }
+        },
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  }
+})();
+</script>
 
 <!-- STAGE MAY 2025 -->
 <section id="stage-may-2025" class="card" style="display:none">
