@@ -227,6 +227,11 @@ Tools
 		</button>
 	</div>
 </div>
+	<!-- NUEVO: botón independiente Year-End -->
+	<button type="button" class="button" id="btnYearEndTop" aria-controls="stage-year-end" aria-expanded="false">
+		Year-End Results Summary
+	</button>
+</div>
 </header>
 
 <main>
@@ -720,6 +725,75 @@ Tools
 </div>
  </div>
 </section>
+	<!-- NUEVO: Year-End Results Summary -->
+<section id="stage-year-end" class="card" style="display:none">
+	<h2 class="section-title">Year-End Results Summary</h2>
+	<p class="sub">Resultados de OB Calls por fecha. Tabla completa y gráfico interactivo.</p>
+
+	<table id="yearEndTable">
+		<caption>Year-End OB Calls – Tabla detallada</caption>
+		<thead>
+			<tr>
+				<th>Month • Date</th>
+				<th>Total Contact</th>
+				<th>Germany</th>
+				<th>Austria</th>
+				<th>Credit active, card cancelled</th>
+				<th>Successful (incl. forwarded)</th>
+				<th>Not successful</th>
+				<th>Other – not successful</th>
+				<th>Deduplicates</th>
+				<th>Success rate OB %</th>
+				<th>Success rate by month %</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><th scope="row">FEB • 18-feb</th><td>15</td><td>14</td><td>1</td><td>4</td><td>4</td><td>7</td><td>—</td><td>0</td><td>36.36</td><td>36.36</td></tr>
+
+			<tr><th scope="row">MAR • 5-mar</th><td>43</td><td>40</td><td>3</td><td>7</td><td>14</td><td>22</td><td>—</td><td>0</td><td>38.89</td><td>41.48</td></tr>
+			<tr><th scope="row">MAR • 21-mar</th><td>46</td><td>43</td><td>3</td><td>6</td><td>12</td><td>17</td><td>—</td><td>11</td><td>30.00</td><td></td></tr>
+			<tr><th scope="row">MAR • 28-mar</th><td>50</td><td>43</td><td>7</td><td>5</td><td>25</td><td>20</td><td>—</td><td>0</td><td>55.56</td><td></td></tr>
+
+			<tr><th scope="row">APR • 14-abr</th><td>25</td><td>23</td><td>2</td><td>7</td><td>9</td><td>6</td><td>3</td><td>0</td><td>50.00</td><td>52.50</td></tr>
+			<tr><th scope="row">APR • 24-abr</th><td>40</td><td>34</td><td>6</td><td>0</td><td>22</td><td>18</td><td>0</td><td>0</td><td>55.00</td><td></td></tr>
+
+			<tr><th scope="row">MAI • 08-mai</th><td>54</td><td>41</td><td>13</td><td>1</td><td>29</td><td>21</td><td>3</td><td>0</td><td>54.72</td><td>57.16</td></tr>
+			<tr><th scope="row">MAI • 15-mai</th><td>22</td><td>19</td><td>3</td><td>4</td><td>8</td><td>10</td><td>0</td><td>0</td><td>44.44</td><td></td></tr>
+			<tr><th scope="row">MAI • 23-mai</th><td>69</td><td>63</td><td>6</td><td>4</td><td>47</td><td>17</td><td>1</td><td>0</td><td>72.31</td><td></td></tr>
+
+			<tr><th scope="row">JUN • 01-jun</th><td>63</td><td>55</td><td>8</td><td>0</td><td>44</td><td>18</td><td>1</td><td>0</td><td>69.84</td><td>66.74</td></tr>
+			<tr><th scope="row">JUN • 06-jun</th><td>16</td><td>16</td><td>0</td><td>0</td><td>8</td><td>7</td><td>1</td><td>0</td><td>50.00</td><td></td></tr>
+			<tr><th scope="row">JUN • 15-jun</th><td>82</td><td>74</td><td>8</td><td>0</td><td>61</td><td>20</td><td>1</td><td>0</td><td>74.39</td><td></td></tr>
+			<tr><th scope="row">JUN • 23-jun</th><td>57</td><td>53</td><td>4</td><td>2</td><td>40</td><td>14</td><td>0</td><td>1</td><td>72.73</td><td></td></tr>
+
+			<tr><th scope="row">JUL • 07-jul</th><td>77</td><td>69</td><td>8</td><td>0</td><td>51</td><td>19</td><td>7</td><td>0</td><td>66.23</td><td>63.43</td></tr>
+			<tr><th scope="row">JUL • 14-jul</th><td>54</td><td>49</td><td>5</td><td>0</td><td>36</td><td>13</td><td>5</td><td>0</td><td>66.67</td><td></td></tr>
+			<tr><th scope="row">JUL • 21-jul</th><td>24</td><td>18</td><td>6</td><td>0</td><td>13</td><td>7</td><td>3</td><td>1</td><td>54.17</td><td></td></tr>
+			<tr><th scope="row">JUL • 28-jul</th><td>48</td><td>46</td><td>2</td><td>0</td><td>32</td><td>16</td><td>0</td><td>0</td><td>66.67</td><td></td></tr>
+
+			<tr><th scope="row">AUG • 04-ago</th><td>42</td><td>39</td><td>3</td><td>1</td><td>27</td><td>13</td><td>1</td><td>0</td><td>65.85</td><td>61.06</td></tr>
+			<tr><th scope="row">AUG • 11-ago</th><td>16</td><td>14</td><td>1</td><td>1</td><td>9</td><td>6</td><td>0</td><td>0</td><td>60.00</td><td></td></tr>
+			<tr><th scope="row">AUG • 18-ago</th><td>57</td><td>53</td><td>4</td><td>0</td><td>31</td><td>23</td><td>3</td><td>0</td><td>54.39</td><td></td></tr>
+		</tbody>
+	</table>
+
+	<div class="actions" style="margin-top:10px">
+		<button class="button" id="csvYearEndBtn">Download CSV</button>
+	</div>
+
+	<div class="grid-2" style="margin-top:12px">
+		<div>
+			<p class="sub"><b>Success rate</b> por fecha</p>
+			<canvas id="yearEndChart" height="220"></canvas>
+			<p class="muted pin">Líneas: OB % y la media del mes donde existe. Podés ocultar series desde la leyenda.</p>
+		</div>
+		<div>
+			<p class="sub">Contactos por país</p>
+			<canvas id="yearEndByMarketChart" height="220"></canvas>
+			<p class="muted pin">Barras apiladas con Germany y Austria por fecha.</p>
+		</div>
+	</div>
+</section>
 </main>
 
 <div class="footer">
@@ -754,20 +828,41 @@ const bMay = document.getElementById('btnStageMay');
 const bAug = document.getElementById('btnStageAug');
 
 function hideAllStages(){
-[sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
-[bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
+	[sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
+	[bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
 }
 function toggleStage(sectionEl, buttonEl){
-const willOpen = sectionEl.style.display === 'none';
-hideAllStages();
-sectionEl.style.display = willOpen ? '' : 'none';
-buttonEl.setAttribute('aria-expanded', String(willOpen));
-if (willOpen) window.scrollTo({ top: sectionEl.offsetTop - 16, behavior: 'smooth' });
+	const willOpen = sectionEl.style.display === 'none';
+	hideAllStages();
+	sectionEl.style.display = willOpen ? '' : 'none';
+	buttonEl.setAttribute('aria-expanded', String(willOpen));
+	if (willOpen) window.scrollTo({ top: sectionEl.offsetTop - 16, behavior: 'smooth' });
 }
 hideAllStages();
 bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
 bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
 bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
+
+/* NUEVO: Year-End botón superior + sección */
+const sYearEnd = document.getElementById('stage-year-end');
+const bYearEndTop = document.getElementById('btnYearEndTop');
+
+// Extiende hideAllStages para incluir Year-End
+const _hideAllStagesOrig = hideAllStages;
+function hideAllStages(){
+	_hideAllStagesOrig();
+	if (sYearEnd) sYearEnd.style.display = 'none';
+	if (bYearEndTop) bYearEndTop.setAttribute('aria-expanded','false');
+}
+
+// Listener del botón Year-End
+bYearEndTop?.addEventListener('click', () => {
+	const willOpen = sYearEnd.style.display === 'none';
+	hideAllStages();
+	sYearEnd.style.display = willOpen ? '' : 'none';
+	bYearEndTop.setAttribute('aria-expanded', String(willOpen));
+	if (willOpen) window.scrollTo({ top: sYearEnd.offsetTop - 16, behavior: 'smooth' });
+});
 
 /* Charts palette */
 const css = getComputedStyle(document.documentElement);
@@ -977,15 +1072,116 @@ augConsumerEl,
 ) : null;
 
 const chartAugCenturion = augCenturionEl && window.Chart ? stackedBar(
-augCenturionEl,
-['Austria','Germany','Overall'],
-[
-{ label:'HR Centurion volume', data:[114,465,579], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-{ label:'Centurion refreshed', data:[72,400,472], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-{ label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
-{ label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
-]
+	augCenturionEl,
+	['Austria','Germany','Overall'],
+	[
+		{ label:'HR Centurion volume', data:[114,465,579], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+		{ label:'Centurion refreshed', data:[72,400,472], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+		{ label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+		{ label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+	]
 ) : null;
+
+// === NUEVO: Year-End charts y datos (Paso 4) - pegar aquí ===
+/* Year-End labels y series */
+const yeLabels = [
+	'18-feb',
+	'5-mar','21-mar','28-mar',
+	'14-abr','24-abr',
+	'08-mai','15-mai','23-mai',
+	'01-jun','06-jun','15-jun','23-jun',
+	'07-jul','14-jul','21-jul','28-jul',
+	'04-ago','11-ago','18-ago'
+];
+
+const yeSuccessOB = [
+	36.36,
+	38.89, 30.00, 55.56,
+	50.00, 55.00,
+	54.72, 44.44, 72.31,
+	69.84, 50.00, 74.39, 72.73,
+	66.23, 66.67, 54.17, 66.67,
+	65.85, 60.00, 54.39
+];
+
+const monthAveragesMap = {
+	'18-feb': 36.36,
+	'5-mar': 41.48,
+	'14-abr': 52.50,
+	'08-mai': 57.16,
+	'01-jun': 66.74,
+	'07-jul': 63.43,
+	'04-ago': 61.06
+};
+const yeSuccessMonthly = yeLabels.map(l => monthAveragesMap[l] ?? null);
+
+const yeGermany = [
+	14,
+	40,43,43,
+	23,34,
+	41,19,63,
+	55,16,74,53,
+	69,49,18,46,
+	39,14,53
+];
+const yeAustria = [
+	1,
+	3,3,7,
+	2,6,
+	13,3,6,
+	8,0,8,4,
+	8,5,6,2,
+	3,1,4
+];
+
+const yearEndEl = document.getElementById('yearEndChart');
+const yearEndByMarketEl = document.getElementById('yearEndByMarketChart');
+
+const chartYearEnd = yearEndEl && window.Chart ? new Chart(yearEndEl, {
+	type: 'line',
+	data: {
+		labels: yeLabels,
+		datasets: [
+			{ label:'Success rate OB %', data: yeSuccessOB, borderColor: cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+			{ label:'Success rate by month %', data: yeSuccessMonthly, borderColor: cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2, spanGaps:true }
+		]
+	},
+	options: {
+		plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+		scales:{
+			x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+			y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } }
+		}
+	}
+}) : null;
+
+const chartYearEndByMarket = yearEndByMarketEl && window.Chart ? new Chart(yearEndByMarketEl, {
+	type: 'bar',
+	data: {
+		labels: yeLabels,
+		datasets: [
+			{ label:'Germany', data: yeGermany, backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1, stack:'ctry' },
+			{ label:'Austria', data: yeAustria, backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1, stack:'ctry' }
+		]
+	},
+	options: {
+		plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+		scales:{
+			x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+			y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } }
+		}
+	}
+}) : null;
+
+// Export CSV Year-End
+document.getElementById('csvYearEndBtn')?.addEventListener('click', () => {
+	if (chartYearEnd) exportChartToCSV(chartYearEnd, 'year-end-success-visible.csv');
+	else exportTableToCSV(document.getElementById('yearEndTable'), 'year-end-table.csv');
+});
+// === FIN Year-End (Paso 4) ===
+
+/* CSV listeners */
+document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
 
 /* CSV listeners */
 document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
