@@ -215,10 +215,7 @@ Tools
       <span>Key Details</span>
       <small>First block</small>
     </a>
-
-		<button type="button" class="menu-item" id="btnYearEnd" aria-controls="stage-year-end" aria-expanded="false">
-	       <span>Year-End Results Summary</span>
-        </button>
+		
 		<button type="button" class="menu-item" id="btnStageSept" aria-controls="stage-sept-2024" aria-expanded="false">
 			<span>Stage Sept 2024</span>
 		</button>
@@ -228,6 +225,9 @@ Tools
 		<button type="button" class="menu-item" id="btnStageAug" aria-controls="stage-aug-2025" aria-expanded="false">
 			<span>Stage Aug 2025</span>
 		</button>
+		<button type="button" class="menu-item" id="btnYearEnd" aria-controls="year-end-2025" aria-expanded="false">
+            <span>Year-End Results Summary</span>
+        </button>
 	</div>
 </div>
 </header>
@@ -723,109 +723,35 @@ Tools
 </div>
  </div>
 </section>
+<section id="year-end-2025" class="card" style="display:none">
 
-	<section id="stage-year-end" class="card" style="display:none">
-	<h2 class="section-title">Year-End Results Summary</h2>
-	<p class="sub">Detalle por fecha y tasas de éxito por mes</p>
+<h2 class="section-title">Year-End Results Summary</h2>
 
-	<table>
-		<caption>Outbound Calls – Year-End Summary</caption>
-		<thead>
-			<tr>
-				<th>Month</th>
-				<th>Date</th>
-				<th>Total Contact</th>
-				<th>Germany</th>
-				<th>Austria</th>
-				<th>Credit active, card cancelled</th>
-				<th>Successful (incl. forwarded)</th>
-				<th>Not successful</th>
-				<th>Other – not successful</th>
-				<th>Deduplicates</th>
-				<th>Success rate OB %</th>
-				<th>Success rate by month %</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- FEB -->
-			<tr>
-				<td>FEB</td><td>feb-18</td><td>15</td><td>14</td><td>1</td><td>4</td><td>4</td><td>7</td><td>—</td><td>0</td><td>36.36</td><td>36.36</td>
-			</tr>
-			<!-- MARCH -->
-			<tr>
-				<td>MARCH</td><td>5-mar</td><td>43</td><td>40</td><td>3</td><td>7</td><td>14</td><td>22</td><td>—</td><td>0</td><td>38.89</td><td>41.48</td>
-			</tr>
-			<tr>
-				<td>MARCH</td><td>21-mar</td><td>46</td><td>43</td><td>3</td><td>6</td><td>12</td><td>17</td><td>—</td><td>11</td><td>30.00</td><td></td>
-			</tr>
-			<tr>
-				<td>MARCH</td><td>28-mar</td><td>50</td><td>43</td><td>7</td><td>5</td><td>25</td><td>20</td><td>—</td><td>0</td><td>55.56</td><td></td>
-			</tr>
-			<!-- APRIL -->
-			<tr>
-				<td>APRIL</td><td>14-abr</td><td>25</td><td>23</td><td>2</td><td>7</td><td>9</td><td>6</td><td>3</td><td>0</td><td>50.00</td><td>52.50</td>
-			</tr>
-			<tr>
-				<td>APRIL</td><td>24-abr</td><td>40</td><td>34</td><td>6</td><td>0</td><td>22</td><td>18</td><td>0</td><td>0</td><td>55.00</td><td></td>
-			</tr>
-			<!-- MAI -->
-			<tr>
-				<td>MAI</td><td>08-Mai</td><td>54</td><td>41</td><td>13</td><td>1</td><td>29</td><td>21</td><td>3</td><td>0</td><td>54.72</td><td>57.16</td>
-			</tr>
-			<tr>
-				<td>MAI</td><td>15-Mai</td><td>22</td><td>19</td><td>3</td><td>4</td><td>8</td><td>10</td><td>0</td><td>0</td><td>44.44</td><td></td>
-			</tr>
-			<tr>
-				<td>MAI</td><td>23-Mai</td><td>69</td><td>63</td><td>6</td><td>4</td><td>47</td><td>17</td><td>1</td><td>0</td><td>72.31</td><td></td>
-			</tr>
-			<!-- JUNI -->
-			<tr>
-				<td>JUNI</td><td>1-jun</td><td>63</td><td>55</td><td>8</td><td>0</td><td>44</td><td>18</td><td>1</td><td>0</td><td>69.84</td><td>66.74</td>
-			</tr>
-			<tr>
-				<td>JUNI</td><td>06-Juni</td><td>16</td><td>16</td><td>0</td><td>0</td><td>8</td><td>7</td><td>1</td><td>0</td><td>50.00</td><td></td>
-			</tr>
-			<tr>
-				<td>JUNI</td><td>15-Juni</td><td>82</td><td>74</td><td>8</td><td>0</td><td>61</td><td>20</td><td>1</td><td>0</td><td>74.39</td><td></td>
-			</tr>
-			<tr>
-				<td>JUNI</td><td>23-Juni</td><td>57</td><td>53</td><td>4</td><td>2</td><td>40</td><td>14</td><td>0</td><td>1</td><td>72.73</td><td></td>
-			</tr>
-			<!-- JULI -->
-			<tr>
-				<td>JULI</td><td>07-Juli</td><td>77</td><td>69</td><td>8</td><td>0</td><td>51</td><td>19</td><td>7</td><td>0</td><td>66.23</td><td>63.43</td>
-			</tr>
-			<tr>
-				<td>JULI</td><td>14-Juli</td><td>54</td><td>49</td><td>5</td><td>0</td><td>36</td><td>13</td><td>5</td><td>0</td><td>66.67</td><td></td>
-			</tr>
-			<tr>
-				<td>JULI</td><td>21-Juli</td><td>24</td><td>18</td><td>6</td><td>0</td><td>13</td><td>7</td><td>3</td><td>1</td><td>54.17</td><td></td>
-			</tr>
-			<tr>
-				<td>JULI</td><td>28-Juli</td><td>48</td><td>46</td><td>2</td><td>0</td><td>32</td><td>16</td><td>0</td><td>0</td><td>66.67</td><td></td>
-			</tr>
-			<!-- AUGUST -->
-			<tr>
-				<td>AUGUST</td><td>4-ago</td><td>42</td><td>39</td><td>3</td><td>1</td><td>27</td><td>13</td><td>1</td><td>0</td><td>65.85</td><td>61.06</td>
-			</tr>
-			<tr>
-				<td>AUGUST</td><td>11-ago</td><td>16</td><td>14</td><td>1</td><td>1</td><td>9</td><td>6</td><td>0</td><td>0</td><td>60.00</td><td></td>
-			</tr>
-			<tr>
-				<td>AUGUST</td><td>18-ago</td><td>57</td><td>53</td><td>4</td><td>0</td><td>31</td><td>23</td><td>3</td><td>0</td><td>54.39</td><td></td>
-			</tr>
-		</tbody>
-	</table>
+<p class="sub">Resultados de OB Calls (Febrero–Noviembre)</p>
 
-	<button class="button" id="csvYearEndBtn">Download CSV</button>
+| Fecha | Total Contact | Germany | Austria | Credit active, card cancelled | Successful | Not successful | Other – not successful | Deduplicates | Success rate OB % | Success rate by month % |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
-	<div class="grid-2" style="margin-top:12px">
-		<div>
-			<p class="sub">Success rate by month %</p>
-			<canvas id="yearEndChart" height="220"></canvas>
-			<p class="muted pin">Evolución de la tasa de éxito mensual y volumen total de contactos por mes.</p>
-		</div>
-	</div>
+<div class="actions" style="margin-top:10px">
+
+<button class="button" id="csvYearEndBtn">Download CSV</button>
+
+</div>
+
+<div class="grid-2" style="margin-top:12px">
+
+<div>
+
+<p class="sub">Éxitos vs No éxitos por fecha</p>
+
+<canvas id="yearEndChart" height="220"></canvas>
+
+<p class="muted pin">Barras apiladas por fecha y línea de tasa de éxito OB %.</p>
+
+</div>
+
+</div>
+
 </section>
 </main>
 
@@ -859,12 +785,21 @@ const sAug = document.getElementById('stage-aug-2025');
 const bSept = document.getElementById('btnStageSept');
 const bMay = document.getElementById('btnStageMay');
 const bAug = document.getElementById('btnStageAug');
-const sYear = document.getElementById('stage-year-end');
+const sYear = document.getElementById('year-end-2025');
 const bYear = document.getElementById('btnYearEnd');
 
-	function hideAllStages(){
+function hideAllStages(){
 [sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
 [bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
+}
+// Ocultar Year-End también
+
+if (sYear) [sYear.style](http://sYear.style).display = 'none';
+
+if (bYear) bYear.setAttribute('aria-expanded','false');
+
+Abajo:
+
 }
 function toggleStage(sectionEl, buttonEl){
 const willOpen = sectionEl.style.display === 'none';
@@ -877,7 +812,25 @@ hideAllStages();
 bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
 bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
 bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
-bYear?.addEventListener('click', () => toggleStage(sYear, bYear));
+bYear?.addEventListener('click', () => {
+
+const willOpen = [sYear.style](http://sYear.style).display === 'none';
+
+hideAllStages();
+
+[sYear.style](http://sYear.style).display = willOpen ? '' : 'none';
+
+bYear.setAttribute('aria-expanded', String(willOpen));
+
+if (willOpen) {
+
+window.scrollTo({ top: sYear.offsetTop - 16, behavior: 'smooth' });
+
+requestAnimationFrame(() => ensureYearEndRendered());
+
+}
+
+});
 	
 /* Charts palette */
 const css = getComputedStyle(document.documentElement);
@@ -1097,83 +1050,189 @@ augCenturionEl,
 ]
 ) : null;
 
-		/* ⬇⬇⬇ INSERTAR AQUÍ: gráfico Year-End mensual ⬇⬇⬇ */
-	const yearMonths = ['Feb','Mar','Apr','May','Jun','Jul','Aug'];
-	const yearTotals = [15, 139, 65, 145, 218, 203, 115];
-	const yearSuccessByMonth = [36.36, 41.48, 52.50, 57.16, 66.74, 63.43, 61.06];
+// Datos normalizados
 
-	const yearEl = document.getElementById('yearEndChart');
-	const chartYearEnd = yearEl && window.Chart ? new Chart(yearEl, {
-		type: 'bar',
-		data: {
-			labels: yearMonths,
-			datasets: [
-				{
-					type: 'line',
-					label: 'Success rate by month %',
-					data: yearSuccessByMonth,
-					yAxisID: 'y1',
-					borderColor: cIndigo,
-					backgroundColor: 'rgba(99,102,241,.18)',
-					fill: true,
-					tension: .35,
-					borderWidth: 3,
-					pointRadius: 2
-				},
-				{
-					type: 'bar',
-					label: 'Total contacts',
-					data: yearTotals,
-					yAxisID: 'y2',
-					backgroundColor: 'rgba(14,165,233,.65)',
-					borderColor: cSky,
-					borderWidth: 1
-				}
-			]
-		},
-		options: {
-			plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1' } }, tooltip: { mode: 'index', intersect: false } },
-			scales: {
-				x:  { ticks: { color: axisColor() }, grid: { color: gridColor(.15) } },
-				y1: { position: 'left',  beginAtZero: true, ticks: { color: axisColor(), callback: v => v + '%' }, grid: { color: gridColor(.12) } },
-				y2: { position: 'right', beginAtZero: true, ticks: { color: axisColor(), callback: v => Number(v).toLocaleString() }, grid: { drawOnChartArea: false } }
-			}
-		}
-	}) : null;
+const yearEndData = [
 
-	/* ⬇⬇⬇ INSERTAR AQUÍ: gráfico Year-End por fecha (sparkline) ⬇⬇⬇ */
-	const dateLabels = ['feb-18','5-mar','21-mar','28-mar','14-abr','24-abr','08-Mai','15-Mai','23-Mai','1-jun','06-Juni','15-Juni','23-Juni','07-Juli','14-Juli','21-Juli','28-Juli','4-ago','11-ago','18-ago'];
-	const successOBByDate = [36.36,38.89,30.00,55.56,50.00,55.00,54.72,44.44,72.31,69.84,50.00,74.39,72.73,66.23,66.67,54.17,66.67,65.85,60.00,54.39];
-	const totalByDate = [15,43,46,50,25,40,54,22,69,63,16,82,57,77,54,24,48,42,16,57];
+{ label: 'FEB • feb-18', total: 15, de: 14, at: 1, cancelled: 4, success: 4, notSuccess: 7, other: 0, dedup: 0, rateOB: 36.36, rateMonth: 36.36 },
 
-	const yearDatesEl = document.getElementById('yearEndDatesChart');
-	const chartYearEndDates = yearDatesEl && window.Chart ? new Chart(yearDatesEl, {
-		data: {
-			labels: dateLabels,
-			datasets: [
-				{ type: 'bar',  label: 'Total contacts', data: totalByDate, yAxisID: 'y2', backgroundColor: 'rgba(148,163,184,.25)', borderColor: cMuted, borderWidth: 1, barPercentage: 0.6, categoryPercentage: 0.6 },
-				{ type: 'line', label: 'Success rate OB %', data: successOBByDate, yAxisID: 'y1', borderColor: cEmerald, backgroundColor: 'rgba(16,185,129,.18)', fill: true, tension: .35, borderWidth: 3, pointRadius: 2 }
-			]
-		},
-		options: {
-			plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1' } }, tooltip: { mode: 'index', intersect: false } },
-			scales: {
-				x:  { ticks: { color: axisColor(), maxRotation: 0, autoSkip: true }, grid: { color: gridColor(.15) } },
-				y1: { position: 'left',  beginAtZero: true, ticks: { color: axisColor(), callback: v => v + '%' }, grid: { color: gridColor(.12) } },
-				y2: { position: 'right', beginAtZero: true, ticks: { color: axisColor(), callback: v => Number(v).toLocaleString() }, grid: { drawOnChartArea: false } }
-			}
-		}
-	}) : null;
+{ label: 'MARCH • 5-mar', total: 43, de: 40, at: 3, cancelled: 7, success: 14, notSuccess: 22, other: 0, dedup: 0, rateOB: 38.89, rateMonth: null },
 
-	/* ⬇⬇⬇ LISTENER CSV Year-End (misma zona donde ya tenés los otros CSV) ⬇⬇⬇ */
-	document.getElementById('csvYearEndBtn')?.addEventListener('click', () => {
-		if (chartYearEnd) exportChartToCSV(chartYearEnd, 'year-end-summary-visible.csv');
-		else exportTableToCSV(document.querySelector('#stage-year-end table'), 'year-end-summary.csv');
-	});
+{ label: 'MARCH • 21-mar', total: 46, de: 43, at: 3, cancelled: 6, success: 12, notSuccess: 17, other: 11, dedup: null, rateOB: 30.00, rateMonth: 41.48 },
 
-	/* ... */
+{ label: 'MARCH • 28-mar', total: 50, de: 43, at: 7, cancelled: 5, success: 25, notSuccess: 20, other: 0, dedup: 0, rateOB: 55.56, rateMonth: null },
+
+{ label: 'APRIL • 14-abr', total: 25, de: 23, at: 2, cancelled: 7, success: 9,  notSuccess: 6,  other: 3, dedup: 0, rateOB: 50.00, rateMonth: null },
+
+{ label: 'APRIL • 24-abr', total: 40, de: 34, at: 6, cancelled: 0, success: 22, notSuccess: 18, other: 0, dedup: 0, rateOB: 55.00, rateMonth: 52.50 },
+
+{ label: 'MAI • 08-Mai', total: 54, de: 41, at: 13, cancelled: 1, success: 29, notSuccess: 21, other: 3, dedup: 0, rateOB: 54.72, rateMonth: null },
+
+{ label: 'MAI • 15-Mai', total: 22, de: 19, at: 3,  cancelled: 4, success: 8,  notSuccess: 10, other: 0, dedup: 0, rateOB: 44.44, rateMonth: null },
+
+{ label: 'MAI • 23-Mai', total: 69, de: 63, at: 6,  cancelled: 4, success: 47, notSuccess: 17, other: 1, dedup: 0, rateOB: 72.31, rateMonth: 57.16 },
+
+{ label: 'JUNI • 1-jun',   total: 63, de: 55, at: 8,  cancelled: 0, success: 44, notSuccess: 18, other: 1, dedup: 0, rateOB: 69.84, rateMonth: null },
+
+{ label: 'JUNI • 06-Juni', total: 16, de: 16, at: 0,  cancelled: 0, success: 8,  notSuccess: 7,  other: 1, dedup: 0, rateOB: 50.00, rateMonth: null },
+
+{ label: 'JUNI • 15-Juni', total: 82, de: 74, at: 8,  cancelled: 0, success: 61, notSuccess: 20, other: 1, dedup: 0, rateOB: 74.39, rateMonth: 66.74 },
+
+{ label: 'JUNI • 23-Juni', total: 57, de: 53, at: 4,  cancelled: 2, success: 40, notSuccess: 14, other: 0, dedup: 1, rateOB: 72.73, rateMonth: null },
+
+{ label: 'JULI • 07-Juli', total: 77, de: 69, at: 8,  cancelled: 0, success: 51, notSuccess: 19, other: 7, dedup: 0, rateOB: 66.23, rateMonth: null },
+
+{ label: 'JULI • 14-Juli', total: 54, de: 49, at: 5,  cancelled: 0, success: 36, notSuccess: 13, other: 5, dedup: 0, rateOB: 66.67, rateMonth: null },
+
+{ label: 'JULI • 21-Juli', total: 24, de: 18, at: 6,  cancelled: 0, success: 13, notSuccess: 7,  other: 3, dedup: 1, rateOB: 54.17, rateMonth: 63.43 },
+
+{ label: 'JULI • 28-Juli', total: 48, de: 46, at: 2,  cancelled: 0, success: 32, notSuccess: 16, other: 0, dedup: 0, rateOB: 66.67, rateMonth: null },
+
+{ label: 'AUG • 4-ago',    total: 42, de: 39, at: 3,  cancelled: 1, success: 27, notSuccess: 13, other: 1, dedup: 0, rateOB: 65.85, rateMonth: null },
+
+{ label: 'AUG • 11-ago',   total: 16, de: 14, at: 1,  cancelled: 1, success: 9,  notSuccess: 6,  other: 0, dedup: 0, rateOB: 60.00, rateMonth: 61.06 },
+
+{ label: 'AUG • 18-ago',   total: 57, de: 53, at: 4,  cancelled: 0, success: 31, notSuccess: 23, other: 3, dedup: 0, rateOB: 54.39, rateMonth: null },
+
+{ label: 'AUG • 25-ago',   total: 26, de: 26, at: 0,  cancelled: 1, success: 16, notSuccess: 1,  other: 8, dedup: 0, rateOB: 64.00, rateMonth: null },
+
+{ label: 'SEP • 8-sep',    total: 30, de: 30, at: 0,  cancelled: 2, success: 17, notSuccess: 11, other: 0, dedup: 0, rateOB: 60.71, rateMonth: null },
+
+{ label: 'SEP • 23-sep',   total: 35, de: 32, at: 3,  cancelled: 0, success: 23, notSuccess: 11, other: 1, dedup: 0, rateOB: 69.70, rateMonth: 64.05 },
+
+{ label: 'OKT • 29-sep',   total: 35, de: 35, at: 0,  cancelled: 1, success: 21, notSuccess: 13, other: 0, dedup: 0, rateOB: 63.64, rateMonth: null },
+
+{ label: 'OKT • 6-Okt',    total: 39, de: 35, at: 4,  cancelled: 0, success: 23, notSuccess: 16, other: 0, dedup: 0, rateOB: 62.16, rateMonth: null },
+
+{ label: 'OKT • 13-OKT',   total: 50, de: 47, at: 3,  cancelled: 2, success: 36, notSuccess: 14, other: 0, dedup: 0, rateOB: 72.00, rateMonth: null },
+
+{ label: 'OKT • 20-OKT',   total: 34, de: 31, at: 3,  cancelled: 0, success: 21, notSuccess: 13, other: 0, dedup: 0, rateOB: 63.64, rateMonth: 67.78 },
+
+{ label: 'OKT • 27-OKT',   total: 30, de: 28, at: 2,  cancelled: 0, success: 22, notSuccess: 9,  other: 0, dedup: 0, rateOB: 73.33, rateMonth: null },
+
+{ label: 'NOV • 4-nov',    total: 24, de: 23, at: 1,  cancelled: 0, success: 14, notSuccess: 10, other: 0, dedup: 0, rateOB: 63.64, rateMonth: null },
+
+{ label: 'NOV • 10-nov',   total: 33, de: 30, at: 3,  cancelled: 0, success: 20, notSuccess: 13, other: 0, dedup: 0, rateOB: 60.61, rateMonth: null }
+
+];
+
+function renderYearEndTable() {
+
+const tbody = document.querySelector('#yearEndTable tbody');
+
+if (!tbody) return;
+
+tbody.innerHTML = '';
+
+yearEndData.forEach(r => {
+
+const tr = document.createElement('tr');
+
+const cells = [
+
+r.label, [r.total](http://r.total), [r.de](http://r.de), [r.at](http://r.at), r.cancelled,
+
+r.success, r.notSuccess, (r.other ?? 0), (r.dedup ?? 0),
+
+r.rateOB != null ? r.rateOB.toFixed(2) : '',
+
+r.rateMonth != null ? r.rateMonth.toFixed(2) : ''
+
+];
+
+cells.forEach(v => { const td = document.createElement('td'); td.textContent = String(v); tr.appendChild(td); });
+
+tbody.appendChild(tr);
+
 });
-</script>
+
+}
+
+let chartYearEnd = null;
+
+function renderYearEndChart() {
+
+const el = document.getElementById('yearEndChart');
+
+if (!el || !window.Chart) return;
+
+const labels = [yearEndData.map](http://yearEndData.map)(d => d.label);
+
+const dsSuccess = [yearEndData.map](http://yearEndData.map)(d => d.success);
+
+const dsNotSuccess = [yearEndData.map](http://yearEndData.map)(d => d.notSuccess + (d.other ?? 0));
+
+const dsRateOB = [yearEndData.map](http://yearEndData.map)(d => d.rateOB);
+
+const css = getComputedStyle(document.documentElement);
+
+const cSky = css.getPropertyValue('--primary').trim() || '#0ea5e9';
+
+const cEmerald = css.getPropertyValue('--accent').trim() || '#10b981';
+
+const cMuted = '#94a3b8';
+
+const axisColor = () => '#a8b1c7';
+
+const gridColor = (light=0.12) => `rgba(148,163,184,${light})`;
+
+if (chartYearEnd) chartYearEnd.destroy();
+
+chartYearEnd = new Chart(el, {
+
+type: 'bar',
+
+data: {
+
+labels,
+
+datasets: [
+
+{ label: 'Successful', data: dsSuccess, backgroundColor: 'rgba(16,185,129,.65)', borderColor: cEmerald, borderWidth: 1, stack: 'calls' },
+
+{ label: 'Not successful + Other', data: dsNotSuccess, backgroundColor: 'rgba(148,163,184,.45)', borderColor: cMuted, borderWidth: 1, stack: 'calls' },
+
+{ label: 'Success rate OB %', data: dsRateOB, yAxisID: 'y1', type: 'line', borderColor: cSky, backgroundColor: 'rgba(14,165,233,.18)', fill: true, tension: .35, borderWidth: 3, pointRadius: 2 }
+
+]
+
+},
+
+options: {
+
+plugins: { legend: { position: 'bottom', labels: { color: '#cbd5e1' } }, tooltip: { mode:'index', intersect:false } },
+
+scales: {
+
+x: { stacked: true, ticks: { color: axisColor() }, grid: { color: gridColor(.15) } },
+
+y: { stacked: true, beginAtZero: true, ticks: { color: axisColor() }, grid: { color: gridColor(.12) } },
+
+y1:{ position:'right', beginAtZero:true, ticks:{ color: axisColor(), callback:v=>v+'%' }, grid:{ drawOnChartArea:false } }
+
+}
+
+}
+
+});
+
+}
+
+document.getElementById('csvYearEndBtn')?.addEventListener('click', () => {
+
+exportTableToCSV(document.getElementById('yearEndTable'), 'year-end-ob-calls.csv');
+
+});
+
+function ensureYearEndRendered() {
+
+const tbl = document.getElementById('yearEndTable');
+
+if (tbl && !tbl.dataset.rendered) { renderYearEndTable(); tbl.dataset.rendered = '1'; }
+
+if (!chartYearEnd) renderYearEndChart();
+
+}
 	
 /* CSV listeners */
 document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
