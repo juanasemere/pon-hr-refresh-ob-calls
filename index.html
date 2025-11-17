@@ -180,26 +180,27 @@ table{display:block; overflow:auto; white-space:nowrap}
 <div class="actions" aria-label="Quick actions">
 <!-- Tools (dropdown) -->
 <div class="dropdown" id="toolsDropdown" aria-haspopup="true">
-	<button type="button" class="button button--primary" id="toolsBtn" aria-controls="toolsMenu" aria-expanded="false">
-		<svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-			<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-		</svg>
-		Tools
-	</button>
-	<div class="dropdown__menu" id="toolsMenu" role="menu" aria-label="Tools menu">
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkExcel">
-			<span>Excel sheet (setlists)</span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkSpend">
-			<span>Spend tool</span>
-			<small>Open in new tab</small>
-		</a>
-		<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkCenturion">
-			<span>Centurion Shared File</span>
-			<small>Open in new tab</small>
-		</a>
-	</div>
+<button type="button" class="button button--primary" id="toolsBtn" aria-controls="toolsMenu" aria-expanded="false">
+<svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>
+Tools
+</button>
+<div class="dropdown__menu" id="toolsMenu" role="menu" aria-label="Tools menu">
+
+<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkExcel">
+<span>Excel sheet (setlists)</span>
+<small>Open in new tab</small>
+</a>
+<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkSpend">
+<span>Spend tool</span>
+<small>Open in new tab</small>
+</a>
+<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkCenturion">
+<span>Centurion Shared File</span>
+<small>Open in new tab</small>
+</a>
+</div>
 </div>
 
 <!-- Performance Highlights (dropdown) -->
@@ -208,12 +209,13 @@ table{display:block; overflow:auto; white-space:nowrap}
 		Performance Highlights
 	</button>
 	<div class="dropdown__menu" id="phMenu" role="menu" aria-label="Performance Highlights">
-		<!-- Nuevo: Key Details -->
-		<a class="menu-item" href="#kpis-sept" role="menuitem" id="linkKeyDetails">
-			<span>Key Details</span>
-			<small>First block</small>
-		</a>
 
+		<!-- Nuevo: Key Details -->
+    <a class="menu-item" href="#kpis-sept" role="menuitem" id="linkKeyDetails">
+      <span>Key Details</span>
+      <small>First block</small>
+    </a>
+		
 		<button type="button" class="menu-item" id="btnStageSept" aria-controls="stage-sept-2024" aria-expanded="false">
 			<span>Stage Sept 2024</span>
 		</button>
@@ -225,9 +227,6 @@ table{display:block; overflow:auto; white-space:nowrap}
 		</button>
 	</div>
 </div>
-
-<!-- NUEVO botón al lado del dropdown anterior -->
-<button type="button" class="button" id="btnOverview2025">Overview - 2025</button>
 </header>
 
 <main>
@@ -753,18 +752,6 @@ const sAug = document.getElementById('stage-aug-2025');
 const bSept = document.getElementById('btnStageSept');
 const bMay = document.getElementById('btnStageMay');
 const bAug = document.getElementById('btnStageAug');
-
-  /* Overview 2025 button */
-const bOverview = document.getElementById('btnOverview2025');
-// Es la primera card dentro de <main>, el bloque "Overview - Outbound Calls HR Strategy"
-const overviewSection = document.querySelector('main > section.card:first-of-type');
-
-bOverview?.addEventListener('click', () => {
-	hideAllStages(); // cierra cualquier stage abierto
-	if (overviewSection) {
-		window.scrollTo({ top: overviewSection.offsetTop - 16, behavior: 'smooth' });
-	}
-});
 
 function hideAllStages(){
 [sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
