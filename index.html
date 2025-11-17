@@ -156,6 +156,7 @@ table{display:block; overflow:auto; white-space:nowrap}
 <span class="tag">Market: DE & AT</span>
 <span class="tag">Segment: Consumer HR</span>
 <span class="tag">Maintained by: Germany & Austria Consumer HR KYC Team</span>
+<!-- Removed: <span class="tag">OB Calls cadence: every 21 days</span> -->
 </div>
 <div class="actions" aria-label="Quick actions">
 <!-- Tools (dropdown) -->
@@ -187,6 +188,7 @@ Tools
 Performance Highlights
 </button>
 <div class="dropdown__menu" id="phMenu" role="menu" aria-label="Performance Highlights">
+<!-- Nuevo: Key Details -->
     <a class="menu-item" href="#kpis-sept" role="menuitem" id="linkKeyDetails">
       <span>Key Details</span>
       <small>First block</small>
@@ -202,7 +204,7 @@ Performance Highlights
 </button>
 </div>
 </div>
-<!-- Year-End Results (dropdown) - SIN BOTONES DE MESES -->
+<!-- Year-End Results (dropdown) -->
 <div class="dropdown" id="yearDropdown" aria-haspopup="true">
 <button type="button" class="button" id="yearBtn" aria-controls="yearMenu" aria-expanded="false">
 Year-End Results Summary
@@ -210,6 +212,37 @@ Year-End Results Summary
 <div class="dropdown__menu" id="yearMenu" role="menu" aria-label="Year-End Results">
 <button type="button" class="menu-item" id="btnYearOverview" aria-controls="stage-year-end" aria-expanded="false">
 <span>Overview 2025</span>
+</button>
+<div class="hr"></div>
+<button type="button" class="menu-item" data-year-month="Feb">
+<span>February</span>
+</button>
+<button type="button" class="menu-item" data-year-month="Mar">
+<span>March</span>
+</button>
+<button type="button" class="menu-item" data-year-month="Apr">
+<span>April</span>
+</button>
+<button type="button" class="menu-item" data-year-month="May">
+<span>May</span>
+</button>
+<button type="button" class="menu-item" data-year-month="Jun">
+<span>June</span>
+</button>
+<button type="button" class="menu-item" data-year-month="Jul">
+<span>July</span>
+</button>
+<button type="button" class="menu-item" data-year-month="Aug">
+<span>August</span>
+</button>
+<button type="button" class="menu-item" data-year-month="Sep">
+<span>September</span>
+</button>
+<button type="button" class="menu-item" data-year-month="Oct">
+<span>October</span>
+</button>
+<button type="button" class="menu-item" data-year-month="Nov">
+<span>November</span>
 </button>
 </div>
 </div>
@@ -357,6 +390,7 @@ Year-End Results Summary
   </thead>
   <tbody>
     <tr>
+      <!-- Stage: un solo rótulo que cubre todas las filas -->
       <td rowspan="3">Sep. 2024</td>
       <th scope="row">Austria</th>
       <td>575</td>
@@ -395,6 +429,7 @@ Year-End Results Summary
   </thead>
   <tbody>
     <tr>
+      <!-- Stage: un solo rótulo que cubre todas las filas -->
       <td rowspan="3">Sep. 2024</td>
       <th scope="row">Austria</th>
       <td>130</td>
@@ -671,7 +706,6 @@ Year-End Results Summary
 </div>
  </div>
 </section>
-<!-- YEAR-END RESULTS - SIN GRAFICO MENSUAL -->
 <section id="stage-year-end" class="card" style="display:none">
 <h2 class="section-title">Year-End Results Summary <span class="muted" id="yearContextLabel">• Overview 2025</span></h2>
 <p class="sub">2025 Results</p>
@@ -701,6 +735,9 @@ Year-End Results Summary
 <p class="sub"><b>Visualisation</b> • Volume VS performance</p>
 <canvas id="yearChart" height="260"></canvas>
 </div>
+<div class="actions" style="margin-top:6px">
+<button class="button" id="csvYearMonthlyBtn">Download CSV (Monthly)</button>
+</div>
 <div style="margin-top:18px">
 <p class="sub"><b>Germany vs Austria</b> • Volume per market (vista mensual)</p>
 <canvas id="yearChartGA" height="240"></canvas>
@@ -726,20 +763,20 @@ setExpanded(open);
 });
 document.addEventListener('click', (e) => { if (!dd.contains(e.target)) setExpanded(false); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setExpanded(false); });
-
+/* Close dropdown when using the Key Results link */
+document.getElementById('linkKeyResults')?.addEventListener('click', () => {
+setExpanded(false);
+});
 /* Show/Hide Stages */
 const sSept = document.getElementById('stage-sept-2024');
 const sMay = document.getElementById('stage-may-2025');
 const sAug = document.getElementById('stage-aug-2025');
-const sYear = document.getElementById('stage-year-end');
 const bSept = document.getElementById('btnStageSept');
 const bMay = document.getElementById('btnStageMay');
 const bAug = document.getElementById('btnStageAug');
-const bYearOverview = document.getElementById('btnYearOverview');
-
 function hideAllStages(){
-[sSept, sMay, sAug, sYear].forEach(sec => { if (sec) sec.style.display = 'none'; });
-[bSept, bMay, bAug, bYearOverview].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
+[sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
+[bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
 }
 function toggleStage(sectionEl, buttonEl){
 const willOpen = sectionEl.style.display === 'none';
@@ -752,14 +789,6 @@ hideAllStages();
 bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
 bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
 bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
-bYearOverview?.addEventListener('click', () => {
-  hideAllStages();
-  sYear.style.display = '';
-  bYearOverview.setAttribute('aria-expanded', 'true');
-  renderYearView();
-  window.scrollTo({ top: sYear.offsetTop - 16, behavior: 'smooth' });
-});
-
 /* Charts palette */
 const css = getComputedStyle(document.documentElement);
 const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
@@ -768,7 +797,6 @@ const cEmerald = css.getPropertyValue('--accent').trim() || '#10b981';
 const cMuted = '#94a3b8';
 const axisColor = () => '#a8b1c7';
 const gridColor = (light=0.12) => `rgba(148,163,184,${light})`;
-
 /* CSV utility */
 function downloadCSV(filename, rows){
 const process = (v) => {
@@ -785,6 +813,7 @@ document.body.appendChild(a); a.click();
 document.body.removeChild(a);
 URL.revokeObjectURL(url);
 }
+/* Export visible datasets of a Chart.js chart */
 function exportChartToCSV(chart, filename){
 if (!chart) return;
 const labels = chart.data.labels || [];
@@ -803,6 +832,7 @@ rows.push(row);
 });
 downloadCSV(filename, rows);
 }
+/* Fallback: export HTML table to CSV */
 function exportTableToCSV(tableEl, filename){
 if (!tableEl) return;
 const rows = [];
@@ -812,18 +842,211 @@ const trsBody = tableEl.querySelectorAll('tbody tr');
 trsBody.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
 downloadCSV(filename, rows);
 }
-
-/* Main charts (sin cambios) */
+/* Main charts */
 const refreshEl = document.getElementById('refreshChart');
 const aifEl = document.getElementById('aifChart');
 const suspEl = document.getElementById('suspChart');
-const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, { /* código igual */ }) : null;
-const chartAIF = aifEl && window.Chart ? new Chart(aifEl, { /* código igual */ }) : null;
-const chartSusp = suspEl && window.Chart ? new Chart(suspEl, { /* código igual */ }) : null;
-
-/* Todos los charts de stages (sept, may, aug) siguen 100% iguales */
-
-/* Year-End data y funciones simplificadas (solo Overview) */
+const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, {
+type:'line',
+data:{
+labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
+datasets:[
+{ label:'% Refreshed', data:[74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+{ label:'% In progress', data:[18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
+{ label:'% To contact / Pre-screen', data:[8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } } }
+}
+}) : null;
+const chartAIF = aifEl && window.Chart ? new Chart(aifEl, {
+type:'bar',
+data:{
+labels:['Germany','Austria'],
+datasets:[
+{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleString() }, grid:{ color:gridColor(.12) } } }
+}
+}) : null;
+const chartSusp = suspEl && window.Chart ? new Chart(suspEl, {
+type:'line',
+data:{
+labels:['May','Jun','Jul','Aug'],
+datasets:[
+{ label:'Open inventory (index)', data:[100,75,60,45], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
+{ label:'Suspension rate %', data:[1.4,1.1,0.9,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+scales:{
+x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } },
+y2:{ position:'right', ticks:{ color:axisColor() }, grid:{ drawOnChartArea:false } }
+}
+}
+}) : null;
+/* STAGE SEPT 2024 */
+const septConsumerEl = document.getElementById('septConsumerChart');
+const septCenturionEl = document.getElementById('septCenturionChart');
+const chartSeptConsumer = septConsumerEl && window.Chart ? new Chart(septConsumerEl, {
+type:'bar',
+data:{
+labels:['Austria','Germany','Sep. 2nd 2024 Overall'],
+datasets:[
+{ label:'HR CM volume', data:[575,5070,5645], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'HR CM refreshed', data:[365,2823,3188], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'CMs suspended', data:[14,217,231], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'HR CM KYC cancelled', data:[14,113,127], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
+}
+}) : null;
+const chartSeptCenturion = septCenturionEl && window.Chart ? new Chart(septCenturionEl, {
+type:'bar',
+data:{
+labels:['Austria','Germany','Overall'],
+datasets:[
+{ label:'HR Centurion volume', data:[130,385,515], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'Centurion refreshed', data:[90,241,331], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'Centurion suspended', data:[2,3,5], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'Centurion KYC cancelled', data:[0,2,2], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
+}
+}) : null;
+/* STAGE MAY 2025 */
+const mayConsumerEl = document.getElementById('mayConsumerChart');
+const mayCenturionEl = document.getElementById('mayCenturionChart');
+function stackedBar(el, labels, sets){
+return new Chart(el, {
+type:'bar',
+data:{ labels, datasets:sets },
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
+}
+});
+}
+const chartMayConsumer = mayConsumerEl && window.Chart ? stackedBar(
+mayConsumerEl,
+['Austria','Germany','Mai 20th 2025 Overall'],
+[
+{ label:'HR CM volume', data:[480,3216,3696], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'HR CM refreshed', data:[318,2612,2930], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'CMs suspended', data:[11,33,44], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'HR CM KYC cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+const chartMayCenturion = mayCenturionEl && window.Chart ? stackedBar(
+mayCenturionEl,
+['Austria','Germany','Overall'],
+[
+{ label:'HR Centurion volume', data:[101,399,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'Centurion refreshed', data:[59,299,358], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+/* STAGE AUG 2025 */
+const augConsumerEl = document.getElementById('augConsumerChart');
+const augCenturionEl = document.getElementById('augCenturionChart');
+const chartAugConsumer = augConsumerEl && window.Chart ? stackedBar(
+augConsumerEl,
+['Austria','Germany','Aug 12th 2025 Overall'],
+[
+{ label:'HR CM volume', data:[515,3573,4088], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'HR CM refreshed', data:[377,3108,3485], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'CMs suspended', data:[18,59,77], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'HR CM KYC cancelled', data:[0,1,1], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+const chartAugCenturion = augCenturionEl && window.Chart ? stackedBar(
+augCenturionEl,
+['Austria','Germany','Overall'],
+[
+{ label:'HR Centurion volume', data:[114,465,579], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'Centurion refreshed', data:[72,400,472], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+/* CSV listeners */
+document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
+if (chartSeptConsumer) exportChartToCSV(chartSeptConsumer, 'sept-2024-consumer-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(1)'), 'sept-2024-consumer.csv');
+});
+document.getElementById('csvSeptCenturionBtn')?.addEventListener('click', () => {
+if (chartSeptCenturion) exportChartToCSV(chartSeptCenturion, 'sept-2024-centurion-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(2)'), 'sept-2024-centurion.csv');
+});
+document.getElementById('csvMayConsumerBtn')?.addEventListener('click', () => {
+if (chartMayConsumer) exportChartToCSV(chartMayConsumer, 'may-2025-consumer-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(1)'), 'may-2025-consumer.csv');
+});
+document.getElementById('csvMayCenturionBtn')?.addEventListener('click', () => {
+if (chartMayCenturion) exportChartToCSV(chartMayCenturion, 'may-2025-centurion-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(2)'), 'may-2025-centurion.csv');
+});
+document.getElementById('csvAugConsumerBtn')?.addEventListener('click', () => {
+if (chartAugConsumer) exportChartToCSV(chartAugConsumer, 'aug-2025-consumer-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(1)'), 'aug-2025-consumer.csv');
+});
+document.getElementById('csvAugCenturionBtn')?.addEventListener('click', () => {
+if (chartAugCenturion) exportChartToCSV(chartAugCenturion, 'aug-2025-centurion-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(2)'), 'aug-2025-centurion.csv');
+});
+/* ====== Year-End dropdown (abrir/cerrar) ====== */
+const yearDD = document.getElementById('yearDropdown');
+const yearBtn = document.getElementById('yearBtn');
+function setYearExpanded(on) { yearBtn.setAttribute('aria-expanded', String(on)); }
+yearBtn?.addEventListener('click', (e) => {
+e.stopPropagation();
+const open = yearBtn.getAttribute('aria-expanded') !== 'true';
+setYearExpanded(open);
+});
+document.addEventListener('click', (e) => { if (yearDD && !yearDD.contains(e.target)) setYearExpanded(false); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setYearExpanded(false); });
+/* ====== Incluir el nuevo stage en el ciclo de mostrar/ocultar ====== */
+const sYear = document.getElementById('stage-year-end');
+const bYearOverview = document.getElementById('btnYearOverview');
+function hideAllStagesExtended() {
+[sSept, sMay, sAug, sYear].forEach(sec => { if (sec) sec.style.display = 'none'; });
+[bSept, bMay, bAug, bYearOverview].forEach(b => { if (b) b?.setAttribute('aria-expanded','false'); });
+}
+/* Opcional: si querés que TODOS los botones usen el extendido, reemplazá: hideAllStages() por hideAllStagesExtended() en tu toggleStage original. */
+function openYearStage() {
+hideAllStagesExtended();
+if (sYear) {
+sYear.style.display = '';
+window.scrollTo({ top: sYear.offsetTop - 16, behavior: 'smooth' });
+}
+}
+bYearOverview?.addEventListener('click', () => {
+openYearStage();
+bYearOverview.setAttribute('aria-expanded', 'true');
+renderYearView('overview'); // carga Overview por defecto
+setYearExpanded(false);
+});
+/* ====== Dataset (CSV) — puntos decimales para % ====== */
 const yearCsv = `batch,total,ger,aut,credit_cancelled,successful,not_success,other,dedup,success_ob,success_month
 FEB feb-18,15,14,1,4,4,7,0,0,36.36,36.36
 MARCH 5,43,40,3,7,14,22,0,0,38.89,
@@ -844,7 +1067,7 @@ JULI 21,24,18,6,0,13,7,3,1,54.17,63.43
 JULI 28,48,46,2,0,32,16,0,0,66.67,
 AUGUST 4,42,39,3,1,27,13,1,0,65.85,
 AUGUST 11,16,14,1,1,9,6,0,0,60.00,61.06
-AUGUST 18,57,53 53,4,0,31,23,3,0,54.39,
+AUGUST 18,57,53,4,0,31,23,3,0,54.39,
 AUGUST 25,26,26,0,1,16,1,8,0,64.00,
 SEP 8,30,30,0,2,17,11,0,0,60.71,
 SEP 23,35,32,3,0,23,11,1,0,69.70,64.05
@@ -855,7 +1078,7 @@ OCT 20,34,31,3,0,21,13,0,0,63.64,67.78
 OCT 27,30,28,2,0,22,9,0,0,73.33,
 NOV 4,24,23,1,0,14,10,0,0,63.64,
 NOV 10,33,30,3,0,20,13,0,0,60.61,60.61`;
-
+/* Parser CSV robusto (tolerante a valores faltantes) */
 function parseCsv(str) {
   const lines = str.trim().split(/\r?\n/);
   const headers = lines.shift().split(',').map(h => h.trim());
@@ -869,10 +1092,22 @@ function parseCsv(str) {
   });
 }
 const yearRows = parseCsv(yearCsv);
-
-let chartYear = null;
-let chartYearGA = null;
-
+/* Helpers de mes */
+function monthKeyFromBatch(s) {
+  const t = (s || '').toLowerCase();
+  if (t.includes('feb')) return 'Feb';
+  if (t.includes('mar')) return 'Mar';
+  if (t.includes('abr') || t.includes('apr')) return 'Apr';
+  if (t.includes('mai') || t.includes('may')) return 'May';
+  if (t.includes('jun')) return 'Jun';
+  if (t.includes('jul')) return 'Jul';
+  if (t.includes('aug') || t.includes('ago')) return 'Aug';
+  if (t.includes('sep')) return 'Sep';
+  if (t.includes('okt') || t.includes('oct')) return 'Oct';
+  if (t.includes('nov')) return 'Nov';
+  return 'Other';
+}
+/* Render tabla genérica */
 function renderTable(rows, caption, contextLabel) {
   const tbody = document.getElementById('yearTableBody');
   const cap = document.getElementById('yearTableCaption');
@@ -899,11 +1134,12 @@ function renderTable(rows, caption, contextLabel) {
   if (cap) cap.textContent = caption || 'Outbound Calls';
   if (ctx) ctx.textContent = contextLabel ? `• ${contextLabel}` : '';
 }
-
+/* Gráfico: barras apiladas (Successful vs Not) + línea % Success OB */
+let chartYear = null;
 function renderChart(rows) {
   const el = document.getElementById('yearChart');
   if (!el || !window.Chart) return;
-  if (chartYear) { chartYear.destroy(); }
+  if (chartYear) { chartYear.destroy(); chartYear = null; }
   const labels = rows.map(r => r.batch);
   const success = rows.map(r => Number(r.successful || 0));
   const notSuccess = rows.map(r => Number(r.not_success || 0));
@@ -932,11 +1168,61 @@ function renderChart(rows) {
     }
   });
 }
-
+/* === Helpers: orden y mapeo mensual === */
+const monthOrder = ['Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Other'];
+function buildMonthlyAgg(rows) {
+  const map = {};
+  rows.forEach(r => {
+    const m = monthKeyFromBatch(r.batch);
+    if (!map[m]) map[m] = { successSum: 0, successRateVals: [] };
+    map[m].successSum += Number(r.successful || 0);
+    const raw = String(r.success_month || '').replace(',', '.').trim();
+    const v = parseFloat(raw);
+    if (!isNaN(v)) map[m].successRateVals.push(v);
+  });
+  const labels = Object.keys(map).sort((a,b) => monthOrder.indexOf(a)-monthOrder.indexOf(b));
+  const successful = labels.map(m => map[m].successSum);
+  const successRate = labels.map(m => {
+    const arr = map[m].successRateVals;
+    if (!arr.length) return null;
+    const avg = arr.reduce((s,x)=>s+x,0)/arr.length;
+    return Math.round(avg*100)/100;
+  });
+  return { labels, successful, successRate };
+}
+/* === Gráficos extra (instancias globales para destruir al cambiar) === */
+let chartYearMonthly = null;
+let chartYearGA = null;
+/* Render: Resumen mensual (para Overview) */
+function renderMonthlySummary(rows) {
+  const el = document.getElementById('yearChartMonthly');
+  if (!el || !window.Chart || rows.length === 0) return;
+  if (chartYearMonthly) { chartYearMonthly.destroy(); chartYearMonthly = null; }
+  const agg = buildMonthlyAgg(rows);
+  chartYearMonthly = new Chart(el, {
+    type: 'bar',
+    data: {
+      labels: agg.labels,
+      datasets: [
+        { type: 'bar', label: 'Successful (sum)', data: agg.successful, backgroundColor: 'rgba(16,185,129,.65)', borderColor: cEmerald, borderWidth: 1 },
+        { type: 'line', label: 'Success rate by month % (avg)', data: agg.successRate, yAxisID: 'y2', borderColor: cIndigo, backgroundColor: 'rgba(99,102,241,.18)', fill: false, tension: .35, borderWidth: 3, pointRadius: 2 }
+      ]
+    },
+    options: {
+      plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+      scales: {
+        x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
+        y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color:gridColor(.12) } },
+        y2:{ position:'right', ticks:{ color: axisColor(), callback:v => v + '%' }, grid:{ drawOnChartArea:false } }
+      }
+    }
+  });
+}
+/* Render: Germany vs Austria stacked (para vistas mensuales) */
 function renderGAByBatch(rows) {
   const el = document.getElementById('yearChartGA');
   if (!el || !window.Chart) return;
-  if (chartYearGA) { chartYearGA.destroy(); }
+  if (chartYearGA) { chartYearGA.destroy(); chartYearGA = null; }
   const labels = rows.map(r => r.batch);
   const ger = rows.map(r => Number(r.ger || 0));
   const aut = rows.map(r => Number(r.aut || 0));
@@ -953,28 +1239,45 @@ function renderGAByBatch(rows) {
       plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
       scales: {
         x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
-        y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color:gridColor(.12) } }
+        y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color: gridColor(.12) } }
       }
     }
   });
 }
-
-function renderYearView() {
-  renderTable(yearRows, 'Outbound Calls — Overview 2025', 'Overview 2025');
-  renderChart(yearRows);
-  renderGAByBatch(yearRows);
+/* Vista Overview y Vista Mensual */
+function renderYearView(kind, monthKey) {
+  openYearStage();
+  if (kind === 'overview') {
+    renderTable(yearRows, 'Outbound Calls — Overview 2025', 'Overview 2025');
+    renderChart(yearRows); // gráfico principal
+    renderMonthlySummary(yearRows); // resumen mensual visible en Overview
+  } else if (kind === 'month' && monthKey) {
+    const filtered = yearRows.filter(r => monthKeyFromBatch(r.batch) === monthKey);
+    renderTable(filtered, `Outbound Calls — ${monthKey} 2025`, `${monthKey} 2025`);
+    renderChart(filtered); // gráfico principal (volumen + % success)
+    renderMonthlySummary([]); // limpia el resumen mensual en vista mensual
+    renderGAByBatch(filtered); // GA stacked en vista mensual
+  }
 }
-
-/* CSV listeners */
+/* Clicks de los meses en el menú */
+document.querySelectorAll('#yearMenu .menu-item[data-year-month]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const mk = btn.getAttribute('data-year-month');
+    renderYearView('month', mk);
+    setYearExpanded(false);
+  });
+});
+/* CSV export del contenido visible (chart si existe; si no, tabla) */
 document.getElementById('csvYearBtn')?.addEventListener('click', () => {
   if (chartYear) exportChartToCSV(chartYear, 'year-end-visible.csv');
   else exportTableToCSV(document.getElementById('yearTable'), 'year-end.csv');
 });
-document.getElementById('csvYearGABtn')?.addEventListener('click', () => {
-  if (chartYearGA) exportChartToCSV(chartYearGA, 'year-geo-visible.csv');
+document.getElementById('csvYearMonthlyBtn')?.addEventListener('click', () => {
+  if (chartYearMonthly) exportChartToCSV(chartYearMonthly, 'year-overview-monthly-visible.csv');
 });
-
-/* Resto de listeners de CSV de stages (sept, may, aug) siguen iguales */
+document.getElementById('csvYearGABtn')?.addEventListener('click', () => {
+  if (chartYearGA) exportChartToCSV(chartYearGA, 'year-month-geo-visible.csv');
+});
 });
 </script>
 </body>
