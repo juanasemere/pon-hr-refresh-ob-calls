@@ -332,8 +332,6 @@ Year-End Results Summary
     <h2 class="section-title">Key Results – Mai 2025</h2>
     <div class="kpis">
       <div class="kpi"><div class="label">AIF YTD</div><div class="value">3,700</div><div class="note">DE: 3.2k • AT: 0.5k</div></div>
-      <!-- EDITADO: % refreshed en naranja -->
-      <!-- **div class="kpi"><div class="label">% refreshed</div><div class="value warn">74%</div><div class="note">18% in progress • 8% to be contacted</div></div** -->
       <div class="kpi"><div class="label">% refreshed</div><div class="value warn">74%</div><div class="note">18% in progress • 8% to be contacted</div></div>
       <div class="kpi"><div class="label">At risk of cancellation</div><div class="value warn">1.2%</div><div class="note">HR CMs</div></div>
       <div class="kpi"><div class="label">At risk of suspension</div><div class="value warn">1.4%</div><div class="note">Incl. 0.6% Centurion</div></div>
@@ -1083,44 +1081,46 @@ OCT 13,50,47,3,2,36,14,0,0,72.00,
 OCT 20,34,31,3,0,21,13,0,0,63.64,67.78
 OCT 27,30,28,2,0,22,9,0,0,73.33,
 NOV 4,24,23,1,0,14,10,0,0,63.64,
-NOV 10,33,30,3,0,20,13,0,0,60.61,`;
-/* Parser CSV simple */
+NOV 10,33,30,3,0,20,13,0,0,60.61,60.61`;
+/* Parser CSV robusto (tolerante a valores faltantes) */
 function parseCsv(str) {
-const lines = str.trim().split(/\r?\n/);
-const headers = lines.shift().split(',').map(h => h.trim());
-return lines.map(line => {
-const cols = line.split(',').map(c => c.trim());
-const o = {};
-headers.forEach((h,i) => o[h] = cols[i] ?? '');
-return o;
-});
+  const lines = str.trim().split(/\r?\n/);
+  const headers = lines.shift().split(',').map(h => h.trim());
+  return lines.map(line => {
+    const cols = line.split(',').map(c => c.trim());
+    const o = {};
+    headers.forEach((h, i) => {
+      o[h] = cols[i] !== undefined ? cols[i] : '';
+    });
+    return o;
+  });
 }
 const yearRows = parseCsv(yearCsv);
 /* Helpers de mes */
 function monthKeyFromBatch(s) {
-const t = (s || '').toLowerCase();
-if (t.includes('feb')) return 'Feb';
-if (t.includes('mar')) return 'Mar';
-if (t.includes('abr') || t.includes('apr')) return 'Apr';
-if (t.includes('mai') || t.includes('may')) return 'May';
-if (t.includes('jun')) return 'Jun';
-if (t.includes('jul')) return 'Jul';
-if (t.includes('aug') || t.includes('ago')) return 'Aug';
-if (t.includes('sep')) return 'Sep';
-if (t.includes('okt') || t.includes('oct')) return 'Oct';
-if (t.includes('nov')) return 'Nov';
-return 'Other';
+  const t = (s || '').toLowerCase();
+  if (t.includes('feb')) return 'Feb';
+  if (t.includes('mar')) return 'Mar';
+  if (t.includes('abr') || t.includes('apr')) return 'Apr';
+  if (t.includes('mai') || t.includes('may')) return 'May';
+  if (t.includes('jun')) return 'Jun';
+  if (t.includes('jul')) return 'Jul';
+  if (t.includes('aug') || t.includes('ago')) return 'Aug';
+  if (t.includes('sep')) return 'Sep';
+  if (t.includes('okt') || t.includes('oct')) return 'Oct';
+  if (t.includes('nov')) return 'Nov';
+  return 'Other';
 }
 /* Render tabla genérica */
 function renderTable(rows, caption, contextLabel) {
-const tbody = document.getElementById('yearTableBody');
-const cap = document.getElementById('yearTableCaption');
-const ctx = document.getElementById('yearContextLabel');
-if (!tbody) return;
-tbody.innerHTML = '';
-rows.forEach(r => {
-const tr = document.createElement('tr');
-tr.innerHTML = `
+  const tbody = document.getElementById('yearTableBody');
+  const cap = document.getElementById('yearTableCaption');
+  const ctx = document.getElementById('yearContextLabel');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
 <td>${r.batch}</td>
 <td>${r.total}</td>
 <td>${r.ger}</td>
@@ -1133,155 +1133,154 @@ tr.innerHTML = `
 <td>${r.success_ob || ''}</td>
 <td>${r.success_month || ''}</td>
 `;
-tbody.appendChild(tr);
-});
-if (cap) cap.textContent = caption || 'Outbound Calls';
-if (ctx) ctx.textContent = contextLabel ? `• ${contextLabel}` : '';
+    tbody.appendChild(tr);
+  });
+  if (cap) cap.textContent = caption || 'Outbound Calls';
+  if (ctx) ctx.textContent = contextLabel ? `• ${contextLabel}` : '';
 }
 /* Gráfico: barras apiladas (Successful vs Not) + línea % Success OB */
 let chartYear = null;
 function renderChart(rows) {
-const el = document.getElementById('yearChart');
-if (!el || !window.Chart) return;
-if (chartYear) { chartYear.destroy(); chartYear = null; }
-const labels = rows.map(r => r.batch);
-const success = rows.map(r => Number(r.successful || 0));
-const notSuccess = rows.map(r => Number(r.not_success || 0));
-const rate = rows.map(r => {
-const v = String(r.success_ob || '').replace(',', '.');
-const n = parseFloat(v);
-return isNaN(n) ? null : n;
-});
-chartYear = new Chart(el, {
-type: 'bar',
-data: {
-labels,
-datasets: [
-{ type:'bar', label:'Successful', data:success, backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1, stack:'s' },
-{ type:'bar', label:'Not successful', data:notSuccess, backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1, stack:'s' },
-{ type:'line', label:'Success rate OB %', data:rate, yAxisID:'y2', borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:false, tension:.35, borderWidth:3, pointRadius:2 }
-]
-},
-options: {
-plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-scales: {
-x: { ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-y: { beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } },
-y2: { position:'right', ticks:{ color:axisColor(), callback:v => v + '%' }, grid:{ drawOnChartArea:false } }
-}
-}
-});
+  const el = document.getElementById('yearChart');
+  if (!el || !window.Chart) return;
+  if (chartYear) { chartYear.destroy(); chartYear = null; }
+  const labels = rows.map(r => r.batch);
+  const success = rows.map(r => Number(r.successful || 0));
+  const notSuccess = rows.map(r => Number(r.not_success || 0));
+  const rate = rows.map(r => {
+    const v = String(r.success_ob || '').replace(',', '.');
+    const n = parseFloat(v);
+    return isNaN(n) ? null : n;
+  });
+  chartYear = new Chart(el, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { type:'bar', label:'Successful', data:success, backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1, stack:'s' },
+        { type:'bar', label:'Not successful', data:notSuccess, backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1, stack:'s' },
+        { type:'line', label:'Success rate OB %', data:rate, yAxisID:'y2', borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:false, tension:.35, borderWidth:3, pointRadius:2 }
+      ]
+    },
+    options: {
+      plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+      scales: {
+        x: { ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+        y: { beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } },
+        y2: { position:'right', ticks:{ color:axisColor(), callback:v => v + '%' }, grid:{ drawOnChartArea:false } }
+      }
+    }
+  });
 }
 /* === Helpers: orden y mapeo mensual === */
 const monthOrder = ['Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Other'];
 function buildMonthlyAgg(rows) {
-const map = {};
-rows.forEach(r => {
-const m = monthKeyFromBatch(r.batch);
-if (!map[m]) map[m] = { successSum: 0, successRateVals: [] };
-map[m].successSum += Number(r.successful || 0);
-const raw = String(r.success_month || '').replace(',', '.').trim();
-const v = parseFloat(raw);
-if (!isNaN(v)) map[m].successRateVals.push(v);
-});
-const labels = Object.keys(map).sort((a,b) => monthOrder.indexOf(a)-monthOrder.indexOf(b));
-const successful = labels.map(m => map[m].successSum);
-const successRate = labels.map(m => {
-const arr = map[m].successRateVals;
-if (!arr.length) return null;
-const avg = arr.reduce((s,x)=>s+x,0)/arr.length;
-return Math.round(avg*100)/100;
-});
-return { labels, successful, successRate };
+  const map = {};
+  rows.forEach(r => {
+    const m = monthKeyFromBatch(r.batch);
+    if (!map[m]) map[m] = { successSum: 0, successRateVals: [] };
+    map[m].successSum += Number(r.successful || 0);
+    const raw = String(r.success_month || '').replace(',', '.').trim();
+    const v = parseFloat(raw);
+    if (!isNaN(v)) map[m].successRateVals.push(v);
+  });
+  const labels = Object.keys(map).sort((a,b) => monthOrder.indexOf(a)-monthOrder.indexOf(b));
+  const successful = labels.map(m => map[m].successSum);
+  const successRate = labels.map(m => {
+    const arr = map[m].successRateVals;
+    if (!arr.length) return null;
+    const avg = arr.reduce((s,x)=>s+x,0)/arr.length;
+    return Math.round(avg*100)/100;
+  });
+  return { labels, successful, successRate };
 }
 /* === Gráficos extra (instancias globales para destruir al cambiar) === */
 let chartYearMonthly = null;
 let chartYearGA = null;
 /* Render: Resumen mensual (para Overview) */
 function renderMonthlySummary(rows) {
-const el = document.getElementById('yearChartMonthly');
-if (!el || !window.Chart) return;
-if (chartYearMonthly) { chartYearMonthly.destroy(); chartYearMonthly = null; }
-const agg = buildMonthlyAgg(rows);
-chartYearMonthly = new Chart(el, {
-type: 'bar',
-data: {
-labels: agg.labels,
-datasets: [
-{ type: 'bar', label: 'Successful (sum)', data: agg.successful, backgroundColor: 'rgba(16,185,129,.65)', borderColor: cEmerald, borderWidth: 1 },
-{ type: 'line', label: 'Success rate by month % (avg)', data: agg.successRate, yAxisID: 'y2', borderColor: cIndigo, backgroundColor: 'rgba(99,102,241,.18)', fill: false, tension: .35, borderWidth: 3, pointRadius: 2 }
-]
-},
-options: {
-plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-scales: {
-x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
-y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color: gridColor(.12) } },
-y2:{ position:'right', ticks:{ color: axisColor(), callback:v => v + '%' }, grid:{ drawOnChartArea:false } }
-}
-}
-});
+  const el = document.getElementById('yearChartMonthly');
+  if (!el || !window.Chart || rows.length === 0) return;
+  if (chartYearMonthly) { chartYearMonthly.destroy(); chartYearMonthly = null; }
+  const agg = buildMonthlyAgg(rows);
+  chartYearMonthly = new Chart(el, {
+    type: 'bar',
+    data: {
+      labels: agg.labels,
+      datasets: [
+        { type: 'bar', label: 'Successful (sum)', data: agg.successful, backgroundColor: 'rgba(16,185,129,.65)', borderColor: cEmerald, borderWidth: 1 },
+        { type: 'line', label: 'Success rate by month % (avg)', data: agg.successRate, yAxisID: 'y2', borderColor: cIndigo, backgroundColor: 'rgba(99,102,241,.18)', fill: false, tension: .35, borderWidth: 3, pointRadius: 2 }
+      ]
+    },
+    options: {
+      plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+      scales: {
+        x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
+        y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color:gridColor(.12) } },
+        y2:{ position:'right', ticks:{ color: axisColor(), callback:v => v + '%' }, grid:{ drawOnChartArea:false } }
+      }
+    }
+  });
 }
 /* Render: Germany vs Austria stacked (para vistas mensuales) */
 function renderGAByBatch(rows) {
-const el = document.getElementById('yearChartGA');
-if (!el || !window.Chart) return;
-if (chartYearGA) { chartYearGA.destroy(); chartYearGA = null; }
-const labels = rows.map(r => r.batch);
-const ger = rows.map(r => Number(r.ger || 0));
-const aut = rows.map(r => Number(r.aut || 0));
-chartYearGA = new Chart(el, {
-type: 'bar',
-data: {
-labels,
-datasets: [
-{ label:'Germany', data:ger, backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1, stack:'geo' },
-{ label:'Austria', data:aut, backgroundColor:'rgba(99,102,241,.45)', borderColor:cIndigo, borderWidth:1, stack:'geo' }
-]
-},
-options: {
-plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-scales: {
-x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
-y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color: gridColor(.12) } }
-}
-}
-});
+  const el = document.getElementById('yearChartGA');
+  if (!el || !window.Chart) return;
+  if (chartYearGA) { chartYearGA.destroy(); chartYearGA = null; }
+  const labels = rows.map(r => r.batch);
+  const ger = rows.map(r => Number(r.ger || 0));
+  const aut = rows.map(r => Number(r.aut || 0));
+  chartYearGA = new Chart(el, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label:'Germany', data:ger, backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1, stack:'geo' },
+        { label:'Austria', data:aut, backgroundColor:'rgba(99,102,241,.45)', borderColor:cIndigo, borderWidth:1, stack:'geo' }
+      ]
+    },
+    options: {
+      plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+      scales: {
+        x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
+        y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color: gridColor(.12) } }
+      }
+    }
+  });
 }
 /* Vista Overview y Vista Mensual */
 function renderYearView(kind, monthKey) {
-openYearStage();
-if (kind === 'overview') {
-renderTable(yearRows, 'Outbound Calls — Overview 2025', 'Overview 2025');
-renderChart(yearRows); // gráfico principal
-renderMonthlySummary(yearRows); // NUEVO: resumen mensual visible en Overview
-// En Overview no mostramos GA por lote (dejamos ese para vista mensual).
-} else if (kind === 'month' && monthKey) {
-const filtered = yearRows.filter(r => monthKeyFromBatch(r.batch) === monthKey);
-renderTable(filtered, `Outbound Calls — ${monthKey} 2025`, `${monthKey} 2025`);
-renderChart(filtered); // gráfico principal (volumen + % success)
-renderMonthlySummary([]); // limpia el resumen mensual en vista mensual
-renderGAByBatch(filtered); // NUEVO: GA stacked en vista mensual
-}
+  openYearStage();
+  if (kind === 'overview') {
+    renderTable(yearRows, 'Outbound Calls — Overview 2025', 'Overview 2025');
+    renderChart(yearRows); // gráfico principal
+    renderMonthlySummary(yearRows); // resumen mensual visible en Overview
+  } else if (kind === 'month' && monthKey) {
+    const filtered = yearRows.filter(r => monthKeyFromBatch(r.batch) === monthKey);
+    renderTable(filtered, `Outbound Calls — ${monthKey} 2025`, `${monthKey} 2025`);
+    renderChart(filtered); // gráfico principal (volumen + % success)
+    renderMonthlySummary([]); // limpia el resumen mensual en vista mensual
+    renderGAByBatch(filtered); // GA stacked en vista mensual
+  }
 }
 /* Clicks de los meses en el menú */
 document.querySelectorAll('#yearMenu .menu-item[data-year-month]').forEach(btn => {
-btn.addEventListener('click', () => {
-const mk = btn.getAttribute('data-year-month');
-renderYearView('month', mk);
-setYearExpanded(false);
-});
+  btn.addEventListener('click', () => {
+    const mk = btn.getAttribute('data-year-month');
+    renderYearView('month', mk);
+    setYearExpanded(false);
+  });
 });
 /* CSV export del contenido visible (chart si existe; si no, tabla) */
 document.getElementById('csvYearBtn')?.addEventListener('click', () => {
-if (chartYear) exportChartToCSV(chartYear, 'year-end-visible.csv');
-else exportTableToCSV(document.getElementById('yearTable'), 'year-end.csv');
+  if (chartYear) exportChartToCSV(chartYear, 'year-end-visible.csv');
+  else exportTableToCSV(document.getElementById('yearTable'), 'year-end.csv');
 });
 document.getElementById('csvYearMonthlyBtn')?.addEventListener('click', () => {
-if (chartYearMonthly) exportChartToCSV(chartYearMonthly, 'year-overview-monthly-visible.csv');
+  if (chartYearMonthly) exportChartToCSV(chartYearMonthly, 'year-overview-monthly-visible.csv');
 });
 document.getElementById('csvYearGABtn')?.addEventListener('click', () => {
-if (chartYearGA) exportChartToCSV(chartYearGA, 'year-month-geo-visible.csv');
+  if (chartYearGA) exportChartToCSV(chartYearGA, 'year-month-geo-visible.csv');
 });
 });
 </script>
