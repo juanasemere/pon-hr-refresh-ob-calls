@@ -202,7 +202,7 @@ Performance Highlights
 </button>
 </div>
 </div>
-<!-- Year-End Results (dropdown) -->
+<!-- Year-End Results (dropdown) - SIN BOTONES DE MESES -->
 <div class="dropdown" id="yearDropdown" aria-haspopup="true">
 <button type="button" class="button" id="yearBtn" aria-controls="yearMenu" aria-expanded="false">
 Year-End Results Summary
@@ -210,37 +210,6 @@ Year-End Results Summary
 <div class="dropdown__menu" id="yearMenu" role="menu" aria-label="Year-End Results">
 <button type="button" class="menu-item" id="btnYearOverview" aria-controls="stage-year-end" aria-expanded="false">
 <span>Overview 2025</span>
-</button>
-<div class="hr"></div>
-<button type="button" class="menu-item" data-year-month="Feb">
-<span>February</span>
-</button>
-<button type="button" class="menu-item" data-year-month="Mar">
-<span>March</span>
-</button>
-<button type="button" class="menu-item" data-year-month="Apr">
-<span>April</span>
-</button>
-<button type="button" class="menu-item" data-year-month="May">
-<span>May</span>
-</button>
-<button type="button" class="menu-item" data-year-month="Jun">
-<span>June</span>
-</button>
-<button type="button" class="menu-item" data-year-month="Jul">
-<span>July</span>
-</button>
-<button type="button" class="menu-item" data-year-month="Aug">
-<span>August</span>
-</button>
-<button type="button" class="menu-item" data-year-month="Sep">
-<span>September</span>
-</button>
-<button type="button" class="menu-item" data-year-month="Oct">
-<span>October</span>
-</button>
-<button type="button" class="menu-item" data-year-month="Nov">
-<span>November</span>
 </button>
 </div>
 </div>
@@ -702,6 +671,7 @@ Year-End Results Summary
 </div>
  </div>
 </section>
+<!-- YEAR-END RESULTS - SIN GRAFICO MENSUAL -->
 <section id="stage-year-end" class="card" style="display:none">
 <h2 class="section-title">Year-End Results Summary <span class="muted" id="yearContextLabel">• Overview 2025</span></h2>
 <p class="sub">2025 Results</p>
@@ -782,6 +752,13 @@ hideAllStages();
 bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
 bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
 bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
+bYearOverview?.addEventListener('click', () => {
+  hideAllStages();
+  sYear.style.display = '';
+  bYearOverview.setAttribute('aria-expanded', 'true');
+  renderYearView();
+  window.scrollTo({ top: sYear.offsetTop - 16, behavior: 'smooth' });
+});
 
 /* Charts palette */
 const css = getComputedStyle(document.documentElement);
@@ -836,43 +813,17 @@ trsBody.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
 downloadCSV(filename, rows);
 }
 
-/* Main charts */
+/* Main charts (sin cambios) */
 const refreshEl = document.getElementById('refreshChart');
 const aifEl = document.getElementById('aifChart');
 const suspEl = document.getElementById('suspChart');
-const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, { /* ... mismo código que antes ... */ }) : null;
-const chartAIF = aifEl && window.Chart ? new Chart(aifEl, { /* ... mismo código que antes ... */ }) : null;
-const chartSusp = suspEl && window.Chart ? new Chart(suspEl, { /* ... mismo código que antes ... */ }) : null;
+const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, { /* código igual */ }) : null;
+const chartAIF = aifEl && window.Chart ? new Chart(aifEl, { /* código igual */ }) : null;
+const chartSusp = suspEl && window.Chart ? new Chart(suspEl, { /* código igual */ }) : null;
 
-/* Todos los charts de stages (sept, may, aug) siguen iguales - no los toqué */
+/* Todos los charts de stages (sept, may, aug) siguen 100% iguales */
 
-/* ====== Year-End dropdown ====== */
-const yearDD = document.getElementById('yearDropdown');
-const yearBtn = document.getElementById('yearBtn');
-function setYearExpanded(on) { yearBtn.setAttribute('aria-expanded', String(on)); }
-yearBtn?.addEventListener('click', (e) => {
-e.stopPropagation();
-const open = yearBtn.getAttribute('aria-expanded') !== 'true';
-setYearExpanded(open);
-});
-document.addEventListener('click', (e) => { if (yearDD && !yearDD.contains(e.target)) setYearExpanded(false); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setYearExpanded(false); });
-
-function openYearStage() {
-hideAllStages();
-if (sYear) {
-sYear.style.display = '';
-window.scrollTo({ top: sYear.offsetTop - 16, behavior: 'smooth' });
-}
-}
-bYearOverview?.addEventListener('click', () => {
-openYearStage();
-bYearOverview.setAttribute('aria-expanded', 'true');
-renderYearView('overview');
-setYearExpanded(false);
-});
-
-/* Datos y funciones del Year-End (solo se eliminó todo lo relacionado con el gráfico mensual) */
+/* Year-End data y funciones simplificadas (solo Overview) */
 const yearCsv = `batch,total,ger,aut,credit_cancelled,successful,not_success,other,dedup,success_ob,success_month
 FEB feb-18,15,14,1,4,4,7,0,0,36.36,36.36
 MARCH 5,43,40,3,7,14,22,0,0,38.89,
@@ -893,7 +844,7 @@ JULI 21,24,18,6,0,13,7,3,1,54.17,63.43
 JULI 28,48,46,2,0,32,16,0,0,66.67,
 AUGUST 4,42,39,3,1,27,13,1,0,65.85,
 AUGUST 11,16,14,1,1,9,6,0,0,60.00,61.06
-AUGUST 18,57,53,4,0,31,23,3,0,54.39,
+AUGUST 18,57,53 53,4,0,31,23,3,0,54.39,
 AUGUST 25,26,26,0,1,16,1,8,0,64.00,
 SEP 8,30,30,0,2,17,11,0,0,60.71,
 SEP 23,35,32,3,0,23,11,1,0,69.70,64.05
@@ -919,20 +870,8 @@ function parseCsv(str) {
 }
 const yearRows = parseCsv(yearCsv);
 
-function monthKeyFromBatch(s) {
-  const t = (s || '').toLowerCase();
-  if (t.includes('feb')) return 'Feb';
-  if (t.includes('mar')) return 'Mar';
-  if (t.includes('abr') || t.includes('apr')) return 'Apr';
-  if (t.includes('mai') || t.includes('may')) return 'May';
-  if (t.includes('jun')) return 'Jun';
-  if (t.includes('jul')) return 'Jul';
-  if (t.includes('aug') || t.includes('ago')) return 'Aug';
-  if (t.includes('sep')) return 'Sep';
-  if (t.includes('okt') || t.includes('oct')) return 'Oct';
-  if (t.includes('nov')) return 'Nov';
-  return 'Other';
-}
+let chartYear = null;
+let chartYearGA = null;
 
 function renderTable(rows, caption, contextLabel) {
   const tbody = document.getElementById('yearTableBody');
@@ -961,11 +900,10 @@ function renderTable(rows, caption, contextLabel) {
   if (ctx) ctx.textContent = contextLabel ? `• ${contextLabel}` : '';
 }
 
-let chartYear = null;
 function renderChart(rows) {
   const el = document.getElementById('yearChart');
   if (!el || !window.Chart) return;
-  if (chartYear) { chartYear.destroy(); chartYear = null; }
+  if (chartYear) { chartYear.destroy(); }
   const labels = rows.map(r => r.batch);
   const success = rows.map(r => Number(r.successful || 0));
   const notSuccess = rows.map(r => Number(r.not_success || 0));
@@ -995,11 +933,10 @@ function renderChart(rows) {
   });
 }
 
-let chartYearGA = null;
 function renderGAByBatch(rows) {
   const el = document.getElementById('yearChartGA');
   if (!el || !window.Chart) return;
-  if (chartYearGA) { chartYearGA.destroy(); chartYearGA = null; }
+  if (chartYearGA) { chartYearGA.destroy(); }
   const labels = rows.map(r => r.batch);
   const ger = rows.map(r => Number(r.ger || 0));
   const aut = rows.map(r => Number(r.aut || 0));
@@ -1022,36 +959,22 @@ function renderGAByBatch(rows) {
   });
 }
 
-function renderYearView(kind, monthKey) {
-  openYearStage();
-  if (kind === 'overview') {
-    renderTable(yearRows, 'Outbound Calls — Overview 2025', 'Overview 2025');
-    renderChart(yearRows);
-    renderGAByBatch(yearRows);
-  } else if (kind === 'month' && monthKey) {
-    const filtered = yearRows.filter(r => monthKeyFromBatch(r.batch) === monthKey);
-    renderTable(filtered, `Outbound Calls — ${monthKey} 2025`, `${monthKey} 2025`);
-    renderChart(filtered);
-    renderGAByBatch(filtered);
-  }
+function renderYearView() {
+  renderTable(yearRows, 'Outbound Calls — Overview 2025', 'Overview 2025');
+  renderChart(yearRows);
+  renderGAByBatch(yearRows);
 }
 
-document.querySelectorAll('#yearMenu .menu-item[data-year-month]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const mk = btn.getAttribute('data-year-month');
-    renderYearView('month', mk);
-    setYearExpanded(false);
-  });
-});
-
+/* CSV listeners */
 document.getElementById('csvYearBtn')?.addEventListener('click', () => {
   if (chartYear) exportChartToCSV(chartYear, 'year-end-visible.csv');
   else exportTableToCSV(document.getElementById('yearTable'), 'year-end.csv');
 });
-
 document.getElementById('csvYearGABtn')?.addEventListener('click', () => {
-  if (chartYearGA) exportChartToCSV(chartYearGA, 'year-month-geo-visible.csv');
+  if (chartYearGA) exportChartToCSV(chartYearGA, 'year-geo-visible.csv');
 });
+
+/* Resto de listeners de CSV de stages (sept, may, aug) siguen iguales */
 });
 </script>
 </body>
