@@ -270,7 +270,7 @@ Year-End Results Summary
 </div>
 <div class="grid-2">
 <div>
-<p class="sub"><b>Cross-F небольшunctional Alignment</b></p>
+<p class="sub"><b>Cross-Functional Alignment</b></p>
 <ul class="ul-clean">
 <li>Shared dashboards and standardized reporting enabling fast decision-making across CEN, TLS, Business, MCO and Concentrix teams.</li>
 <li>Collaborative escalation process for exceptions (Centurion, CEN files, HR–HRJ transitions), documented for transparency.</li>
@@ -686,7 +686,7 @@ Year-End Results Summary
 <section id="stage-year-end" class="card" style="display:none">
 <h2 class="section-title">Year-End Results Summary <span class="muted" id="yearContextLabel">• Overview 2025</span></h2>
 <p class="sub">2025 Results</p>
-<table id="yearTable">
+<table id="yearTable" style="display:none">
 <caption id="yearTableCaption">Outbound Calls — Overview 2025</caption>
 <thead>
 <tr>
@@ -1013,6 +1013,8 @@ bYearOverview.setAttribute('aria-expanded', 'true');
 renderYearView('overview'); // carga Overview por defecto
 setYearExpanded(false);
 });
+/
+
 /* ====== Dataset (CSV) — puntos decimales para % ====== */
 const yearCsv = `batch,total,ger,aut,credit_cancelled,successful,not_success,other,dedup,success_ob,success_month
 FEB feb-18,15,14,1,4,4,7,0,0,36.36,36.36
@@ -1045,6 +1047,7 @@ OCT 20,34,31,3,0,21,13,0,0,63.64,67.78
 OCT 27,30,28,2,0,22,9,0,0,73.33,
 NOV 4,24,23,1,0,14,10,0,0,63.64,
 NOV 10,33,30,3,0,20,13,0,0,60.61,60.61`;
+
 /* Parser CSV robusto (tolerante a valores faltantes) */
 function parseCsv(str) {
   const lines = str.trim().split(/\r?\n/);
@@ -1205,7 +1208,7 @@ function renderGAByBatch(rows) {
     options: {
       plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
       scales: {
-        x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
+        x: { ticks:{ color: axisColor() }, grid:{ color:gridColor(.15) } },
         y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color:gridColor(.12) } }
       }
     }
@@ -1236,7 +1239,7 @@ document.querySelectorAll('#yearMenu .menu-item[data-year-month]').forEach(btn =
 });
 /* CSV export del contenido visible (chart si existe; si no, tabla) */
 document.getElementById('csvYearBtn')?.addEventListener('click', () => {
-  if (chartYear) exportChartToCSV(chartYear, 'year-end-visible.csv');
+  if (chartYear) exportChartToCSVCSV(chartYear, 'year-end-visible.csv');
   else exportTableToCSV(document.getElementById('yearTable'), 'year-end.csv');
 });
 document.getElementById('csvYearMonthlyBtn')?.addEventListener('click', () => {
