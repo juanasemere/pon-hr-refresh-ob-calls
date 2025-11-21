@@ -159,29 +159,6 @@ table{display:block; overflow:auto; white-space:nowrap}
 <!-- Removed: <span class="tag">OB Calls cadence: every 21 days</span> -->
 </div>
 <div class="actions" aria-label="Quick actions">
-<!-- Tools (dropdown) -->
-<div class="dropdown" id="toolsDropdown" aria-haspopup="true">
-<button type="button" class="button button--primary" id="toolsBtn" aria-controls="toolsMenu" aria-expanded="false">
-<svg class="button__icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-</svg>
-Tools
-</button>
-<div class="dropdown__menu" id="toolsMenu" role="menu" aria-label="Tools menu">
-<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkExcel">
-<span>Excel sheet (setlists)</span>
-<small>Open in new tab</small>
-</a>
-<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkSpend">
-<span>Spend tool</span>
-<small>Open in new tab</small>
-</a>
-<a class="menu-item" href="#" target="_blank" rel="noopener" role="menuitem" id="linkCenturion">
-<span>Centurion Shared File</span>
-<small>Open in new tab</small>
-</a>
-</div>
-</div>
 <!-- Performance Highlights (dropdown) -->
 <div class="dropdown" id="phDropdown" aria-haspopup="true">
 <button type="button" class="button" id="phBtn" aria-controls="phMenu" aria-expanded="false">
@@ -293,7 +270,7 @@ Year-End Results Summary
 </div>
 <div class="grid-2">
 <div>
-<p class="sub"><b>Cross-Functional Alignment</b></p>
+<p class="sub"><b>Cross-F небольшunctional Alignment</b></p>
 <ul class="ul-clean">
 <li>Shared dashboards and standardized reporting enabling fast decision-making across CEN, TLS, Business, MCO and Concentrix teams.</li>
 <li>Collaborative escalation process for exceptions (Centurion, CEN files, HR–HRJ transitions), documented for transparency.</li>
@@ -735,6 +712,10 @@ Year-End Results Summary
 <p class="sub"><b>Visualisation</b> • Volume VS performance</p>
 <canvas id="yearChart" height="260"></canvas>
 </div>
+<div style="margin-top:18px">
+<p class="sub"><b>Monthly Resume</b> • Successful per month + % Success mensual</p>
+<canvas id="yearChartMonthly" height="240"></canvas>
+</div>
 <div class="actions" style="margin-top:6px">
 <button class="button" id="csvYearMonthlyBtn">Download CSV (Monthly)</button>
 </div>
@@ -752,21 +733,7 @@ Maintained by Germany & Austria Consumer HR • Outbound Calls program
 </div>
 <script>
 window.addEventListener('DOMContentLoaded', () => {
-/* Tools dropdown */
-const dd = document.getElementById('toolsDropdown');
-const btn = document.getElementById('toolsBtn');
-function setExpanded(on) { btn.setAttribute('aria-expanded', String(on)); }
-btn.addEventListener('click', (e) => {
-e.stopPropagation();
-const open = btn.getAttribute('aria-expanded') !== 'true';
-setExpanded(open);
-});
-document.addEventListener('click', (e) => { if (!dd.contains(e.target)) setExpanded(false); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setExpanded(false); });
-/* Close dropdown when using the Key Results link */
-document.getElementById('linkKeyResults')?.addEventListener('click', () => {
-setExpanded(false);
-});
+/* Tools dropdown eliminado */
 /* Show/Hide Stages */
 const sSept = document.getElementById('stage-sept-2024');
 const sMay = document.getElementById('stage-may-2025');
@@ -1056,7 +1023,7 @@ APRIL 14,25,23,2,7,9,6,3,0,50.00,
 APRIL 24,40,34,6,0,22,18,0,0,55.00,52.50
 MAI 08,54,41,13,1,29,21,3,0,54.72,
 MAI 15,22,19,3,4,8,10,0,0,44.44,
-MAI 23,69,63,6,4,47,17,1,0,72.31,57.16
+MAI 23,69,63,6,4,47,17,1,0,
 JUNE 1,63,55,8,0,44,18,1,0,69.84,
 JUNE 06,16,16,0,0,8,7,1,0,50.00,
 JUNE 15,82,74,8,0,61,20,1,0,74.39,66.74
@@ -1140,7 +1107,7 @@ function renderChart(rows) {
   const el = document.getElementById('yearChart');
   if (!el || !window.Chart) return;
   if (chartYear) { chartYear.destroy(); chartYear = null; }
-  const labels = rows.map(r => r.batch);
+   const labels = rows.map(r => r.batch);
   const success = rows.map(r => Number(r.successful || 0));
   const notSuccess = rows.map(r => Number(r.not_success || 0));
   const rate = rows.map(r => {
@@ -1239,7 +1206,7 @@ function renderGAByBatch(rows) {
       plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
       scales: {
         x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
-        y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color: gridColor(.12) } }
+        y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color:gridColor(.12) } }
       }
     }
   });
