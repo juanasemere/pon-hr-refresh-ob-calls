@@ -210,20 +210,19 @@ Year-End Results Summary
 <div>
 <p class="sub"><b>Workflow Optimization & Oversight</b></p>
 <ul class="ul-clean">
-<li>Integration of multiple data sources - Spend, Tenure, Centurion inventory, HRJ CASES, Credit Active, Case Age - into a single workflow, enabling precise prioritization and minimizing manual effort.</li>
-<li>Automated validation rules and quality checks to prevent errors and ensure compliance before outreach.</li>
-<li>Harmonized process design across markets and ensuring a consistent customer experience.</li>
-<li>Dynamic sub-process for retrieving missing account information, reducing cancellations and maintaining BAU alignment.</li>
-<li>Real-time tracking of batch progress and updates from Concentrix, enabling timely follow-ups and accountability.</li>
+<li>Unified data sources - Spend, Tenure, Centurion inventory, HRJ CASES, Credit Active - into a single automated workflow, improving prioritization and reducing manual effort.</li>
+<li>Automated validation and quality controls ensuring error-free.</li>
+<li>Harmonized processes across markets for consistent execution.</li>
+<li>Streamlined retrieval of missing information to reduce cancellations and maintain BAU.</li>
+<li>Real-time batch monitoring enabling timely follow-ups and operational accountability.</li>
 </ul>
 </div>
 <div>
 <p class="sub"><b>Performance Management</b></p>
 <ul class="ul-clean">
-<li>SLA-driven weekly outbound cycles with automated reporting on contact rate, completion rate, and time-to-resolution.</li>
-<li>Performance dashboards updated in real time, providing visibility for KYC and Concentrix teams.</li>
-<li>Established performance framework including contact rate, completion rate, and time-to-resolution, supported by transparent reporting.</li>
-<li>Defined escalation channels for exceptions such as Centurion file, CEN file and HR–HRJ transitions.</li>
+<li>SLA-driven weekly cycles with automated reporting on key metrics..</li>
+<li>Real-time dashboards providing full visibility to KYC and Concentrix teams.</li>
+<li>Defined performance framework with transparent tracking of targets.</li>
 </ul>
 </div>
 </div>
@@ -231,17 +230,17 @@ Year-End Results Summary
 <div>
 <p class="sub"><b>Customer Engagement & Experience Quality</b></p>
 <ul class="ul-clean">
-<li>Scripted call flows aligned with DE/AT regulations, ensuring clear communication and reducing escalations.</li>
-<li>21-day outreach cycle optimized for higher engagement and completion rates, monitored via workflow analytics.</li>
-<li>Feedback integration loop from Concentrix to refine scripts and approach based on observed outcomes.</li>
+<li>Regulatory-aligned scripted flows ensuring clarity and lower escalation rates.</li>
+<li>Optimized 21-day outreach cycle improving engagement and completion.</li>
+<li>Continuous feedback loop from Concentrix to refine scripts and improve performance.</li>
 </ul>
 </div>
 <div>
 <p class="sub"><b>Risk Mitigation & Compliance Strengthening</b></p>
 <ul class="ul-clean">
-<li>Early identification of at-risk accounts (Day-60) with automated alerts and escalation triggers.</li>
-<li>End-to-end tracking of missing documentation, improving audit-readiness and compliance oversight.</li>
-<li>Close alignment with Compliance and KYC Team for manual overrides and sensitive cases requiring additional due diligence.</li>
+<li>Early identification of at-risk accounts supported by automated alerts.</li>
+<li>End-to-end tracking of missing documentation improving audit readiness.</li>
+<li>Close alignment with Compliance and KYC for overrides and sensitive cases.</li>
 </ul>
 </div>
 </div>
@@ -249,9 +248,9 @@ Year-End Results Summary
 <div>
 <p class="sub"><b>Cross-Functional Alignment</b></p>
 <ul class="ul-clean">
-<li>Shared dashboards and standardized reporting enabling fast decision-making across CEN, TLS, Business, MCO and Concentrix teams.</li>
-<li>Collaborative escalation process for exceptions (Centurion, CEN files, HR–HRJ transitions), documented for transparency.</li>
-<li>Weekly syncs and continuous feedback loops with DE/AT partners to adjust priorities and maintain operational consistency.</li>
+<li>Shared dashboards and standardized reporting enabling fast decision-making across CEN, TLS, Business, MCO.</li>
+<li>Close alignment with Compliance and KYC Team for manual overrides and sensitive cases requiring additional due diligence.</li>
+<li>Weekly syncs with DE/AT partners to maintain consistency and adjust priorities</li>
 </ul>
 </div>
 </div>
@@ -672,10 +671,9 @@ Year-End Results Summary
 <th>Germany</th>
 <th>Austria</th>
 <th>Credit active, card cancelled</th>
-<th>Successful</th>
-<th>Not successful</th>
-<th>Other – not successful</th>
-<th>Deduplicates</th>
+<th>Successful - incl. Calls, forwarded for link, promised to do it</th>
+<th>Not successful - no answer, left message</th>
+<th>Other – (does not want to do the refresh </th>
 <th>Success rate OB %</th>
 <th>Success rate by month %</th>
 </tr>
@@ -991,14 +989,14 @@ setYearExpanded(false);
 });
 /* ====== Dataset (CSV) — puntos decimales para % ====== */
 const yearCsv = `batch,total,ger,aut,credit_cancelled,successful,not_success,other,dedup,success_ob,success_month
-FEB feb-18,15,14,1,4,4,7,0,0,36.36,36.36
-MARCH 5,43,40,3,7,14,22,0,0,38.89,
-MARCH 21,46,43,3,6,12,17,11,,30.00,41.48
-MARCH 28,50,43,7,5,25,20,0,0,55.56,
-APRIL 14,25,23,2,7,9,6,3,0,50.00,
-APRIL 24,40,34,6,0,22,18,0,0,55.00,52.50
-MAI 08,54,41,13,1,29,21,3,0,54.72,
-MAI 15,22,19,3,4,8,10,0,0,44.44,
+FEB feb-18,15,14,1,4,4,7,0,36.36,36.36
+MARCH 5,43,40,3,7,14,22,0,38.89,
+MARCH 21,46,43,3,6,12,17,30.00,41.48
+MARCH 28,50,43,7,5,25,20,0,55.56,
+APRIL 14,25,23,2,7,9,6,3,50.00,
+APRIL 24,40,34,6,0,22,18,0,55.00,52.50
+MAI 08,54,41,13,1,29,21,3,54.72,
+MAI 15,22,19,3,4,8,10,0,44.44,
 MAI 23,69,63,6,4,47,17,1,0,
 JUNE 1,63,55,8,0,44,18,1,0,69.84,
 JUNE 06,16,16,0,0,8,7,1,0,50.00,
