@@ -281,7 +281,7 @@ Year-End Results Summary
   </div>
 </section>
   <section id="kpis-may" class="card">
-    <h2 class="section-title">Key Results – May 2025</h2>
+    <h2 class="section-title">Key Results – Mai 2025</h2>
     <div class="kpis">
       <div class="kpi"><div class="label">AIF YTD</div><div class="value">3,700</div><div class="note">DE: 3.2k • AT: 0.5k</div></div>
       <div class="kpi"><div class="label">% refreshed</div><div class="value warn">74%</div><div class="note">18% in progress • 8% to be contacted</div></div>
@@ -433,7 +433,7 @@ Year-End Results Summary
       &gt; DocUpload login correction without CM15: in working progress</p>
     </div>
   </section>
-<!-- STAGE MAY 2025 -->
+<!-- STAGE MAI 2025 -->
 <section id="stage-may-2025" class="card" style="display:none">
 <h2 class="section-title">PON HR Refresh – May 2025 status</h2>
 <p class="sub">Key Facts</p>
@@ -443,7 +443,7 @@ Year-End Results Summary
 <li>74% refreshed, 18% in progress, 8% to be contacted - HR Consumer</li>
 </ul>
 <table>
-  <caption>HR Consumer – May. 2025</caption>
+  <caption>HR Consumer – Mai. 2025</caption>
   <thead>
     <tr>
       <th>Stage</th>
@@ -456,7 +456,7 @@ Year-End Results Summary
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3">May. 2025</td>
+      <td rowspan="3">Mai. 2025</td>
       <th scope="row">Austria</th>
       <td>480</td>
       <td>318</td>
@@ -481,7 +481,7 @@ Year-End Results Summary
 </table>
 <button class="button" id="csvMayConsumerBtn">Download CSV</button>
 <table>
-  <caption>HR Centurion – May. 2025</caption>
+  <caption>HR Centurion – Mai. 2025</caption>
   <thead>
     <tr>
       <th>Stage</th>
@@ -494,7 +494,7 @@ Year-End Results Summary
   </thead>
   <tbody>
     <tr>
-      <td rowspan="3">May. 2025</td>
+      <td rowspan="3">Mai. 2025</td>
       <th scope="row">Austria</th>
       <td>101</td>
       <td>59</td>
@@ -540,6 +540,11 @@ Year-End Results Summary
       Robust process implemented to save basic if account is partially refreshed with required documentation in place since 03/25<br>
       Process adjusted in context of HR consumer becoming HR Jurisdiction case during refresh: journey is extended with 30 days extra &amp; CM receives GSG OB calls to be informed of additional SOW requirement<br>
       KYC comms is updated with new ‘Güterplatz’ address which allows no further delay in KYC process path</p>
+      <h3 class="sub" style="margin-top:8px">NEXT CHALLENGES &amp; PROPOSAL</h3>
+      <p>* Consistent 2-4 % of voluntary attrition during KYC HR Consumer refresh<br>
+          &gt; Next steps: Analyze behavior to understand trigger and initiate remediation with SAC team<br>
+      * 2027 eventual requirements for total HR consumer base to provide SOW/SOF data<br>
+          &gt; Next steps: observe current HRJ data &amp; learnings</p>
     </div>
   </section>
 <!-- STAGE AUG 2025 -->
@@ -645,6 +650,11 @@ Year-End Results Summary
   Robust process implemented to save basic status if account is partially refreshed with required documentation in place since 03/25<br>
   Process adjusted in context of HR consumer becoming High Risk Jurisdiction during KYC refresh: journey is extended with 30 days extra and CM receives GSG OB calls to be informed of additional SOW requirement<br>
   Overall: KYC HR process is running smoothly</p>
+  <h3 class="sub" style="margin-top:8px">NEXT CHALLENGES FOR 2026</h3>
+  <p>* Suspension to be retrieved from AT process – mapped for 2026<br>
+  * Incorporate this exact Out-Bound Calls from current HR process into iRefresh - Desing by KYC Team Ger/Aut Cons HR!<br>
+  * 2027 eventual requirements for total HR consumer base to provide SOW/SOF data<br>
+     &gt; Observe current HRJ data &amp; learnings</p>
 </div>
  </div>
 </section>
@@ -709,18 +719,18 @@ Year-End Results Summary
 <canvas id="yearChart" height="260"></canvas>
 </div>
 <div style="margin-top:18px">
-<p class="sub"><b>Monthly Resume</b> • Successful per month + % Success monthly</p>
+<p class="sub"><b>Monthly Resume</b> • Successful per month + % Success mensual</p>
 <canvas id="yearChartMonthly" height="240"></canvas>
 </div>
 <div class="actions" style="margin-top:6px">
 <button class="button" id="csvYearMonthlyBtn">Download CSV (Monthly)</button>
 </div>
 <div style="margin-top:18px">
-<p class="sub"><b>Germany vs Austria</b> • Volume per market (Monthly)</p>
+<p class="sub"><b>Germany vs Austria</b> • Volume per market (vista mensual)</p>
 <canvas id="yearChartGA" height="240"></canvas>
 </div>
 <div class="actions" style="margin-top:6px">
-<button class="button" id="csvYearGABtn">Download CSV</button>
+<button class="button" id="csvYearGABtn">Download CSV (Geo)</button>
 </div>
 </section>
 </main>
@@ -911,7 +921,7 @@ y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gr
 }
 const chartMayConsumer = mayConsumerEl && window.Chart ? stackedBar(
 mayConsumerEl,
-['Austria','Germany','May 20th 2025 Overall'],
+['Austria','Germany','Mai 20th 2025 Overall'],
 [
 { label:'HR CM volume', data:[480,3216,3696], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
 { label:'HR CM refreshed', data:[318,2612,2930], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
@@ -1009,37 +1019,37 @@ renderYearView('overview');
 setYearExpanded(false);
 });
 /* ====== Dataset (CSV) — puntos decimales para % ====== */
-const yearCsv = `batch,total,ger,aut,credit_cancelled,successful,not_success,other,success_ob,success_month
+const yearCsv = `batch,total,ger,aut,credit_cancelled,successful,not_success,other,dedup,success_ob,success_month
 FEB feb-18,15,14,1,4,4,7,0,36.36,36.36
 MARCH 5,43,40,3,7,14,22,0,38.89,
-MARCH 21,46,43,3,6,12,17,30.00,
-MARCH 28,50,43,7,5,25,20,0,55.56,41.48
+MARCH 21,46,43,3,6,12,17,30.00,41.48
+MARCH 28,50,43,7,5,25,20,0,55.56,
 APRIL 14,25,23,2,7,9,6,3,50.00,
 APRIL 24,40,34,6,0,22,18,0,55.00,52.50
-MAY 08,54,41,13,1,29,21,3,54.72,
-MAY 15,22,19,3,4,8,10,0,44.44,
-MAY 23,69,63,6,4,47,17,1,72.31, 57.16
-JUNE 1,63,55,8,0,44,18,1,69.84,
-JUNE 06,16,16,0,0,8,7,1,50.00,
-JUNE 15,82,74,8,0,61,20,1,74.39,
-JUNE 23,57,53,4,2,40,14,0,72.73,66.74
-JULI 07,77,69,8,0,51,19,7,66.23,
-JULI 14,54,49,5,0,36,13,5,66.67,
-JULI 21,24,18,6,0,13,7,3,54.17,
-JULI 28,48,46,2,0,32,16,0,66.67,63.43
-AUGUST 4,42,39,3,1,27,13,1,65.85,
-AUGUST 11,16,14,1,1,9,6,0,60.00,
-AUGUST 18,57,53,4,0,31,23,3,54.39,
-AUGUST 25,26,26,0,1,16,1,8,64.00,61.06
-SEP 8,30,30,0,2,17,11,0,60.71,
-SEP 23,35,32,3,0,23,11,1,69.70,
-SEP 29,35,35,0,1,21,13,0,0,63.64,64.69
-OCT 6,39,35,4,0,23,16,0,62.16,
-OCT 13,50,47,3,2,36,14,0,72.00,
-OCT 20,34,31,3,0,21,13,0,63.64,
-OCT 27,30,28,2,0,22,9,0,73.33,68.54
+MAI 08,54,41,13,1,29,21,3,54.72,
+MAI 15,22,19,3,4,8,10,0,44.44,
+MAI 23,69,63,6,4,47,17,1,0,
+JUNE 1,63,55,8,0,44,18,1,0,69.84,
+JUNE 06,16,16,0,0,8,7,1,0,50.00,
+JUNE 15,82,74,8,0,61,20,1,0,74.39,
+JUNE 23,57,53,4,2,40,14,0,1,72.73,66.74
+JULI 07,77,69,8,0,51,19,7,0,66.23,
+JULI 14,54,49,5,0,36,13,5,0,66.67,
+JULI 21,24,18,6,0,13,7,3,1,54.17,
+JULI 28,48,46,2,0,32,16,0,0,66.67,63.43
+AUGUST 4,42,39,3,1,27,13,1,0,65.85,
+AUGUST 11,16,14,1,1,9,6,0,0,60.00,61.06
+AUGUST 18,57,53,4,0,31,23,3,0,54.39,
+AUGUST 25,26,26,0,1,16,1,8,0,64.00,
+SEP 8,30,30,0,2,17,11,0,0,60.71,
+SEP 23,35,32,3,0,23,11,1,0,69.70,64.05
+OCT 29,35,35,0,1,21,13,0,0,63.64,
+OCT 6,39,35,4,0,23,16,0,0,62.16,
+OCT 13,50,47,3,2,36,14,0,0,72.00,
+OCT 20,34,31,3,0,21,13,0,0,63.64,
+OCT 27,30,28,2,0,22,9,0,0,73.33,67.78
 NOV 4,24,23,1,0,14,10,0,0,63.64,
-NOV 10,33,30,3,0,20,13,0,60.61,60.61`;
+NOV 10,33,30,3,0,20,13,0,0,60.61,60.61`;
 function parseCsv(str) {
   const lines = str.trim().split(/\r?\n/);
   const headers = lines.shift().split(',').map(h => h.trim());
@@ -1107,13 +1117,17 @@ function renderChart(rows) {
     const n = parseFloat(v);
     return isNaN(n) ? null : n;
   });
+  const creditCancelled = rows.map(r => Number(r.credit_cancelled || 0));
+  const other = rows.map(r => Number(r.other || 0));
   chartYear = new Chart(el, {
     type: 'bar',
     data: {
       labels,
       datasets: [
-        { type:'bar', label:'Successful', data:success, backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1, stack:'s' },
-        { type:'bar', label:'Not successful', data:notSuccess, backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1, stack:'s' },
+        { type:'bar', label:'Credit active, card cancelled', data:creditCancelled, backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1, stack:'s' },
+        { type:'bar', label:'Successful - incl. Calls, forwarded for link, promised to do it', data:success, backgroundColor:'rgba(16,185,129,.65)', borderColor:'#10b981', borderWidth:1, stack:'s' },
+        { type:'bar', label:'Not successful - no answer, left message', data:notSuccess, backgroundColor:'rgba(245,158,11,.65)', borderColor:'#f59e0b', borderWidth:1, stack:'s' },
+        { type:'bar', label:'Other – (does not want to do the refresh ', data:other, backgroundColor:'rgba(253,186,116,.45)', borderColor:'#fdba74', borderWidth:1, stack:'s' },
         { type:'line', label:'Success rate OB %', data:rate, yAxisID:'y2', borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:false, tension:.35, borderWidth:3, pointRadius:2 }
       ]
     },
