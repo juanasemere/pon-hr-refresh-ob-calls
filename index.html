@@ -1077,15 +1077,14 @@ function renderTable(rows, caption, contextLabel) {
   rows.forEach(r => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-<td>${r.batch}</td>
-<td>${r.total}</td>
-<td>${r.ger}</td>
-<td>${r.aut}</td>
+<td>${r.date}</td>
+<td>${r["total contact"]}</td>
+<td>${r.germany}</td>
+<td>${r.austria}</td>
 <td>${r.credit_cancelled}</td>
 <td>${r.successful}</td>
 <td>${r.not_success}</td>
 <td>${r.other || '0'}</td>
-<td>${r.dedup || '0'}</td>
 <td>${r.success_ob || ''}</td>
 <td>${r.success_month || ''}</td>
 `;
@@ -1099,7 +1098,7 @@ function renderChart(rows) {
   const el = document.getElementById('yearChart');
   if (!el || !window.Chart) return;
   if (chartYear) { chartYear.destroy(); chartYear = null; }
-   const labels = rows.map(r => r.batch);
+   const labels = rows.map(r => r.date);
   const success = rows.map(r => Number(r.successful || 0));
   const notSuccess = rows.map(r => Number(r.not_success || 0));
   const rate = rows.map(r => {
@@ -1135,7 +1134,7 @@ const monthOrder = ['Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov',
 function buildMonthlyAgg(rows) {
   const map = {};
   rows.forEach(r => {
-    const m = monthKeyFromBatch(r.batch);
+    const m = monthKeyFromBatch(r.date);
     if (!map[m]) map[m] = { successSum: 0, successRateVals: [] };
     map[m].successSum += Number(r.successful || 0);
     const raw = String(r.success_month || '').replace(',', '.').trim();
@@ -1182,9 +1181,9 @@ function renderGAByBatch(rows) {
   const el = document.getElementById('yearChartGA');
   if (!el || !window.Chart) return;
   if (chartYearGA) { chartYearGA.destroy(); chartYearGA = null; }
-  const labels = rows.map(r => r.batch);
-  const ger = rows.map(r => Number(r.ger || 0));
-  const aut = rows.map(r => Number(r.aut || 0));
+  const labels = rows.map(r => r.date);
+  const ger = rows.map(r => Number(r.germany || 0));
+  const aut = rows.map(r => Number(r.austria || 0));
   chartYearGA = new Chart(el, {
     type: 'bar',
     data: {
@@ -1208,10 +1207,10 @@ function renderYearView(kind, period) {
   let filtered = yearRows;
   let title = 'Overview 2025';
   if (period === 'Q1') {
-    filtered = yearRows.filter(r => ['Feb','Mar','Apr','May','Jun'].includes(monthKeyFromBatch(r.batch)));
+    filtered = yearRows.filter(r => ['Feb','Mar','Apr','May','Jun'].includes(monthKeyFromBatch(r.date)));
     title = 'Q1 2025 (Feb-Jun)';
   } else if (period === 'Q2') {
-    filtered = yearRows.filter(r => ['Jul','Aug','Sep','Oct','Nov','Dec'].includes(monthKeyFromBatch(r.batch)));
+    filtered = yearRows.filter(r => ['Jul','Aug','Sep','Oct','Nov','Dec'].includes(monthKeyFromBatch(r.date)));
     title = 'Q2 2025 (Jul-Dec)';
   }
   renderTable(filtered, `Outbound Calls — ${title}`, title);
