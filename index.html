@@ -812,11 +812,11 @@ const suspEl = document.getElementById('suspChart');
 const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, {
 type:'line',
 data:{
-labels:['May 2025','Jun 2025','Jul 2025','Aug 2025','Sep 2025'],
+labels:['Sept 2024','May 2025','Aug 2025'],
 datasets:[
-{ label:'% Refreshed', data:[74,79,82,85,88], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
-{ label:'% In progress', data:[18,15,13,10,8], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
-{ label:'% To contact / Pre-screen', data:[8,6,5,5,4], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
+{ label:'% Refreshed', data:[56,74,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+{ label:'% In progress', data:[24,18,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
+{ label:'% To contact / Pre-screen', data:[20,8,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
 ]
 },
 options:{
@@ -830,9 +830,9 @@ type:'bar',
 data:{
 labels:['Germany','Austria'],
 datasets:[
-{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-{ label:'AIF YTD (Sep)', data:[3600,500], backgroundColor:'rgba(99,102,241,.65)', borderColor:cIndigo, borderWidth:1 }
+{ label:'AIF YTD (Sept 2024)', data:[5000,600], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(99,102,241,.65)', borderColor:cIndigo, borderWidth:1 }
 ]
 },
 options:{
@@ -844,10 +844,10 @@ y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleS
 const chartSusp = suspEl && window.Chart ? new Chart(suspEl, {
 type:'line',
 data:{
-labels:['May','Jun','Jul','Aug','Sep'],
+labels:['Sept 2024','May 2025','Aug 2025'],
 datasets:[
-{ label:'Open inventory (index)', data:[100,75,60,45,30], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
-{ label:'Suspension rate %', data:[1.4,1.1,0.9,0.6,0.4], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
+{ label:'Open inventory (index)', data:[153,100,111], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
+{ label:'Suspension rate %', data:[5.5,1.4,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
 ]
 },
 options:{
