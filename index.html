@@ -317,6 +317,11 @@ Year-End Results Summary
 <canvas id="suspChart" height="210"></canvas>
 <p class="muted pin">Suspension rate is <b>much lower</b> thanks to a <b>smaller inventory</b> and earlier outreach, reflecting improved portfolio health and proactive case management.</p>
 </div>
+<div>
+<p class="sub">At risk of cancellation</p>
+<canvas id="riskCancelChart" height="210"></canvas>
+<p class="muted pin">Reduction in at risk of cancellation over time.</p>
+</div>
 </div>
 </section>
 <!-- STAGE SEPT 2024 -->
@@ -809,6 +814,7 @@ downloadCSV(filename, rows);
 const refreshEl = document.getElementById('refreshChart');
 const aifEl = document.getElementById('aifChart');
 const suspEl = document.getElementById('suspChart');
+const riskCancelEl = document.getElementById('riskCancelChart');
 const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, {
 type:'line',
 data:{
@@ -856,6 +862,22 @@ scales:{
 x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
 y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } },
 y2:{ position:'right', ticks:{ color:axisColor() }, grid:{ drawOnChartArea:false } }
+}
+}
+}) : null;
+const chartRiskCancel = riskCancelEl && window.Chart ? new Chart(riskCancelEl, {
+type:'line',
+data:{
+labels:['Sept 2024','May 2025','Aug 2025'],
+datasets:[
+{ label:'At risk of cancellation %', data:[4,1.2,0], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+scales:{
+x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } }
 }
 }
 }) : null;
