@@ -4,9 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PON HR Refresh – Germany & Austria • Consumer HR OB Calls</title>
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js" as="script">
 <!-- Chart.js with defer -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js" async></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 <style>
 :root{
 --primary:#0ea5e9;
@@ -145,9 +144,8 @@ table{display:block; overflow:auto; white-space:nowrap}
 <header>
  <div class="brand">
     <img
-      src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_(2018).svg"
+      src="https://es.wikipedia.org/wiki/American_Express#/media/Archivo:American_Express_logo_(2018).svg"
       alt="American Express logo"
-      loading="lazy"
     />
     <div>
       <h1>PON HR Refresh – Germany & Austria • Consumer HR Outbound Calls</h1>
@@ -812,7 +810,7 @@ const trsBody = tableEl.querySelectorAll('tbody tr');
 trsBody.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
 downloadCSV(filename, rows);
 }
-/* Main charts - FIXED */
+/* Main charts */
 const refreshEl = document.getElementById('refreshChart');
 const aifEl = document.getElementById('aifChart');
 const suspEl = document.getElementById('suspChart');
@@ -822,9 +820,9 @@ type:'line',
 data:{
 labels:['Sept 2024','May 2025','Aug 2025'],
 datasets:[
-{ label:'% Refreshed', data:[56,74,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:3 },
-{ label:'% In progress', data:[24,18,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:3, pointRadius:3 },
-{ label:'% To contact / Pre-screen', data:[20,8,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:3, pointRadius:3 }
+{ label:'% Refreshed', data:[56,74,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+{ label:'% In progress', data:[24,18,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
+{ label:'% To contact / Pre-screen', data:[20,8,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
 ]
 },
 options:{
@@ -833,15 +831,14 @@ scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
 y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } } }
 }
 }) : null;
-
 const chartAIF = aifEl && window.Chart ? new Chart(aifEl, {
 type:'bar',
 data:{
 labels:['Germany','Austria'],
 datasets:[
-{ label:'AIF YTD (Sept 2024)', data:[5000,600], backgroundColor:'rgba(14,165,233,.7)', borderColor:cSky, borderWidth:1 },
-{ label:'AIF YTD (May 2025)', data:[3200,500], backgroundColor:'rgba(16,185,129,.7)', borderColor:cEmerald, borderWidth:1 },
-{ label:'AIF YTD (Aug 2025)', data:[3500,500], backgroundColor:'rgba(99,102,241,.7)', borderColor:cIndigo, borderWidth:1 }
+{ label:'AIF YTD (Sept 2024)', data:[5000,600], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(99,102,241,.65)', borderColor:cIndigo, borderWidth:1 }
 ]
 },
 options:{
@@ -850,14 +847,13 @@ scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
 y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleString() }, grid:{ color:gridColor(.12) } } }
 }
 }) : null;
-
 const chartSusp = suspEl && window.Chart ? new Chart(suspEl, {
 type:'line',
 data:{
 labels:['Sept 2024','May 2025','Aug 2025'],
 datasets:[
-{ label:'Open inventory (index)', data:[153,100,111], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2, pointRadius:3 },
-{ label:'Suspension rate %', data:[5.5,1.4,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:3 }
+{ label:'Open inventory (index)', data:[153,100,111], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
+{ label:'Suspension rate %', data:[5.5,1.4,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
 ]
 },
 options:{
@@ -869,114 +865,141 @@ y2:{ position:'right', ticks:{ color:axisColor() }, grid:{ drawOnChartArea:false
 }
 }
 }) : null;
-
 const chartRiskCancel = riskCancelEl && window.Chart ? new Chart(riskCancelEl, {
 type:'line',
 data:{
 labels:['Sept 2024','May 2025','Aug 2025'],
 datasets:[
-{ label:'At Aussie of cancellation %', data:[4,1.2,0], borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:3 }
+{ label:'At risk of cancellation %', data:[4,1.2,0], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
 ]
 },
 options:{
 plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
 scales:{
 x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } }
+y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } }
 }
 }
 }) : null;
-
-/* Helper para stacked bars de cada stage - FIXED */
-function createStackedBar(el, labels, datasets) {
-  if (!el || !window.Chart) return null;
-  return new Chart(el, {
-    type: 'bar',
-    data: { labels, datasets },
-    options: {
-      plugins: {
-        legend: { position: 'bottom', labels: { color: '#cbd5e1' } },
-        tooltip: { mode: 'index', intersect: false }
-      },
-      scales: {
-        x: { stacked: true, ticks: { color: axisColor() }, grid: { color: gridColor(.15) } },
-        y: { stacked: true, beginAtZero: true, ticks: { color: axisColor() }, grid: { color: gridColor(.12) } }
-      }
-    }
-  });
+/* STAGE SEPT 2024 */
+const septConsumerEl = document.getElementById('septConsumerChart');
+const septCenturionEl = document.getElementById('septCenturionChart');
+const chartSeptConsumer = septConsumerEl && window.Chart ? new Chart(septConsumerEl, {
+type:'bar',
+data:{
+labels:['Austria','Germany','Sep. 2nd 2024 Overall'],
+datasets:[
+{ label:'HR CM volume', data:[575,5070,5645], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'HR CM refreshed', data:[365,2823,3188], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'CMs suspended', data:[14,217,231], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'HR CM KYC cancelled', data:[14,113,127], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
 }
-
-/* STAGE SEPT 2024 - FIXED */
-const septConsumerChart = createStackedBar(document.getElementById('septConsumerChart'), 
-  ['Austria','Germany','Overall'],
-  [
-    { label:'HR CM volume', data:[575,5070,5645], backgroundColor:'rgba(14,165,233,.7)', borderColor:cSky },
-    { label:'HR CM refreshed', data:[365,2823,3188], backgroundColor:'rgba(16,185,129,.7)', borderColor:cEmerald },
-    { label:'CMs suspended', data:[14,217,231], backgroundColor:'rgba(148,163,184,.5)', borderColor:cMuted },
-    { label:'HR CM KYC cancelled', data:[14,113,127], backgroundColor:'rgba(239,68,68,.6)', borderColor:'#ef4444' }
-  ]
-);
-
-const septCenturionChart = createStackedBar(document.getElementById('septCenturionChart'),
-  ['Austria','Germany','Overall'],
-  [
-    { label:'HR Centurion volume', data:[130,385,515], backgroundColor:'rgba(14,165,233,.7)', borderColor:cSky },
-    { label:'Centurion refreshed', data:[90,241,331], backgroundColor:'rgba(16,185,129,.7)', borderColor:cEmerald },
-    { label:'Centurion suspended', data:[2,3,5], backgroundColor:'rgba(148,163,184,.5)', borderColor:cMuted },
-    { label:'Centurion KYC cancelled', data:[0,2,2], backgroundColor:'rgba(239,68,68,.6)', borderColor:'#ef4444' }
-  ]
-);
-
-/* STAGE MAY 2025 - FIXED */
-const mayConsumerChart = createStackedBar(document.getElementById('mayConsumerChart'),
-  ['Austria','Germany','Overall'],
-  [
-    { label:'HR CM volume', data:[480,3216,3696], backgroundColor:'rgba(14,165,233,.7)', borderColor:cSky },
-    { label:'HR CM refreshed', data:[318,2612,2930], backgroundColor:'rgba(16,185,129,.7)', borderColor:cEmerald },
-    { label:'CMs suspended', data:[11,33,44], backgroundColor:'rgba(148,163,184,.5)', borderColor:cMuted },
-    { label:'HR CM KYC cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.6)', borderColor:'#ef4444' }
-  ]
-);
-
-const mayCenturionChart = createStackedBar(document.getElementById('mayCenturionChart'),
-  ['Austria','Germany','Overall'],
-  [
-    { label:'HR Centurion volume', data:[101,399,500], backgroundColor:'rgba(14,165,233,.7)', borderColor:cSky },
-    { label:'Centurion refreshed', data:[59,299,358], backgroundColor:'rgba(16,185,129,.7)', borderColor:cEmerald },
-    { label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.5)', borderColor:cMuted },
-    { label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.6)', borderColor:'#ef4444' }
-  ]
-);
-
-/* STAGE AUG 2025 - FIXED */
-const augConsumerChart = createStackedBar(document.getElementById('augConsumerChart'),
-  ['Austria','Germany','Overall'],
-  [
-    { label:'HR CM volume', data:[515,3573,4088], backgroundColor:'rgba(14,165,233,.7)', borderColor:cSky },
-    { label:'HR CM refreshed', data:[377,3108,3485], backgroundColor:'rgba(16,185,129,.7)', borderColor:cEmerald },
-    { label:'CMs suspended', data:[18,59,77], backgroundColor:'rgba(148,163,184,.5)', borderColor:cMuted },
-    { label:'HR CM KYC cancelled', data:[0,1,1], backgroundColor:'rgba(239,68,68,.6)', borderColor:'#ef4444' }
-  ]
-);
-
-const augCenturionChart = createStackedBar(document.getElementById('augCenturionChart'),
-  ['Austria','Germany','Overall'],
-  [
-    { label:'Centurion volume', data:[114,465,579], backgroundColor:'rgba(14,165,233,.7)', borderColor:cSky },
-    { label:'Centurion refreshed', data:[72,400,472], backgroundColor:'rgba(16,185,129,.7)', borderColor:cEmerald },
-    { label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.5)', borderColor:cMuted },
-    { label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.6)', borderColor:'#ef4444' }
-  ]
-);
-
-/* CSV listeners (sin cambios, siguen funcionando) */
-document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => exportChartToCSV(septConsumerChart, 'sept-2024-consumer.csv'));
-document.getElementById('csvSeptCenturionBtn')?.addEventListener('click', () => exportChartToCSV(septCenturionChart, 'sept-2024-centurion.csv'));
-document.getElementById('csvMayConsumerBtn')?.addEventListener('click', () => exportChartToCSV(mayConsumerChart, 'may-2025-consumer.csv'));
-document.getElementById('csvMayCenturionBtn')?.addEventListener('click', () => exportChartToCSV(mayCenturionChart, 'may-2025-centurion.csv'));
-document.getElementById('csvAugConsumerBtn')?.addEventListener('click', () => exportChartToCSV(augConsumerChart, 'aug-2025-consumer.csv'));
-document.getElementById('csvAugCenturionBtn')?.addEventListener('click', () => exportChartToCSV(augCenturionChart, 'aug-2025-centurion.csv'));
-
+}) : null;
+const chartSeptCenturion = septCenturionEl && window.Chart ? new Chart(septCenturionEl, {
+type:'bar',
+data:{
+labels:['Austria','Germany','Overall'],
+datasets:[
+{ label:'HR Centurion volume', data:[130,385,515], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'Centurion refreshed', data:[90,241,331], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'Centurion suspended', data:[2,3,5], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'Centurion KYC cancelled', data:[0,2,2], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
+}
+}) : null;
+/* STAGE MAY 2025 */
+const mayConsumerEl = document.getElementById('mayConsumerChart');
+const mayCenturionEl = document.getElementById('mayCenturionChart');
+function stackedBar(el, labels, sets){
+return new Chart(el, {
+type:'bar',
+data:{ labels, datasets:sets },
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
+}
+});
+}
+const chartMayConsumer = mayConsumerEl && window.Chart ? stackedBar(
+mayConsumerEl,
+['Austria','Germany','Mai 20th 2025 Overall'],
+[
+{ label:'HR CM volume', data:[480,3216,3696], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'HR CM refreshed', data:[318,2612,2930], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'CMs suspended', data:[11,33,44], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'HR CM KYC cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+const chartMayCenturion = mayCenturionEl && window.Chart ? stackedBar(
+mayCenturionEl,
+['Austria','Germany','Overall'],
+[
+{ label:'HR Centurion volume', data:[101,399,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'Centurion refreshed', data:[59,299,358], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+/* STAGE AUG 2025 */
+const augConsumerEl = document.getElementById('augConsumerChart');
+const augCenturionEl = document.getElementById('augCenturionChart');
+const chartAugConsumer = augConsumerEl && window.Chart ? stackedBar(
+augConsumerEl,
+['Austria','Germany','Aug 12th 2025 Overall'],
+[
+{ label:'HR CM volume', data:[515,3573,4088], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'HR CM refreshed', data:[377,3108,3485], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'CMs suspended', data:[18,59,77], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'HR CM KYC cancelled', data:[0,1,1], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+const chartAugCenturion = augCenturionEl && window.Chart ? stackedBar(
+augCenturionEl,
+['Austria','Germany','Overall'],
+[
+{ label:'HR Centurion volume', data:[114,465,579], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'Centurion refreshed', data:[72,400,472], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+/* CSV listeners */
+document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
+if (chartSeptConsumer) exportChartToCSV(chartSeptConsumer, 'sept-2024-consumer-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(1)'), 'sept-2024-consumer.csv');
+});
+document.getElementById('csvSeptCenturionBtn')?.addEventListener('click', () => {
+if (chartSeptCenturion) exportChartToCSV(chartSeptCenturion, 'sept-2024-centurion-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(2)'), 'sept-2024-centurion.csv');
+});
+document.getElementById('csvMayConsumerBtn')?.addEventListener('click', () => {
+if (chartMayConsumer) exportChartToCSV(chartMayConsumer, 'may-2025-consumer-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(1)'), 'may-2025-consumer.csv');
+});
+document.getElementById('csvMayCenturionBtn')?.addEventListener('click', () => {
+if (chartMayCenturion) exportChartToCSV(chartMayCenturion, 'may-2025-centurion-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(2)'), 'may-2025-centurion.csv');
+});
+document.getElementById('csvAugConsumerBtn')?.addEventListener('click', () => {
+if (chartAugConsumer) exportChartToCSV(chartAugConsumer, 'aug-2025-consumer-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(1)'), 'aug-2025-consumer.csv');
+});
+document.getElementById('csvAugCenturionBtn')?.addEventListener('click', () => {
+if (chartAugCenturion) exportChartToCSV(chartAugCenturion, 'aug-2025-centurion-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(2)'), 'aug-2025-centurion.csv');
+});
 /* ====== Year-End dropdown (abrir/cerrar) ====== */
 const yearDD = document.getElementById('yearDropdown');
 const yearBtn = document.getElementById('yearBtn');
@@ -1063,7 +1086,7 @@ function monthKeyFromBatch(s) {
   if (t.includes('jul')) return 'Jul';
   if (t.includes('aug') || t.includes('ago')) return 'Aug';
   if (t.includes('sep')) return 'Sep';
-  if (t.includes('oct')) return 'Oct';
+  if (t.includes('oct') || t.includes('oct')) return 'Oct';
   if (t.includes('nov')) return 'Nov';
   if (t.includes('dec')) return 'Dec';
   return 'Other';
@@ -1208,7 +1231,7 @@ function renderGAByBatch(rows) {
 function renderYearView(kind, period) {
   openYearStage();
   let filtered = yearRows;
-  let872 title = 'Overview 2025';
+  let title = 'Overview 2025';
   if (period === 'Q1') {
     filtered = yearRows.filter(r => ['Feb','Mar','Apr','May','Jun'].includes(monthKeyFromBatch(r.date)));
     title = 'Q1 2025 (Feb-Jun)';
