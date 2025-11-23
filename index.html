@@ -4,9 +4,8 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PON HR Refresh – Germany & Austria • Consumer HR OB Calls</title>
-<!-- Chart.js with async + preload + safe load handling -->
-<link rel="preload" href="https://cdn.jsdelivr.net/npm/chart.js" as="script">
-<script src="https://cdn.jsdelivr.net/npm/chart.js" async></script>
+<!-- Chart.js with defer -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 <style>
 :root{
 --primary:#0ea5e9;
@@ -145,9 +144,8 @@ table{display:block; overflow:auto; white-space:nowrap}
 <header>
  <div class="brand">
     <img
-      src="https://upload.wikimedia.org/wikipedia/commons/9/98/American_Express_logo_(2018).svg"
+      src="https://es.wikipedia.org/wiki/American_Express#/media/Archivo:American_Express_logo_(2018).svg"
       alt="American Express logo"
-      loading="lazy"
     />
     <div>
       <h1>PON HR Refresh – Germany & Austria • Consumer HR Outbound Calls</h1>
@@ -158,13 +156,16 @@ table{display:block; overflow:auto; white-space:nowrap}
 <span class="tag">Market: DE & AT</span>
 <span class="tag">Segment: Consumer HR</span>
 <span class="tag">Maintained by: Germany & Austria Consumer HR KYC Team</span>
+<!-- Removed: <span class="tag">OB Calls cadence: every 21 days</span> -->
 </div>
 <div class="actions" aria-label="Quick actions">
+<!-- Performance Highlights (dropdown) -->
 <div class="dropdown" id="phDropdown" aria-haspopup="true">
 <button type="button" class="button" id="phBtn" aria-controls="phMenu" aria-expanded="false">
 Performance Highlights
 </button>
 <div class="dropdown__menu" id="phMenu" role="menu" aria-label="Performance Highlights">
+<!-- Nuevo: Key Details -->
     <a class="menu-item" href="#kpis-sept" role="menuitem" id="linkKeyDetails">
       <span>Key Details</span>
       <small>First block</small>
@@ -180,6 +181,7 @@ Performance Highlights
 </button>
 </div>
 </div>
+<!-- Year-End Results (dropdown) -->
 <div class="dropdown" id="yearDropdown" aria-haspopup="true">
 <button type="button" class="button" id="yearBtn" aria-controls="yearMenu" aria-expanded="false">
 Year-End Results Summary
@@ -200,6 +202,7 @@ Year-End Results Summary
 </div>
 </header>
 <main>
+<!-- OVERVIEW -->
 <section class="card">
 <h2 class="section-title">Overview - Outbound Calls HR Strategy</h2>
 <div class="grid-2">
@@ -250,6 +253,7 @@ Year-End Results Summary
 </div>
 </div>
 </section>
+<!-- KPIs in chronological order: Sept 2024, May 2025, Aug 2025 -->
  <section id="kpis-sept" class="card" data-key-results-anchor>
   <h2 class="section-title">Key Results – September 2024</h2>
   <div class="kpis">
@@ -293,6 +297,7 @@ Year-End Results Summary
       <div class="kpi"><div class="label">Feedback from HR CMs</div><div class="value ok">Positive</div><div class="note">Willing to complete KYC</div></div>
     </div>
   </section>
+<!-- PERFORMANCE CHARTS -->
 <section class="card">
 <h2 class="section-title">Performance charts</h2>
 <div class="grid-3">
@@ -318,6 +323,7 @@ Year-End Results Summary
 </div>
 </div>
 </section>
+<!-- STAGE SEPT 2024 -->
 <section id="stage-sept-2024" class="card" style="display:none">
 <h2 class="section-title">PON HR Refresh – September 2024 status</h2>
 <p class="sub">Key Facts</p>
@@ -340,6 +346,7 @@ Year-End Results Summary
   </thead>
   <tbody>
     <tr>
+      <!-- Stage: un solo rótulo que cubre todas las filas -->
       <td rowspan="3">Sep. 2024</td>
       <th scope="row">Austria</th>
       <td>575</td>
@@ -378,6 +385,7 @@ Year-End Results Summary
   </thead>
   <tbody>
     <tr>
+      <!-- Stage: un solo rótulo que cubre todas las filas -->
       <td rowspan="3">Sep. 2024</td>
       <th scope="row">Austria</th>
       <td>130</td>
@@ -418,7 +426,7 @@ Year-End Results Summary
       <p>5.5% HR CMs are in risk of suspension (25 AT / 287 DE)<br>
       * incl. 9 Centurion (3 AT / 6 DE)</p>
       <h3 class="sub" style="margin-top:8px">CURRENT RISK &amp; CHALLENGES</h3>
-      <p>&gt; We observe an increased 군 number of voluntary attrition amongst HR base.
+      <p>&gt; We observe an increased number of voluntary attrition amongst HR base.
   * Next steps: analyze of data to understand trigger and whether potential remediation<br>
       <h3 class="sub" style="margin-top:8px">SUPPORT NEEDED</h3>
  &gt; Linkage of basic and supp cancellation:<br>
@@ -429,6 +437,7 @@ Year-End Results Summary
       &gt; DocUpload login correction without CM15: in working progress</p>
     </div>
   </section>
+<!-- STAGE MAY 2025 -->
 <section id="stage-may-2025" class="card" style="display:none">
 <h2 class="section-title">PON HR Refresh – May 2025 status</h2>
 <p class="sub">Key Facts</p>
@@ -533,12 +542,11 @@ Year-End Results Summary
          &gt; We’ve refined the OB Calls recipient data &amp; enriched with relevant details for a better customer experience and effectiveness<br>
          &gt; Similar strategy has been engaged toward our premium base via the Portfolio Manager POC<br>
       Robust process implemented to save basic if account is partially refreshed with required documentation in place since 03/25<br>
-      Process adjusted in context of HR consumer becoming HR Jurisdiction case during refresh: journey is extended with 30
-
- days extra &amp; CM receives GSG OB calls to be informed of additional SOW requirement<br>
+      Process adjusted in context of HR consumer becoming HR Jurisdiction case during refresh: journey is extended with 30 days extra &amp; CM receives GSG OB calls to be informed of additional SOW requirement<br>
       KYC comms is updated with new ‘Güterplatz’ address which allows no further delay in KYC process path</p>
     </div>
   </section>
+<!-- STAGE AUG 2025 -->
 <section id="stage-aug-2025" class="card" style="display:none">
 <h2 class="section-title">PON HR Refresh – August 2025 status</h2>
 <p class="sub">Key Facts</p>
@@ -725,314 +733,306 @@ Year-End Results Summary
 Maintained by Germany & Austria Consumer HR • Outbound Calls program
 </div>
 <script>
-// Safe Chart.js initialization — only runs after Chart.js is fully loaded
-function initChartsWhenReady() {
-  if (typeof Chart === 'undefined') {
-    // Chart.js not loaded yet → retry after a short delay
-    setTimeout(initChartsWhenReady, 50);
-    return;
-  }
-
-  // === All original script content moved inside here ===
-  /* Tools dropdown eliminado */
-  /* Show/Hide Stages */
-  const sSept = document.getElementById('stage-sept-2024');
-  const sMay = document.getElementById('stage-may-2025');
-  const sAug = document.getElementById('stage-aug-2025');
-  const bSept = document.getElementById('btnStageSept');
-  const bMay = document.getElementById('btnStageMay');
-  const bAug = document.getElementById('btnStageAug');
-  function hideAllStages(){
-  [sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
-  [bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
-  }
-  function toggleStage(sectionEl, buttonEl){
-  const willOpen = sectionEl.style.display === 'none';
-  hideAllStages();
-  sectionEl.style.display = willOpen ? '' : 'none';
-  buttonEl.setAttribute('aria-expanded', String(willOpen));
-  if (willOpen) window.scrollTo({ top: sectionEl.offsetTop - 16, behavior: 'smooth' });
-  }
-  hideAllStages();
-  bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
-  bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
-  bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
-  /* Charts palette */
-  const css = getComputedStyle(document.documentElement);
-  const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
-  const cSky = css.getPropertyValue('--primary').trim() || '#0ea5e9';
-  const cEmerald = css.getPropertyValue('--accent').trim() || '#10b981';
-  const cMuted = '#94a3b8';
-  const axisColor = () => '#a8b1c7';
-  const gridColor = (light=0.12) => `rgba(148,163,184,${light})`;
-  /* CSV utility */
-  function downloadCSV(filename, rows){
-  const process = (v) => {
-  if (v === null || v === undefined) return '';
-  const s = String(v).replace(/"/g,'""');
-  return `"${s}"`;
-  };
-  const csv = rows.map(r => r.map(process).join(',')).join('\n');
-  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename;
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  }
-  /* Export visible datasets of a Chart.js chart */
-  function exportChartToCSV(chart, filename){
-  if (!chart) return;
-  const labels = chart.data.labels || [];
-  const visible = chart.data.datasets
-  .map((ds, i) => ({ ds, i, meta: chart.getDatasetMeta(i) }))
-  .filter(({ meta }) => !meta.hidden);
-  const header = [''].concat(visible.map(({ ds }) => ds.label || 'Series'));
-  const rows = [header];
-  labels.forEach((label, rowIdx) => {
-  const row = [label];
-  visible.forEach(({ ds }) => {
-  const v = Array.isArray(ds.data) ? ds.data[rowIdx] : '';
-  row.push(v ?? '');
-  });
-  rows.push(row);
-  });
-  downloadCSV(filename, rows);
-  }
-  /* Fallback: export HTML table to CSV */
-  function exportTableToCSV(tableEl, filename){
-  if (!tableEl) return;
-  const rows = [];
-  const trsHead = tableEl.querySelectorAll('thead tr');
-  trsHead.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
-  const trsBody = tableEl.querySelectorAll('tbody tr');
-  trsBody.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
-  downloadCSV(filename, rows);
-  }
-  /* Main charts */
-  const refreshEl = document.getElementById('refreshChart');
-  const aifEl = document.getElementById('aifChart');
-  const suspEl = document.getElementById('suspChart');
-  const riskCancelEl = document.getElementById('riskCancelChart');
-  const chartRefresh = refreshEl ? new Chart(refreshEl, {
-  type:'line',
-  data:{
-  labels:['Sept 2024','May 2025','Aug 2025'],
-  datasets:[
-  { label:'% Refreshed', data:[56,74,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
-  { label:'% In progress', data:[24,18,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
-  { label:'% To contact / Pre-screen', data:[20,8 8,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
-  ]
-  },
-  options:{
-  plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-  scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-  y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } } }
-  }
-  }) : null;
-  const chartAIF = aifEl ? new Chart(aifEl, {
-  type:'bar',
-  data:{
-  labels:['Germany','Austria'],
-  datasets:[
-  { label:'AIF YTD (Sept 2024)', data:[5000,600], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-  { label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-  { label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(99,102,241,.65)', borderColor:cIndigo, borderWidth:1 }
-  ]
-  },
-  options:{
-  plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-  scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-  y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleString() }, grid:{ color:gridColor(.12) } } }
-  }
-  }) : null;
-  const chartSusp = suspEl ? new Chart(suspEl, {
-  type:'line',
-  data:{
-  labels:['Sept 2024','May 2025','Aug 2025'],
-  datasets:[
-  { label:'Open inventory (index)', data:[153,100,111], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
-  { label:'Suspension rate %', data:[5.5,1.4,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
-  ]
-  },
-  options:{
-  plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-  scales:{
-  x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-  y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } },
-  y2:{ position:'right', ticks:{ color:axisColor() }, grid:{ drawOnChartArea:false } }
-  }
-  }
-  }) : null;
-  const chartRiskCancel = riskCancelEl ? new Chart(riskCancelEl, {
-  type:'line',
-  data:{
-  labels:['Sept 2024','May 2025','Aug 2025'],
-  datasets:[
-  { label:'At risk of cancellation %', data:[4,1.2,0], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
-  ]
-  },
-  options:{
-  plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
-  scales:{
-  x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-  y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } }
-  }
-  }
-  }) : null;
-  /* STAGE SEPT 2024 */
-  const septConsumerEl = document.getElementById('septConsumerChart');
-  const septCenturionEl = document.getElementById('septCenturionChart');
-  const chartSeptConsumer = septConsumerEl ? new Chart(septConsumerEl, {
-  type:'bar',
-  data:{
-  labels:['Austria','Germany','Sep. 2nd 2024 Overall'],
-  datasets:[
-  { label:'HR CM volume', data:[575,5070,5645], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-  { label:'HR CM refreshed', data:[365,2823,3188], backgroundColorColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-  { label:'CMs suspended', data:[14,217,231], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
-  { label:'HR CM KYC cancelled', data:[14,113,127], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
-  ]
-  },
-  options:{
-  plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-  scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-  y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
-  }
-  }) : null;
-  const chartSeptCenturion = septCenturionEl ? new Chart(septCenturionEl, {
-  type:'bar',
-  data:{
-  labels:['Austria','Germany','Overall'],
-  datasets:[
-  { label:'HR Centurion volume', data:[130,385,515], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-  { label:'Centurion refreshed', data:[90,241,331], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-  { label:'Centurion suspended', data:[2,3,5], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
-  { label:'Centurion KYC cancelled', data:[0,2,2], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
-  ]
-  },
-  options:{
-  plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-  scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-  y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
-  }
-  }) : null;
-  /* STAGE MAY 2025 */
-  const mayConsumerEl = document.getElementById('mayConsumerChart');
-  const mayCenturionEl = document.getElementById('mayCenturionChart');
-  function stackedBar(el, labels, sets){
-  return new Chart(el, {
-  type:'bar',
-  data:{ labels, datasets:sets },
-  options:{
-  plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-  scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-  y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
-  }
-  });
-  }
-  const chartMayConsumer = mayConsumerEl ? stackedBar(
-  mayConsumerEl,
-  ['Austria','Germany','Mai 20th 2025 Overall'],
-  [
-  { label:'HR CM volume', data:[480,3216,3696], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-  { label:'HR CM refreshed', data:[318,2612,2930], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-  { label:'CMs suspended', data:[11,33,44], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
-  { label:'HR CM KYC cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
-  ]
-  ) : null;
-  const chartMayCenturion = mayCenturionEl ? stackedBar(
-  mayCenturionEl,
-  ['Austria','Germany','Overall'],
-  [
-  { label:'HR Centurion volume', data:[101,399,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-  { label:'Centurion refreshed', data:[59,299,358], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-  { label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
-  { label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
-  ]
-  ) : null;
-  /* STAGE AUG 2025 */
-  const augConsumerEl = document.getElementById('augConsumerChart');
-  const augCenturionEl = document.getElementById('augCenturionChart');
-  const chartAugConsumer = augConsumerEl ? stackedBar(
-  augConsumerEl,
-  ['Austria','Germany','Aug 12th 2025 Overall'],
-  [
-  { label:'HR CM volume', data:[515,3573,4088], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-  { label:'HR CM refreshed', data:[377,3108,3485], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-  { label:'CMs suspended', data:[18,59,77], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
-  { label:'HR CM KYC cancelled', data:[0,1,1], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
-  ]
-  ) : null;
-  const chartAugCenturion = augCenturionEl ? stackedBar(
-  augCenturionEl,
-  ['Austria','Germany','Overall'],
-  [
-  { label:'HR Centurion volume', data:[114,465,579], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-  { label:'Centurion refreshed', data:[72,400,472], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
-  { label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
-  { label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
-  ]
-  ) : null;
-  /* CSV listeners */
-  document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
-  if (chartSeptConsumer) exportChartToCSV(chartSeptConsumer, 'sept-2024-consumer-visible.csv');
-  else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(1)'), 'sept-2024-consumer.csv');
-  });
-  document.getElementById('csvSeptCenturionBtn')?.addEventListener('click', () => {
-  if (chartSeptCenturion) exportChartToCSV(chartSeptCenturion, 'sept-2024-centurion-visible.csv');
-  else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(2)'), 'sept-2024-centurion.csv');
-  });
-  document.getElementById('csvMayConsumerBtn')?.addEventListener('click', () => {
-  if (chartMayConsumer) exportChartToCSV(chartMayConsumer, 'may-2025-consumer-visible.csv');
-  else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(1)'), 'may-2025-consumer.csv');
-  });
-  document.getElementById('csvMayCenturionBtn')?.addEventListener('click', () => {
-  if (chartMayCenturion) exportChartToCSV(chartMayCenturion, 'may-2025-centurion-visible.csv');
-  else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(2)'), 'may-2025-centurion.csv');
-  });
-  document.getElementById('csvAugConsumerBtn')?.addEventListener('click', () => {
-  if (chartAugConsumer) exportChartToCSV(chartAugConsumer, 'aug-2025-consumer-visible.csv');
-  else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(1)'), 'aug-2025-consumer.csv');
-  });
-  document.getElementById('csvAugCenturionBtn')?.addEventListener('click', () => {
-  if (chartAugCenturion) exportChartToCSV(chartAugCenturion, 'aug-2025-centurion-visible.csv');
-  else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(2)'), 'aug-2025-centurion.csv');
-  });
-  /* ====== Year-End dropdown (abrir/cerrar) ====== */
-  const yearDD = document.getElementById('yearDropdown');
-  const yearBtn = document.getElementById('yearBtn');
-  function setYearExpanded(on) { yearBtn.setAttribute('aria-expanded', String(on)); }
-  yearBtn?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const open = yearBtn.getAttribute('aria-expanded') !== 'true';
-  setYearExpanded(open);
-  });
-  document.addEventListener('click', (e) => { if (yearDD && !yearDD.contains(e.target)) setYearExpanded(false); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setYearExpanded(false); });
-  /* ====== Incluir el nuevo stage en el ciclo de mostrar/ocultar ====== */
-  const sYear = document.getElementById('stage-year-end');
-  const bYearOverview = document.getElementById('btnYearOverview');
-  function hideAllStagesExtended() {
-  [sSept, sMay, sAug, sYear].forEach(sec => { if (sec) sec.style.display = 'none'; });
-  [bSept, bMay, bAug, bYearOverview].forEach(b => { if (b) b?.setAttribute('aria-expanded','false'); });
-  }
-  function openYearStage() {
-  hideAllStagesExtended();
-  if (sYear) {
-  sYear.style.display = '';
-  window.scrollTo({ top: sYear.offsetTop - 16, behavior: 'smooth' });
-  }
-  }
-  bYearOverview?.addEventListener('click', () => {
-  openYearStage();
-  bYearOverview.setAttribute('aria-expanded', 'true');
-  renderYearView('overview');
-  setYearExpanded(false);
-  });
-  /* ====== Dataset (CSV) — puntos decimales para % ====== */
-  const yearCsv = `date,total contact,germany,austria,credit_cancelled,successful,not_success,other,success_ob,success_month
+window.addEventListener('DOMContentLoaded', () => {
+/* Tools dropdown eliminado */
+/* Show/Hide Stages */
+const sSept = document.getElementById('stage-sept-2024');
+const sMay = document.getElementById('stage-may-2025');
+const sAug = document.getElementById('stage-aug-2025');
+const bSept = document.getElementById('btnStageSept');
+const bMay = document.getElementById('btnStageMay');
+const bAug = document.getElementById('btnStageAug');
+function hideAllStages(){
+[sSept, sMay, sAug].forEach(sec => { if (sec) sec.style.display = 'none'; });
+[bSept, bMay, bAug].forEach(b => { if (b) b.setAttribute('aria-expanded','false'); });
+}
+function toggleStage(sectionEl, buttonEl){
+const willOpen = sectionEl.style.display === 'none';
+hideAllStages();
+sectionEl.style.display = willOpen ? '' : 'none';
+buttonEl.setAttribute('aria-expanded', String(willOpen));
+if (willOpen) window.scrollTo({ top: sectionEl.offsetTop - 16, behavior: 'smooth' });
+}
+hideAllStages();
+bSept?.addEventListener('click', () => toggleStage(sSept, bSept));
+bMay?.addEventListener('click', () => toggleStage(sMay, bMay));
+bAug?.addEventListener('click', () => toggleStage(sAug, bAug));
+/* Charts palette */
+const css = getComputedStyle(document.documentElement);
+const cIndigo = css.getPropertyValue('--primary-2').trim() || '#6366f1';
+const cSky = css.getPropertyValue('--primary').trim() || '#0ea5e9';
+const cEmerald = css.getPropertyValue('--accent').trim() || '#10b981';
+const cMuted = '#94a3b8';
+const axisColor = () => '#a8b1c7';
+const gridColor = (light=0.12) => `rgba(148,163,184,${light})`;
+/* CSV utility */
+function downloadCSV(filename, rows){
+const process = (v) => {
+if (v === null || v === undefined) return '';
+const s = String(v).replace(/"/g,'""');
+return `"${s}"`;
+};
+const csv = rows.map(r => r.map(process).join(',')).join('\n');
+const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url; a.download = filename;
+document.body.appendChild(a); a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+}
+/* Export visible datasets of a Chart.js chart */
+function exportChartToCSV(chart, filename){
+if (!chart) return;
+const labels = chart.data.labels || [];
+const visible = chart.data.datasets
+.map((ds, i) => ({ ds, i, meta: chart.getDatasetMeta(i) }))
+.filter(({ meta }) => !meta.hidden);
+const header = [''].concat(visible.map(({ ds }) => ds.label || 'Series'));
+const rows = [header];
+labels.forEach((label, rowIdx) => {
+const row = [label];
+visible.forEach(({ ds }) => {
+const v = Array.isArray(ds.data) ? ds.data[rowIdx] : '';
+row.push(v ?? '');
+});
+rows.push(row);
+});
+downloadCSV(filename, rows);
+}
+/* Fallback: export HTML table to CSV */
+function exportTableToCSV(tableEl, filename){
+if (!tableEl) return;
+const rows = [];
+const trsHead = tableEl.querySelectorAll('thead tr');
+trsHead.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
+const trsBody = tableEl.querySelectorAll('tbody tr');
+trsBody.forEach(tr => rows.push([...tr.cells].map(td => td.innerText.trim())));
+downloadCSV(filename, rows);
+}
+/* Main charts */
+const refreshEl = document.getElementById('refreshChart');
+const aifEl = document.getElementById('aifChart');
+const suspEl = document.getElementById('suspChart');
+const riskCancelEl = document.getElementById('riskCancelChart');
+const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, {
+type:'line',
+data:{
+labels:['Sept 2024','May 2025','Aug 2025'],
+datasets:[
+{ label:'% Refreshed', data:[56,74,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+{ label:'% In progress', data:[24,18,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
+{ label:'% To contact / Pre-screen', data:[20,8,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } } }
+}
+}) : null;
+const chartAIF = aifEl && window.Chart ? new Chart(aifEl, {
+type:'bar',
+data:{
+labels:['Germany','Austria'],
+datasets:[
+{ label:'AIF YTD (Sept 2024)', data:[5000,600], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(99,102,241,.65)', borderColor:cIndigo, borderWidth:1 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+scales:{ x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleString() }, grid:{ color:gridColor(.12) } } }
+}
+}) : null;
+const chartSusp = suspEl && window.Chart ? new Chart(suspEl, {
+type:'line',
+data:{
+labels:['Sept 2024','May 2025','Aug 2025'],
+datasets:[
+{ label:'Open inventory (index)', data:[153,100,111], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
+{ label:'Suspension rate %', data:[5.5,1.4,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+scales:{
+x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } },
+y2:{ position:'right', ticks:{ color:axisColor() }, grid:{ drawOnChartArea:false } }
+}
+}
+}) : null;
+const chartRiskCancel = riskCancelEl && window.Chart ? new Chart(riskCancelEl, {
+type:'line',
+data:{
+labels:['Sept 2024','May 2025','Aug 2025'],
+datasets:[
+{ label:'At risk of cancellation %', data:[4,1.2,0], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } } },
+scales:{
+x:{ ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y1:{ position:'left', ticks:{ color:axisColor(), callback:v=>v+'%' }, grid:{ color:gridColor(.12) } }
+}
+}
+}) : null;
+/* STAGE SEPT 2024 */
+const septConsumerEl = document.getElementById('septConsumerChart');
+const septCenturionEl = document.getElementById('septCenturionChart');
+const chartSeptConsumer = septConsumerEl && window.Chart ? new Chart(septConsumerEl, {
+type:'bar',
+data:{
+labels:['Austria','Germany','Sep. 2nd 2024 Overall'],
+datasets:[
+{ label:'HR CM volume', data:[575,5070,5645], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'HR CM refreshed', data:[365,2823,3188], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'CMs suspended', data:[14,217,231], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'HR CM KYC cancelled', data:[14,113,127], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
+}
+}) : null;
+const chartSeptCenturion = septCenturionEl && window.Chart ? new Chart(septCenturionEl, {
+type:'bar',
+data:{
+labels:['Austria','Germany','Overall'],
+datasets:[
+{ label:'HR Centurion volume', data:[130,385,515], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'Centurion refreshed', data:[90,241,331], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'Centurion suspended', data:[2,3,5], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'Centurion KYC cancelled', data:[0,2,2], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+},
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
+}
+}) : null;
+/* STAGE MAY 2025 */
+const mayConsumerEl = document.getElementById('mayConsumerChart');
+const mayCenturionEl = document.getElementById('mayCenturionChart');
+function stackedBar(el, labels, sets){
+return new Chart(el, {
+type:'bar',
+data:{ labels, datasets:sets },
+options:{
+plugins:{ legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+scales:{ x:{ stacked:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+y:{ stacked:true, beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } } }
+}
+});
+}
+const chartMayConsumer = mayConsumerEl && window.Chart ? stackedBar(
+mayConsumerEl,
+['Austria','Germany','Mai 20th 2025 Overall'],
+[
+{ label:'HR CM volume', data:[480,3216,3696], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'HR CM refreshed', data:[318,2612,2930], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'CMs suspended', data:[11,33,44], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'HR CM KYC cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+const chartMayCenturion = mayCenturionEl && window.Chart ? stackedBar(
+mayCenturionEl,
+['Austria','Germany','Overall'],
+[
+{ label:'HR Centurion volume', data:[101,399,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'Centurion refreshed', data:[59,299,358], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+/* STAGE AUG 2025 */
+const augConsumerEl = document.getElementById('augConsumerChart');
+const augCenturionEl = document.getElementById('augCenturionChart');
+const chartAugConsumer = augConsumerEl && window.Chart ? stackedBar(
+augConsumerEl,
+['Austria','Germany','Aug 12th 2025 Overall'],
+[
+{ label:'HR CM volume', data:[515,3573,4088], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'HR CM refreshed', data:[377,3108,3485], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'CMs suspended', data:[18,59,77], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'HR CM KYC cancelled', data:[0,1,1], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+const chartAugCenturion = augCenturionEl && window.Chart ? stackedBar(
+augCenturionEl,
+['Austria','Germany','Overall'],
+[
+{ label:'HR Centurion volume', data:[114,465,579], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
+{ label:'Centurion refreshed', data:[72,400,472], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'Centurion suspended', data:[0,0,0], backgroundColor:'rgba(148,163,184,.45)', borderColor:cMuted, borderWidth:1 },
+{ label:'Centurion cancelled', data:[0,0,0], backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1 }
+]
+) : null;
+/* CSV listeners */
+document.getElementById('csvSeptConsumerBtn')?.addEventListener('click', () => {
+if (chartSeptConsumer) exportChartToCSV(chartSeptConsumer, 'sept-2024-consumer-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(1)'), 'sept-2024-consumer.csv');
+});
+document.getElementById('csvSeptCenturionBtn')?.addEventListener('click', () => {
+if (chartSeptCenturion) exportChartToCSV(chartSeptCenturion, 'sept-2024-centurion-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-sept-2024 table:nth-of-type(2)'), 'sept-2024-centurion.csv');
+});
+document.getElementById('csvMayConsumerBtn')?.addEventListener('click', () => {
+if (chartMayConsumer) exportChartToCSV(chartMayConsumer, 'may-2025-consumer-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(1)'), 'may-2025-consumer.csv');
+});
+document.getElementById('csvMayCenturionBtn')?.addEventListener('click', () => {
+if (chartMayCenturion) exportChartToCSV(chartMayCenturion, 'may-2025-centurion-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-may-2025 table:nth-of-type(2)'), 'may-2025-centurion.csv');
+});
+document.getElementById('csvAugConsumerBtn')?.addEventListener('click', () => {
+if (chartAugConsumer) exportChartToCSV(chartAugConsumer, 'aug-2025-consumer-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(1)'), 'aug-2025-consumer.csv');
+});
+document.getElementById('csvAugCenturionBtn')?.addEventListener('click', () => {
+if (chartAugCenturion) exportChartToCSV(chartAugCenturion, 'aug-2025-centurion-visible.csv');
+else exportTableToCSV(document.querySelector('#stage-aug-2025 table:nth-of-type(2)'), 'aug-2025-centurion.csv');
+});
+/* ====== Year-End dropdown (abrir/cerrar) ====== */
+const yearDD = document.getElementById('yearDropdown');
+const yearBtn = document.getElementById('yearBtn');
+function setYearExpanded(on) { yearBtn.setAttribute('aria-expanded', String(on)); }
+yearBtn?.addEventListener('click', (e) => {
+e.stopPropagation();
+const open = yearBtn.getAttribute('aria-expanded') !== 'true';
+setYearExpanded(open);
+});
+document.addEventListener('click', (e) => { if (yearDD && !yearDD.contains(e.target)) setYearExpanded(false); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setYearExpanded(false); });
+/* ====== Incluir el nuevo stage en el ciclo de mostrar/ocultar ====== */
+const sYear = document.getElementById('stage-year-end');
+const bYearOverview = document.getElementById('btnYearOverview');
+function hideAllStagesExtended() {
+[sSept, sMay, sAug, sYear].forEach(sec => { if (sec) sec.style.display = 'none'; });
+[bSept, bMay, bAug, bYearOverview].forEach(b => { if (b) b?.setAttribute('aria-expanded','false'); });
+}
+function openYearStage() {
+hideAllStagesExtended();
+if (sYear) {
+sYear.style.display = '';
+window.scrollTo({ top: sYear.offsetTop - 16, behavior: 'smooth' });
+}
+}
+bYearOverview?.addEventListener('click', () => {
+openYearStage();
+bYearOverview.setAttribute('aria-expanded', 'true');
+renderYearView('overview');
+setYearExpanded(false);
+});
+/* ====== Dataset (CSV) — puntos decimales para % ====== */
+const yearCsv = `date,total contact,germany,austria,credit_cancelled,successful,not_success,other,success_ob,success_month
 FEB 18,15,14,1,4,4,7,0,36.36,36.36
 MARCH 5,43,40,3,7,14,22,0,38.89,
 MARCH 21,46,43,3,6,12,17,0, 30.00,
@@ -1063,208 +1063,205 @@ OCT 20,34,31,3,0,21,13,0,63.64,
 OCT 27,30,28,2,0,22,9,0,73.33,68.53
 NOV 4,24,23,1,0,14,10,0,63.64,
 NOV 10,33,30,3,0,20,13,0,60.61,60.61`;
-  function parseCsv(str) {
-    const lines = str.trim().split(/\r?\n/);
-    const headers = lines.shift().split(',').map(h => h.trim());
-    return lines.map(line => {
-      const cols = line.split(',').map(c => c.trim());
-      const o = {};
-      headers.forEach((h, i) => {
-        o[h] = cols[i] !== undefined ? cols[i] : '';
-      });
-      return o;
+function parseCsv(str) {
+  const lines = str.trim().split(/\r?\n/);
+  const headers = lines.shift().split(',').map(h => h.trim());
+  return lines.map(line => {
+    const cols = line.split(',').map(c => c.trim());
+    const o = {};
+    headers.forEach((h, i) => {
+      o[h] = cols[i] !== undefined ? cols[i] : '';
     });
-  }
-  const yearRows = parseCsv(yearCsv);
-  function monthKeyFromBatch(s) {
-    const t = (s || '').toLowerCase();
-    if (t.includes('feb')) return 'Feb';
-    if (t.includes('mar')) return 'Mar';
-    if (t.includes('abr') || t.includes('apr')) return 'Apr';
-    if (t.includes('may') || t.includes('may')) return 'May';
-    if (t.includes('jun')) return 'Jun';
-    if (t.includes('jul')) return 'Jul';
-    if (t.includes('aug') || t.includes('ago')) return 'Aug';
-    if (t.includes('sep')) return 'Sep';
-    if (t.includes('oct') || t.includes('oct')) return 'Oct';
-    if (t.includes('nov')) return 'Nov';
-    if (t.includes('dec')) return 'Dec';
-    return 'Other';
-  }
-  function renderTable(rows, caption, contextLabel) {
-    const tbody = document.getElementById('yearTableBody');
-    const cap = document.getElementById('yearTableCaption');
-    const ctx = document.getElementById('yearContextLabel');
-    if (!tbody) return;
-    tbody.innerHTML = '';
-    rows.forEach(r => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-  <td>${r.date}</td>
-  <td>${r["total contact"]}</td>
-  <td>${r.germany}</td>
-  <td>${r.austria}</td>
-  <td>${r.credit_cancelled}</td>
-  <td>${r.successful}</td>
-  <td>${r.not_success}</td>
-  <td>${r.other || '0'}</td>
-  <td>${r.success_ob || ''}</td>
-  <td>${r.success_month || ''}</td>
-  `;
-      tbody.appendChild(tr);
-    });
-    if (cap) cap.textContent = caption || 'Outbound Calls';
-    if (ctx) ctx.textContent = contextLabel ? `• ${contextLabel}` : '';
-  }
-  let chartYear = null;
-  function renderChart(rows) {
-    const el = document.getElementById('yearChart');
-    if (!el) return;
-    if (chartYear) { chartYear.destroy(); chartYear = null; }
-     const labels = rows.map(r => r.date);
-    const success = rows.map(r => Number(r.successful || 0));
-    const notSuccess = rows.map(r => Number(r.not_success || 0));
-    const rate = rows.map(r => {
-      const v = String(r.success_ob || '').replace(',', '.');
-      const n = parseFloat(v);
-      return isNaN(n) ? null : n;
-    });
-    const creditCancelled = rows.map(r => Number(r.credit_cancelled || 0));
-    const other = rows.map(r => Number(r.other || 0));
-    chartYear = new Chart(el, {
-      type: 'bar',
-      data: {
-        labels,
-        datasets: [
-          { type:'bar', label:'Credit active, card cancelled', data:creditCancelled, backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1, stack:'s' },
-          { type:'bar', label:'Successful - incl. Calls, forwarded for link, promised to do it', data:success, backgroundColor:'rgba(16,185,129,.65)', borderColor:'#10b981', borderWidth:1, stack:'s' },
-          { type:'bar', label:'Not successful - no answer, left message', data:notSuccess, backgroundColor:'rgba(245,158,11,.65)', borderColor:'#f59e0b', borderWidth:1, stack:'s' },
-          { type:'bar', label:'Other – (does not want to do the refresh ', data:other, backgroundColor:'rgba(253,186,116,.45)', borderColor:'#fdba74', borderWidth:1, stack:'s' },
-          { type:'line', label:'Success rate OB %', data:rate, yAxisID:'y2', borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:false, tension:.35, borderWidth:3, pointRadius:2 }
-        ]
-      },
-      options: {
-        plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-        scales: {
-          x: { ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
-          y: { beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } },
-          y2: { position:'right', ticks:{ color:axisColor(), callback:v => v + '%' }, grid:{ drawOnChartArea:false } }
-        }
-      }
-    });
-  }
-  const monthOrder = ['Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Other'];
-  function buildMonthlyAgg(rows) {
-    const map = {};
-    rows.forEach(r => {
-      const m = monthKeyFromBatch(r.date);
-      if (!map[m]) map[m] = { successSum: 0, successRateVals: [], attemptSum: 0 };
-      map[m].successSum += Number(r.successful || 0);
-      map[m].attemptSum += Number(r["total contact"] || 0) - Number(r.credit_cancelled || 0);
-      const raw = String(r.success_month || '').replace(',', '.').trim();
-      const v = parseFloat(raw);
-      if (!isNaN(v)) map[m].successRateVals.push(v);
-    });
-    const labels = Object.keys(map).sort((a,b) => monthOrder.indexOf(a)-monthOrder.indexOf(b));
-    const successPercent = labels.map(m => {
-      const as = map[m].attemptSum;
-      return as > 0 ? (map[m].successSum / as) * 100 : null;
-    });
-    const successRate = labels.map(m => {
-      const arr = map[m].successRateVals;
-      if (!arr.length) return null;
-      const avg = arr.reduce((s,x)=>s+x,0)/arr.length;
-      return Math.round(avg*100)/100;
-    });
-    return { labels, successPercent, successRate };
-  }
-  let chartYearMonthly = null;
-  let chartYearGA = null;
-  function renderMonthlySummary(rows) {
-    const el = document.getElementById('yearChartMonthly');
-    if (!el || rows.length === 0) return;
-    if (chartYearMonthly) { chartYearMonthly.destroy(); chartYearMonthly = null; }
-    const agg = buildMonthlyAgg(rows);
-    chartYearMonthly = new Chart(el, {
-      type: 'bar',
-      data: {
-        labels: agg.labels,
-        datasets: [
-          { type: 'bar', label: 'Successful % (monthly total)', data: agg.successPercent, backgroundColor: 'rgba(16,185,129,.65)', borderColor: cEmerald, borderWidth: 1 },
-          { type: 'line', label: 'Success rate by month % (avg)', data: agg.successRate, borderColor: cIndigo, backgroundColor: 'rgba(99,102,241,.18)', fill: false, tension: .35, borderWidth: 3, pointRadius: 2 }
-        ]
-      },
-      options: {
-        plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-        scales: {
-          x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
-          y: { beginAtZero:true, ticks:{ color: axisColor(), callback:v => v + '%' }, grid:{ color:gridColor(.12) } }
-        }
-      }
-    });
-  }
-  function renderGAByBatch(rows) {
-    const el = document.getElementById('yearChartGA');
-    if (!el) return;
-    if (chartYearGA) { chartYearGA.destroy(); chartYearGA = null; }
-    const labels = rows.map(r => r.date);
-    const ger = rows.map(r => Number(r.germany || 0));
-    const aut = rows.map(r => Number(r.austria || 0));
-    chartYearGA = new Chart(el, {
-      type: 'bar',
-      data: {
-        labels,
-        datasets: [
-          { label:'Germany', data:ger, backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1, stack:'geo' },
-          { label:'Austria', data:aut, backgroundColor:'rgba(99,102,241,.45)', borderColor:cIndigo, borderWidth:1, stack:'geo' }
-        ]
-      },
-      options: {
-        plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
-        scales: {
-          x: { ticks:{ color: axisColor() }, grid:{ color:gridColor(.15) } },
-          y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color:gridColor(.12) } }
-        }
-      }
-    });
-  }
-  function renderYearView(kind, period) {
-    openYearStage();
-    let filtered = yearRows;
-    let title = 'Overview 2025';
-    if (period === 'Q1') {
-      filtered = yearRows.filter(r => ['Feb','Mar','Apr','May','Jun'].includes(monthKeyFromBatch(r.date)));
-      title = 'Q1 2025 (Feb-Jun)';
-    } else if (period === 'Q2') {
-      filtered = yearRows.filter(r => ['Jul','Aug','Sep','Oct','Nov','Dec'].includes(monthKeyFromBatch(r.date)));
-      title = 'Q2 2025 (Jul-Dec)';
-    }
-    renderTable(filtered, `Outbound Calls — ${title}`, title);
-    renderChart(filtered);
-    renderMonthlySummary(filtered);
-    renderGAByBatch(filtered);
-  }
-  document.querySelectorAll('#yearMenu .menu-item[data-year-period]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const period = btn.getAttribute('data-year-period');
-      renderYearView('period', period);
-      setYearExpanded(false);
-    });
-  });
-  document.getElementById('csvYearBtn')?.addEventListener('click', () => {
-    if (chartYear) exportChartToCSV(chartYear, 'year-end-visible.csv');
-    else exportTableToCSV(document.getElementById('yearTable'), 'year-end.csv');
-  });
-  document.getElementById('csvYearMonthlyBtn')?.addEventListener('click', () => {
-    if (chartYearMonthly) exportChartToCSV(chartYearMonthly, 'year-overview-monthly-visible.csv');
-  });
-  document.getElementById('csvYearGABtn')?.addEventListener('click', () => {
-    if (chartYearGA) exportChartToCSV(chartYearGA, 'year-month-geo-visible.csv');
+    return o;
   });
 }
-
-// Start initialization (will retry until Chart.js is ready)
-initChartsWhenReady();
+const yearRows = parseCsv(yearCsv);
+function monthKeyFromBatch(s) {
+  const t = (s || '').toLowerCase();
+  if (t.includes('feb')) return 'Feb';
+  if (t.includes('mar')) return 'Mar';
+  if (t.includes('abr') || t.includes('apr')) return 'Apr';
+  if (t.includes('may') || t.includes('may')) return 'May';
+  if (t.includes('jun')) return 'Jun';
+  if (t.includes('jul')) return 'Jul';
+  if (t.includes('aug') || t.includes('ago')) return 'Aug';
+  if (t.includes('sep')) return 'Sep';
+  if (t.includes('oct') || t.includes('oct')) return 'Oct';
+  if (t.includes('nov')) return 'Nov';
+  if (t.includes('dec')) return 'Dec';
+  return 'Other';
+}
+function renderTable(rows, caption, contextLabel) {
+  const tbody = document.getElementById('yearTableBody');
+  const cap = document.getElementById('yearTableCaption');
+  const ctx = document.getElementById('yearContextLabel');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+<td>${r.date}</td>
+<td>${r["total contact"]}</td>
+<td>${r.germany}</td>
+<td>${r.austria}</td>
+<td>${r.credit_cancelled}</td>
+<td>${r.successful}</td>
+<td>${r.not_success}</td>
+<td>${r.other || '0'}</td>
+<td>${r.success_ob || ''}</td>
+<td>${r.success_month || ''}</td>
+`;
+    tbody.appendChild(tr);
+  });
+  if (cap) cap.textContent = caption || 'Outbound Calls';
+  if (ctx) ctx.textContent = contextLabel ? `• ${contextLabel}` : '';
+}
+let chartYear = null;
+function renderChart(rows) {
+  const el = document.getElementById('yearChart');
+  if (!el || !window.Chart) return;
+  if (chartYear) { chartYear.destroy(); chartYear = null; }
+   const labels = rows.map(r => r.date);
+  const success = rows.map(r => Number(r.successful || 0));
+  const notSuccess = rows.map(r => Number(r.not_success || 0));
+  const rate = rows.map(r => {
+    const v = String(r.success_ob || '').replace(',', '.');
+    const n = parseFloat(v);
+    return isNaN(n) ? null : n;
+  });
+  const creditCancelled = rows.map(r => Number(r.credit_cancelled || 0));
+  const other = rows.map(r => Number(r.other || 0));
+  chartYear = new Chart(el, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { type:'bar', label:'Credit active, card cancelled', data:creditCancelled, backgroundColor:'rgba(239,68,68,.45)', borderColor:'#ef4444', borderWidth:1, stack:'s' },
+        { type:'bar', label:'Successful - incl. Calls, forwarded for link, promised to do it', data:success, backgroundColor:'rgba(16,185,129,.65)', borderColor:'#10b981', borderWidth:1, stack:'s' },
+        { type:'bar', label:'Not successful - no answer, left message', data:notSuccess, backgroundColor:'rgba(245,158,11,.65)', borderColor:'#f59e0b', borderWidth:1, stack:'s' },
+        { type:'bar', label:'Other – (does not want to do the refresh ', data:other, backgroundColor:'rgba(253,186,116,.45)', borderColor:'#fdba74', borderWidth:1, stack:'s' },
+        { type:'line', label:'Success rate OB %', data:rate, yAxisID:'y2', borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:false, tension:.35, borderWidth:3, pointRadius:2 }
+      ]
+    },
+    options: {
+      plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+      scales: {
+        x: { ticks:{ color:axisColor() }, grid:{ color:gridColor(.15) } },
+        y: { beginAtZero:true, ticks:{ color:axisColor() }, grid:{ color:gridColor(.12) } },
+        y2: { position:'right', ticks:{ color:axisColor(), callback:v => v + '%' }, grid:{ drawOnChartArea:false } }
+      }
+    }
+  });
+}
+const monthOrder = ['Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Other'];
+function buildMonthlyAgg(rows) {
+  const map = {};
+  rows.forEach(r => {
+    const m = monthKeyFromBatch(r.date);
+    if (!map[m]) map[m] = { successSum: 0, successRateVals: [], attemptSum: 0 };
+    map[m].successSum += Number(r.successful || 0);
+    map[m].attemptSum += Number(r["total contact"] || 0) - Number(r.credit_cancelled || 0);
+    const raw = String(r.success_month || '').replace(',', '.').trim();
+    const v = parseFloat(raw);
+    if (!isNaN(v)) map[m].successRateVals.push(v);
+  });
+  const labels = Object.keys(map).sort((a,b) => monthOrder.indexOf(a)-monthOrder.indexOf(b));
+  const successPercent = labels.map(m => {
+    const as = map[m].attemptSum;
+    return as > 0 ? (map[m].successSum / as) * 100 : null;
+  });
+  const successRate = labels.map(m => {
+    const arr = map[m].successRateVals;
+    if (!arr.length) return null;
+    const avg = arr.reduce((s,x)=>s+x,0)/arr.length;
+    return Math.round(avg*100)/100;
+  });
+  return { labels, successPercent, successRate };
+}
+let chartYearMonthly = null;
+let chartYearGA = null;
+function renderMonthlySummary(rows) {
+  const el = document.getElementById('yearChartMonthly');
+  if (!el || !window.Chart || rows.length === 0) return;
+  if (chartYearMonthly) { chartYearMonthly.destroy(); chartYearMonthly = null; }
+  const agg = buildMonthlyAgg(rows);
+  chartYearMonthly = new Chart(el, {
+    type: 'bar',
+    data: {
+      labels: agg.labels,
+      datasets: [
+        { type: 'bar', label: 'Successful % (monthly total)', data: agg.successPercent, backgroundColor: 'rgba(16,185,129,.65)', borderColor: cEmerald, borderWidth: 1 },
+        { type: 'line', label: 'Success rate by month % (avg)', data: agg.successRate, borderColor: cIndigo, backgroundColor: 'rgba(99,102,241,.18)', fill: false, tension: .35, borderWidth: 3, pointRadius: 2 }
+      ]
+    },
+    options: {
+      plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+      scales: {
+        x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
+        y: { beginAtZero:true, ticks:{ color: axisColor(), callback:v => v + '%' }, grid:{ color:gridColor(.12) } }
+      }
+    }
+  });
+}
+function renderGAByBatch(rows) {
+  const el = document.getElementById('yearChartGA');
+  if (!el || !window.Chart) return;
+  if (chartYearGA) { chartYearGA.destroy(); chartYearGA = null; }
+  const labels = rows.map(r => r.date);
+  const ger = rows.map(r => Number(r.germany || 0));
+  const aut = rows.map(r => Number(r.austria || 0));
+  chartYearGA = new Chart(el, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label:'Germany', data:ger, backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1, stack:'geo' },
+        { label:'Austria', data:aut, backgroundColor:'rgba(99,102,241,.45)', borderColor:cIndigo, borderWidth:1, stack:'geo' }
+      ]
+    },
+    options: {
+      plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
+      scales: {
+        x: { ticks:{ color: axisColor() }, grid:{ color:gridColor(.15) } },
+        y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color:gridColor(.12) } }
+      }
+    }
+  });
+}
+function renderYearView(kind, period) {
+  openYearStage();
+  let filtered = yearRows;
+  let title = 'Overview 2025';
+  if (period === 'Q1') {
+    filtered = yearRows.filter(r => ['Feb','Mar','Apr','May','Jun'].includes(monthKeyFromBatch(r.date)));
+    title = 'Q1 2025 (Feb-Jun)';
+  } else if (period === 'Q2') {
+    filtered = yearRows.filter(r => ['Jul','Aug','Sep','Oct','Nov','Dec'].includes(monthKeyFromBatch(r.date)));
+    title = 'Q2 2025 (Jul-Dec)';
+  }
+  renderTable(filtered, `Outbound Calls — ${title}`, title);
+  renderChart(filtered);
+  renderMonthlySummary(filtered);
+  renderGAByBatch(filtered);
+}
+document.querySelectorAll('#yearMenu .menu-item[data-year-period]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const period = btn.getAttribute('data-year-period');
+    renderYearView('period', period);
+    setYearExpanded(false);
+  });
+});
+document.getElementById('csvYearBtn')?.addEventListener('click', () => {
+  if (chartYear) exportChartToCSV(chartYear, 'year-end-visible.csv');
+  else exportTableToCSV(document.getElementById('yearTable'), 'year-end.csv');
+});
+document.getElementById('csvYearMonthlyBtn')?.addEventListener('click', () => {
+  if (chartYearMonthly) exportChartToCSV(chartYearMonthly, 'year-overview-monthly-visible.csv');
+});
+document.getElementById('csvYearGABtn')?.addEventListener('click', () => {
+  if (chartYearGA) exportChartToCSV(chartYearGA, 'year-month-geo-visible.csv');
+});
+});
 </script>
 </body>
 </html>
