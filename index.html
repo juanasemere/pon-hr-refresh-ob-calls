@@ -1009,37 +1009,37 @@ renderYearView('overview');
 setYearExpanded(false);
 });
 /* ====== Dataset (CSV) — puntos decimales para % ====== */
-const yearCsv = `batch,total,ger,aut,credit_cancelled,successful,not_success,other,dedup,success_ob,success_month
-FEB feb-18,15,14,1,4,4,7,0,36.36,36.36
+const yearCsv = `date,total contact,germany,austria,credit_cancelled,successful,not_success,other,success_ob,success_month
+FEB 18,15,14,1,4,4,7,0,36.36,36.36
 MARCH 5,43,40,3,7,14,22,0,38.89,
-MARCH 21,46,43,3,6,12,17,30.00,
-MARCH 28,50,43,7,5,25,20,0,55.56,41.48
+MARCH 21,46,43,3,6,12,17,0, 30.00,
+MARCH 28,50,43,7,5,25,20,0,55.56,41.49
 APRIL 14,25,23,2,7,9,6,3,50.00,
 APRIL 24,40,34,6,0,22,18,0,55.00,52.50
-MAI 08,54,41,13,1,29,21,3,54.72,
-MAI 15,22,19,3,4,8,10,0,44.44,
-MAI 23,69,63,6,4,47,17,1,0,
-JUNE 1,63,55,8,0,44,18,1,0,69.84,
-JUNE 06,16,16,0,0,8,7,1,0,50.00,
-JUNE 15,82,74,8,0,61,20,1,0,74.39,
-JUNE 23,57,53,4,2,40,14,0,1,72.73,66.74
-JULI 07,77,69,8,0,51,19,7,0,66.23,
-JULI 14,54,49,5,0,36,13,5,0,66.67,
-JULI 21,24,18,6,0,13,7,3,1,54.17,
-JULI 28,48,46,2,0,32,16,0,0,66.67,63.43
-AUGUST 4,42,39,3,1,27,13,1,0,65.85,
-AUGUST 11,16,14,1,1,9,6,0,0,60.00,
-AUGUST 18,57,53,4,0,31,23,3,0,54.39,
-AUGUST 25,26,26,0,1,16,1,8,0,64.00,61.06
-SEP 8,30,30,0,2,17,11,0,0,60.71,
-SEP 23,35,32,3,0,23,11,1,0,69.70,64.05
-OCT 29,35,35,0,1,21,13,0,0,63.64,
-OCT 6,39,35,4,0,23,16,0,0,62.16,
-OCT 13,50,47,3,2,36,14,0,0,72.00,
-OCT 20,34,31,3,0,21,13,0,0,63.64,
-OCT 27,30,28,2,0,22,9,0,0,73.33,67.78
-NOV 4,24,23,1,0,14,10,0,0,63.64,
-NOV 10,33,30,3,0,20,13,0,0,60.61,60.61`;
+MAY 08,54,41,13,1,29,21,3,54.72,
+MAY 15,22,19,3,4,8,10,0,44.44,
+MAY 23,69,63,6,4,47,17,1,72.31, 57.16
+JUNE 1,63,55,8,0,44,18,1,69.84,
+JUNE 06,16,16,0,0,8,7,1,50.00,
+JUNE 15,82,74,8,0,61,20,1,74.39,
+JUNE 23,57,53,4,2,40,14,0,72.73,66.74
+JULY 07,77,69,8,0,51,19,7,66.23,
+JULY 14,54,49,5,0,36,13,5,66.67,
+JULY 21,24,18,6,0,13,7,3,54.17,
+JULY 28,48,46,2,0,32,16,0,66.67,63.43
+AUGUST 4,42,39,3,1,27,13,1,65.85,
+AUGUST 11,16,14,1,1,9,6,0,60.00,
+AUGUST 18,57,53,4,0,31,23,3,54.39,
+AUGUST 25,26,26,0,1,16,1,8,64.00,61.07
+SEP 8,30,30,0,2,17,11,0,60.71,
+SEP 23,35,32,3,0,23,11,1,69.70,
+SEP 29,35,35,0,1,21,13,0,63.64,64.69
+OCT 6,39,35,4,0,23,16,0,62.16,
+OCT 13,50,47,3,2,36,14,0,72.00,
+OCT 20,34,31,3,0,21,13,0,63.64,
+OCT 27,30,28,2,0,22,9,0,73.33,68.53
+NOV 4,24,23,1,0,14,10,0,63.64,
+NOV 10,33,30,3,0,20,13,0,60.61,60.61`;
 function parseCsv(str) {
   const lines = str.trim().split(/\r?\n/);
   const headers = lines.shift().split(',').map(h => h.trim());
@@ -1058,12 +1058,12 @@ function monthKeyFromBatch(s) {
   if (t.includes('feb')) return 'Feb';
   if (t.includes('mar')) return 'Mar';
   if (t.includes('abr') || t.includes('apr')) return 'Apr';
-  if (t.includes('mai') || t.includes('may')) return 'May';
+  if (t.includes('may') || t.includes('may')) return 'May';
   if (t.includes('jun')) return 'Jun';
   if (t.includes('jul')) return 'Jul';
   if (t.includes('aug') || t.includes('ago')) return 'Aug';
   if (t.includes('sep')) return 'Sep';
-  if (t.includes('okt') || t.includes('oct')) return 'Oct';
+  if (t.includes('oct') || t.includes('oct')) return 'Oct';
   if (t.includes('nov')) return 'Nov';
   if (t.includes('dec')) return 'Dec';
   return 'Other';
