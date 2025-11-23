@@ -812,11 +812,11 @@ const suspEl = document.getElementById('suspChart');
 const chartRefresh = refreshEl && window.Chart ? new Chart(refreshEl, {
 type:'line',
 data:{
-labels:['May 2025','Jun 2025','Jul 2025','Aug 2025'],
+labels:['May 2025','Jun 2025','Jul 2025','Aug 2025','Sep 2025'],
 datasets:[
-{ label:'% Refreshed', data:[74,79,82,85], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
-{ label:'% In progress', data:[18,15,13,10], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
-{ label:'% To contact / Pre-screen', data:[8,6,5,5], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
+{ label:'% Refreshed', data:[74,79,82,85,88], borderColor:cIndigo, backgroundColor:'rgba(99,102,241,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 },
+{ label:'% In progress', data:[18,15,13,10,8], borderColor:cSky, backgroundColor:'rgba(14,165,233,.15)', fill:true, tension:.35, borderWidth:2, pointRadius:2 },
+{ label:'% To contact / Pre-screen', data:[8,6,5,5,4], borderColor:cMuted, backgroundColor:'rgba(148,163,184,.12)', fill:true, tension:.35, borderWidth:2 }
 ]
 },
 options:{
@@ -831,7 +831,8 @@ data:{
 labels:['Germany','Austria'],
 datasets:[
 { label:'AIF YTD (May)', data:[3200,500], backgroundColor:'rgba(14,165,233,.65)', borderColor:cSky, borderWidth:1 },
-{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 }
+{ label:'AIF YTD (Aug)', data:[3500,500], backgroundColor:'rgba(16,185,129,.65)', borderColor:cEmerald, borderWidth:1 },
+{ label:'AIF YTD (Sep)', data:[3600,500], backgroundColor:'rgba(99,102,241,.65)', borderColor:cIndigo, borderWidth:1 }
 ]
 },
 options:{
@@ -843,10 +844,10 @@ y:{ beginAtZero:true, ticks:{ color:axisColor(), callback:v=>Number(v).toLocaleS
 const chartSusp = suspEl && window.Chart ? new Chart(suspEl, {
 type:'line',
 data:{
-labels:['May','Jun','Jul','Aug'],
+labels:['May','Jun','Jul','Aug','Sep'],
 datasets:[
-{ label:'Open inventory (index)', data:[100,75,60,45], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
-{ label:'Suspension rate %', data:[1.4,1.1,0.9,0.6], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
+{ label:'Open inventory (index)', data:[100,75,60,45,30], yAxisID:'y2', borderDash:[6,4], borderColor:cMuted, backgroundColor:'transparent', tension:.35, borderWidth:2 },
+{ label:'Suspension rate %', data:[1.4,1.1,0.9,0.6,0.4], yAxisID:'y1', borderColor:cEmerald, backgroundColor:'rgba(16,185,129,.18)', fill:true, tension:.35, borderWidth:3, pointRadius:2 }
 ]
 },
 options:{
@@ -1135,21 +1136,25 @@ function buildMonthlyAgg(rows) {
   const map = {};
   rows.forEach(r => {
     const m = monthKeyFromBatch(r.date);
-    if (!map[m]) map[m] = { successSum: 0, successRateVals: [] };
+    if (!map[m]) map[m] = { successSum: 0, successRateVals: [], attemptSum: 0 };
     map[m].successSum += Number(r.successful || 0);
+    map[m].attemptSum += Number(r["total contact"] || 0) - Number(r.credit_cancelled || 0);
     const raw = String(r.success_month || '').replace(',', '.').trim();
     const v = parseFloat(raw);
     if (!isNaN(v)) map[m].successRateVals.push(v);
   });
   const labels = Object.keys(map).sort((a,b) => monthOrder.indexOf(a)-monthOrder.indexOf(b));
-  const successful = labels.map(m => map[m].successSum);
+  const successPercent = labels.map(m => {
+    const as = map[m].attemptSum;
+    return as > 0 ? (map[m].successSum / as) * 100 : null;
+  });
   const successRate = labels.map(m => {
     const arr = map[m].successRateVals;
     if (!arr.length) return null;
     const avg = arr.reduce((s,x)=>s+x,0)/arr.length;
     return Math.round(avg*100)/100;
   });
-  return { labels, successful, successRate };
+  return { labels, successPercent, successRate };
 }
 let chartYearMonthly = null;
 let chartYearGA = null;
@@ -1163,16 +1168,15 @@ function renderMonthlySummary(rows) {
     data: {
       labels: agg.labels,
       datasets: [
-        { type: 'bar', label: 'Successful (sum)', data: agg.successful, backgroundColor: 'rgba(16,185,129,.65)', borderColor: cEmerald, borderWidth: 1 },
-        { type: 'line', label: 'Success rate by month % (avg)', data: agg.successRate, yAxisID: 'y2', borderColor: cIndigo, backgroundColor: 'rgba(99,102,241,.18)', fill: false, tension: .35, borderWidth: 3, pointRadius: 2 }
+        { type: 'bar', label: 'Successful % (monthly total)', data: agg.successPercent, backgroundColor: 'rgba(16,185,129,.65)', borderColor: cEmerald, borderWidth: 1 },
+        { type: 'line', label: 'Success rate by month % (avg)', data: agg.successRate, borderColor: cIndigo, backgroundColor: 'rgba(99,102,241,.18)', fill: false, tension: .35, borderWidth: 3, pointRadius: 2 }
       ]
     },
     options: {
       plugins: { legend:{ position:'bottom', labels:{ color:'#cbd5e1' } }, tooltip:{ mode:'index', intersect:false } },
       scales: {
         x: { ticks:{ color: axisColor() }, grid:{ color: gridColor(.15) } },
-        y: { beginAtZero:true, ticks:{ color: axisColor() }, grid:{ color:gridColor(.12) } },
-        y2:{ position:'right', ticks:{ color: axisColor(), callback:v => v + '%' }, grid:{ drawOnChartArea:false } }
+        y: { beginAtZero:true, ticks:{ color: axisColor(), callback:v => v + '%' }, grid:{ color:gridColor(.12) } }
       }
     }
   });
