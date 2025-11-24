@@ -138,6 +138,76 @@ h1{font-size:24px}
 .dropdown__menu{min-width:100%;}
 table{display:block; overflow:auto; white-space:nowrap}
 }
+/* 1. Transición suave al mostrar/ocultar secciones grandes */
+#stage-sept-2024,
+#stage-may-2025,
+#stage-aug-2025,
+#stage-year-end {
+  transition: opacity 0.32s ease, transform 0.32s ease;
+  opacity: 0;
+  transform: translateY(12px);
+}
+#stage-sept-2024[style*="display: block"],
+#stage-may-2025[style*="display: block"],
+#stage-aug-2025[style*="display: block"],
+#stage-year-end[style*="display: block"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 2. Mejora muy ligera en los botones (ya tenían transición, la hacemos más completa) */
+.button {
+  transition: background 0.22s ease, transform 0.1s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(2,6,23,.4);
+}
+.button:active {
+  transform: translateY(0);
+}
+
+/* 3. Fade-in suave para todas las cards cuando aparecen */
+.card {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.10s; }
+.card:nth-child(3) { animation-delay: 0.15s; }
+.card:nth-child(4) { animation-delay: 0.20s; }
+.card:nth-child(5) { animation-delay: 0.25s; }
+
+/* 4. Fade-in para los canvas de Chart.js cuando la sección se hace visible */
+canvas {
+  opacity: 0;
+  animation: fadeIn 0.6s ease 0.2s forwards;
+}
+
+/* Keyframes reutilizables */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pequeña mejora visual en los dropdowns (apertura más elegante) */
+.dropdown__menu {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0.22s;
+}
+.dropdown:hover .dropdown__menu,
+.dropdown:focus-within .dropdown__menu {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0s linear 0s;
+}
 </style>
 </head>
 <body>
